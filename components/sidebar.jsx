@@ -1,5 +1,14 @@
 "use client";
-import { ChevronLeft, Package2, Settings } from "lucide-react";
+import {
+  ChevronLeft,
+  Gem,
+  GraduationCap,
+  LayoutDashboard,
+  LayoutTemplate,
+  Package2,
+  PieChart,
+  Settings,
+} from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import classNames from "classnames";
@@ -12,9 +21,52 @@ import {
 } from "@/components/ui/tooltip";
 import Image from "next/image";
 import { useMainContext } from "@/context/main-context";
+import { usePathname } from "next/navigation";
 
 function Sidebar() {
   const { openSidebar, setOpenSidebar } = useMainContext();
+  const pathname = usePathname();
+
+  console.log(pathname);
+
+  const navData = [
+    {
+      id: 0,
+      link: "/",
+      title: "Dashboard",
+      icon: LayoutDashboard,
+    },
+    {
+      id: 1,
+      link: "/templates",
+      title: "Templates",
+      icon: Gem,
+    },
+    {
+      id: 2,
+      link: "/sections",
+      title: "Sections",
+      icon: LayoutTemplate,
+    },
+    {
+      id: 3,
+      link: "/resume",
+      title: "Resume",
+      icon: GraduationCap,
+    },
+    {
+      id: 4,
+      link: "/analytics",
+      title: "Analytics",
+      icon: PieChart,
+    },
+    {
+      id: 5,
+      link: "/settings",
+      title: "Settings",
+      icon: Settings,
+    },
+  ];
 
   return (
     <TooltipProvider>
@@ -28,7 +80,7 @@ function Sidebar() {
         )}
       >
         <nav
-          className={classNames("flex flex-col gap-1 py-4", {
+          className={classNames("flex flex-col flex-grow gap-1 py-4", {
             "items-start px-4": openSidebar,
             "items-center px-2": !openSidebar,
           })}
@@ -36,9 +88,9 @@ function Sidebar() {
           <Link
             href="/"
             className={classNames(
-              "flex items-center gap-2 rounded-full text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base mb-6",
+              "flex items-center gap-2 rounded-full text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base mb-6 duration-300",
               {
-                "justify-start": openSidebar,
+                "justify-start pl-4": openSidebar,
                 "justify-center": !openSidebar,
               }
             )}
@@ -48,83 +100,46 @@ function Sidebar() {
               height={40}
               src="/logo.svg"
               alt="Logo"
-              className="h-4 w-4 transition-all group-hover:scale-110"
+              className="h-5 w-5 transition-all group-hover:scale-110 opacity-90"
             />
             {openSidebar && <span className="text-primary">Showcase</span>}
           </Link>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Link
-                href="#"
-                className={classNames(
-                  "flex items-center rounded-lg text-gray-700 transition-colors hover:text-foreground duration-200",
-                  {
-                    "justify-start space-x-1 px-3 py-1 rounded-lg bg-accent hover:bg-gray-200 w-full":
-                      openSidebar,
-                    "justify-center": !openSidebar,
-                  }
+          <ul className="w-full space-y-1 h-full">
+            {navData.map((navitem) => (
+              <Tooltip key={navitem.id}>
+                <TooltipTrigger asChild>
+                  <Link
+                    href={`${navitem.link}`}
+                    className={classNames(
+                      "flex items-center rounded-lg text-gray-700 transition-colors hover:bg-accent duration-200 last:mt-auto",
+                      {
+                        "justify-start space-x-1 px-3 py-1 rounded-lg w-full":
+                          openSidebar,
+                        "justify-center": !openSidebar,
+                      },
+                      {
+                        "bg-accent hover:bg-gray-200/70 text-blue-500":
+                          pathname === navitem.link,
+                      }
+                    )}
+                  >
+                    <navitem.icon
+                      className={classNames("h-9 w-9 p-2 rounded-lg", {
+                        "bg-accent hover:bg-gray-200/70 text-blue-500":
+                          pathname === navitem.link,
+                      })}
+                    />
+                    {openSidebar && (
+                      <span className="font-medium">{navitem.title}</span>
+                    )}
+                  </Link>
+                </TooltipTrigger>
+                {!openSidebar && (
+                  <TooltipContent side="right">{navitem.title}</TooltipContent>
                 )}
-              >
-                <Package2
-                  className={classNames("h-9 w-9 p-2 rounded-lg", {
-                    "bg-transparent hover:bg-transparent": openSidebar,
-                    "bg-muted hover:bg-gray-200": !openSidebar,
-                  })}
-                />
-                {openSidebar && <span className="font-medium">Dashboard</span>}
-              </Link>
-            </TooltipTrigger>
-            <TooltipContent side="right">Dashboard</TooltipContent>
-          </Tooltip>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Link
-                href="#"
-                className={classNames(
-                  "flex items-center rounded-lg text-gray-700 transition-colors hover:text-foreground duration-200",
-                  {
-                    "justify-start space-x-1 px-3 py-1 rounded-lg bg-accent hover:bg-gray-200 w-full":
-                      openSidebar,
-                    "justify-center": !openSidebar,
-                  }
-                )}
-              >
-                <Package2
-                  className={classNames("h-9 w-9 p-2 rounded-lg", {
-                    "bg-transparent hover:bg-transparent": openSidebar,
-                    "bg-muted hover:bg-gray-200": !openSidebar,
-                  })}
-                />
-                {openSidebar && <span className="font-medium">Dashboard</span>}
-              </Link>
-            </TooltipTrigger>
-            <TooltipContent side="right">Dashboard</TooltipContent>
-          </Tooltip>
-        </nav>
-        <nav
-          className={`${
-            openSidebar ? "items-start px-4" : "items-center px-2"
-          } mt-auto flex flex-col gap-4 py-4`}
-        >
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Link
-                href="#"
-                className={classNames(
-                  "flex items-center rounded-lg text-gray-700 transition-colors hover:text-foreground duration-200 bg-transparent hover:bg-muted",
-                  {
-                    "justify-start space-x-1 px-3 py-1 rounded-lg w-full":
-                      openSidebar,
-                    "justify-center": !openSidebar,
-                  }
-                )}
-              >
-                <Settings className="h-9 w-9 p-2 rounded-lg bg-transparent hover:bg-muted" />
-                {openSidebar && <span className="font-medium">Settings</span>}
-              </Link>
-            </TooltipTrigger>
-            <TooltipContent side="right">Settings</TooltipContent>
-          </Tooltip>
+              </Tooltip>
+            ))}
+          </ul>
         </nav>
         <div
           onClick={() => setOpenSidebar((prev) => !prev)}
