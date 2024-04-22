@@ -1,5 +1,3 @@
-// Import the functions you need from the SDKs you need
-
 import { getApps, initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
@@ -13,6 +11,9 @@ const firebaseConfig = {
   appId: "1:405966938321:web:6b0567afce84e5f0d065f0",
   measurementId: "G-R1BWYY1GPB",
 };
+
+// utils/firebase.js (continued)
+
 
 // Initialize Firebase
 let firebase_app =

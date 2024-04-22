@@ -14,6 +14,10 @@ export const useEmailPasswordRegistration = () => {
     setIsPendingEmailRegistration(true);
 
     try {
+      if (!username) {
+        throw new Error("Username is required for registration.");
+      }
+
       const res = await createUserWithEmailAndPassword(auth, email, password);
       if (!res.user) {
         throw new Error("User object not found in response.");

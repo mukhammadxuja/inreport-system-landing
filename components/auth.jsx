@@ -62,28 +62,14 @@ function Auth() {
   const { isEmailVerificationPending, sendEmailVerificationLink } =
     useEmailVerification();
 
-  const formEmailPassword = useForm<z.infer<typeof FormSchemaEmailPassword>>({
-    resolver: zodResolver(FormSchemaEmailPassword),
-  });
+  const formEmailPassword = useForm();
 
-  async function onSubmitEmailPasswordLogin(
-    data: z.infer<typeof FormSchemaEmailPassword>
-  ) {
+  async function onSubmitEmailPasswordLogin(data) {
     await emailPasswordLogin(data.email, data.password);
   }
-  async function onSubmitEmailPasswordRegistration(
-    data: z.infer<typeof FormSchemaEmailPassword>
-  ) {
+  async function onSubmitEmailPasswordRegistration(data) {
     await emailPasswordRegistration(data.email, data.password, data.username);
   }
-
-  const handleSendVerificationEmail = async () => {
-    try {
-      await sendEmailVerificationLink();
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   return (
     <div className="w-full">

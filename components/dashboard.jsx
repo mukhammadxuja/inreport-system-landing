@@ -4,11 +4,10 @@ import Sidebar from "./sidebar";
 import { useAuthContext } from "@/context/auth-context";
 import { useMainContext } from "@/context/main-context";
 
-function Dashboard({ children }: { children: React.ReactNode }) {
+function Dashboard({ children }) {
   const { user } = useAuthContext();
   const { openSidebar } = useMainContext();
 
-  
   return (
     <div className="flex">
       {user && <Sidebar />}

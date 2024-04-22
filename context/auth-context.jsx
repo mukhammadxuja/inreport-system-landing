@@ -1,8 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import firebase_app, { db } from "@/firebase/config";
+import firebase_app from "@/firebase/config";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Shell } from "lucide-react";
-import { collection, getDocs } from "firebase/firestore";
 
 const auth = getAuth(firebase_app);
 
@@ -33,7 +32,6 @@ export const AuthContextProvider = ({ children }) => {
 
     return () => unsubscribe();
   }, []);
-
 
   return (
     <AuthContext.Provider value={{ user }}>

@@ -31,12 +31,17 @@ export const MainContextProvider = ({ children }) => {
     fetchUsers();
   }, []);
 
-  console.log(users);
+  const getUser = async (username) => {
+    const userData = await users.find((item) => item.username === username);
+
+    return userData;
+  };
 
   const contextValue = {
     users,
     openSidebar,
     setOpenSidebar,
+    getUser,
   };
 
   return (
