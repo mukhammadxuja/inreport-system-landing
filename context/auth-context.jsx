@@ -1,3 +1,4 @@
+"use client";
 import { createContext, useContext, useEffect, useState } from "react";
 import firebase_app from "@/firebase/config";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -37,7 +38,7 @@ export const AuthContextProvider = ({ children }) => {
     <AuthContext.Provider value={{ user }}>
       {loading ? (
         <div className="loading-container">
-          <Shell className="w-5 h-5 animate-spin" />
+          <Shell className="w-8 h-8 animate-spin" />
         </div>
       ) : (
         <>{children}</>

@@ -3,6 +3,7 @@ import React from "react";
 import Sidebar from "./sidebar";
 import { useAuthContext } from "@/context/auth-context";
 import { useMainContext } from "@/context/main-context";
+import { Navbar } from "./navbar";
 
 function Dashboard({ children }) {
   const { user } = useAuthContext();

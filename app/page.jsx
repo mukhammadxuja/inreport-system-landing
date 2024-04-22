@@ -15,7 +15,7 @@ export default function Home() {
           <div className="w-full flex flex-col items-center gap-4">
             <h1 className="text-center text-xl font-bold">Connected !</h1>
             {users.map((user) => (
-              <Link key={user.uid} href={user.username}>
+              <Link key={user.uid} href={`${user.username}`}>
                 {user.username}
               </Link>
             ))}

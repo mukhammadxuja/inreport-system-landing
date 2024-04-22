@@ -1,7 +1,7 @@
 "use client";
 import { ChevronLeft, Package2, Settings } from "lucide-react";
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import classNames from "classnames";
 
 import {
@@ -15,7 +15,7 @@ import { useMainContext } from "@/context/main-context";
 
 function Sidebar() {
   const { openSidebar, setOpenSidebar } = useMainContext();
-  
+
   return (
     <TooltipProvider>
       <aside

@@ -28,7 +28,7 @@ function EmailVerificationAlert() {
   return (
     <>
       {user?.emailVerified ? (
-        <Alert className="flex ite justify-between">
+        <Alert className="flex ite justify-between my-4">
           <div className="flex items-start gap-3">
             <AlertCircle className="h-4 w-4" />
             <div>

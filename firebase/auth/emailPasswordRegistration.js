@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { auth, db } from "@/firebase/config";
 import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 export const useEmailPasswordRegistration = () => {
   const [errorEmailPasswordRegistration, setErrorEmailPasswordRegistration] =
@@ -9,7 +9,12 @@ export const useEmailPasswordRegistration = () => {
   const [isPendingEmailPasswordRegistration, setIsPendingEmailRegistration] =
     useState(false);
 
-  const emailPasswordRegistration = async (email, password, username) => {
+  const emailPasswordRegistration = async (
+    email,
+    password,
+    username,
+    displayName
+  ) => {
     setErrorEmailPasswordRegistration(null);
     setIsPendingEmailRegistration(true);
 
@@ -26,11 +31,9 @@ export const useEmailPasswordRegistration = () => {
       // Access user object from response
       const user = res.user;
 
-      // Add user to Firestore
-      await addDoc(collection(db, "users"), {
-        uid: user.uid,
-        email: user.email,
-        username: username,
+      await createUserDocumentFromAuth(user, {
+        displayName: displayName || null,
+        password: password,
       });
     } catch (error) {
       console.error("Error during email/password registration:", error);
@@ -48,4 +51,33 @@ export const useEmailPasswordRegistration = () => {
     errorEmailPasswordRegistration,
     isPendingEmailPasswordRegistration,
   };
+};
+
+export const createUserDocumentFromAuth = async (
+  userAuth,
+  additionalInformation = {}
+) => {
+  if (!userAuth) return;
+  const docUser = doc(db, `users`, userAuth.uid);
+  const userSnapshot = await getDoc(docUser);
+  if (!userSnapshot.exists()) {
+    const { displayName, email, photoURL } = userAuth;
+    try {
+      await setDoc(docUser, {
+        displayName,
+        email,
+        photoURL,
+        timestamp: new Date(),
+        prefixTime: new Date().getTime(),
+        freeUseEndDate: new Date().getTime() + 864000000,
+        uid: userAuth.uid,
+        password: "",
+        ...additionalInformation,
+      }).catch((err) => {
+        console.log(err);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 };
