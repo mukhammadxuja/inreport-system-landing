@@ -32,37 +32,37 @@ function Sidebar() {
   const navData = [
     {
       id: 0,
-      link: "/",
+      link: "/admin",
       title: "Dashboard",
       icon: LayoutDashboard,
     },
     {
       id: 1,
-      link: "/templates",
+      link: "/admin/templates",
       title: "Templates",
       icon: Gem,
     },
     {
       id: 2,
-      link: "/sections",
+      link: "/admin/sections",
       title: "Sections",
       icon: LayoutTemplate,
     },
     {
       id: 3,
-      link: "/resume",
+      link: "/admin/resume",
       title: "Resume",
       icon: GraduationCap,
     },
     {
       id: 4,
-      link: "/analytics",
+      link: "/admin/analytics",
       title: "Analytics",
       icon: PieChart,
     },
     {
       id: 5,
-      link: "/settings",
+      link: "/admin/settings",
       title: "Settings",
       icon: Settings,
     },
@@ -72,7 +72,7 @@ function Sidebar() {
     <TooltipProvider>
       <aside
         className={classNames(
-          "fixed inset-y-0 left-0 z-50 duration-300 hidden flex-col border-r bg-background sm:flex group",
+          "fixed inset-y-0 left-0 z-50 my-4 mx-2 rounded-2xl duration-300 hidden bg-white flex-col shadow-xl sm:flex group",
           {
             "w-[260px]": openSidebar,
             "w-14": !openSidebar,
@@ -86,7 +86,7 @@ function Sidebar() {
           })}
         >
           <Link
-            href="/"
+            href="/admin/"
             className={classNames(
               "flex items-center gap-2 rounded-full text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base mb-6 duration-300",
               {
@@ -113,7 +113,7 @@ function Sidebar() {
                     className={classNames(
                       "flex items-center rounded-lg text-gray-700 transition-colors hover:bg-accent duration-200 last:mt-auto",
                       {
-                        "justify-start space-x-1 px-3 py-1 rounded-lg w-full":
+                        "justify-start space-x-1 px-3 py-1 rounded-xl w-full":
                           openSidebar,
                         "justify-center": !openSidebar,
                       },
@@ -150,7 +150,7 @@ function Sidebar() {
         >
           <Tooltip>
             <TooltipTrigger asChild>
-              <span className="hidden group-hover:flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8 cursor-pointer">
+              <span className="hidden group-hover:flex h-9 w-9 items-center justify-center rounded-md bg-white shadow-md text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8 cursor-pointer">
                 <ChevronLeft
                   className={classNames("h-5 w-5", {
                     "rotate-0": openSidebar,

@@ -35,7 +35,7 @@ export const AuthContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user }}>
+    <AuthContext.Provider value={{ user, loading }}>
       {loading ? (
         <div className="loading-container">
           <Shell className="w-8 h-8 animate-spin" />
@@ -43,6 +43,7 @@ export const AuthContextProvider = ({ children }) => {
       ) : (
         <>{children}</>
       )}
+      {/* {children} */}
     </AuthContext.Provider>
   );
 };

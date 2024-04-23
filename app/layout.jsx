@@ -1,11 +1,10 @@
 import { Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
-import { Navbar } from "@/components/navbar";
 import Providers from "@/utils/providers";
 import { MainContextProvider } from "@/context/main-context";
 
 import "./globals.css";
-import Dashboard from "@/components/dashboard";
+import { Navbar } from "@/components/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +21,7 @@ export default function RootLayout({ children }) {
         <Providers>
           <MainContextProvider>
             <Navbar />
-            <Dashboard>{children}</Dashboard>
+            {children}
           </MainContextProvider>
         </Providers>
       </body>

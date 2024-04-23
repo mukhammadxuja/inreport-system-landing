@@ -9,8 +9,8 @@ function Banner() {
   const { user } = useAuthContext();
   return (
     <div className="relative mt-4 rounded-lg">
-      <div className="w-full h-32 bg-purple-200 rounded-lg" />
-      <div className="flex items-end absolute -bottom-12 left-16">
+      <div className="w-full h-36 bg-gray-200 rounded-lg" />
+      <div className="flex items-end absolute -bottom-12 left-14">
         <Avatar className="w-28 h-28 object-cover rounded-full shadow">
           <AvatarImage
             className="object-cover"

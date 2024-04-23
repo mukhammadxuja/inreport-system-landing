@@ -15,8 +15,8 @@ function Dashboard({ children }) {
       <main
         className={
           openSidebar
-            ? "pl-[260px] duration-300 w-full"
-            : "pl-14 duration-300 w-full"
+            ? "pl-[270px] duration-300 w-full"
+            : "pl-16 duration-300 w-full"
         }
       >
         {children}

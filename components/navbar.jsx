@@ -13,6 +13,7 @@ import {
   LogOut,
   Mail,
   Settings,
+  Share2,
   Shell,
   Twitter,
 } from "lucide-react";
@@ -37,17 +38,17 @@ export function Navbar() {
   const { user } = useAuthContext();
 
   return (
-    <nav className="fixed top-3 right-4 z-40 w-full">
+    <nav className="fixed top-5 right-4 z-50">
       <div className="flex w-full items-center justify-end">
         {user && (
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="outline"
-                  className="flex items-center gap-2 h-10 p-3 rounded-full shadow"
+                  className="flex items-center gap-2 h-10 p-3 rounded-full border-none"
                 >
-                  <Bell className="w-4 h-4" />
+                  <Share2 className="w-4 h-4" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent
@@ -63,11 +64,11 @@ export function Navbar() {
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="outline"
-                  className="flex items-center gap-2 h-10 pl-1.5 pr-3 rounded-full shadow"
+                  className="flex items-center gap-2 h-10 pl-1.5 pr-3 rounded-full border-none"
                 >
                   <Avatar className="h-8 w-8">
                     <AvatarImage
-                    className="object-cover"
+                      className="object-cover"
                       src={user?.photoURL || "/assets/avatars/1.png"}
                       alt="@shadcn"
                     />
@@ -95,7 +96,7 @@ export function Navbar() {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                  <Link href="/profile">
+                  <Link href="/admin/profile">
                     <DropdownMenuItem>
                       <Fingerprint className="mr-2 h-4 w-4" />
                       Profile
@@ -105,7 +106,7 @@ export function Navbar() {
                     <BadgeEuro className="mr-2 h-4 w-4" />
                     Billing
                   </DropdownMenuItem>
-                  <Link href="/settings">
+                  <Link href="/admin/settings">
                     <DropdownMenuItem>
                       <Settings className="mr-2 h-4 w-4" />
                       Settings

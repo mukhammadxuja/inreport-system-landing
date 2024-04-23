@@ -36,12 +36,12 @@ function EmailVerificationAlert() {
               <AlertDescription>
                 Share your Showcase to your socials.
                 <a
-                  href={`https://showcase.ai/${user.displayName?.toLowerCase()}`}
+                  href={`https://showcase.ai/${user.username}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="ml-2 underline"
                 >
-                  showcase.ai/{user.displayName?.toLowerCase()}
+                  showcase.ai/{user.username}
                 </a>
               </AlertDescription>
             </div>
