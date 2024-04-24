@@ -38,7 +38,7 @@ function SectionsPage() {
   return (
     <Drawer>
       <div className="p-4">
-        <div className="sticky top-4 z-50 flex items-center gap-3 w-full">
+        <div className="sticky top-4 z-40 flex items-center gap-3 w-full">
           <div className="flex items-center justify-between w-full max-w-xl shadow-lg rounded-lg bg-white px-5 py-3">
             <h3 className="text-sm font-bold">Jump to:</h3>
             <div className="flex items-center gap-2">
