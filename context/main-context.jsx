@@ -12,7 +12,7 @@ export const useMainContext = () => {
 export const MainContextProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
 
-  const [openSidebar, setOpenSidebar] = useState(true);
+  const [openSidebar, setOpenSidebar] = useState(false);
 
   useEffect(() => {
     const fetchUsers = async () => {

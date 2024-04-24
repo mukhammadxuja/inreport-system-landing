@@ -1,6 +1,8 @@
 "use client";
 import {
+  ChevronDown,
   ChevronLeft,
+  ChevronUp,
   Gem,
   GraduationCap,
   LayoutDashboard,
@@ -8,10 +10,30 @@ import {
   Package2,
   PieChart,
   Settings,
+  Share,
+  Share2,
+  User,
+  Zap,
 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import classNames from "classnames";
+import {
+  Cloud,
+  CreditCard,
+  Github,
+  Keyboard,
+  LifeBuoy,
+  LogOut,
+  Mail,
+  MessageSquare,
+  Plus,
+  PlusCircle,
+  UserPlus,
+  Users,
+} from "lucide-react";
+
+import { Button } from "@/components/ui/button";
 
 import {
   Tooltip,
@@ -19,12 +41,31 @@ import {
   TooltipTrigger,
   TooltipProvider,
 } from "@/components/ui/tooltip";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
 import { useMainContext } from "@/context/main-context";
 import { usePathname } from "next/navigation";
+import { useAuthContext } from "@/context/auth-context";
+import { useLogout } from "@/firebase/auth/logout";
 
 function Sidebar() {
   const { openSidebar, setOpenSidebar } = useMainContext();
+  const { user } = useAuthContext();
+  const { logout } = useLogout();
   const pathname = usePathname();
 
   console.log(pathname);
@@ -140,6 +181,112 @@ function Sidebar() {
               </Tooltip>
             ))}
           </ul>
+          <div className="mt-auto space-y-2 w-full">
+            <Button
+              // disabled
+              variant="secondary"
+              className={classNames(
+                "w-full bg-yellow-50 hover:bg-yellow-100 cursor-not-allowed flex items-center justify-center h-10",
+                {
+                  "gap-2": openSidebar,
+                  "p-0.5 rounded-full": !openSidebar,
+                }
+              )}
+            >
+              <Zap className="h-4 w-4 text-yellow-600" />
+              {openSidebar && (
+                <span className="text-yellow-600">Try Pro for free</span>
+              )}
+            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="" asChild>
+                <Button
+                  variant="outline"
+                  className={classNames("w-full flex items-center h-10", {
+                    "justify-start pl-1.5 gap-2 rounded-lg": openSidebar,
+                    "justify-center rounded-full": !openSidebar,
+                  })}
+                >
+                  <Avatar className="h-8 w-8 rounded-md">
+                    <AvatarImage
+                      className="object-cover"
+                      src={user?.photoURL || "/assets/avatars/1.png"}
+                      alt="@shadcn"
+                    />
+                  </Avatar>
+                  {openSidebar && (
+                    <span className="font-semibold truncate">
+                      @
+                      {user?.username?.split(" ")[0].toLowerCase() ||
+                        user?.email?.slice(0, user?.email?.indexOf("@")) ||
+                        "Anonymous"}
+                    </span>
+                  )}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56">
+                <DropdownMenuLabel className="font-normal">
+                  <div className="flex flex-col space-y-1">
+                    <p className="text-sm font-medium leading-none">
+                      {user?.displayName ||
+                        user?.email?.slice(0, user?.email?.indexOf("@")) ||
+                        "Anonymous"}
+                    </p>
+                    <p className="text-xs leading-none text-muted-foreground">
+                      {user?.email || "No email"}
+                    </p>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                  <Link href="/admin/profile">
+                    <DropdownMenuItem>
+                      <User className="mr-2 h-4 w-4" />
+                      <span>Profile</span>
+                      <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                    </DropdownMenuItem>
+                  </Link>
+                  <DropdownMenuItem disabled>
+                    <CreditCard className="mr-2 h-4 w-4" />
+                    <span>Billing</span>
+                    <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+                  </DropdownMenuItem>
+                  <Link href="/admin/settings">
+                    <DropdownMenuItem>
+                      <Settings className="mr-2 h-4 w-4" />
+                      <span>Settings</span>
+                      <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+                    </DropdownMenuItem>
+                  </Link>
+                  <DropdownMenuItem>
+                    <Keyboard className="mr-2 h-4 w-4" />
+                    <span>Keyboard shortcuts</span>
+                    <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <Share2 className="mr-2 h-4 w-4" />
+                  <span>Share</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <LifeBuoy className="mr-2 h-4 w-4" />
+                  <span>Support</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem disabled>
+                  <Cloud className="mr-2 h-4 w-4" />
+                  <span>API</span>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={logout}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Log out</span>
+                  <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </nav>
         <div
           onClick={() => setOpenSidebar((prev) => !prev)}
