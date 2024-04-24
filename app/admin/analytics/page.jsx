@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 function AnalyticsPage() {
   return (
-    <div>AnalyticsPage</div>
-  )
+    <div className="p-4 min-h-screen">
+      <h1>AnalyticsPage</h1>
+    </div>
+  );
 }
 
-export default AnalyticsPage
+export default AnalyticsPage;

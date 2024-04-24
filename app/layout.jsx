@@ -4,7 +4,7 @@ import Providers from "@/utils/providers";
 import { MainContextProvider } from "@/context/main-context";
 
 import "./globals.css";
-import { Navbar } from "@/components/navbar";
+import HomeNavbar from "@/components/home/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,10 +19,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <Toaster />
         <Providers>
-          <MainContextProvider>
-            <Navbar />
-            {children}
-          </MainContextProvider>
+          <MainContextProvider>{children}</MainContextProvider>
         </Providers>
       </body>
     </html>

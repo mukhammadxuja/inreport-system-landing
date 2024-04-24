@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { auth } from "@/firebase/config";
-import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { GoogleAuthProvider, signInWithRedirect, signOut } from "firebase/auth";
 
 export const useGoogleLogin = () => {
-  const [errorGoogleLogin, setErrorGoogleLogin] = useState(false);
+  const [errorGoogleLogin, setErrorGoogleLogin] = useState(null);
   const [isPendingGoogleLogin, setIsPendingGoogleLogin] = useState(false);
   const provider = new GoogleAuthProvider();
 
@@ -12,10 +12,7 @@ export const useGoogleLogin = () => {
     setIsPendingGoogleLogin(true);
 
     try {
-      const res = await signInWithPopup(auth, provider);
-      if (!res) {
-        return;
-      }
+      await signInWithRedirect(auth, provider);
     } catch (error) {
       setErrorGoogleLogin(error.code);
       await signOut(auth);

@@ -36,14 +36,7 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ user, loading }}>
-      {loading ? (
-        <div className="loading-container">
-          <Shell className="w-8 h-8 animate-spin" />
-        </div>
-      ) : (
-        <>{children}</>
-      )}
-      {/* {children} */}
+      {children}
     </AuthContext.Provider>
   );
 };

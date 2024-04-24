@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function TemplatesPage() {
-  return (
-    <div>TemplatesPage</div>
-  )
+  return <div className="p-4 min-h-screen">TemplatesPage</div>;
 }
 
-export default TemplatesPage
+export default TemplatesPage;

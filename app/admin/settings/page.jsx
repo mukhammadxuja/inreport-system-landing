@@ -22,7 +22,7 @@ function SettingsPage() {
 
   const [openToWork, setOpenToWork] = useState(true);
   return (
-    <div className="p-4">
+    <div className="p-4 min-h-screen">
       <div className="sticky top-4 z-50 flex items-center justify-between w-full max-w-3xl shadow-lg rounded-lg bg-white px-5 py-3">
         <h3 className="text-sm font-bold">Jump to:</h3>
         <Select>

@@ -27,12 +27,12 @@ import {
   DropdownMenuGroup,
 } from "@/components/ui/dropdown-menu";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useToast } from "./ui/use-toast";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { useToast } from "../ui/use-toast";
 import { useAuthContext } from "@/context/auth-context";
 import { useLogout } from "@/firebase/auth/logout";
 
-export function Navbar() {
+export function AdminNavbar() {
   const { toast } = useToast();
   const { logout } = useLogout();
   const { user } = useAuthContext();

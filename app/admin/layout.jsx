@@ -1,7 +1,8 @@
 import { Inter } from "next/font/google";
-import { Navbar } from "@/components/navbar";
 
-import Dashboard from "@/components/dashboard";
+import Dashboard from "@/components/admin/dashboard";
+import { AdminNavbar } from "@/components/admin/navbar";
+import { useAuthContext } from "@/context/auth-context";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,7 +14,7 @@ export const metadata = {
 export default function AdminLayout({ children }) {
   return (
     <div className={`${inter.className} bg-[#f3f3f1]`}>
-      <Navbar />
+      <AdminNavbar />
       <Dashboard>{children}</Dashboard>
     </div>
   );
