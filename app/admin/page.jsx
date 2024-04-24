@@ -3,7 +3,7 @@ import React from "react";
 
 function AdminPage() {
   return (
-    <div className="px-4">
+    <div className="px-4 min-h-screen">
       <div className="w-full max-w-2xl">
         <EmailVerificationAlert />
       </div>

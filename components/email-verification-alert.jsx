@@ -28,7 +28,7 @@ function EmailVerificationAlert() {
   return (
     <>
       {user?.emailVerified ? (
-        <Alert className="flex ite justify-between my-4">
+        <Alert className="bg-blue-100 flex ite justify-between my-4">
           <div className="flex items-start gap-3">
             <AlertCircle className="h-4 w-4" />
             <div>
@@ -46,11 +46,7 @@ function EmailVerificationAlert() {
               </AlertDescription>
             </div>
           </div>
-          <Button
-            onClick={() => {}}
-            variant="secondary"
-            className="bg-slate-100"
-          >
+          <Button onClick={() => {}} variant="ghost" className="bg-white">
             {isEmailVerificationPending && (
               <Shell className="mr-2 h-4 w-4 animate-spin" />
             )}

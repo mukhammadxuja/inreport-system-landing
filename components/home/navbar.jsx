@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 
 function HomeNavbar() {
   return (
-    <nav className="fixed top-5 left-0 right-0 container mx-auto flex items-center justify-between py-4 bg-indigo-200 z-50">
+    <nav className="fixed top-5 left-0 right-0 container mx-auto flex items-center justify-between py-4 bg-accent rounded-lg z-50">
       <Link
         href="/"
         className="flex items-center gap-2 rounded-full text-lg font-semibold text-primary-foreground md:text-base duration-300"
@@ -21,7 +21,9 @@ function HomeNavbar() {
       </Link>
       <div className="flex items-center gap-2">
         <Link href="/signin">
-          <Button variant="secondary">Sign in</Button>
+          <Button variant="secondary" className="bg-white hover:bg-gray-50">
+            Sign in
+          </Button>
         </Link>
         <Link href="/signup">
           <Button>Sign up</Button>

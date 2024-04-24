@@ -3,6 +3,7 @@ import {
   ChevronDown,
   ChevronLeft,
   ChevronUp,
+  Coffee,
   Gem,
   GraduationCap,
   LayoutDashboard,
@@ -265,13 +266,12 @@ function Sidebar() {
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <Share2 className="mr-2 h-4 w-4" />
                   <span>Share</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <LifeBuoy className="mr-2 h-4 w-4" />
+                  <Coffee className="mr-2 h-4 w-4" />
                   <span>Support</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem disabled>
