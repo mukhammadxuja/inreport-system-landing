@@ -1,5 +1,14 @@
 "use client";
 import React, { useState } from "react";
+import {
+  Roboto,
+  Azeret_Mono,
+  Inter,
+  Noto_Serif,
+  Arimo,
+  EB_Garamond,
+  Merriweather,
+} from "next/font/google";
 
 import {
   Select,
@@ -17,9 +26,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -51,10 +57,29 @@ import {
   Ban,
   Clipboard,
 } from "lucide-react";
+import { Input } from "@/components/ui/input";
+
+const inter = Inter({ subsets: ["latin"] });
+const mono = Azeret_Mono({ subsets: ["latin"] });
+const roboto = Roboto({ weight: ["400", "700"], subsets: ["latin"] });
+const serif = Noto_Serif({ subsets: ["latin"] });
+const arial = Arimo({ subsets: ["latin"], variable: "--font-arial" });
+const garamond = EB_Garamond({
+  subsets: ["latin"],
+  variable: "--font-garamond",
+});
+const merriweather = Merriweather({
+  weight: ["300", "400", "700", "900"],
+  subsets: ["latin"],
+});
 
 function ResumeNavbar() {
   const [textColor, setTextColor] = useState("blue");
   const [highlight, setHighlight] = useState("indigo");
+  const [font, setFont] = useState("inter");
+  const [url, setUrl] = useState("");
+
+  console.log(font);
 
   const colors = [
     {
@@ -126,15 +151,23 @@ function ResumeNavbar() {
           <Tooltip>
             <Select>
               <TooltipTrigger>
-                <SelectTrigger className="w-36 border-none hover:bg-accent duration-300">
+                <SelectTrigger className="w-28 border-none hover:bg-accent duration-300">
                   <SelectValue placeholder="Text size" />
                 </SelectTrigger>
               </TooltipTrigger>
-              <SelectContent>
-                <SelectItem value="header">Header</SelectItem>
-                <SelectItem value="title">Title</SelectItem>
-                <SelectItem value="subtitle">Subtitle</SelectItem>
-                <SelectItem value="normal-text">Normal text</SelectItem>
+              <SelectContent className="w-28">
+                <SelectItem check={false} value="header">
+                  Header
+                </SelectItem>
+                <SelectItem check={false} value="title">
+                  Title
+                </SelectItem>
+                <SelectItem check={false} value="subtitle">
+                  Subtitle
+                </SelectItem>
+                <SelectItem check={false} value="normal-text">
+                  Normal text
+                </SelectItem>
               </SelectContent>
             </Select>
             <TooltipContent>
@@ -143,16 +176,65 @@ function ResumeNavbar() {
           </Tooltip>
           <Separator className="h-[80%]" orientation="vertical" />
           <Tooltip>
-            <Select>
+            <Select value={font} onValueChange={setFont}>
               <TooltipTrigger>
                 <SelectTrigger className="w-28 border-none hover:bg-accent duration-300">
-                  <SelectValue placeholder="Font" />
+                  <SelectValue
+                    placeholder="Font"
+                    className={garamond.className}
+                  />
                 </SelectTrigger>
               </TooltipTrigger>
-              <SelectContent>
-                <SelectItem value="sans">Sans</SelectItem>
-                <SelectItem value="serif">Serif</SelectItem>
-                <SelectItem value="mono">Mono</SelectItem>
+              <SelectContent className="h-54">
+                <SelectItem
+                  check={false}
+                  value="arial"
+                  className={arial.className}
+                >
+                  Arial
+                </SelectItem>
+                <SelectItem
+                  check={false}
+                  value="garamond"
+                  className={garamond.className}
+                >
+                  Garamond
+                </SelectItem>
+                <SelectItem
+                  check={false}
+                  value="inter"
+                  className={inter.className}
+                >
+                  Inter
+                </SelectItem>
+                <SelectItem
+                  check={false}
+                  value="mono"
+                  className={mono.className}
+                >
+                  Mono
+                </SelectItem>
+                <SelectItem
+                  check={false}
+                  value="merriweather"
+                  className={merriweather.className}
+                >
+                  Merriweather
+                </SelectItem>
+                <SelectItem
+                  check={false}
+                  value="roboto"
+                  className={roboto.className}
+                >
+                  Roboto
+                </SelectItem>
+                <SelectItem
+                  check={false}
+                  value="serif"
+                  className={serif.className}
+                >
+                  Serif
+                </SelectItem>
               </SelectContent>
             </Select>
             <TooltipContent>
@@ -205,7 +287,7 @@ function ResumeNavbar() {
                 </PopoverTrigger>
               </TooltipTrigger>
               <PopoverContent align="left" className="flex items-center gap-2">
-                <Ban className="w-6 h-6 cursor-pointer hover:opacity-70 duration-300" />
+                <Ban className="w-6 h-5 cursor-pointer hover:opacity-70 duration-300" />
                 {colors.map((item) => {
                   return (
                     <button
@@ -246,12 +328,21 @@ function ResumeNavbar() {
                 <p className="text-xs">Italic</p>
               </TooltipContent>
             </Tooltip>
+
             <Tooltip>
-              <TooltipTrigger>
-                <ToggleGroupItem value="link" aria-label="Toggle link">
-                  <Link2 className="h-4 w-4" />
-                </ToggleGroupItem>
-              </TooltipTrigger>
+              <Popover>
+                <PopoverTrigger>
+                  <TooltipTrigger>
+                    <Button variant="ghost" className="px-3 group">
+                      <Link2 className="h-4 w-4 opacity-100 hover:opacity-50" />
+                    </Button>
+                  </TooltipTrigger>
+                </PopoverTrigger>
+                <PopoverContent className="flex items-center gap-2">
+                  <Input placeholder="Your url" />
+                  <Button disabled={!url}>Add</Button>
+                </PopoverContent>
+              </Popover>
               <TooltipContent>
                 <p className="text-xs">Paste link</p>
               </TooltipContent>

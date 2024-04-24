@@ -13,7 +13,7 @@ export const metadata = {
 
 export default function AdminLayout({ children }) {
   return (
-    <div className={`${inter.className} bg-[#f3f3f1]`}>
+    <div className={` bg-[#f3f3f1]`}>
       {/* <AdminNavbar /> */}
       <Dashboard>{children}</Dashboard>
     </div>
