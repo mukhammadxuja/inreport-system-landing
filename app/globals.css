@@ -32,7 +32,7 @@
     --input: 240 5.9% 90%;
     --ring: 240 10% 3.9%;
 
-    --radius: 1rem;
+    --radius: 0.9rem;
   }
 
   .dark {
@@ -73,6 +73,12 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+body {
+  width: 100vw;
+  overflow-x: hidden;
+  padding-right: calc(0 + var(--removed-body-scroll-bar-size)) !important;
 }
 
 .loading-container {
@@ -146,4 +152,42 @@
   .vadym_badge {
     @apply w-fit rounded-[8px] px-[16px] py-[7px] text-center text-[16px] tracking-[-0.1px] leading-[1.3em] font-normal bg-gradient-to-r from-gray-100 to-slate-100 text-gray-500 cursor-text;
   }
+}
+
+.grid::before {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(to right, #80808012 1px, transparent 1px),
+    linear-gradient(to bottom, #80808012 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.dot {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.dot-mask {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+  background-size: 16px 16px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 50% 50% at 50% 50%,
+    #000 60%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 50% 50% at 50% 50%,
+    #000 60%,
+    transparent 100%
+  );
 }
