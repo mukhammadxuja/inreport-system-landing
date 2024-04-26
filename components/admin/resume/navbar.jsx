@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { useCurrentEditor } from "@tiptap/react";
 import { inter, mono, roboto, serif, arial, merriweather } from "@/lib/fonts";
 
 import {
@@ -51,11 +52,17 @@ import {
   Shell,
   Check,
   Minus,
+  Code,
+  Strikethrough,
+  Undo2,
+  Redo2,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useMainContext } from "@/context/main-context";
 
 function ResumeNavbar() {
+  const { editor } = useCurrentEditor();
+
   const {
     size,
     setSize,
@@ -149,33 +156,175 @@ function ResumeNavbar() {
     },
   ];
 
+  const col = [
+    {
+      hex: "#3d77d9",
+      name: "blue",
+    },
+    {
+      hex: "#893fe8",
+      name: "purple",
+    },
+    {
+      hex: "#67bd67",
+      name: "green",
+    },
+    {
+      hex: "#232326",
+      name: "amber",
+    },
+    {
+      hex: "#99d6be",
+      name: "sky",
+    },
+    {
+      hex: "#de6058",
+      name: "red",
+    },
+  ];
+
+  if (!editor) {
+    return null;
+  }
+
   return (
     <nav className="sticky top-4 z-40 flex items-center gap-3 w-fit mx-auto p-1 shadow-md rounded-2xl duration-300 bg-white border border-border group">
       <TooltipProvider>
         <div className="flex items-center gap-1">
+          {/* <Button className={editor.isActive("highlight") ? "is-active" : ""}>
+            highlight
+          </Button> */}
+          <ToggleGroup value={types} onValueChange={setTypes} type="multiple">
+            <Tooltip>
+              <TooltipTrigger>
+                <ToggleGroupItem
+                  onClick={() => editor.chain().focus().undo().run()}
+                  disabled={!editor.can().chain().focus().undo().run()}
+                  className={
+                    editor.isActive("bold") ? "bg-accent" : "bg-transparent"
+                  }
+                  value="undo"
+                  aria-label="Toggle undo"
+                >
+                  <Undo2 className="h-4 w-4" />
+                </ToggleGroupItem>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p className="text-xs">Undo</p>
+              </TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger>
+                <ToggleGroupItem
+                  onClick={() => editor.chain().focus().redo().run()}
+                  disabled={!editor.can().chain().focus().redo().run()}
+                  className={
+                    editor.isActive("bold") ? "bg-accent" : "bg-transparent"
+                  }
+                  value="redo"
+                  aria-label="Toggle redo"
+                >
+                  <Redo2 className="h-4 w-4" />
+                </ToggleGroupItem>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p className="text-xs">Redo</p>
+              </TooltipContent>
+            </Tooltip>
+          </ToggleGroup>
+          <Separator className="h-[80%]" orientation="vertical" />
           {/* Font Size */}
           <Tooltip>
-            <Select value={size} onValueChange={setSize}>
-              <TooltipTrigger>
-                <SelectTrigger className="w-28 border-none hover:bg-accent duration-300">
-                  <SelectValue placeholder="Text size" />
-                </SelectTrigger>
-              </TooltipTrigger>
-              <SelectContent className="w-28">
-                <SelectItem check={false} value="header">
-                  Header
-                </SelectItem>
-                <SelectItem check={false} value="title">
-                  Title
-                </SelectItem>
-                <SelectItem check={false} value="subtitle">
-                  Subtitle
-                </SelectItem>
-                <SelectItem check={false} value="normal">
-                  Normal
-                </SelectItem>
-              </SelectContent>
-            </Select>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost">Text Size</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-28">
+                <DropdownMenuItem
+                  onClick={() =>
+                    editor.chain().focus().toggleHeading({ level: 1 }).run()
+                  }
+                  className={
+                    editor.isActive("heading", { level: 1 })
+                      ? "bg-accent"
+                      : "bg-transparent"
+                  }
+                >
+                  Heading 1
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() =>
+                    editor.chain().focus().toggleHeading({ level: 2 }).run()
+                  }
+                  className={
+                    editor.isActive("heading", { level: 2 })
+                      ? "bg-accent"
+                      : "bg-transparent"
+                  }
+                >
+                  Heading 2
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() =>
+                    editor.chain().focus().toggleHeading({ level: 3 }).run()
+                  }
+                  className={
+                    editor.isActive("heading", { level: 3 })
+                      ? "bg-accent"
+                      : "bg-transparent"
+                  }
+                >
+                  Heading 3
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() =>
+                    editor.chain().focus().toggleHeading({ level: 4 }).run()
+                  }
+                  className={
+                    editor.isActive("heading", { level: 4 })
+                      ? "bg-accent"
+                      : "bg-transparent"
+                  }
+                >
+                  Heading 4
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() =>
+                    editor.chain().focus().toggleHeading({ level: 5 }).run()
+                  }
+                  className={
+                    editor.isActive("heading", { level: 5 })
+                      ? "bg-accent"
+                      : "bg-transparent"
+                  }
+                >
+                  Heading 5
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() =>
+                    editor.chain().focus().toggleHeading({ level: 6 }).run()
+                  }
+                  className={
+                    editor.isActive("heading", { level: 6 })
+                      ? "bg-accent"
+                      : "bg-transparent"
+                  }
+                >
+                  Heading 6
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => editor.chain().focus().setParagraph().run()}
+                  className={
+                    editor.isActive("paragraph")
+                      ? "bg-accent"
+                      : "bg-transparent"
+                  }
+                >
+                  Paragraph
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             <TooltipContent>
               <p className="text-xs">Text size</p>
             </TooltipContent>
@@ -259,25 +408,33 @@ function ResumeNavbar() {
               </TooltipTrigger>
               <PopoverContent
                 align="right"
-                className="grid gap-2 grid-cols-9 grid-rows-2"
+                className="grid gap-2 grid-cols-7 grid-rows-1"
               >
                 <Ban
-                  onClick={() => setColor("")}
+                  onClick={() =>
+                    editor.chain().focus().setColor("#252525").run()
+                  }
                   className="w-6 h-6 cursor-pointer hover:opacity-70 duration-300"
                 />
-                {colors.map((item) => {
+                {col.map((item) => {
                   return (
                     <button
-                      key={item.bgColor}
+                      title={item.name}
+                      key={item.name}
                       className={`w-6 h-6 rounded flex items-center justify-center cursor-pointer ${
-                        colorVariants[item.color]
+                        colorVariants[item.name]
+                      } ${
+                        editor.isActive("textStyle", { color: `${item.hex}` })
+                          ? "is-active"
+                          : ""
                       }`}
-                      name="color"
-                      onClick={() => setColor(item.color)}
+                      onClick={() =>
+                        editor.chain().focus().setColor(`${item.hex}`).run()
+                      }
                     >
-                      {color === item.color && (
+                      {/* {col === item.color && (
                         <Check className="w-3 h-3 text-white" />
-                      )}
+                      )} */}
                     </button>
                   );
                 })}
@@ -340,7 +497,15 @@ function ResumeNavbar() {
           <ToggleGroup value={types} onValueChange={setTypes} type="multiple">
             <Tooltip>
               <TooltipTrigger>
-                <ToggleGroupItem value="bold" aria-label="Toggle bold">
+                <ToggleGroupItem
+                  onClick={() => editor.chain().focus().toggleBold().run()}
+                  disabled={!editor.can().chain().focus().toggleBold().run()}
+                  className={
+                    editor.isActive("bold") ? "bg-accent" : "bg-transparent"
+                  }
+                  value="bold"
+                  aria-label="Toggle bold"
+                >
                   <Bold className="h-4 w-4" />
                 </ToggleGroupItem>
               </TooltipTrigger>
@@ -350,7 +515,15 @@ function ResumeNavbar() {
             </Tooltip>
             <Tooltip>
               <TooltipTrigger>
-                <ToggleGroupItem value="italic" aria-label="Toggle italic">
+                <ToggleGroupItem
+                  onClick={() => editor.chain().focus().toggleItalic().run()}
+                  disabled={!editor.can().chain().focus().toggleItalic().run()}
+                  className={
+                    editor.isActive("bold") ? "bg-accent" : "bg-transparent"
+                  }
+                  value="italic"
+                  aria-label="Toggle italic"
+                >
                   <Italic className="h-4 w-4" />
                 </ToggleGroupItem>
               </TooltipTrigger>
@@ -381,14 +554,37 @@ function ResumeNavbar() {
             <Tooltip>
               <TooltipTrigger>
                 <ToggleGroupItem
+                  onClick={() => editor.chain().focus().toggleStrike().run()}
+                  disabled={!editor.can().chain().focus().toggleCode().run()}
+                  className={
+                    editor.isActive("bold") ? "bg-accent" : "bg-transparent"
+                  }
                   value="underline"
                   aria-label="Toggle underline"
                 >
-                  <Underline className="h-4 w-4" />
+                  <Strikethrough className="h-4 w-4" />
                 </ToggleGroupItem>
               </TooltipTrigger>
               <TooltipContent>
-                <p className="text-xs">Underline</p>
+                <p className="text-xs">Strikethrough</p>
+              </TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger>
+                <ToggleGroupItem
+                  onClick={() => editor.chain().focus().toggleCode().run()}
+                  disabled={!editor.can().chain().focus().toggleCode().run()}
+                  className={
+                    editor.isActive("bold") ? "bg-accent" : "bg-transparent"
+                  }
+                  value="underline"
+                  aria-label="Toggle underline"
+                >
+                  <Code className="h-4 w-4" />
+                </ToggleGroupItem>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p className="text-xs">Code</p>
               </TooltipContent>
             </Tooltip>
           </ToggleGroup>
