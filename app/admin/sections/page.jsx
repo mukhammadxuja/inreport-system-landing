@@ -14,7 +14,15 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 
-import { Eye, Gift, Github, GripVertical, Linkedin } from "lucide-react";
+import {
+  Dribbble,
+  Eye,
+  Gift,
+  Github,
+  GripVertical,
+  Instagram,
+  Linkedin,
+} from "lucide-react";
 import {
   Drawer,
   DrawerClose,
@@ -28,13 +36,29 @@ import {
 import { Button } from "@/components/ui/button";
 import VadymNavbar from "@/components/templates/vadym/navbar";
 import VadymHeader from "@/components/templates/vadym/header";
+import { useMainContext } from "@/context/main-context";
+import { useForm } from "react-hook-form";
 
 function SectionsPage() {
+  const {
+    register,
+    formState: { errors },
+  } = useForm();
+
+  const { portfolioData, setPortfolioData } = useMainContext();
+
   const [header, setHeader] = useState(true);
   const [about, setAbout] = useState(false);
   const [projects, setProjects] = useState(false);
-
   const [openToWork, setOpenToWork] = useState(true);
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    setPortfolioData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
   return (
     <Drawer>
       <div className="p-4 min-h-screen">
@@ -71,234 +95,323 @@ function SectionsPage() {
           </div>
         </div>
 
-        <div className="w-[90%] mx-auto">
-          <div className="card flex items-center gap-4">
-            <GripVertical className="h-6 w-6 text-gray-500  cursor-grab" />
-            <div className="w-full">
-              <div className="flex items-center justify-between">
-                <h2 className="text-lg font-semibold text-gray-600">
-                  Header Section
-                </h2>
-                <Switch
-                  checked={header}
-                  onCheckedChange={setHeader}
-                  className="ml-auto"
-                />
-              </div>
-
-              <div className={!header ? "hidden" : "block mt-2"}>
-                <div className="space-y-3 w-full p-3 rounded-md">
-                  <div className="space-y-1.5">
-                    <Label htmlFor="email">Heading</Label>
-
-                    <Textarea
-                      disabled={!header}
-                      placeholder="Building and delivering user-centric experiences through frontend development"
-                    />
-                  </div>
-                  <div className="space-y-1.5">
-                    <Label htmlFor="email">Paragraph</Label>
-
-                    <Input disabled={!header} placeholder="Paragraph" />
-                  </div>
+        <form>
+          <div className="w-[90%] mx-auto">
+            <div className="card flex items-center gap-4">
+              <GripVertical className="h-6 w-6 text-gray-500  cursor-grab" />
+              <div className="w-full">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-lg font-semibold text-gray-600">
+                    Header Section
+                  </h2>
+                  <Switch
+                    checked={header}
+                    onCheckedChange={setHeader}
+                    className="ml-auto"
+                  />
                 </div>
 
-                <div className="space-y-3 w-full p-3 rounded-md">
-                  <div className="space-y-1.5">
-                    <Label htmlFor="email">Address</Label>
+                <div className={!header ? "hidden" : "block mt-2"}>
+                  <div className="flex items-center gap-3 w-full p-3 rounded-md">
+                    <div className="w-full space-y-1.5">
+                      <Label htmlFor="email">Full name</Label>
 
-                    <Input
-                      disabled={!header}
-                      placeholder="Tashkent, Uzbekistan"
-                    />
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <Label htmlFor="email">Open to work</Label>
-
-                    <Switch
-                      disabled={!header}
-                      checked={openToWork}
-                      onCheckedChange={setOpenToWork}
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-3 w-full p-3 rounded-md">
-                  <div className="space-y-1.5">
-                    <Label htmlFor="email">Github account</Label>
-
-                    <div className="flex items-center gap-2">
-                      <Github className="w-5 h-5" />
                       <Input
                         disabled={!header}
-                        placeholder="https://github.com/yourusername"
+                        {...register("name", {
+                          required: true,
+                          maxLength: 10,
+                        })}
+                        defaultValue={portfolioData.name}
+                        onBlur={handleBlur}
+                        name="name"
+                        placeholder="John Doe"
                       />
+                      {errors.name > 10 && (
+                        <p role="alert">Less than 10 words</p>
+                      )}
                     </div>
-                  </div>
-                  <div className="space-y-1.5">
-                    <Label htmlFor="email">Linkedin account</Label>
 
-                    <div className="flex items-center gap-2">
-                      <Linkedin className="w-5 h-5" />
+                    <div className="w-full space-y-1.5">
+                      <Label htmlFor="email">Job position</Label>
+
                       <Input
                         disabled={!header}
-                        placeholder="https://linkedin.com/yourusername"
+                        {...register("position")}
+                        defaultValue={portfolioData.position}
+                        onBlur={handleBlur}
+                        name="position"
+                        placeholder="Job position"
                       />
+                    </div>
+                  </div>
+
+                  <div className="space-y-3 w-full px-3 rounded-md">
+                    <div className="space-y-1.5">
+                      <Label htmlFor="email">Heading</Label>
+
+                      <Textarea
+                        disabled={!header}
+                        {...register("heading", {
+                          required: true,
+                          maxLength: 10,
+                        })}
+                        defaultValue={portfolioData.heading}
+                        onBlur={handleBlur}
+                        name="heading"
+                        placeholder="Building and delivering user-centric experiences through frontend development"
+                      />
+                      {errors.heading > 10 && (
+                        <p role="alert">Less than 10 words</p>
+                      )}
+                    </div>
+                    <div className="space-y-1.5">
+                      <Label htmlFor="email">Paragraph</Label>
+
+                      <Input disabled={!header} placeholder="Paragraph" />
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 w-full p-3 rounded-md">
+                    <div className="w-full space-y-1.5">
+                      <Label htmlFor="email">Address</Label>
+
+                      <Input
+                        disabled={!header}
+                        placeholder="Tashkent, Uzbekistan"
+                      />
+                    </div>
+
+                    <div className="w-full flex items-center justify-between lg:mt-8">
+                      <Label htmlFor="email">Open to work</Label>
+
+                      <Switch
+                        disabled={!header}
+                        checked={openToWork}
+                        onCheckedChange={setOpenToWork}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 grid-rows-2 gap-3 w-full p-3 rounded-md">
+                    <div className="space-y-1.5">
+                      <Label htmlFor="email">Github account</Label>
+
+                      <div className="relative flex items-center gap-2">
+                        <Github className="absolute top-1/2 -translate-y-1/2 left-3 w-4 h-4" />
+                        <Input
+                          className="pl-9"
+                          disabled={!header}
+                          {...register("github")}
+                          defaultValue={portfolioData.github}
+                          onBlur={handleBlur}
+                          name="github"
+                          placeholder="https://github.com/yourusername"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-1.5">
+                      <Label htmlFor="email">Linkedin account</Label>
+
+                      <div className="relative flex items-center gap-2">
+                        <Linkedin className="absolute top-1/2 -translate-y-1/2 left-3 w-4 h-4" />
+                        <Input
+                          className="pl-9"
+                          disabled={!header}
+                          {...register("linkedin")}
+                          defaultValue={portfolioData.linkedin}
+                          onBlur={handleBlur}
+                          name="linkedin"
+                          placeholder="https://github.com/yourusername"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-1.5">
+                      <Label htmlFor="email">Dribbble account</Label>
+
+                      <div className="relative flex items-center gap-2">
+                        <Dribbble className="absolute top-1/2 -translate-y-1/2 left-3 w-4 h-4" />
+                        <Input
+                          className="pl-9"
+                          disabled={!header}
+                          {...register("dribbble")}
+                          defaultValue={portfolioData.dribbble}
+                          onBlur={handleBlur}
+                          name="dribbble"
+                          placeholder="https://github.com/yourusername"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-1.5">
+                      <Label htmlFor="email">Instagram account</Label>
+
+                      <div className="relative flex items-center gap-2">
+                        <Instagram className="absolute top-1/2 -translate-y-1/2 left-3 w-4 h-4" />
+                        <Input
+                          className="pl-9"
+                          disabled={!header}
+                          {...register("instagram")}
+                          defaultValue={portfolioData.instagram}
+                          onBlur={handleBlur}
+                          name="instagram"
+                          placeholder="https://github.com/yourusername"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              id="about"
+              className={`card flex items-center gap-4 duration-300 overflow-hidden`}
+            >
+              <GripVertical className="h-6 w-6 text-gray-500  cursor-grab" />
+              <div className="w-full">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-lg font-semibold text-gray-600">
+                    About Section
+                  </h2>
+                  <Switch
+                    checked={about}
+                    onCheckedChange={setAbout}
+                    className="ml-auto"
+                  />
+                </div>
+
+                <div className={!about ? "hidden" : "block mt-2"}>
+                  <div className="space-y-3 w-full p-3 rounded-md">
+                    <div className="space-y-1.5">
+                      <Label htmlFor="email">Heading</Label>
+
+                      <Input disabled={!about} placeholder="Heading" />
+                    </div>
+                    <div className="space-y-1.5">
+                      <Label htmlFor="email">Paragraph</Label>
+
+                      <Input disabled={!about} placeholder="Paragraph" />
+                    </div>
+                  </div>
+
+                  <div className="space-y-3 w-full p-3 rounded-md">
+                    <div className="space-y-1.5">
+                      <Label htmlFor="email">Github account</Label>
+
+                      <div className="flex items-center gap-2">
+                        <Github className="w-5 h-5" />
+                        <Input
+                          disabled={!about}
+                          placeholder="https://github.com/yourusername"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-1.5">
+                      <Label htmlFor="email">Linkedin account</Label>
+
+                      <div className="flex items-center gap-2">
+                        <Linkedin className="w-5 h-5" />
+                        <Input
+                          disabled={!about}
+                          placeholder="https://linkedin.com/yourusername"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              id="projects"
+              className={`card flex items-center gap-4 duration-300 overflow-hidden`}
+            >
+              <GripVertical className="h-6 w-6 text-gray-500  cursor-grab" />
+              <div className="w-full">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-lg font-semibold text-gray-600">
+                    Projects Section
+                  </h2>
+                  <Switch
+                    checked={projects}
+                    onCheckedChange={setProjects}
+                    className="ml-auto"
+                  />
+                </div>
+
+                <div className={!projects ? "hidden" : "block mt-2"}>
+                  <div className="space-y-3 w-full p-3 rounded-md">
+                    <div className="space-y-1.5">
+                      <Label htmlFor="email">Heading</Label>
+
+                      <div className="relative">
+                        <label
+                          title="Click to upload"
+                          for="button2"
+                          className="cursor-pointer flex items-center gap-4 px-6 py-4 before:border-gray-400/60 hover:before:border-gray-300 group before:bg-gray-100 before:absolute before:inset-0 before:rounded-3xl before:border before:border-dashed before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95"
+                        >
+                          <div className="relative">
+                            <img
+                              className="w-12"
+                              src="https://www.svgrepo.com/show/485545/upload-cicle.svg"
+                              alt="file upload icon"
+                              width="512"
+                              height="512"
+                            />
+                          </div>
+                          <div className="relative">
+                            <span className="block text-base font-semibold relative text-blue-900 group-hover:text-blue-500">
+                              Upload a file
+                            </span>
+                            <span className="mt-0.5 block text-sm text-gray-500">
+                              Max 2 MB
+                            </span>
+                          </div>
+                        </label>
+                        <input
+                          hidden=""
+                          type="file"
+                          name="button2"
+                          id="button2"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-1.5">
+                      <Label htmlFor="email">Paragraph</Label>
+
+                      <Input disabled={!about} placeholder="Paragraph" />
+                    </div>
+                  </div>
+
+                  <div className="space-y-3 w-full p-3 rounded-md">
+                    <div className="space-y-1.5">
+                      <Label htmlFor="email">Github account</Label>
+
+                      <div className="flex items-center gap-2">
+                        <Github className="w-5 h-5" />
+                        <Input
+                          disabled={!about}
+                          placeholder="https://github.com/yourusername"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-1.5">
+                      <Label htmlFor="email">Linkedin account</Label>
+
+                      <div className="flex items-center gap-2">
+                        <Linkedin className="w-5 h-5" />
+                        <Input
+                          disabled={!about}
+                          placeholder="https://linkedin.com/yourusername"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-          <div
-            id="about"
-            className={`card flex items-center gap-4 duration-300 overflow-hidden`}
-          >
-            <GripVertical className="h-6 w-6 text-gray-500  cursor-grab" />
-            <div className="w-full">
-              <div className="flex items-center justify-between">
-                <h2 className="text-lg font-semibold text-gray-600">
-                  About Section
-                </h2>
-                <Switch
-                  checked={about}
-                  onCheckedChange={setAbout}
-                  className="ml-auto"
-                />
-              </div>
-
-              <div className={!about ? "hidden" : "block mt-2"}>
-                <div className="space-y-3 w-full p-3 rounded-md">
-                  <div className="space-y-1.5">
-                    <Label htmlFor="email">Heading</Label>
-
-                    <Input disabled={!about} placeholder="Heading" />
-                  </div>
-                  <div className="space-y-1.5">
-                    <Label htmlFor="email">Paragraph</Label>
-
-                    <Input disabled={!about} placeholder="Paragraph" />
-                  </div>
-                </div>
-
-                <div className="space-y-3 w-full p-3 rounded-md">
-                  <div className="space-y-1.5">
-                    <Label htmlFor="email">Github account</Label>
-
-                    <div className="flex items-center gap-2">
-                      <Github className="w-5 h-5" />
-                      <Input
-                        disabled={!about}
-                        placeholder="https://github.com/yourusername"
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-1.5">
-                    <Label htmlFor="email">Linkedin account</Label>
-
-                    <div className="flex items-center gap-2">
-                      <Linkedin className="w-5 h-5" />
-                      <Input
-                        disabled={!about}
-                        placeholder="https://linkedin.com/yourusername"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            id="projects"
-            className={`card flex items-center gap-4 duration-300 overflow-hidden`}
-          >
-            <GripVertical className="h-6 w-6 text-gray-500  cursor-grab" />
-            <div className="w-full">
-              <div className="flex items-center justify-between">
-                <h2 className="text-lg font-semibold text-gray-600">
-                  Projects Section
-                </h2>
-                <Switch
-                  checked={projects}
-                  onCheckedChange={setProjects}
-                  className="ml-auto"
-                />
-              </div>
-
-              <div className={!projects ? "hidden" : "block mt-2"}>
-                <div className="space-y-3 w-full p-3 rounded-md">
-                  <div className="space-y-1.5">
-                    <Label htmlFor="email">Heading</Label>
-
-                    <div className="relative">
-                      <label
-                        title="Click to upload"
-                        for="button2"
-                        className="cursor-pointer flex items-center gap-4 px-6 py-4 before:border-gray-400/60 hover:before:border-gray-300 group before:bg-gray-100 before:absolute before:inset-0 before:rounded-3xl before:border before:border-dashed before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95"
-                      >
-                        <div className="relative">
-                          <img
-                            className="w-12"
-                            src="https://www.svgrepo.com/show/485545/upload-cicle.svg"
-                            alt="file upload icon"
-                            width="512"
-                            height="512"
-                          />
-                        </div>
-                        <div className="relative">
-                          <span className="block text-base font-semibold relative text-blue-900 group-hover:text-blue-500">
-                            Upload a file
-                          </span>
-                          <span className="mt-0.5 block text-sm text-gray-500">
-                            Max 2 MB
-                          </span>
-                        </div>
-                      </label>
-                      <input
-                        hidden=""
-                        type="file"
-                        name="button2"
-                        id="button2"
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-1.5">
-                    <Label htmlFor="email">Paragraph</Label>
-
-                    <Input disabled={!about} placeholder="Paragraph" />
-                  </div>
-                </div>
-
-                <div className="space-y-3 w-full p-3 rounded-md">
-                  <div className="space-y-1.5">
-                    <Label htmlFor="email">Github account</Label>
-
-                    <div className="flex items-center gap-2">
-                      <Github className="w-5 h-5" />
-                      <Input
-                        disabled={!about}
-                        placeholder="https://github.com/yourusername"
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-1.5">
-                    <Label htmlFor="email">Linkedin account</Label>
-
-                    <div className="flex items-center gap-2">
-                      <Linkedin className="w-5 h-5" />
-                      <Input
-                        disabled={!about}
-                        placeholder="https://linkedin.com/yourusername"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        </form>
 
         <DrawerContent className="h-[90vh]">
           <div className="mx-auto w-full max-w-[896px] h-full">

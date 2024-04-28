@@ -11,8 +11,9 @@ export const useEmailPasswordRegistration = () => {
 
   const emailPasswordRegistration = async (
     email,
-    password,
     username,
+    password,
+    profession,
     displayName
   ) => {
     setErrorEmailPasswordRegistration(null);
@@ -34,6 +35,7 @@ export const useEmailPasswordRegistration = () => {
       await createUserDocumentFromAuth(user, {
         displayName: displayName || null,
         password: password,
+        profession: profession || null,
       });
     } catch (error) {
       console.error("Error during email/password registration:", error);

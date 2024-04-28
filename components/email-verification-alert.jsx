@@ -28,7 +28,7 @@ function EmailVerificationAlert() {
   return (
     <>
       {user?.emailVerified ? (
-        <Alert className="bg-blue-100 flex ite justify-between my-4">
+        <Alert className="bg-blue-100 flex ite justify-between my-4 hidden">
           <div className="flex items-start gap-3">
             <AlertCircle className="h-4 w-4" />
             <div>

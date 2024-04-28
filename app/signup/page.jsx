@@ -13,6 +13,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Shell } from "lucide-react";
 import { useForm } from "react-hook-form";
@@ -38,11 +45,13 @@ function Auth() {
 
   const formEmailPassword = useForm();
 
-  async function onSubmitEmailPasswordLogin(data) {
-    await emailPasswordLogin(data.email, data.password);
-  }
   async function onSubmitEmailPasswordRegistration(data) {
-    await emailPasswordRegistration(data.email, data.password, data.username);
+    await emailPasswordRegistration(
+      data.email,
+      data.username,
+      data.password,
+      data.profession
+    );
   }
 
   const { user, loading } = useAuthContext();
@@ -67,7 +76,11 @@ function Auth() {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="leonelngoya@gmail.com" {...field} />
+                    <Input
+                      required
+                      placeholder="leonelngoya@gmail.com"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -80,7 +93,51 @@ function Auth() {
                 <FormItem>
                   <FormLabel>Username</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter username" {...field} />
+                    <Input required placeholder="Enter username" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={formEmailPassword.control}
+              name="profession"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Select your Profession</FormLabel>
+                  <FormControl>
+                    <Select
+                      required
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Profession" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="software-developer">
+                          Software developer
+                        </SelectItem>
+                        <SelectItem value="graphic-designer">
+                          Graphic designer
+                        </SelectItem>
+                        <SelectItem value="web-designer">
+                          Web designer
+                        </SelectItem>
+                        <SelectItem value="photographer">
+                          Photographer
+                        </SelectItem>
+                        <SelectItem value="videographer">
+                          Videographer
+                        </SelectItem>
+                        <SelectItem value="video-editor">
+                          Video editor
+                        </SelectItem>
+                        <SelectItem value="architects">Architects</SelectItem>
+                        <SelectItem value="writer">Writers</SelectItem>
+                        <SelectItem value="other">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -94,6 +151,7 @@ function Auth() {
                   <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input
+                      required
                       type="password"
                       placeholder="enter password"
                       {...field}
@@ -130,6 +188,9 @@ function Auth() {
                 <br />
                 {errorEmailPasswordRegistration ===
                   "auth/email-already-in-use" && "This user already exists "}
+                <br />
+                {errorEmailPasswordRegistration === "auth/missing-email" &&
+                  "Email required"}
               </span>
             )}
           </form>

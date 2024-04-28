@@ -12,6 +12,22 @@ export const useMainContext = () => {
 export const MainContextProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
 
+  // Data
+  const [portfolioData, setPortfolioData] = useState({
+    name: "",
+    position: "",
+    heading: "",
+    address: "",
+    whatCanIDo: [],
+    isOpenToWork: true,
+    github: "",
+    linkedin: "",
+    links: {
+      github: "",
+      linkedin: "",
+    },
+  });
+
   // Open something
   const [openSidebar, setOpenSidebar] = useState(false);
 
@@ -114,6 +130,8 @@ export const MainContextProvider = ({ children }) => {
 
   const contextValue = {
     users,
+    portfolioData,
+    setPortfolioData,
     openSidebar,
     setOpenSidebar,
     getUser,

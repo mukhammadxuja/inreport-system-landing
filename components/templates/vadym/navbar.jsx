@@ -1,3 +1,4 @@
+import { useMainContext } from "@/context/main-context";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import React from "react";
