@@ -42,13 +42,22 @@ const Projects = () => {
       {addProject ? (
         <Form userData={user} />
       ) : (
-        <div className="flex flex-col items-center justify-center h-full py-10 space-y-3">
-          <Image
-            width={250}
-            height={250}
-            src="https://read.cv/_next/image?url=%2Fassets%2Fprojects.png&w=256&q=75"
-            alt="Projects image"
-          />
+        <div className="flex flex-col items-center justify-center !min-h-[calc(100vh-14rem)] py-10 space-y-3">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1}
+            stroke="currentColor"
+            className="w-12 h-12 text-yellow-500"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z"
+            />
+          </svg>
+
           <Button onClick={() => setAddProject(true)} variant="secondary">
             Add project
           </Button>
@@ -187,25 +196,29 @@ const Form = ({ userData }) => {
     >
       <div className="flex items-center gap-3">
         <div className="space-y-1 w-full">
-          <Label htmlFor="title">Title</Label>
+          <Label htmlFor="title">
+            Title<span className="text-red-500">*</span>
+          </Label>
           <Input
             id="title"
             placeholder="My Great Project"
             {...register("title", {
               required: {
                 value: true,
-                message: "Name is required",
+                message: "Title is required",
               },
               maxLength: {
                 value: 20,
-                message: "Name is too long",
+                message: "Title is too long",
               },
             })}
           />
           <p className="text-xs text-red-500">{errors.title?.message}</p>
         </div>
         <div className="space-y-1 w-full">
-          <Label htmlFor="year">Year</Label>
+          <Label htmlFor="year">
+            Year<span className="text-red-500">*</span>
+          </Label>
           <Input
             type="number"
             id="year"
@@ -213,11 +226,11 @@ const Form = ({ userData }) => {
             {...register("year", {
               required: {
                 value: true,
-                message: "Name is required",
+                message: "Year is required",
               },
               maxLength: {
                 value: 20,
-                message: "Name is too long",
+                message: "Year is too long",
               },
             })}
           />

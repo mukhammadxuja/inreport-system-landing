@@ -10,11 +10,12 @@ export default function UserProfileClient({ username }) {
   const { users } = useMainContext();
   const { loading } = useAuthContext();
 
+  console.log(users);
+
   useEffect(() => {
-    async function fetchUserData() {
+    function fetchUserData() {
       try {
         const user = users.find((item) => item.username === username);
-        // Simulating a 3-second delay
         if (user) {
           setUserNotFound(false);
           setUserData(user);
@@ -39,7 +40,9 @@ export default function UserProfileClient({ username }) {
           <p>Email: {userData.email}</p>
         </div>
       )}
-      {userNotFound && <p>User not found</p>}
+      {userNotFound ? (
+        <p className={loading && "opacity-0"}>User not found</p>
+      ) : null}
     </div>
   );
 }

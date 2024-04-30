@@ -1,17 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async headers() {
-    return [
+  reactStrictMode: false,
+  images: {
+    remotePatterns: [
       {
-        source: "/signin",
-        headers: [
-          {
-            key: "Cross-Origin-Embedder-Policy",
-            value: "unsafe-none",
-          },
-        ],
+        protocol: "https",
+        hostname: "read.cv",
       },
-    ];
+    ],
   },
 };
 

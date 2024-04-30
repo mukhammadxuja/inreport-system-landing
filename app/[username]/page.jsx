@@ -7,7 +7,6 @@ const UserProfileClient = dynamic(() => import("@/components/username")); // Imp
 
 function User() {
   const params = useParams();
-  console.log(params.username);
   return (
     <div>
       <UserProfileClient username={params.username} />

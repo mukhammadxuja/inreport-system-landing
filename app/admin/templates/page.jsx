@@ -87,7 +87,7 @@ function TemplatesPage() {
           <div
             onClick={() => setSelectedTemplate(1)}
             className={`relative rounded-2xl cursor-pointer shadow-md bg-white hover:bg-blue-50 duration-300 border-4 border-transparent w-full h-[27rem] p-6 group ${
-              selectedTemplate === 1 && "border-blue-400"
+              selectedTemplate === 1 && "border-blue-500"
             }`}
           >
             <img
@@ -109,7 +109,7 @@ function TemplatesPage() {
           <div
             onClick={() => setSelectedTemplate(2)}
             className={`relative rounded-2xl cursor-pointer shadow-md bg-white hover:bg-blue-50 duration-300 border-4 border-transparent w-full h-[27rem] p-6 group ${
-              selectedTemplate === 2 && "border-blue-400"
+              selectedTemplate === 2 && "border-blue-500"
             }`}
           >
             <img
@@ -131,7 +131,7 @@ function TemplatesPage() {
           <div
             onClick={() => setSelectedTemplate(3)}
             className={`relative rounded-2xl cursor-pointer shadow-md bg-white hover:bg-blue-50 duration-300 border-4 border-transparent w-full h-[27rem] p-6 group ${
-              selectedTemplate === 3 && "border-blue-400"
+              selectedTemplate === 3 && "border-blue-500"
             }`}
           >
             <img
@@ -153,7 +153,7 @@ function TemplatesPage() {
           <div
             onClick={() => setSelectedTemplate(4)}
             className={`relative rounded-2xl cursor-pointer shadow-md bg-white hover:bg-blue-50 duration-300 border-4 border-transparent w-full h-[27rem] p-6 group ${
-              selectedTemplate === 4 && "border-blue-400"
+              selectedTemplate === 4 && "border-blue-500"
             }`}
           >
             <img
@@ -175,7 +175,7 @@ function TemplatesPage() {
           <div
             onClick={() => setSelectedTemplate(5)}
             className={`relative rounded-2xl cursor-pointer shadow-md bg-white hover:bg-blue-50 duration-300 border-4 border-transparent w-full h-[27rem] p-6 group ${
-              selectedTemplate === 5 && "border-blue-400"
+              selectedTemplate === 5 && "border-blue-500"
             }`}
           >
             <img
@@ -197,7 +197,7 @@ function TemplatesPage() {
           <div
             onClick={() => setSelectedTemplate(6)}
             className={`relative rounded-2xl cursor-pointer shadow-md bg-white hover:bg-blue-50 duration-600 border-4 border-transparent w-full h-[27rem] p-6 group ${
-              selectedTemplate === 6 && "border-blue-400"
+              selectedTemplate === 6 && "border-blue-500"
             }`}
           >
             <img

@@ -34,6 +34,7 @@ export const useEmailPasswordRegistration = () => {
 
       await createUserDocumentFromAuth(user, {
         displayName: displayName || null,
+        username: username,
         password: password,
         profession: profession || null,
       });

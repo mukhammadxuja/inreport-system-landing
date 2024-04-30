@@ -17,30 +17,30 @@ import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { DoorClosed, X } from "lucide-react";
 
-const Experience = () => {
+const Certifications = () => {
   const { user } = useAuthContext();
 
-  const [addExperience, setAddExperience] = useState(false);
+  const [addCertifications, setAddCertifications] = useState(false);
 
   return (
     <div className="">
       <div className="flex items-center justify-between mb-3">
         <div>
           <h3 className="font-semibold leading-none tracking-tight">
-            Experience
+            Certifications
           </h3>
         </div>
         <Button
-          onClick={() => setAddExperience(true)}
-          className={addExperience ? "hidden" : "block"}
+          onClick={() => setAddCertifications(true)}
+          className={addCertifications ? "hidden" : "block"}
           variant="secondary"
         >
-          Add experience
+          Add certifications
         </Button>
       </div>
       <Separator />
-      {addExperience ? (
-        <Form userData={user} setAddExperience={setAddExperience} />
+      {addCertifications ? (
+        <Form userData={user} setAddCertifications={setAddCertifications} />
       ) : (
         <div className="flex flex-col items-center justify-center !min-h-[calc(100vh-14rem)] py-10 space-y-3">
           <svg
@@ -49,17 +49,20 @@ const Experience = () => {
             viewBox="0 0 24 24"
             strokeWidth={1}
             stroke="currentColor"
-            className="w-12 h-12 text-amber-900"
+            className="w-12 h-12 text-purple-500"
           >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z"
+              d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
             />
           </svg>
 
-          <Button onClick={() => setAddExperience(true)} variant="secondary">
-            Add experience
+          <Button
+            onClick={() => setAddCertifications(true)}
+            variant="secondary"
+          >
+            Add certifications
           </Button>
         </div>
       )}
@@ -67,9 +70,9 @@ const Experience = () => {
   );
 };
 
-export default Experience;
+export default Certifications;
 
-const Form = ({ userData, setAddExperience }) => {
+const Form = ({ userData, setAddCertifications }) => {
   const defaultValues = useMemo(() => {
     return {
       name: userData?.displayName,
@@ -168,71 +171,71 @@ const Form = ({ userData, setAddExperience }) => {
     >
       <div className="flex items-center gap-3">
         <div className="space-y-1 w-full">
-          <Label htmlFor="from">
-            From<span className="text-red-500">*</span>
+          <Label htmlFor="issued">
+            Issued<span className="text-red-500">*</span>
           </Label>
           <Input
-            id="from"
+            id="issued"
             type="number"
             placeholder="2019"
-            {...register("from", {
+            {...register("issued", {
               required: {
                 value: true,
-                message: "From is required",
+                message: "Issued is required",
               },
               maxLength: {
                 value: 20,
-                message: "From is too long",
+                message: "Issued is too long",
               },
             })}
           />
-          <p className="text-xs text-red-500">{errors.from?.message}</p>
+          <p className="text-xs text-red-500">{errors.issued?.message}</p>
         </div>
         <div className="space-y-1 w-full">
-          <Label htmlFor="to">
-            To<span className="text-red-500">*</span>
+          <Label htmlFor="expires">
+            Expires<span className="text-red-500">*</span>
           </Label>
           <Input
             type="number"
-            id="to"
+            id="expires"
             placeholder="2024"
-            {...register("to", {
+            {...register("expires", {
               required: {
                 value: true,
-                message: "Too is required",
+                message: "Expires is required",
               },
               maxLength: {
                 value: 20,
-                message: "Too is too long",
+                message: "Expires is too long",
               },
             })}
           />
-          <p className="text-xs text-red-500">{errors.to?.message}</p>
+          <p className="text-xs text-red-500">{errors.expires?.message}</p>
         </div>
       </div>
       <div className="flex items-center gap-3">
         <div className="space-y-1 w-full">
-          <Label htmlFor="title">Title</Label>
+          <Label htmlFor="name">Name</Label>
           <Input
-            id="title"
-            placeholder="Product Designer"
-            {...register("title", {
+            id="name"
+            placeholder="My certification"
+            {...register("name", {
               maxLength: {
                 value: 20,
                 message: "Name is too long",
               },
             })}
           />
-          <p className="text-xs text-red-500">{errors.title?.message}</p>
+          <p className="text-xs text-red-500">{errors.name?.message}</p>
         </div>
         <div className="space-y-1 w-full">
-          <Label htmlFor="client">
-            Company or client<span className="text-red-500">*</span>
+          <Label htmlFor="university">
+            Organization<span className="text-red-500">*</span>
           </Label>
           <Input
-            id="client"
-            placeholder="Acme inc."
-            {...register("client", {
+            id="university"
+            placeholder="Emily Carr University"
+            {...register("university", {
               required: {
                 value: true,
                 message: "Company is required",
@@ -243,38 +246,22 @@ const Form = ({ userData, setAddExperience }) => {
               },
             })}
           />
-          <p className="text-xs text-red-500">{errors.client?.message}</p>
+          <p className="text-xs text-red-500">{errors.university?.message}</p>
         </div>
       </div>
-      <div className="flex items-center gap-3">
-        <div className="space-y-1 w-full">
-          <Label htmlFor="title">Location</Label>
-          <Input
-            id="title"
-            placeholder="Where was it"
-            {...register("title", {
-              maxLength: {
-                value: 20,
-                message: "Name is too long",
-              },
-            })}
-          />
-          <p className="text-xs text-red-500">{errors.title?.message}</p>
-        </div>
-        <div className="space-y-1 w-full">
-          <Label htmlFor="url">URL</Label>
-          <Input
-            id="url"
-            placeholder="https://example.com"
-            {...register("url", {
-              maxLength: {
-                value: 20,
-                message: "Name is too long",
-              },
-            })}
-          />
-          <p className="text-xs text-red-500">{errors.url?.message}</p>
-        </div>
+      <div className="space-y-1 w-full">
+        <Label htmlFor="url">URL</Label>
+        <Input
+          id="url"
+          placeholder="https://example.com"
+          {...register("url", {
+            maxLength: {
+              value: 20,
+              message: "Name is too long",
+            },
+          })}
+        />
+        <p className="text-xs text-red-500">{errors.url?.message}</p>
       </div>
       <div className="space-y-1 w-full">
         <Label htmlFor="description">Description</Label>
@@ -375,7 +362,7 @@ const Form = ({ userData, setAddExperience }) => {
         <Button
           className="rounded-sm"
           variant="secondary"
-          onClick={() => setAddExperience(false)}
+          onClick={() => setAddCertifications(false)}
         >
           Cancel
         </Button>

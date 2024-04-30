@@ -4,47 +4,135 @@ import { Separator } from "@/components/ui/separator";
 import { AlignJustify, Settings } from "lucide-react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Account from "@/components/profile/account";
-import Banner from "@/components/profile/banner";
-import Password from "@/components/profile/password";
-// import Account from './Account';
-// import Password from './Password';
-// import ProfileMenu from "@/components//navbar/ProfileMenu";
-
+import Account from "@/components/admin/profile/account";
+import Banner from "@/components/admin/profile/banner";
+import Password from "@/components/admin/profile/password";
+import General from "@/components/admin/profile/general";
+import Projects from "@/components/admin/profile/projects";
+import Experience from "@/components/admin/profile/experience";
+import Volunteering from "@/components/admin/profile/volunteering";
+import Education from "@/components/admin/profile/education";
+import Certifications from "@/components/admin/profile/certifications";
+import Awards from "@/components/admin/profile/awards";
+import Skills from "@/components/admin/profile/skills";
+import Contacts from "@/components/admin/profile/contact";
 function Profile() {
+  const profileTabs = [
+    {
+      id: 0,
+      title: "General",
+      tag: "general",
+    },
+    {
+      id: 0,
+      title: "Projects",
+      tag: "projects",
+    },
+    {
+      id: 0,
+      title: "Experience",
+      tag: "experience",
+    },
+    {
+      id: 0,
+      title: "Volunteering",
+      tag: "volunteering",
+    },
+    {
+      id: 0,
+      title: "Education",
+      tag: "education",
+    },
+    {
+      id: 0,
+      title: "Certifications",
+      tag: "certifications",
+    },
+    {
+      id: 0,
+      title: "Awards",
+      tag: "awards",
+    },
+    {
+      id: 0,
+      title: "Skills",
+      tag: "skills",
+    },
+    {
+      id: 0,
+      title: "Contact",
+      tag: "contact",
+    },
+  ];
   return (
-    <div className="px-4 md:px-6 py-5 mx-auto">
-      <div className="flex items-center justify-between">
-        <div className="flex flex-col">
-          <div className="flex items-center">
-            <AlignJustify
-              // onClick={() => setSidebar((prev) => !prev)}
-              className="cursor-pointer h-5 mr-2 block md:hidden"
-            />
-            <h3 className="text-lg font-medium">Profile</h3>
-          </div>
-          <p className="text-sm text-muted-foreground">
-            This is how others will see you on the site.
-          </p>
-        </div>
-        {/* <ProfileMenu /> */}
-      </div>
-      <Separator className="my-4" />
+    <div className="px-4 md:px-6 py-5 mx-auto min-h-screen">
       <EmailVerificationAlert />
-      <Banner />
-      <Tabs defaultValue="account" className="w-full mt-16">
-        <TabsList className="grid max-w-2xl grid-cols-3">
-          <TabsTrigger value="account">Account</TabsTrigger>
-          <TabsTrigger value="password">Password</TabsTrigger>
-          <TabsTrigger disabled value="appearance">
-            Appearance
-          </TabsTrigger>
+      {/* <Banner /> */}
+      <Tabs defaultValue="general" className="w-full mt-0">
+        <TabsList className="sticky top-4 z-40 h-12 mx-auto flex items-center space-x-1 w-fit p-1 shadow-md rounded-2xl duration-300 bg-white border border-border group">
+          {profileTabs.map((profile) => (
+            <TabsTrigger
+              key={profile.title}
+              className="bg-background data-[state=active]:bg-[#f3f3f1] h-10 py-2"
+              value={profile.tag}
+            >
+              {profile.title}
+            </TabsTrigger>
+          ))}
         </TabsList>
-        <TabsContent value="account">
-          <Account />
+        <TabsContent
+          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
+          value="general"
+        >
+          <General />
         </TabsContent>
-        <TabsContent value="password">
-          <Password />
+        <TabsContent
+          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
+          value="projects"
+        >
+          <Projects />
+        </TabsContent>
+        <TabsContent
+          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
+          value="experience"
+        >
+          <Experience />
+        </TabsContent>
+        <TabsContent
+          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
+          value="volunteering"
+        >
+          <Volunteering />
+        </TabsContent>
+        <TabsContent
+          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
+          value="education"
+        >
+          <Education />
+        </TabsContent>
+        <TabsContent
+          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
+          value="certifications"
+        >
+          <Certifications />
+        </TabsContent>
+        <TabsContent
+          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
+          value="awards"
+        >
+          <Awards />
+        </TabsContent>
+        <TabsContent
+          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
+          value="skills"
+        >
+          <Skills />
+        </TabsContent>
+        <TabsContent
+          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
+          value="contact"
+        >
+          <Contacts />
         </TabsContent>
       </Tabs>
     </div>

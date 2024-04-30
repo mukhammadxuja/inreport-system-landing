@@ -11,6 +11,8 @@ export const AuthContext = createContext({
     email: "",
     emailVerified: "",
     displayName: "",
+    username: "",
+    profession: "",
     photoURL: "",
   },
 });

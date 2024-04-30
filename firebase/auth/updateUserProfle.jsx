@@ -1,8 +1,6 @@
 import { doc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../config";
 
-console.log(auth.currentUser.uid);
-
 export const updateUserAccount = async (data) => {
   const userDoc = doc(db, "users", auth.currentUser.uid);
   console.log(userDoc);

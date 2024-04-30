@@ -17,49 +17,47 @@ import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { DoorClosed, X } from "lucide-react";
 
-const Experience = () => {
+const Awards = () => {
   const { user } = useAuthContext();
 
-  const [addExperience, setAddExperience] = useState(false);
+  const [addAward, setAddAward] = useState(false);
 
   return (
     <div className="">
       <div className="flex items-center justify-between mb-3">
         <div>
-          <h3 className="font-semibold leading-none tracking-tight">
-            Experience
-          </h3>
+          <h3 className="font-semibold leading-none tracking-tight">Awards</h3>
         </div>
         <Button
-          onClick={() => setAddExperience(true)}
-          className={addExperience ? "hidden" : "block"}
+          onClick={() => setAddAward(true)}
+          className={addAward ? "hidden" : "block"}
           variant="secondary"
         >
-          Add experience
+          Add project
         </Button>
       </div>
       <Separator />
-      {addExperience ? (
-        <Form userData={user} setAddExperience={setAddExperience} />
+      {addAward ? (
+        <Form userData={user} />
       ) : (
         <div className="flex flex-col items-center justify-center !min-h-[calc(100vh-14rem)] py-10 space-y-3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            strokeWidth={1}
+            strokeWidth={1.5}
             stroke="currentColor"
-            className="w-12 h-12 text-amber-900"
+            className="w-12 h-12 text-orange-500"
           >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z"
+              d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z"
             />
           </svg>
 
-          <Button onClick={() => setAddExperience(true)} variant="secondary">
-            Add experience
+          <Button onClick={() => setAddAward(true)} variant="secondary">
+            Add project
           </Button>
         </div>
       )}
@@ -67,9 +65,9 @@ const Experience = () => {
   );
 };
 
-export default Experience;
+export default Awards;
 
-const Form = ({ userData, setAddExperience }) => {
+const Form = ({ userData }) => {
   const defaultValues = useMemo(() => {
     return {
       name: userData?.displayName,
@@ -150,6 +148,34 @@ const Form = ({ userData, setAddExperience }) => {
       });
   };
 
+  const finalSpaceCharacters = [
+    {
+      id: "gary",
+      name: "Gary Goodspeed",
+      thumb: "/images/gary.png",
+    },
+    {
+      id: "cato",
+      name: "Little Cato",
+      thumb: "/images/cato.png",
+    },
+    {
+      id: "kvn",
+      name: "KVN",
+      thumb: "/images/kvn.png",
+    },
+    {
+      id: "mooncake",
+      name: "Mooncake",
+      thumb: "/images/mooncake.png",
+    },
+    {
+      id: "quinn",
+      name: "Quinn Ergon",
+      thumb: "/images/quinn.png",
+    },
+  ];
+
   function handleOnDragEnd(result) {
     if (!result.destination) return;
 
@@ -168,98 +194,61 @@ const Form = ({ userData, setAddExperience }) => {
     >
       <div className="flex items-center gap-3">
         <div className="space-y-1 w-full">
-          <Label htmlFor="from">
-            From<span className="text-red-500">*</span>
+          <Label htmlFor="title">
+            Award Title<span className="text-red-500">*</span>
           </Label>
           <Input
-            id="from"
-            type="number"
-            placeholder="2019"
-            {...register("from", {
+            id="title"
+            placeholder="My Great Award"
+            {...register("title", {
               required: {
                 value: true,
-                message: "From is required",
+                message: "Title is required",
               },
               maxLength: {
                 value: 20,
-                message: "From is too long",
+                message: "Title is too long",
               },
             })}
           />
-          <p className="text-xs text-red-500">{errors.from?.message}</p>
+          <p className="text-xs text-red-500">{errors.title?.message}</p>
         </div>
         <div className="space-y-1 w-full">
-          <Label htmlFor="to">
-            To<span className="text-red-500">*</span>
+          <Label htmlFor="year">
+            Year<span className="text-red-500">*</span>
           </Label>
           <Input
             type="number"
-            id="to"
+            id="year"
             placeholder="2024"
-            {...register("to", {
+            {...register("year", {
               required: {
                 value: true,
-                message: "Too is required",
+                message: "Year is required",
               },
               maxLength: {
                 value: 20,
-                message: "Too is too long",
+                message: "Year is too long",
               },
             })}
           />
-          <p className="text-xs text-red-500">{errors.to?.message}</p>
+          <p className="text-xs text-red-500">{errors.year?.message}</p>
         </div>
       </div>
       <div className="flex items-center gap-3">
         <div className="space-y-1 w-full">
-          <Label htmlFor="title">Title</Label>
+          <Label htmlFor="presentedBy">Presented by</Label>
           <Input
-            id="title"
-            placeholder="Product Designer"
-            {...register("title", {
+            id="presentedBy"
+            placeholder="Apple"
+            {...register("presentedBy", {
               maxLength: {
                 value: 20,
-                message: "Name is too long",
+                message: "Presented by is too long",
               },
             })}
           />
-          <p className="text-xs text-red-500">{errors.title?.message}</p>
-        </div>
-        <div className="space-y-1 w-full">
-          <Label htmlFor="client">
-            Company or client<span className="text-red-500">*</span>
-          </Label>
-          <Input
-            id="client"
-            placeholder="Acme inc."
-            {...register("client", {
-              required: {
-                value: true,
-                message: "Company is required",
-              },
-              maxLength: {
-                value: 20,
-                message: "Company is too long",
-              },
-            })}
-          />
-          <p className="text-xs text-red-500">{errors.client?.message}</p>
-        </div>
-      </div>
-      <div className="flex items-center gap-3">
-        <div className="space-y-1 w-full">
-          <Label htmlFor="title">Location</Label>
-          <Input
-            id="title"
-            placeholder="Where was it"
-            {...register("title", {
-              maxLength: {
-                value: 20,
-                message: "Name is too long",
-              },
-            })}
-          />
-          <p className="text-xs text-red-500">{errors.title?.message}</p>
+          <p className="text-xs text-red-500">{errors.presentedBy?.message}</p>
         </div>
         <div className="space-y-1 w-full">
           <Label htmlFor="url">URL</Label>
@@ -267,9 +256,13 @@ const Form = ({ userData, setAddExperience }) => {
             id="url"
             placeholder="https://example.com"
             {...register("url", {
+              required: {
+                value: true,
+                message: "Url is required",
+              },
               maxLength: {
                 value: 20,
-                message: "Name is too long",
+                message: "Url is too long",
               },
             })}
           />
@@ -313,10 +306,10 @@ const Form = ({ userData, setAddExperience }) => {
         </Files>
 
         <DragDropContext onDragEnd={handleOnDragEnd}>
-          <Droppable droppableId="characters" direction="horizontal">
+          <Droppable droppableId="characters">
             {(provided) => (
               <ul
-                className="flex items-center gap-3 !mt-3"
+                className="grid grid-cols-2 gap-3 !mt-3"
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
@@ -329,26 +322,32 @@ const Form = ({ userData, setAddExperience }) => {
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
-                          className="flex items-center justify-between p-1 rounded-md border cursor-grab"
+                          className="flex items-center justify-between py-2 pl-2 pr-4 rounded-md border cursor-grab"
                         >
-                          <div className="files-list-item-preview">
-                            {preview.type === "image" ? (
-                              <div className="relative">
+                          <div className="flex items-center gap-3">
+                            <div className="files-list-item-preview">
+                              {preview.type === "image" ? (
                                 <img
-                                  className="w-28 rounded-md"
+                                  className="w-32 rounded-md"
                                   src={preview.url}
                                 />
-                                <X
-                                  className="absolute top-1 right-1 w-6 bg-white text-black h-6 border rounded-full p-1 cursor-pointer"
-                                  onClick={() => handleFileRemove(id)}
-                                />
-                              </div>
-                            ) : (
-                              <div className="-list-item-preview-extension">
-                                {extension}
-                              </div>
-                            )}
+                              ) : (
+                                <div className="-list-item-preview-extension">
+                                  {extension}
+                                </div>
+                              )}
+                            </div>
+                            <div className="flex items-center font-medium">
+                              {name}
+                              <span className="text-sm pl-1 font-light">
+                                ({sizeReadable})
+                              </span>
+                            </div>
                           </div>
+                          <X
+                            className="w-5 h-5 cursor-pointer"
+                            onClick={() => handleFileRemove(id)}
+                          />
                         </li>
                       )}
                     </Draggable>
@@ -373,9 +372,10 @@ const Form = ({ userData, setAddExperience }) => {
       <Separator />
       <div className="space-x-2 flex justify-end">
         <Button
+          disabled={isSubmitting || !isDirty}
           className="rounded-sm"
           variant="secondary"
-          onClick={() => setAddExperience(false)}
+          onClick={() => setAddAward(false)}
         >
           Cancel
         </Button>
