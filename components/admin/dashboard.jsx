@@ -12,7 +12,6 @@ function Dashboard({ children }) {
 
   const router = useRouter();
 
-  console.log(loading);
 
   const ifSidebar = openSidebar
     ? "pl-[270px] duration-300 w-full"
@@ -20,7 +19,7 @@ function Dashboard({ children }) {
 
   return (
     <div className="flex">
-      {loading && <Loading />}
+      {/* {loading && <Loading />} */}
       {user && (
         <>
           <Sidebar />

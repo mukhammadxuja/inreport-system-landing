@@ -2,7 +2,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useEffect, useMemo, useState } from "react";
-import Image from "next/image";
 import Files from "react-files";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useForm } from "react-hook-form";
@@ -15,7 +14,9 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
-import { DoorClosed, X } from "lucide-react";
+import { X } from "lucide-react";
+import { addDoc, collection } from "firebase/firestore";
+import { auth, db } from "@/firebase/config";
 
 const Experience = () => {
   const { user } = useAuthContext();
@@ -160,9 +161,46 @@ const Form = ({ userData, setAddExperience }) => {
     setFiles(items);
   }
 
+  const [isSending, setIsSending] = useState(false);
+
+  const saveExperience = async (data) => {
+    if (isSending) return;
+    setIsSending(true);
+
+    try {
+      const images = files.map((file) => ({
+        id: file.id,
+        extension: file.extension,
+        sizeReadable: file.sizeReadable,
+        preview: file.preview,
+      }));
+
+      await addDoc(
+        collection(db, `users/${auth.currentUser.uid}/experiences`),
+        {
+          from: data.from,
+          to: data.to,
+          title: data.title,
+          company: data.company,
+          location: data.location,
+          url: data.url,
+          description: data.description,
+          images: images,
+          timestamp: new Date().getTime(),
+        }
+      ).finally(() => {
+        setAddExperience(false);
+        setIsSending(false);
+        console.log("perfect");
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(saveExperience)}
       className="space-y-3 md:space-y-6 mt-5"
       noValidate
     >
@@ -180,10 +218,6 @@ const Form = ({ userData, setAddExperience }) => {
                 value: true,
                 message: "From is required",
               },
-              maxLength: {
-                value: 20,
-                message: "From is too long",
-              },
             })}
           />
           <p className="text-xs text-red-500">{errors.from?.message}</p>
@@ -199,11 +233,7 @@ const Form = ({ userData, setAddExperience }) => {
             {...register("to", {
               required: {
                 value: true,
-                message: "Too is required",
-              },
-              maxLength: {
-                value: 20,
-                message: "Too is too long",
+                message: "To is required",
               },
             })}
           />
@@ -216,62 +246,43 @@ const Form = ({ userData, setAddExperience }) => {
           <Input
             id="title"
             placeholder="Product Designer"
-            {...register("title", {
-              maxLength: {
-                value: 20,
-                message: "Name is too long",
-              },
-            })}
+            {...register("title")}
           />
           <p className="text-xs text-red-500">{errors.title?.message}</p>
         </div>
         <div className="space-y-1 w-full">
-          <Label htmlFor="client">
+          <Label htmlFor="company">
             Company or client<span className="text-red-500">*</span>
           </Label>
           <Input
-            id="client"
+            id="company"
             placeholder="Acme inc."
-            {...register("client", {
+            {...register("company", {
               required: {
                 value: true,
                 message: "Company is required",
               },
-              maxLength: {
-                value: 20,
-                message: "Company is too long",
-              },
             })}
           />
-          <p className="text-xs text-red-500">{errors.client?.message}</p>
+          <p className="text-xs text-red-500">{errors.company?.message}</p>
         </div>
       </div>
       <div className="flex items-center gap-3">
         <div className="space-y-1 w-full">
-          <Label htmlFor="title">Location</Label>
+          <Label htmlFor="location">Location</Label>
           <Input
-            id="title"
+            id="location"
             placeholder="Where was it"
-            {...register("title", {
-              maxLength: {
-                value: 20,
-                message: "Name is too long",
-              },
-            })}
+            {...register("location")}
           />
-          <p className="text-xs text-red-500">{errors.title?.message}</p>
+          <p className="text-xs text-red-500">{errors.location?.message}</p>
         </div>
         <div className="space-y-1 w-full">
           <Label htmlFor="url">URL</Label>
           <Input
             id="url"
             placeholder="https://example.com"
-            {...register("url", {
-              maxLength: {
-                value: 20,
-                message: "Name is too long",
-              },
-            })}
+            {...register("url")}
           />
           <p className="text-xs text-red-500">{errors.url?.message}</p>
         </div>
@@ -283,12 +294,8 @@ const Form = ({ userData, setAddExperience }) => {
           rows={4}
           placeholder="Cool project"
           {...register("description", {
-            required: {
-              value: true,
-              message: "Name is required",
-            },
             maxLength: {
-              value: 20,
+              value: 200,
               message: "Name is too long",
             },
           })}

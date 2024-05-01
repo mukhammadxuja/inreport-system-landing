@@ -1,5 +1,5 @@
 "use client";
-import { db } from "@/firebase/config";
+import { auth, db } from "@/firebase/config";
 import { collection, getDocs } from "firebase/firestore";
 import { createContext, useContext, useEffect, useState } from "react";
 
@@ -121,6 +121,8 @@ export const MainContextProvider = ({ children }) => {
 
     fetchUsers();
   }, []);
+
+
 
   const getUser = async (username) => {
     const userData = await users.find((item) => item.username === username);

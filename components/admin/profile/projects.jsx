@@ -15,7 +15,9 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
-import { DoorClosed, X } from "lucide-react";
+import { DoorClosed, Shell, X } from "lucide-react";
+import { auth, db } from "@/firebase/config";
+import { addDoc, collection } from "firebase/firestore";
 
 const Projects = () => {
   const { user } = useAuthContext();
@@ -40,7 +42,7 @@ const Projects = () => {
       </div>
       <Separator />
       {addProject ? (
-        <Form userData={user} />
+        <Form userData={user} setAddProject={setAddProject} />
       ) : (
         <div className="flex flex-col items-center justify-center !min-h-[calc(100vh-14rem)] py-10 space-y-3">
           <svg
@@ -69,7 +71,7 @@ const Projects = () => {
 
 export default Projects;
 
-const Form = ({ userData }) => {
+const Form = ({ userData, setAddProject }) => {
   const defaultValues = useMemo(() => {
     return {
       name: userData?.displayName,
@@ -188,9 +190,41 @@ const Form = ({ userData }) => {
     setFiles(items);
   }
 
+  const [isSending, setIsSending] = useState(false);
+
+  const saveProject = async (data) => {
+    if (isSending) return;
+    setIsSending(true);
+
+    try {
+      const images = files.map((file) => ({
+        id: file.id,
+        extension: file.extension,
+        sizeReadable: file.sizeReadable,
+        preview: file.preview,
+      }));
+
+      await addDoc(collection(db, `users/${auth.currentUser.uid}/projects`), {
+        title: data.title,
+        year: data.year,
+        company: data.company,
+        link: data.link,
+        description: data.description,
+        images: images,
+        timestamp: new Date().getTime(),
+      }).finally(() => {
+        setAddProject(false);
+        setIsSending(false);
+        console.log("perfect");
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(saveProject)}
       className="space-y-3 md:space-y-6 mt-5"
       noValidate
     >
@@ -239,11 +273,11 @@ const Form = ({ userData }) => {
       </div>
       <div className="flex items-center gap-3">
         <div className="space-y-1 w-full">
-          <Label htmlFor="client">Company or client</Label>
+          <Label htmlFor="company">Company or client</Label>
           <Input
-            id="client"
+            id="company"
             placeholder="Acme inc."
-            {...register("client", {
+            {...register("company", {
               required: {
                 value: true,
                 message: "Name is required",
@@ -254,7 +288,7 @@ const Form = ({ userData }) => {
               },
             })}
           />
-          <p className="text-xs text-red-500">{errors.client?.message}</p>
+          <p className="text-xs text-red-500">{errors.company?.message}</p>
         </div>
         <div className="space-y-1 w-full">
           <Label htmlFor="link">Link to project</Label>
@@ -265,10 +299,6 @@ const Form = ({ userData }) => {
               required: {
                 value: true,
                 message: "Name is required",
-              },
-              maxLength: {
-                value: 20,
-                message: "Name is too long",
               },
             })}
           />
@@ -287,7 +317,7 @@ const Form = ({ userData }) => {
               message: "Name is required",
             },
             maxLength: {
-              value: 20,
+              value: 70,
               message: "Name is too long",
             },
           })}
@@ -391,26 +421,7 @@ const Form = ({ userData }) => {
           type="submit"
         >
           {isSubmitting && (
-            <svg
-              className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              ></circle>
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-              ></path>
-            </svg>
+            <Shell className="opacity-50 animate-spin w-4 h-4 mr-1.5" />
           )}
           Save
         </Button>

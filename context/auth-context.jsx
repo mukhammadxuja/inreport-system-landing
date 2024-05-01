@@ -21,7 +21,10 @@ export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  console.log("user", user);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -35,6 +38,26 @@ export const AuthContextProvider = ({ children }) => {
 
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const userId = auth.currentUser?.uid;
+        const projectsCollection = collection(db, "users", +userId, "projects");
+        const projectsSnapshot = await getDocs(projectsCollection);
+
+        // Extract projects data from snapshot
+        const projectsData = projectsSnapshot.docs.map((doc) => doc.data());
+        setProjects(projectsData);
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+  console.log("projects", projects);
 
   return (
     <AuthContext.Provider value={{ user, loading }}>
