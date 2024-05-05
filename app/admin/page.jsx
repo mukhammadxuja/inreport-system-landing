@@ -13,14 +13,14 @@ function AdminPage() {
 
   return (
     <div className="px-4 min-h-screen">
-      <div className="my-4">
+      <div className="my-4 max-w-2xl mx-auto">
         {projects.map((project) => (
           <div
             key={project.uid}
-            className="flex items-start justify-between py-2 pl-2 pr-4 rounded-md"
+            className="flex items-start justify-between py-2 pl-2 pr-4 border-b"
           >
             <p>{project.year}</p>
-            <div className="space-y-3">
+            <div className="space-y-3 w-[25rem]">
               <div>
                 <a
                   href={project.link}
@@ -33,15 +33,44 @@ function AdminPage() {
                 </a>
                 <p className="text-gray-500">{project.description}</p>
               </div>
-              <div className="flex items-center gap-3">
-                {project.images?.map((image) => (
-                  <img
-                    key={image.id}
-                    className="w-32 rounded"
-                    src={image.preview.url}
-                    alt="project images"
+              <div className="flex items-center gap-3 overflow-x-scroll">
+                {project.images && project.images.length > 0 && (
+                  <div className="flex items-center gap-2">
+                    {/* Map through images and render each */}
+                    {project.images.map((image, index) => (
+                      <div key={index} className="w-32 rounded-md">
+                        <img
+                          src={image}
+                          alt={`Image ${index + 1}`}
+                          className="w-full h-full object-cover rounded"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className="flex items-center justify-between">
+                <div className="flex itemc space-x-2">
+                  <small className="hover:underline cursor-pointer">Hide</small>
+                  <small className="hover:underline cursor-pointer">Edit</small>
+                  <small className="hover:underline cursor-pointer">
+                    Delete
+                  </small>
+                </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-5 h-5 cursor-pointer"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
                   />
-                ))}
+                </svg>
               </div>
             </div>
           </div>

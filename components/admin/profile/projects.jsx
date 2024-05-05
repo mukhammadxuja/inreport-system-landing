@@ -14,48 +14,21 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
-import { ChevronRight, MoveUpRight, Shell, X } from "lucide-react";
-import { auth, db } from "@/firebase/config";
-import { addDoc, collection, onSnapshot, query } from "firebase/firestore";
-import { useMainContext } from "@/context/main-context";
+import { ChevronRight, Shell, X } from "lucide-react";
+import { auth, db, storage } from "@/firebase/config";
+import { addDoc, collection } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const Projects = () => {
-  const { user } = useApiContext();
+  const { user, projects, setProjects } = useApiContext();
 
   const [addProject, setAddProject] = useState(false);
 
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const q = query(
-          collection(db, `users/${auth.currentUser.uid}/projects`)
-        );
-        const unsubscribe = onSnapshot(q, (querySnapshot) => {
-          let itemsArr = [];
-          querySnapshot.forEach((doc) => {
-            itemsArr.push({ ...doc.data(), id: doc.id });
-          });
-          setProjects(itemsArr);
-          setLoading(false);
-        });
-
-        return () => unsubscribe();
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   console.log("projects", projects);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  // if (loading) {
+  //   return <p>Loading...</p>;
+  // }
 
   return (
     <div className="">
@@ -79,14 +52,14 @@ const Projects = () => {
       ) : (
         <>
           {projects.length ? (
-            <div className="my-4">
+            <div className="space-y-3 my-2">
               {projects.map((project) => (
                 <div
                   key={project.uid}
-                  className="flex items-start justify-between py-2 pl-2 pr-4 rounded-md"
+                  className="flex items-start justify-between py-2 pl-2 pr-4 border-b"
                 >
                   <p>{project.year}</p>
-                  <div className="space-y-3">
+                  <div className="space-y-3 w-[25rem]">
                     <div>
                       <a
                         href={project.link}
@@ -99,14 +72,48 @@ const Projects = () => {
                       </a>
                       <p className="text-gray-500">{project.description}</p>
                     </div>
-                    <div className="flex items-center gap-3">
-                      {project.images?.map((image) => (
-                        <img
-                          key={image.id}
-                          className="w-32 rounded"
-                          src={image.preview.url}
+                    <div className="flex items-center gap-3 overflow-x-scroll">
+                      {project.images && project.images.length > 0 && (
+                        <div className="flex items-center gap-2">
+                          {/* Map through images and render each */}
+                          {project.images.map((image, index) => (
+                            <div key={index} className="w-32 rounded-md">
+                              <img
+                                src={image}
+                                alt={`Image ${index + 1}`}
+                                className="w-full h-full object-cover rounded"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex itemc space-x-2">
+                        <small className="hover:underline cursor-pointer">
+                          Hide
+                        </small>
+                        <small className="hover:underline cursor-pointer">
+                          Edit
+                        </small>
+                        <small className="hover:underline cursor-pointer">
+                          Delete
+                        </small>
+                      </div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-5 h-5 cursor-pointer"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
                         />
-                      ))}
+                      </svg>
                     </div>
                   </div>
                 </div>
@@ -171,73 +178,19 @@ const Form = ({ userData, setAddProject }) => {
     if (isSubmitSuccessful) {
       reset(defaultValues);
     }
-  }, [isSubmitSuccessful, reset]);
+  }, [defaultValues, isSubmitSuccessful, reset]);
 
   const [files, setFiles] = useState([]);
-  const handleChange = (newFiles) => {
-    setFiles((prevFiles) => [...prevFiles, ...newFiles]);
-  };
 
   const handleFileRemove = (fileId) => {
     setFiles((prevFiles) =>
-      prevFiles.filter((prevFile) => prevFile.id !== fileId)
+      prevFiles.filter((prevFile) => prevFile.name !== fileId)
     );
   };
 
   const handleClearFiles = () => {
     setFiles([]);
   };
-
-  console.log(files);
-
-  const handleUploadFiles = () => {
-    const formData = new FormData();
-    files.forEach((file) => {
-      formData.append(
-        file.id,
-        new Blob([file], { type: file.type }),
-        file.name || "file"
-      );
-    });
-
-    axios
-      .post("/files", formData)
-      .then(() => {
-        window.alert(`${files.length} files uploaded succesfully!`);
-        setFiles([]);
-      })
-      .catch((err) => {
-        window.alert(`Error uploading files: ${err.message}`);
-      });
-  };
-
-  const finalSpaceCharacters = [
-    {
-      id: "gary",
-      name: "Gary Goodspeed",
-      thumb: "/images/gary.png",
-    },
-    {
-      id: "cato",
-      name: "Little Cato",
-      thumb: "/images/cato.png",
-    },
-    {
-      id: "kvn",
-      name: "KVN",
-      thumb: "/images/kvn.png",
-    },
-    {
-      id: "mooncake",
-      name: "Mooncake",
-      thumb: "/images/mooncake.png",
-    },
-    {
-      id: "quinn",
-      name: "Quinn Ergon",
-      thumb: "/images/quinn.png",
-    },
-  ];
 
   function handleOnDragEnd(result) {
     if (!result.destination) return;
@@ -251,18 +204,30 @@ const Form = ({ userData, setAddProject }) => {
 
   const [isSending, setIsSending] = useState(false);
 
+  const handleFileChange = (event) => {
+    setFiles([...files, ...event.target.files]);
+  };
+
   const saveProject = async (data) => {
     if (isSending) return;
     setIsSending(true);
 
-    try {
-      const images = files.map((file) => ({
-        id: file.id,
-        extension: file.extension,
-        sizeReadable: file.sizeReadable,
-        preview: file.preview,
-      }));
+    const images = [];
 
+    // Upload images to Firebase Storage
+    await Promise.all(
+      files.map(async (file) => {
+        const storageRef = ref(
+          storage,
+          `projects/${auth.currentUser.uid}/images/${file.name}`
+        );
+        await uploadBytes(storageRef, file);
+        const downloadURL = await getDownloadURL(storageRef);
+        images.push(downloadURL);
+      })
+    );
+
+    try {
       await addDoc(collection(db, `users/${auth.currentUser.uid}/projects`), {
         title: data.title,
         year: data.year,
@@ -383,22 +348,34 @@ const Form = ({ userData, setAddProject }) => {
         />
         <p className="text-xs text-red-500">{errors.description?.message}</p>
       </div>
+
       <div className="space-y-1 w-full">
-        <Label htmlFor="file">Attachments</Label>
-        <Files
-          id="file"
-          className="flex items-center justify-center p-2 rounded-lg border-2 border-dashed"
-          dragActiveClassName="files-dropzone-active"
-          style={{ height: "100px" }}
-          onChange={handleChange}
-          multiple
-          maxFiles={5}
-          maxFileSize={10000000}
-          minFileSize={0}
-          clickable
-        >
-          Drop files here or click to upload
-        </Files>
+        <div className="mx-auto w-full">
+          <Label htmlFor="upload">Attachments</Label>
+          <label className="flex w-full cursor-pointer appearance-none items-center justify-center rounded-md border-2 border-dashed border-gray-200 p-6 transition-all duration-300 hover:border-gray-400">
+            <div className="space-y-1 text-center">
+              <div className="text-gray-600">
+                <a
+                  href="#"
+                  className="font-medium text-primary-500 hover:text-primary-700"
+                >
+                  Click to upload
+                </a>
+              </div>
+              <p className="text-sm text-gray-500">
+                PNG, JPG or GIF (max. 800x400px)
+              </p>
+            </div>
+            <input
+              id="upload"
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleFileChange}
+              className="sr-only"
+            />
+          </label>
+        </div>
 
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId="characters">
@@ -408,40 +385,38 @@ const Form = ({ userData, setAddProject }) => {
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
-                {files.map(({ id, preview, name, sizeReadable }, index) => {
+                {files.map((file, index) => {
                   return (
-                    <Draggable key={id} draggableId={id} index={index}>
+                    <Draggable
+                      key={file.name}
+                      draggableId={file.name}
+                      index={index}
+                    >
                       {(provided) => (
                         <li
-                          key={id}
+                          key={file.name}
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
                           className="flex items-center justify-between py-2 pl-2 pr-4 rounded-md border cursor-grab"
                         >
                           <div className="flex items-center gap-3">
-                            <div className="files-list-item-preview">
-                              {preview.type === "image" ? (
-                                <img
-                                  className="w-32 rounded-md"
-                                  src={preview.url}
-                                />
-                              ) : (
-                                <div className="-list-item-preview-extension">
-                                  {extension}
-                                </div>
-                              )}
-                            </div>
+                            <img
+                              key={index}
+                              src={URL.createObjectURL(file)}
+                              alt={`image-${index}`}
+                              className="w-24 rounded-md"
+                            />
                             <div className="flex items-center font-medium">
-                              {name}
-                              <span className="text-sm pl-1 font-light">
-                                ({sizeReadable})
-                              </span>
+                              {file.name}
+                              {/* <span className="text-sm pl-1 font-light">
+                                {file.size}
+                              </span> */}
                             </div>
                           </div>
                           <X
                             className="w-5 h-5 cursor-pointer"
-                            onClick={() => handleFileRemove(id)}
+                            onClick={() => handleFileRemove(file.name)}
                           />
                         </li>
                       )}
