@@ -1,13 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { useAuthContext } from "@/context/auth-context";
+import { useApiContext } from "@/context/api-context";
 import Image from "next/image";
 import React from "react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 function Banner() {
-  const { user } = useAuthContext();
+  const { user } = useApiContext();
   return (
     <div className="relative mt-4 rounded-lg">
       <img

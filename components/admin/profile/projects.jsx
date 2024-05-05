@@ -2,11 +2,10 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useEffect, useMemo, useState } from "react";
-import Image from "next/image";
 import Files from "react-files";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useForm } from "react-hook-form";
-import { useAuthContext } from "@/context/auth-context";
+import { useApiContext } from "@/context/api-context";
 import { updateUserAccount } from "@/firebase/auth/updateUserProfle";
 
 // UI
@@ -15,14 +14,48 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
-import { DoorClosed, Shell, X } from "lucide-react";
+import { ChevronRight, MoveUpRight, Shell, X } from "lucide-react";
 import { auth, db } from "@/firebase/config";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, onSnapshot, query } from "firebase/firestore";
+import { useMainContext } from "@/context/main-context";
 
 const Projects = () => {
-  const { user } = useAuthContext();
+  const { user } = useApiContext();
 
   const [addProject, setAddProject] = useState(false);
+
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const q = query(
+          collection(db, `users/${auth.currentUser.uid}/projects`)
+        );
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+          let itemsArr = [];
+          querySnapshot.forEach((doc) => {
+            itemsArr.push({ ...doc.data(), id: doc.id });
+          });
+          setProjects(itemsArr);
+          setLoading(false);
+        });
+
+        return () => unsubscribe();
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log("projects", projects);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="">
@@ -44,26 +77,64 @@ const Projects = () => {
       {addProject ? (
         <Form userData={user} setAddProject={setAddProject} />
       ) : (
-        <div className="flex flex-col items-center justify-center !min-h-[calc(100vh-14rem)] py-10 space-y-3">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1}
-            stroke="currentColor"
-            className="w-12 h-12 text-yellow-500"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z"
-            />
-          </svg>
+        <>
+          {projects.length ? (
+            <div className="my-4">
+              {projects.map((project) => (
+                <div
+                  key={project.uid}
+                  className="flex items-start justify-between py-2 pl-2 pr-4 rounded-md"
+                >
+                  <p>{project.year}</p>
+                  <div className="space-y-3">
+                    <div>
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center font-medium hover:underline cursor-pointer"
+                      >
+                        {project.title} at {project.company}
+                        <ChevronRight className="w-4 h-4" />
+                      </a>
+                      <p className="text-gray-500">{project.description}</p>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      {project.images?.map((image) => (
+                        <img
+                          key={image.id}
+                          className="w-32 rounded"
+                          src={image.preview.url}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center !min-h-[calc(100vh-14rem)] py-10 space-y-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1}
+                stroke="currentColor"
+                className="w-12 h-12 text-yellow-500"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z"
+                />
+              </svg>
 
-          <Button onClick={() => setAddProject(true)} variant="secondary">
-            Add project
-          </Button>
-        </div>
+              <Button onClick={() => setAddProject(true)} variant="secondary">
+                Add project
+              </Button>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
@@ -95,18 +166,6 @@ const Form = ({ userData, setAddProject }) => {
     isSubmitted,
     isSubmitSuccessful,
   } = formState;
-
-  const onSubmit = async (data) => {
-    console.log("Submitted Data:", data); // Log submitted data
-    const { name, email } = data;
-    const newData = { displayName: name, email };
-    try {
-      await updateUserAccount(newData);
-      console.log("perfect");
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -399,9 +458,6 @@ const Form = ({ userData, setAddProject }) => {
             <Button variant="destructive" onClick={handleClearFiles}>
               Remove All Files
             </Button>
-            {/* <Button variant="outline" onClick={handleUploadFiles}>
-              Upload
-            </Button> */}
           </div>
         )}
       </div>

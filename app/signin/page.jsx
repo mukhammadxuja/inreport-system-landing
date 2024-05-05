@@ -8,7 +8,7 @@ import { useEmailVerification } from "@/firebase/auth/emailVerificationLink";
 
 import { Button } from "@/components/ui/button";
 import { Globe2, Shell } from "lucide-react";
-import { useAuthContext } from "@/context/auth-context";
+import { useApiContext } from "@/context/api-context";
 import Loading from "@/components/admin/loading";
 import Image from "next/image";
 
@@ -19,7 +19,7 @@ function Auth() {
   const { isEmailVerificationPending, sendEmailVerificationLink } =
     useEmailVerification();
 
-  const { user, loading } = useAuthContext();
+  const { user, loading } = useApiContext();
   const router = useRouter();
 
   useEffect(() => {

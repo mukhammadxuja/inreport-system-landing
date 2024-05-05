@@ -60,16 +60,14 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
 import { useMainContext } from "@/context/main-context";
 import { usePathname } from "next/navigation";
-import { useAuthContext } from "@/context/auth-context";
+import { useApiContext } from "@/context/api-context";
 import { useLogout } from "@/firebase/auth/logout";
 
 function Sidebar() {
   const { openSidebar, setOpenSidebar } = useMainContext();
-  const { user } = useAuthContext();
+  const { user } = useApiContext();
   const { logout } = useLogout();
   const pathname = usePathname();
-
-  console.log(pathname);
 
   const navData = [
     {

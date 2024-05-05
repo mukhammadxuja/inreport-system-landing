@@ -1,11 +1,8 @@
 import { Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import Providers from "@/utils/providers";
-import { MainContextProvider } from "@/context/main-context";
 
 import "./globals.css";
-import HomeNavbar from "@/components/home/navbar";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -26,9 +23,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={inter.className}>
         <Toaster />
-        <Providers>
-          <MainContextProvider>{children}</MainContextProvider>
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

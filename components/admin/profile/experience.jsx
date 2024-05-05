@@ -5,7 +5,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import Files from "react-files";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useForm } from "react-hook-form";
-import { useAuthContext } from "@/context/auth-context";
+import { useApiContext } from "@/context/api-context";
 import { updateUserAccount } from "@/firebase/auth/updateUserProfle";
 
 // UI
@@ -19,7 +19,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "@/firebase/config";
 
 const Experience = () => {
-  const { user } = useAuthContext();
+  const { user } = useApiContext();
 
   const [addExperience, setAddExperience] = useState(false);
 

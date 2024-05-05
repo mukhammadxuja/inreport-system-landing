@@ -5,12 +5,12 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useAuthContext } from "@/context/auth-context";
+import { useApiContext } from "@/context/api-context";
 import { updateUserAccount } from "@/firebase/auth/updateUserProfle";
 // import { useToast } from "@/components/ui/use-toast";
 
 const Account = () => {
-  const { user } = useAuthContext();
+  const { user } = useApiContext();
   return (
     <div className="">
       <h3 className="font-semibold leading-none tracking-tight">Account</h3>

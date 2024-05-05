@@ -5,10 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle, Shell } from "lucide-react";
 import { useEmailVerification } from "../firebase/auth/emailVerificationLink";
-import { useAuthContext } from "@/context/auth-context";
+import { useApiContext } from "@/context/api-context";
 
 function EmailVerificationAlert() {
-  const { user } = useAuthContext();
+  const { user } = useApiContext();
 
   const {
     isEmailVerificationSent,

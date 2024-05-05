@@ -1,7 +1,13 @@
 "use client";
-import { AuthContextProvider } from "@/context/auth-context";
+import { ApiContextProvider } from "@/context/api-context";
+import { MainContextProvider } from "@/context/main-context";
+
 function Providers({ children }) {
-  return <AuthContextProvider>{children}</AuthContextProvider>;
+  return (
+    <ApiContextProvider>
+      <MainContextProvider>{children}</MainContextProvider>
+    </ApiContextProvider>
+  );
 }
 
 export default Providers;

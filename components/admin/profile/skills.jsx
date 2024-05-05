@@ -6,7 +6,7 @@ import Image from "next/image";
 import Files from "react-files";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useForm } from "react-hook-form";
-import { useAuthContext } from "@/context/auth-context";
+import { useApiContext } from "@/context/api-context";
 import { updateUserAccount } from "@/firebase/auth/updateUserProfle";
 
 // UI
@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/select";
 
 const Skills = () => {
-  const { user } = useAuthContext();
+  const { user } = useApiContext();
 
   const [addSkill, setAddSkill] = useState(false);
 

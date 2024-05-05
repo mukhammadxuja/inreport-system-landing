@@ -6,7 +6,7 @@ import Image from "next/image";
 import Files from "react-files";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useForm } from "react-hook-form";
-import { useAuthContext } from "@/context/auth-context";
+import { useApiContext } from "@/context/api-context";
 import { updateUserAccount } from "@/firebase/auth/updateUserProfle";
 
 // UI
@@ -18,7 +18,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { DoorClosed, X } from "lucide-react";
 
 const Awards = () => {
-  const { user } = useAuthContext();
+  const { user } = useApiContext();
 
   const [addAward, setAddAward] = useState(false);
 

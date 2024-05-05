@@ -41,6 +41,7 @@
     "react": "^18",
     "react-code-block": "^1.0.0",
     "react-dom": "^18",
+    "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.51.2",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",

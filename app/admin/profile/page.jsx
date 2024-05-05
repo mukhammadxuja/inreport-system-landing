@@ -4,9 +4,6 @@ import { Separator } from "@/components/ui/separator";
 import { AlignJustify, Settings } from "lucide-react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Account from "@/components/admin/profile/account";
-import Banner from "@/components/admin/profile/banner";
-import Password from "@/components/admin/profile/password";
 import General from "@/components/admin/profile/general";
 import Projects from "@/components/admin/profile/projects";
 import Experience from "@/components/admin/profile/experience";
@@ -16,6 +13,7 @@ import Certifications from "@/components/admin/profile/certifications";
 import Awards from "@/components/admin/profile/awards";
 import Skills from "@/components/admin/profile/skills";
 import Contacts from "@/components/admin/profile/contact";
+
 function Profile() {
   const profileTabs = [
     {
@@ -64,6 +62,7 @@ function Profile() {
       tag: "contact",
     },
   ];
+  
   return (
     <div className="px-4 md:px-6 py-5 mx-auto min-h-screen">
       <EmailVerificationAlert />

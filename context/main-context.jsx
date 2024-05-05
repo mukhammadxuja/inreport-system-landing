@@ -1,6 +1,6 @@
 "use client";
 import { auth, db } from "@/firebase/config";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, onSnapshot, query } from "firebase/firestore";
 import { createContext, useContext, useEffect, useState } from "react";
 
 export const MainContext = createContext({});
@@ -12,21 +12,7 @@ export const useMainContext = () => {
 export const MainContextProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
 
-  // Data
-  const [portfolioData, setPortfolioData] = useState({
-    name: "",
-    position: "",
-    heading: "",
-    address: "",
-    whatCanIDo: [],
-    isOpenToWork: true,
-    github: "",
-    linkedin: "",
-    links: {
-      github: "",
-      linkedin: "",
-    },
-  });
+  const [projects, setProjects] = useState([]);
 
   // Open something
   const [openSidebar, setOpenSidebar] = useState(false);
@@ -40,8 +26,6 @@ export const MainContextProvider = ({ children }) => {
   const [url, setUrl] = useState("");
   const [align, setAlign] = useState("left");
   const [list, setList] = useState("left");
-
-  console.log(highlight);
 
   const colorVariants = {
     green: "bg-green-500",
@@ -122,8 +106,6 @@ export const MainContextProvider = ({ children }) => {
     fetchUsers();
   }, []);
 
-
-
   const getUser = async (username) => {
     const userData = await users.find((item) => item.username === username);
 
@@ -132,8 +114,6 @@ export const MainContextProvider = ({ children }) => {
 
   const contextValue = {
     users,
-    portfolioData,
-    setPortfolioData,
     openSidebar,
     setOpenSidebar,
     getUser,

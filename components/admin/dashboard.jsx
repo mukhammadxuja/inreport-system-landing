@@ -1,17 +1,16 @@
 "use client";
 import React, { useEffect } from "react";
 import Sidebar from "../sidebar";
-import { useAuthContext } from "@/context/auth-context";
+import { useApiContext } from "@/context/api-context";
 import { useMainContext } from "@/context/main-context";
 import Loading from "./loading";
 import { useRouter } from "next/navigation";
 
 function Dashboard({ children }) {
-  const { user, loading } = useAuthContext();
+  const { user, loading } = useApiContext();
   const { openSidebar } = useMainContext();
 
   const router = useRouter();
-
 
   const ifSidebar = openSidebar
     ? "pl-[270px] duration-300 w-full"

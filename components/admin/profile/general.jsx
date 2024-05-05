@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useAuthContext } from "@/context/auth-context";
+import { useApiContext } from "@/context/api-context";
 import { updateUserAccount } from "@/firebase/auth/updateUserProfle";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -13,7 +13,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useMainContext } from "@/context/main-context";
 
 const General = () => {
-  const { user } = useAuthContext();
+  const { user } = useApiContext();
   const { users } = useMainContext();
 
   const userData = users.find((item) => item.uid === user.uid);
@@ -52,7 +52,6 @@ const Form = ({ userData }) => {
       email: userData?.email ? userData.email : "",
     };
   }, [userData]);
-  console.log("defaultValues", defaultValues);
 
   const form = useForm({
     defaultValues: defaultValues,
@@ -85,8 +84,6 @@ const Form = ({ userData }) => {
   useEffect(() => {
     reset(userData);
   }, [reset]);
-
-  console.log(userData);
 
   return (
     <form

@@ -1,4 +1,4 @@
-import { useAuthContext } from "@/context/auth-context";
+import { useApiContext } from "@/context/api-context";
 import { useMainContext } from "@/context/main-context";
 import { useEffect, useState } from "react";
 
@@ -8,7 +8,7 @@ export default function UserProfileClient({ username }) {
   const [userNotFound, setUserNotFound] = useState(false);
 
   const { users } = useMainContext();
-  const { loading } = useAuthContext();
+  const { loading } = useApiContext();
 
   console.log(users);
 

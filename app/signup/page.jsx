@@ -23,7 +23,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Shell } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { useAuthContext } from "@/context/auth-context";
+import { useApiContext } from "@/context/api-context";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Loading from "@/components/admin/loading";
@@ -54,7 +54,7 @@ function Auth() {
     );
   }
 
-  const { user, loading } = useAuthContext();
+  const { user, loading } = useApiContext();
   const router = useRouter();
 
   useEffect(() => {

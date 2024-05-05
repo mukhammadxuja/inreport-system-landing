@@ -29,13 +29,13 @@ import {
 
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { useToast } from "../ui/use-toast";
-import { useAuthContext } from "@/context/auth-context";
+import { useApiContext } from "@/context/api-context";
 import { useLogout } from "@/firebase/auth/logout";
 
 export function AdminNavbar() {
   const { toast } = useToast();
   const { logout } = useLogout();
-  const { user } = useAuthContext();
+  const { user } = useApiContext();
 
   return (
     <nav className="fixed top-5 right-4 z-50">
