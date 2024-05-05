@@ -7,7 +7,11 @@ import { auth, db } from "@/firebase/config";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React from "react";
+
+// TODO: refactor and make sure all function works before transfer to another file
+// Hide, Edit, Delete, Active tab with localStorage
+
 function AdminPage() {
   const { projects, setProjects } = useApiContext();
 

@@ -1,268 +1,124 @@
 "use client";
 import React, { useState } from "react";
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Switch } from "@/components/ui/switch";
+import { Separator } from "@/components/ui/separator";
+import { AlignJustify, Settings } from "lucide-react";
 
-import { Github, GripVertical, Linkedin } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import General from "@/components/admin/profile/general";
+import Projects from "@/components/admin/profile/projects";
+import Experience from "@/components/admin/profile/experience";
+import Volunteering from "@/components/admin/profile/volunteering";
+import Education from "@/components/admin/profile/education";
+import Certifications from "@/components/admin/profile/certifications";
+import Awards from "@/components/admin/profile/awards";
+import Skills from "@/components/admin/profile/skills";
+import Contacts from "@/components/admin/profile/contact";
+import Subscription from "@/components/admin/settings/subscription";
 
 function SettingsPage() {
-  const [header, setHeader] = useState(true);
-  const [about, setAbout] = useState(false);
-  const [projects, setProjects] = useState(false);
+  const profileTabs = [
+    {
+      id: 0,
+      title: "Subscription",
+      tag: "subscription",
+    },
+    {
+      id: 0,
+      title: "Personal Domain",
+      tag: "personal-omain",
+    },
+    {
+      id: 0,
+      title: "Insights",
+      tag: "insights",
+    },
+    {
+      id: 0,
+      title: "Billing",
+      tag: "billing",
+    },
+    {
+      id: 0,
+      title: "Settings",
+      tag: "settings",
+    },
+    {
+      id: 0,
+      title: "Invite friend!",
+      tag: "invite-friend",
+    },
+  ];
 
-  const [openToWork, setOpenToWork] = useState(true);
   return (
     <div className="p-4 min-h-screen">
-      <div className="sticky top-4 z-50 flex items-center justify-between w-full max-w-3xl shadow-lg rounded-lg bg-white px-5 py-3">
-        <h3 className="text-sm font-bold">Jump to:</h3>
-        <Select>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Sections" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="light">Header</SelectItem>
-            <SelectItem value="about">About</SelectItem>
-            <SelectItem value="projects">Projects</SelectItem>
-            <SelectItem value="work-history">Work History</SelectItem>
-            <SelectItem value="contact">Contact</SelectItem>
-            <SelectItem value="footer">Footer</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-
-      <div className="px-10">
-        <div className="card flex items-center gap-4">
-          <GripVertical className="h-6 w-6 text-gray-500  cursor-grab" />
-          <div className="w-full">
-            <div className="flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-gray-600">
-                Header Section
-              </h2>
-              <Switch
-                checked={header}
-                onCheckedChange={setHeader}
-                className="ml-auto"
-              />
-            </div>
-
-            <div className={!header ? "hidden" : "block mt-2"}>
-              <div className="space-y-3 w-full p-3 rounded-md">
-                <div className="space-y-1.5">
-                  <Label htmlFor="email">Heading</Label>
-
-                  <Textarea
-                    disabled={!header}
-                    placeholder="Building and delivering user-centric experiences through frontend development"
-                  />
-                </div>
-                <div className="space-y-1.5">
-                  <Label htmlFor="email">Paragraph</Label>
-
-                  <Input disabled={!header} placeholder="Paragraph" />
-                </div>
-              </div>
-
-              <div className="space-y-3 w-full p-3 rounded-md">
-                <div className="space-y-1.5">
-                  <Label htmlFor="email">Address</Label>
-
-                  <Input
-                    disabled={!header}
-                    placeholder="Tashkent, Uzbekistan"
-                  />
-                </div>
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="email">Open to work</Label>
-
-                  <Switch
-                    disabled={!header}
-                    checked={openToWork}
-                    onCheckedChange={setOpenToWork}
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-3 w-full p-3 rounded-md">
-                <div className="space-y-1.5">
-                  <Label htmlFor="email">Github account</Label>
-
-                  <div className="flex items-center gap-2">
-                    <Github className="w-5 h-5" />
-                    <Input
-                      disabled={!header}
-                      placeholder="https://github.com/yourusername"
-                    />
-                  </div>
-                </div>
-                <div className="space-y-1.5">
-                  <Label htmlFor="email">Linkedin account</Label>
-
-                  <div className="flex items-center gap-2">
-                    <Linkedin className="w-5 h-5" />
-                    <Input
-                      disabled={!header}
-                      placeholder="https://linkedin.com/yourusername"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          id="about"
-          className={`card flex items-center gap-4 duration-300 overflow-hidden`}
+      <Tabs defaultValue="general" className="w-full mt-0">
+        <TabsList className="sticky top-4 z-40 h-12 mx-auto flex items-center space-x-1 w-fit p-1 shadow-md rounded-2xl duration-300 bg-white border border-border group">
+          {profileTabs.map((profile) => (
+            <TabsTrigger
+              key={profile.title}
+              className="bg-background data-[state=active]:bg-[#f3f3f1] h-10 py-2"
+              value={profile.tag}
+            >
+              {profile.title}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+        <TabsContent
+          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
+          value="subscription"
         >
-          <GripVertical className="h-6 w-6 text-gray-500  cursor-grab" />
-          <div className="w-full">
-            <div className="flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-gray-600">
-                About Section
-              </h2>
-              <Switch
-                checked={about}
-                onCheckedChange={setAbout}
-                className="ml-auto"
-              />
-            </div>
-
-            <div className={!about ? "hidden" : "block mt-2"}>
-              <div className="space-y-3 w-full p-3 rounded-md">
-                <div className="space-y-1.5">
-                  <Label htmlFor="email">Heading</Label>
-
-                  <Input disabled={!about} placeholder="Heading" />
-                </div>
-                <div className="space-y-1.5">
-                  <Label htmlFor="email">Paragraph</Label>
-
-                  <Input disabled={!about} placeholder="Paragraph" />
-                </div>
-              </div>
-
-              <div className="space-y-3 w-full p-3 rounded-md">
-                <div className="space-y-1.5">
-                  <Label htmlFor="email">Github account</Label>
-
-                  <div className="flex items-center gap-2">
-                    <Github className="w-5 h-5" />
-                    <Input
-                      disabled={!about}
-                      placeholder="https://github.com/yourusername"
-                    />
-                  </div>
-                </div>
-                <div className="space-y-1.5">
-                  <Label htmlFor="email">Linkedin account</Label>
-
-                  <div className="flex items-center gap-2">
-                    <Linkedin className="w-5 h-5" />
-                    <Input
-                      disabled={!about}
-                      placeholder="https://linkedin.com/yourusername"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          id="projects"
-          className={`card flex items-center gap-4 duration-300 overflow-hidden`}
+          <Subscription />
+        </TabsContent>
+        <TabsContent
+          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
+          value="projects"
         >
-          <GripVertical className="h-6 w-6 text-gray-500  cursor-grab" />
-          <div className="w-full">
-            <div className="flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-gray-600">
-                Projects Section
-              </h2>
-              <Switch
-                checked={projects}
-                onCheckedChange={setProjects}
-                className="ml-auto"
-              />
-            </div>
-
-            <div className={!projects ? "hidden" : "block mt-2"}>
-              <div className="space-y-3 w-full p-3 rounded-md">
-                <div className="space-y-1.5">
-                  <Label htmlFor="email">Heading</Label>
-
-                  <div className="relative">
-                    <label
-                      title="Click to upload"
-                      for="button2"
-                      className="cursor-pointer flex items-center gap-4 px-6 py-4 before:border-gray-400/60 hover:before:border-gray-300 group before:bg-gray-100 before:absolute before:inset-0 before:rounded-3xl before:border before:border-dashed before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95"
-                    >
-                      <div className="relative">
-                        <img
-                          className="w-12"
-                          src="https://www.svgrepo.com/show/485545/upload-cicle.svg"
-                          alt="file upload icon"
-                          width="512"
-                          height="512"
-                        />
-                      </div>
-                      <div className="relative">
-                        <span className="block text-base font-semibold relative text-blue-900 group-hover:text-blue-500">
-                          Upload a file
-                        </span>
-                        <span className="mt-0.5 block text-sm text-gray-500">
-                          Max 2 MB
-                        </span>
-                      </div>
-                    </label>
-                    <input hidden="" type="file" name="button2" id="button2" />
-                  </div>
-                </div>
-                <div className="space-y-1.5">
-                  <Label htmlFor="email">Paragraph</Label>
-
-                  <Input disabled={!about} placeholder="Paragraph" />
-                </div>
-              </div>
-
-              <div className="space-y-3 w-full p-3 rounded-md">
-                <div className="space-y-1.5">
-                  <Label htmlFor="email">Github account</Label>
-
-                  <div className="flex items-center gap-2">
-                    <Github className="w-5 h-5" />
-                    <Input
-                      disabled={!about}
-                      placeholder="https://github.com/yourusername"
-                    />
-                  </div>
-                </div>
-                <div className="space-y-1.5">
-                  <Label htmlFor="email">Linkedin account</Label>
-
-                  <div className="flex items-center gap-2">
-                    <Linkedin className="w-5 h-5" />
-                    <Input
-                      disabled={!about}
-                      placeholder="https://linkedin.com/yourusername"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+          <Projects />
+        </TabsContent>
+        <TabsContent
+          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
+          value="experience"
+        >
+          <Experience />
+        </TabsContent>
+        <TabsContent
+          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
+          value="volunteering"
+        >
+          <Volunteering />
+        </TabsContent>
+        <TabsContent
+          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
+          value="education"
+        >
+          <Education />
+        </TabsContent>
+        <TabsContent
+          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
+          value="certifications"
+        >
+          <Certifications />
+        </TabsContent>
+        <TabsContent
+          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
+          value="awards"
+        >
+          <Awards />
+        </TabsContent>
+        <TabsContent
+          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
+          value="skills"
+        >
+          <Skills />
+        </TabsContent>
+        <TabsContent
+          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
+          value="contact"
+        >
+          <Contacts />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }
