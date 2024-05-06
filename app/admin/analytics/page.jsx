@@ -12,7 +12,7 @@ import Devices from "@/components/admin/analytics/devices";
 import Icons from "@/components/admin/analytics/icons";
 
 function AnalyticsPage() {
-  const [analytics, setAnalytics] = useState("");
+  const [analytics, setAnalytics] = useState("activity");
 
   const analyticsTabs = [
     {

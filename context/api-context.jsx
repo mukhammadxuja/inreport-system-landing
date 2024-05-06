@@ -9,6 +9,8 @@ export const ApiContext = createContext({});
 export const useApiContext = () => useContext(ApiContext);
 
 export const ApiContextProvider = ({ children }) => {
+  // User
+  const [userData, setUserData] = useState([]);
   const [user, setUser] = useState(null);
   const [userUid, setUserUid] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -31,9 +33,7 @@ export const ApiContextProvider = ({ children }) => {
     });
 
     return () => unsubscribe();
-  }, [userUid]);
-
-  console.log("projects", projects);
+  }, [auth.currentUser]);
 
   useEffect(() => {
     setLoading(true);
@@ -49,6 +49,26 @@ export const ApiContextProvider = ({ children }) => {
 
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    if (auth.currentUser) {
+      let uid = auth.currentUser.uid;
+      const fetchUser = async () => {
+        const queryUser = query(
+          collection(db, "users"),
+          where("id", "==", uid)
+        );
+        onSnapshot(queryUser, (snapshot) => {
+          setUserData(
+            snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+          );
+        });
+      };
+      fetchUser();
+    }
+  }, []);
+
+  console.log("userData", userData);
 
   const values = { user, userUid, loading, projects, setProjects };
 

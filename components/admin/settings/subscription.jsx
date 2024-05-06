@@ -38,7 +38,7 @@ const Subscription = () => {
         </div>
         <Button
           variant="secondary"
-          className="w-full bg-yellow-50 gap-2 hover:bg-yellow-100 cursor-not-allowed flex items-center justify-center h-10"
+          className="bg-yellow-50 gap-2 hover:bg-yellow-100 cursor-not-allowed flex items-center justify-center h-10"
         >
           <Zap className="h-4 w-4 text-yellow-600" />
           <span className="text-yellow-600">Upgrade</span>

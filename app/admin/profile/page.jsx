@@ -1,5 +1,5 @@
-"use client"
-import React, { useCallback, useState } from "react";
+"use client";
+import React, { useCallback, useEffect, useState } from "react";
 import EmailVerificationAlert from "../../../components/email-verification-alert";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -13,9 +13,22 @@ import Awards from "@/components/admin/profile/awards";
 import Skills from "@/components/admin/profile/skills";
 import Contacts from "@/components/admin/profile/contact";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { useApiContext } from "@/context/api-context";
+import { auth, db } from "@/firebase/config";
+import {
+  collection,
+  getDocs,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 
 function Profile() {
   const [profile, setProfile] = useState("general");
+  const [user, setUser] = useState([]);
+
+  const { userUid } = useApiContext();
 
   const profileTabs = [
     {
@@ -80,7 +93,6 @@ function Profile() {
   return (
     <div className="px-4 md:px-6 py-5 mx-auto min-h-screen">
       <EmailVerificationAlert />
-      {/* <Banner /> */}
       <Tabs
         defaultValue={storedActiveProfileTab}
         onValueChange={(e) => handleSelectProfileTag(e, profile)}
