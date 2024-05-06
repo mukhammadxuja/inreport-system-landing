@@ -1,7 +1,6 @@
-import React from "react";
+"use client"
+import React, { useCallback, useState } from "react";
 import EmailVerificationAlert from "../../../components/email-verification-alert";
-import { Separator } from "@/components/ui/separator";
-import { AlignJustify, Settings } from "lucide-react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import General from "@/components/admin/profile/general";
@@ -13,8 +12,11 @@ import Certifications from "@/components/admin/profile/certifications";
 import Awards from "@/components/admin/profile/awards";
 import Skills from "@/components/admin/profile/skills";
 import Contacts from "@/components/admin/profile/contact";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 function Profile() {
+  const [profile, setProfile] = useState("general");
+
   const profileTabs = [
     {
       id: 0,
@@ -62,17 +64,34 @@ function Profile() {
       tag: "contact",
     },
   ];
-  
+
+  const { getItem, setItem } = useLocalStorage("profile");
+
+  const storedActiveProfileTab = getItem("profile");
+
+  const handleSelectProfileTag = useCallback(
+    (tag) => {
+      setProfile(tag);
+      setItem(profile);
+    },
+    [profile, setItem]
+  );
+
   return (
     <div className="px-4 md:px-6 py-5 mx-auto min-h-screen">
       <EmailVerificationAlert />
       {/* <Banner /> */}
-      <Tabs defaultValue="general" className="w-full mt-0">
+      <Tabs
+        defaultValue={storedActiveProfileTab}
+        onValueChange={(e) => handleSelectProfileTag(e, profile)}
+        className="w-full mt-0"
+      >
         <TabsList className="sticky top-4 z-40 h-12 mx-auto flex items-center space-x-1 w-fit p-1 shadow-md rounded-2xl duration-300 bg-white border border-border group">
           {profileTabs.map((profile) => (
             <TabsTrigger
               key={profile.title}
               className="bg-background data-[state=active]:bg-[#f3f3f1] h-10 py-2"
+              onClick={() => handleSelectProfileTag(profile.tag)}
               value={profile.tag}
             >
               {profile.title}
