@@ -11,6 +11,7 @@ import React from "react";
 
 // TODO: refactor and make sure all function works before transfer to another file
 // Hide, Edit, Delete, Active tab with localStorage
+// Edit: https://codesandbox.io/p/sandbox/react-hooks-crud-firebase-z7nh3?file=%2Fsrc%2Ftables%2FUserTableRow.js%3A27%2C16-27%2C23
 
 function AdminPage() {
   const { projects, setProjects } = useApiContext();

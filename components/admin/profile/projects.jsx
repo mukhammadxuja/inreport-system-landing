@@ -52,11 +52,11 @@ const Projects = () => {
       ) : (
         <>
           {projects.length ? (
-            <div className="space-y-3 my-2">
+            <div className="grid grid-cols-2 gap-3 my-2">
               {projects.map((project) => (
                 <div
                   key={project.uid}
-                  className="flex items-start justify-between py-2 pl-2 pr-4 border-b"
+                  className="flex items-start justify-between bg-gray-50 cursor-grab py-2 px-4 rounded-md border"
                 >
                   <p>{project.year}</p>
                   <div className="space-y-3 w-[25rem]">
@@ -81,7 +81,7 @@ const Projects = () => {
                               <img
                                 src={image}
                                 alt={`Image ${index + 1}`}
-                                className="w-full h-full object-cover rounded"
+                                className="w-full h-full object-cover rounded cursor-pointer"
                               />
                             </div>
                           ))}
