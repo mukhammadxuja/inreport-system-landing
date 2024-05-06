@@ -1878,6 +1878,11 @@ data-view-byte-offset@^1.0.0:
     es-errors "^1.3.0"
     is-data-view "^1.0.1"
 
+date-fns@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-3.6.0.tgz#f20ca4fe94f8b754951b24240676e8618c0206bf"
+  integrity sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==
+
 debug@^3.2.7:
   version "3.2.7"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.7.tgz#72580b7e9145fb39b6676f9c5e5fb100b934179a"
@@ -3686,6 +3691,11 @@ react-code-block@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-code-block/-/react-code-block-1.0.0.tgz#fe2124707e6bb38c7a6922f310b8e639e05afc36"
   integrity sha512-/u9QspD0qhZNKbW1+Nek42//LwrekrFjHi4Fk1Dv7L8oz3X4FRXO/oUh119OrUlA0vybDjcXJPj3xJ1mZXV/rw==
+
+react-day-picker@^8.10.1:
+  version "8.10.1"
+  resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-8.10.1.tgz#4762ec298865919b93ec09ba69621580835b8e80"
+  integrity sha512-TMx7fNbhLk15eqcMt+7Z7S2KF7mfTId/XJDjKE8f+IUcFn0l08/kI4FiYTL/0yuOLmEcbR4Fwe3GJf/NiiMnPA==
 
 react-dom@^18:
   version "18.2.0"

@@ -2,16 +2,13 @@
 import {
   ChevronDown,
   ChevronLeft,
-  ChevronUp,
   Coffee,
   Gem,
   GraduationCap,
   LayoutDashboard,
   LayoutTemplate,
-  Package2,
   PieChart,
   Settings,
-  Share,
   Share2,
   User,
   Zap,
@@ -62,6 +59,7 @@ import { useMainContext } from "@/context/main-context";
 import { usePathname } from "next/navigation";
 import { useApiContext } from "@/context/api-context";
 import { useLogout } from "@/firebase/auth/logout";
+import UpgradeDialog from "./admin/dialogs/upgrade";
 
 function Sidebar() {
   const { openSidebar, setOpenSidebar } = useMainContext();
@@ -84,9 +82,9 @@ function Sidebar() {
     },
     {
       id: 2,
-      link: "/admin/sections",
-      title: "Sections",
-      icon: LayoutTemplate,
+      link: "/admin/profile",
+      title: "Profile",
+      icon: User,
     },
     {
       id: 3,
@@ -165,7 +163,7 @@ function Sidebar() {
                   >
                     <navitem.icon
                       className={classNames("h-9 w-9 p-2 rounded-lg", {
-                        "bg-accent hover:bg-gray-200/70 text-blue-500":
+                        "bg-accent hover:bg-gray-200/70 text-gray-700":
                           pathname === navitem.link,
                       })}
                     />
@@ -181,22 +179,23 @@ function Sidebar() {
             ))}
           </ul>
           <div className="mt-auto space-y-2 w-full">
-            <Button
-              // disabled
-              variant="secondary"
-              className={classNames(
-                "w-full bg-yellow-50 hover:bg-yellow-100 cursor-not-allowed flex items-center justify-center h-10",
-                {
-                  "gap-2": openSidebar,
-                  "p-0.5 rounded-full": !openSidebar,
-                }
-              )}
-            >
-              <Zap className="h-4 w-4 text-yellow-600" />
-              {openSidebar && (
-                <span className="text-yellow-600">Try Pro for free</span>
-              )}
-            </Button>
+            <UpgradeDialog>
+              <Button
+                variant="secondary"
+                className={classNames(
+                  "w-full bg-indigo-50 hover:bg-indigo-100 flex items-center justify-center h-10",
+                  {
+                    "gap-2": openSidebar,
+                    "p-0.5 rounded-full": !openSidebar,
+                  }
+                )}
+              >
+                <Zap className="h-4 w-4 text-indigo-600" />
+                {openSidebar && (
+                  <span className="text-indigo-600">Try Pro for free</span>
+                )}
+              </Button>
+            </UpgradeDialog>
             <DropdownMenu>
               <DropdownMenuTrigger className="" asChild>
                 <Button

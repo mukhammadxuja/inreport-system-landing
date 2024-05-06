@@ -21,6 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Zap } from "lucide-react";
 
 const Subscription = () => {
   const { user } = useApiContext();
@@ -36,11 +37,11 @@ const Subscription = () => {
           </h3>
         </div>
         <Button
-          onClick={() => setAddSubscription(true)}
-          className={addSubscription ? "hidden" : "block"}
           variant="secondary"
+          className="w-full bg-yellow-50 gap-2 hover:bg-yellow-100 cursor-not-allowed flex items-center justify-center h-10"
         >
-          Add subscription
+          <Zap className="h-4 w-4 text-yellow-600" />
+          <span className="text-yellow-600">Upgrade</span>
         </Button>
       </div>
       <Separator />

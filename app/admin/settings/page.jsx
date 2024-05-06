@@ -26,7 +26,7 @@ function SettingsPage() {
     {
       id: 0,
       title: "Personal Domain",
-      tag: "personal-omain",
+      tag: "personal-domain",
     },
     {
       id: 0,
@@ -52,7 +52,7 @@ function SettingsPage() {
 
   return (
     <div className="p-4 min-h-screen">
-      <Tabs defaultValue="general" className="w-full mt-0">
+      <Tabs defaultValue="subscription" className="w-full mt-0">
         <TabsList className="sticky top-4 z-40 h-12 mx-auto flex items-center space-x-1 w-fit p-1 shadow-md rounded-2xl duration-300 bg-white border border-border group">
           {profileTabs.map((profile) => (
             <TabsTrigger
