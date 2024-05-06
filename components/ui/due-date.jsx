@@ -1,6 +1,7 @@
 "use client";
+
 import * as React from "react";
-import { addDays, format } from "date-fns";
+import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -12,14 +13,27 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-export function DueDatePicker({ className }) {
-  const [date, setDate] =
-    (React.useState < DateRange) |
-    (undefined >
-      {
-        from: new Date(2022, 0, 20),
-        to: addDays(new Date(2022, 0, 20), 20),
-      });
+export function DueDatePicker({ className, onChange, value, handleUpdate }) {
+  const [date, setDate] = React.useState(value);
+  const getDueDate = React.useCallback((date) => {
+    return date ? new Date(date).getTime() : undefined;
+  }, []);
+
+  const handleSelectDate = (e) => {
+    setDate(e);
+    if (e === undefined) {
+      onChange("");
+      handleUpdate();
+    }
+    if (e?.from && e?.to !== undefined) {
+      onChange({ from: getDueDate(e?.from), to: getDueDate(e?.to) });
+      handleUpdate();
+    }
+  };
+
+  React.useEffect(() => {
+    setDate(value);
+  }, [value]);
 
   return (
     <div className={cn("grid gap-2", className)}>
@@ -29,7 +43,7 @@ export function DueDatePicker({ className }) {
             id="date"
             variant={"outline"}
             className={cn(
-              "w-[300px] justify-start text-left font-normal",
+              "text-xs justify-center mx-auto w-full font-normal hover:!bg-white dark:hover:!bg-background",
               !date && "text-muted-foreground"
             )}
           >
@@ -37,11 +51,10 @@ export function DueDatePicker({ className }) {
             {date?.from ? (
               date.to ? (
                 <>
-                  {format(date.from, "LLL dd, y")} -{" "}
-                  {format(date.to, "LLL dd, y")}
+                  {format(date.from, "MMM dd")} - {format(date.to, "MMM dd")}
                 </>
               ) : (
-                format(date.from, "LLL dd, y")
+                format(date.from, "MMM dd")
               )
             ) : (
               <span>Pick a date</span>
@@ -54,7 +67,7 @@ export function DueDatePicker({ className }) {
             mode="range"
             defaultMonth={date?.from}
             selected={date}
-            onSelect={setDate}
+            onSelect={(e) => handleSelectDate(e)}
             numberOfMonths={2}
           />
         </PopoverContent>

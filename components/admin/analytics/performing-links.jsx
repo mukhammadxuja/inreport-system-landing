@@ -1,8 +1,4 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable @next/next/no-img-element */
-"use client";
-import React, { useState } from "react";
-import { useApiContext } from "@/context/api-context";
+import React from "react";
 import {
   Tooltip,
   TooltipContent,
@@ -11,14 +7,10 @@ import {
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { BarChart, Zap } from "lucide-react";
+import { Zap } from "lucide-react";
 import UpgradeDialog from "../dialogs/upgrade";
 
 const PerformingLinks = () => {
-  const { user } = useApiContext();
-
-  const [openUpgrade, setOpenUpgrade] = useState(false);
-
   return (
     <div>
       <div className="flex items-center justify-between mb-3">
@@ -61,53 +53,41 @@ const PerformingLinks = () => {
         </UpgradeDialog>
       </div>
       <Separator />
-      {openUpgrade ? (
-        <Form userData={user} setOpenUpgrade={setOpenUpgrade} />
-      ) : (
-        <div className="relative flex flex-col !min-h-[calc(100vh-14rem)] py-10 px-4 space-y-2">
-          <div className="absolute top-1 left-0 z-10 rounded-sm w-full h-full bg-gray-500 bg-opacity-10 backdrop-blur-[1.5px] flex items-center justify-center">
-            <UpgradeDialog>
-              <Button
-                variant="secondary"
-                className="bg-indigo-500 gap-2 hover:bg-indigo-600/80 duration-300 flex items-center justify-center h-10"
-              >
-                <Zap className="h-4 w-4 text-white" />
-                <span className="text-white">Upgrade</span>
-              </Button>
-            </UpgradeDialog>
-          </div>
-          <div className="flex items-center justify-between pt-2 pb-3 border-b">
-            <p className="text-lg">Contact me</p>
-            <strong className="text-lg">2,134</strong>
-          </div>
-          <div className="flex items-center justify-between pt-2 pb-3 border-b">
-            <p className="text-lg">Contact me</p>
-            <strong className="text-lg">2,134</strong>
-          </div>
-          <div className="flex items-center justify-between pt-2 pb-3 border-b">
-            <p className="text-lg">Contact me</p>
-            <strong className="text-lg">2,134</strong>
-          </div>
-          <div className="flex items-center justify-between pt-2 pb-3 border-b">
-            <p className="text-lg">Contact me</p>
-            <strong className="text-lg">2,134</strong>
-          </div>
-          <div className="flex items-center justify-between pt-2 pb-3 border-b">
-            <p className="text-lg">Contact me</p>
-            <strong className="text-lg">2,134</strong>
-          </div>
+      <div className="relative flex flex-col h-full !min-h-[calc(100vh-18rem)] py-10 px-4 space-y-2">
+        <div className="absolute top-1 left-0 z-10 rounded-sm w-full h-full bg-gray-500 bg-opacity-10 backdrop-blur-[1.5px] flex items-center justify-center">
+          <UpgradeDialog>
+            <Button
+              variant="secondary"
+              className="bg-indigo-500 gap-2 hover:bg-indigo-600/80 duration-300 flex items-center justify-center h-10"
+            >
+              <Zap className="h-4 w-4 text-white" />
+              <span className="text-white">Upgrade</span>
+            </Button>
+          </UpgradeDialog>
         </div>
-      )}
+        <div className="flex items-center justify-between pt-2 pb-3 border-b">
+          <p className="text-lg">Contact me</p>
+          <strong className="text-lg">2,134</strong>
+        </div>
+        <div className="flex items-center justify-between pt-2 pb-3 border-b">
+          <p className="text-lg">Contact me</p>
+          <strong className="text-lg">2,134</strong>
+        </div>
+        <div className="flex items-center justify-between pt-2 pb-3 border-b">
+          <p className="text-lg">Contact me</p>
+          <strong className="text-lg">2,134</strong>
+        </div>
+        <div className="flex items-center justify-between pt-2 pb-3 border-b">
+          <p className="text-lg">Contact me</p>
+          <strong className="text-lg">2,134</strong>
+        </div>
+        <div className="flex items-center justify-between pt-2 pb-3 border-b">
+          <p className="text-lg">Contact me</p>
+          <strong className="text-lg">2,134</strong>
+        </div>
+      </div>
     </div>
   );
 };
 
 export default PerformingLinks;
-
-const Form = ({ userData, setOpenUpgrade }) => {
-  return (
-    <div className="flex items-center justify-center h-full">
-      <h1>PerformingLinks</h1>
-    </div>
-  );
-};

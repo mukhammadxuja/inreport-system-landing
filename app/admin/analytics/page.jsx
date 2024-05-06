@@ -2,18 +2,14 @@
 import React, { useCallback, useState } from "react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Projects from "@/components/admin/profile/projects";
-import Experience from "@/components/admin/profile/experience";
-import Volunteering from "@/components/admin/profile/volunteering";
-import Education from "@/components/admin/profile/education";
-import Certifications from "@/components/admin/profile/certifications";
-import Awards from "@/components/admin/profile/awards";
-import Skills from "@/components/admin/profile/skills";
-import Contacts from "@/components/admin/profile/contact";
-import Subscription from "@/components/admin/settings/subscription";
 import Activity from "@/components/admin/analytics/activity";
 import PerformingLinks from "@/components/admin/analytics/performing-links";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
+import LifeTimeAnalytics from "@/components/admin/analytics/lifetime";
+import Subscribers from "@/components/admin/analytics/subscribers";
+import Locations from "@/components/admin/analytics/locations";
+import Devices from "@/components/admin/analytics/devices";
+import Icons from "@/components/admin/analytics/icons";
 
 function AnalyticsPage() {
   const [analytics, setAnalytics] = useState("");
@@ -39,11 +35,11 @@ function AnalyticsPage() {
       title: "Locations",
       tag: "locations",
     },
-    {
-      id: 0,
-      title: "Referrers",
-      tag: "referrers",
-    },
+    // {
+    //   id: 0,
+    //   title: "Referrers",
+    //   tag: "referrers",
+    // },
     {
       id: 0,
       title: "Devices",
@@ -87,59 +83,56 @@ function AnalyticsPage() {
             </TabsTrigger>
           ))}
         </TabsList>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="activity"
-        >
-          <Activity />
+        <TabsContent className="mt-[1.2rem] max-w-7xl mx-auto" value="activity">
+          <LifeTimeAnalytics />
+          <div className="mx-auto px-8 py-6 rounded-lg bg-white">
+            <Activity />
+          </div>
         </TabsContent>
         <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
+          className="mt-[1.2rem] max-w-7xl mx-auto"
           value="performing-links"
         >
-          <PerformingLinks />
+          <LifeTimeAnalytics />
+          <div className="mx-auto px-8 py-6 rounded-lg bg-white">
+            <PerformingLinks />
+          </div>
         </TabsContent>
         <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="experience"
+          className="mt-[1.2rem] max-w-7xl mx-auto"
+          value="subscribers"
         >
-          <Experience />
+          <LifeTimeAnalytics />
+          <div className="mx-auto px-8 py-6 rounded-lg bg-white">
+            <Subscribers />
+          </div>
         </TabsContent>
         <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="volunteering"
+          className="mt-[1.2rem] max-w-7xl mx-auto"
+          value="locations"
         >
-          <Volunteering />
+          <LifeTimeAnalytics />
+          <div className="mx-auto px-8 py-6 rounded-lg bg-white">
+            <Locations />
+          </div>
         </TabsContent>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="education"
-        >
-          <Education />
+        {/* <TabsContent className="mt-[1.2rem] max-w-7xl mx-auto" value="activity">
+          <LifeTimeAnalytics />
+          <div className="mx-auto px-8 py-6 rounded-lg bg-white">
+            <Activity />
+          </div>
+        </TabsContent> */}
+        <TabsContent className="mt-[1.2rem] max-w-7xl mx-auto" value="devices">
+          <LifeTimeAnalytics />
+          <div className="mx-auto px-8 py-6 rounded-lg bg-white">
+            <Devices />
+          </div>
         </TabsContent>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="certifications"
-        >
-          <Certifications />
-        </TabsContent>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="awards"
-        >
-          <Awards />
-        </TabsContent>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="skills"
-        >
-          <Skills />
-        </TabsContent>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="contact"
-        >
-          <Contacts />
+        <TabsContent className="mt-[1.2rem] max-w-7xl mx-auto" value="icons">
+          <LifeTimeAnalytics />
+          <div className="mx-auto px-8 py-6 rounded-lg bg-white">
+            <Icons />
+          </div>
         </TabsContent>
       </Tabs>
     </div>
