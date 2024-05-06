@@ -50,7 +50,8 @@ function Auth() {
       data.email,
       data.username,
       data.password,
-      data.profession
+      data.profession,
+      data.displayName
     );
   }
 

@@ -1,5 +1,5 @@
 import { getApps, initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
@@ -13,8 +13,6 @@ const firebaseConfig = {
   measurementId: "G-R1BWYY1GPB",
 };
 
-// utils/firebase.js (continued)
-
 // Initialize Firebase
 let firebase_app =
   getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
@@ -24,3 +22,10 @@ export const storage = getStorage(firebase_app);
 export default firebase_app;
 
 export const auth = getAuth(firebase_app);
+
+const provider = new GoogleAuthProvider();
+provider.setCustomParameters({
+  prompt: "select_account",
+});
+
+export const signInWithGooglePopup = () => signInWithPopup(auth, provider);

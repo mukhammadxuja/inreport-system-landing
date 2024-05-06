@@ -33,10 +33,11 @@ export const useEmailPasswordRegistration = () => {
       const user = res.user;
 
       await createUserDocumentFromAuth(user, {
-        displayName: displayName || null,
+        email: email,
         username: username,
         password: password,
-        profession: profession || null,
+        profession: profession,
+        displayName: displayName || null,
       });
     } catch (error) {
       console.error("Error during email/password registration:", error);
