@@ -1,12 +1,11 @@
 "use client";
 import {
-  ChevronDown,
+  Bell,
   ChevronLeft,
   Coffee,
   Gem,
   GraduationCap,
   LayoutDashboard,
-  LayoutTemplate,
   PieChart,
   Settings,
   Share2,
@@ -14,7 +13,7 @@ import {
   Zap,
 } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import classNames from "classnames";
 import {
   Cloud,
@@ -60,9 +59,11 @@ import { usePathname } from "next/navigation";
 import { useApiContext } from "@/context/api-context";
 import { useLogout } from "@/firebase/auth/logout";
 import UpgradeDialog from "./admin/dialogs/upgrade";
+import NotificationSheet from "./admin/dialogs/notification";
 
 function Sidebar() {
   const { openSidebar, setOpenSidebar } = useMainContext();
+  const [openNotification, setOpenNotification] = useState(false);
   const { user } = useApiContext();
   const { logout } = useLogout();
   const pathname = usePathname();
@@ -196,6 +197,10 @@ function Sidebar() {
                 )}
               </Button>
             </UpgradeDialog>
+            <NotificationSheet
+              openNotification={openNotification}
+              setOpenNotification={setOpenNotification}
+            />
             <DropdownMenu>
               <DropdownMenuTrigger className="" asChild>
                 <Button
@@ -244,10 +249,10 @@ function Sidebar() {
                       <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                     </DropdownMenuItem>
                   </Link>
-                  <DropdownMenuItem disabled>
-                    <CreditCard className="mr-2 h-4 w-4" />
-                    <span>Billing</span>
-                    <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+                  <DropdownMenuItem onClick={() => setOpenNotification(true)}>
+                    <Bell className="mr-2 h-4 w-4" />
+                    <span>Notification</span>
+                    <div className="w-2 h-2 rounded-full bg-red-500 ml-auto" />
                   </DropdownMenuItem>
                   <Link href="/admin/settings">
                     <DropdownMenuItem>

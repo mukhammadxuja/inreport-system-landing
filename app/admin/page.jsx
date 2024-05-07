@@ -4,7 +4,6 @@
 import EmailVerificationAlert from "@/components/email-verification-alert";
 import { useApiContext } from "@/context/api-context";
 import { auth, db } from "@/firebase/config";
-import { collection, onSnapshot, query } from "firebase/firestore";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import React from "react";
