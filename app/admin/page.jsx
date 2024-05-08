@@ -3,21 +3,52 @@
 "use client";
 import EmailVerificationAlert from "@/components/email-verification-alert";
 import { useApiContext } from "@/context/api-context";
-import { auth, db } from "@/firebase/config";
 import { ChevronRight } from "lucide-react";
-import Image from "next/image";
 import React from "react";
+
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Ellipses } from "@/components/icons";
+import MoveToSideProjects from "@/components/admin/dialogs/move-to-side-projects";
+import { Button } from "@/components/ui/button";
 
 // TODO: refactor and make sure all function works before transfer to another file
 // Hide, Edit, Delete, Active tab with localStorage
 // Edit: https://codesandbox.io/p/sandbox/react-hooks-crud-firebase-z7nh3?file=%2Fsrc%2Ftables%2FUserTableRow.js%3A27%2C16-27%2C23
 
 function AdminPage() {
-  const { projects, setProjects } = useApiContext();
+  const { projects, user } = useApiContext();
 
   return (
-    <div className="px-4 min-h-screen">
-      <div className="my-4 max-w-2xl mx-auto">
+    <div className="px-4 min-h-screen max-w-2xl mx-auto my-20">
+      <div className="mb-6 flex items-center justify-between">
+        <div className="flex items-center space-x-4">
+          <Avatar className="h-24 w-24 rounded-full">
+            <AvatarImage
+              className="object-cover"
+              src={user?.photoURL || "/assets/avatars/1.png"}
+              alt="@shadcn"
+            />
+          </Avatar>
+          <h3 className="text-xl font-semibold">{user?.displayName}</h3>
+        </div>
+        <Popover>
+          <PopoverTrigger>
+            <Ellipses />
+          </PopoverTrigger>
+          <PopoverContent align="end" className="w-fit p-2">
+            <Button variant="ghost" size="sm">
+              Edit Profile
+            </Button>
+          </PopoverContent>
+        </Popover>
+      </div>
+      {!!projects.length && <h4 className="text-sm">Projects</h4>}
+      <div className="my-4">
         {projects.map((project) => (
           <div
             key={project.uid}
@@ -52,29 +83,6 @@ function AdminPage() {
                     ))}
                   </div>
                 )}
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex itemc space-x-2">
-                  <small className="hover:underline cursor-pointer">Hide</small>
-                  <small className="hover:underline cursor-pointer">Edit</small>
-                  <small className="hover:underline cursor-pointer">
-                    Delete
-                  </small>
-                </div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-5 h-5 cursor-pointer"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
-                  />
-                </svg>
               </div>
             </div>
           </div>

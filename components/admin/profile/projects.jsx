@@ -42,15 +42,21 @@ import { Textarea } from "@/components/ui/textarea";
  * Loading and image lazy load
  * Refactor projects page (it should be last todo)
  *
+ *
  * FEATURES
  * Move project to 'side projects'
  * Drag and drop added projects
  * Drag and drop project images
+ *
+ * unique username - https://www.reddit.com/r/Firebase/comments/pvkv4d/unique_usernames_in_firebase/
+ * Analytics - https://chatgpt.com/c/d7cb4d18-bb6c-47d9-99fc-93f9e5381b17
  */
 
 /**
  * FIXME:
  * adding another image during edit project image
+ * uploaded and read image width
+ * use only <Image />
  */
 
 const Projects = () => {
@@ -405,7 +411,7 @@ function AddProjectForm({ setAddProject }) {
           <label className="flex w-full cursor-pointer appearance-none items-center justify-center rounded-md border-2 border-dashed border-gray-200 p-6 transition-all duration-300 hover:border-gray-400">
             <div className="space-y-1 text-center">
               <div className="text-gray-600">
-              <p className="font-medium text-primary-500 hover:text-primary-700">
+                <p className="font-medium text-primary-500 hover:text-primary-700">
                   Click to upload
                 </p>
               </div>
