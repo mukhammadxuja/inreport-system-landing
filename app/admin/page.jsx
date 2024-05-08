@@ -41,11 +41,11 @@ function AdminPage() {
                 {project.images && project.images.length > 0 && (
                   <div className="flex items-center gap-2">
                     {/* Map through images and render each */}
-                    {project.images.map((image, index) => (
-                      <div key={index} className="w-32 rounded-md">
+                    {project.images.map(({ url, id, name }) => (
+                      <div key={id} className="w-32 rounded-md">
                         <img
-                          src={image}
-                          alt={`Image ${index + 1}`}
+                          src={url}
+                          alt={name}
                           className="w-full h-full object-cover rounded"
                         />
                       </div>

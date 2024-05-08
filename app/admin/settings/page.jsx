@@ -1,11 +1,7 @@
 "use client";
-import React, { useState } from "react";
-
-import { Separator } from "@/components/ui/separator";
-import { AlignJustify, Settings } from "lucide-react";
+import React, { useCallback, useState } from "react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import General from "@/components/admin/profile/general";
 import Projects from "@/components/admin/profile/projects";
 import Experience from "@/components/admin/profile/experience";
 import Volunteering from "@/components/admin/profile/volunteering";
@@ -15,8 +11,11 @@ import Awards from "@/components/admin/profile/awards";
 import Skills from "@/components/admin/profile/skills";
 import Contacts from "@/components/admin/profile/contact";
 import Subscription from "@/components/admin/settings/subscription";
+import { useSessionStorage } from "@/hooks/useSessionStorage";
 
 function SettingsPage() {
+  const [settings, setSettings] = useState("subscription");
+
   const profileTabs = [
     {
       id: 0,
@@ -50,14 +49,31 @@ function SettingsPage() {
     },
   ];
 
+  const { getItem, setItem } = useSessionStorage("settings");
+
+  const storedActiveSettingsTab = getItem("settings") || "subscription";
+
+  const handleSelectSettingsTag = useCallback(
+    (tag) => {
+      setSettings(tag);
+      setItem(settings);
+    },
+    [settings, setItem]
+  );
+
   return (
     <div className="p-4 min-h-screen">
-      <Tabs defaultValue="subscription" className="w-full mt-0">
+      <Tabs
+        defaultValue={storedActiveSettingsTab}
+        onValueChange={(e) => handleSelectSettingsTag(e, settings)}
+        className="w-full mt-0"
+      >
         <TabsList className="sticky top-4 z-40 h-12 mx-auto flex items-center space-x-1 w-fit p-1 shadow-md rounded-2xl duration-300 bg-white border border-border group">
           {profileTabs.map((profile) => (
             <TabsTrigger
               key={profile.title}
               className="bg-background data-[state=active]:bg-[#f3f3f1] h-10 py-2"
+              onClick={() => handleSelectSettingsTag(profile.tag)}
               value={profile.tag}
             >
               {profile.title}

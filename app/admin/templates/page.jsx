@@ -1,13 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { AlignJustify } from "lucide-react";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useMainContext } from "@/context/main-context";
+import { useSessionStorage } from "@/hooks/useSessionStorage";
 
 function TemplatesPage() {
   const { openSidebar } = useMainContext();
+  const [templates, setTemplates] = useState("all");
   const [selectedTemplate, setSelectedTemplate] = useState(1);
 
   const templatesTab = [
@@ -62,9 +64,25 @@ function TemplatesPage() {
       tag: "other",
     },
   ];
+
+  const { getItem, setItem } = useSessionStorage("templates");
+
+  const storedActiveTemplatesTab = getItem("templates") || "all";
+
+  const handleSelectTemplatesTag = useCallback(
+    (tag) => {
+      setTemplates(tag);
+      setItem(templates);
+    },
+    [templates, setItem]
+  );
+
   return (
     <div className="p-4 min-h-screen">
-      <Tabs defaultValue="all">
+      <Tabs
+        defaultValue={storedActiveTemplatesTab}
+        onValueChange={(e) => handleSelectTemplatesTag(e, templates)}
+      >
         <TabsList
           className={`sticky top-4 z-40 h-12 flex items-center space-x-1 w-fit p-1 shadow-md rounded-2xl duration-300 bg-white border border-border group ${
             openSidebar ? "" : "mx-auto"
@@ -74,6 +92,7 @@ function TemplatesPage() {
             <TabsTrigger
               key={template.id}
               className="bg-background data-[state=active]:bg-[#f3f3f1] h-10 py-2"
+              onClick={() => handleSelectTemplatesTag(template.tag)}
               value={template.tag}
             >
               {template.title}

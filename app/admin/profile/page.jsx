@@ -12,23 +12,10 @@ import Certifications from "@/components/admin/profile/certifications";
 import Awards from "@/components/admin/profile/awards";
 import Skills from "@/components/admin/profile/skills";
 import Contacts from "@/components/admin/profile/contact";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { useApiContext } from "@/context/api-context";
-import { auth, db } from "@/firebase/config";
-import {
-  collection,
-  getDocs,
-  onSnapshot,
-  query,
-  where,
-} from "firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
+import { useSessionStorage } from "@/hooks/useSessionStorage";
 
 function Profile() {
   const [profile, setProfile] = useState("general");
-  const [user, setUser] = useState([]);
-
-  const { userUid } = useApiContext();
 
   const profileTabs = [
     {
@@ -78,9 +65,10 @@ function Profile() {
     },
   ];
 
-  const { getItem, setItem } = useLocalStorage("profile");
+  const { getItem, setItem } = useSessionStorage("profile");
 
-  const storedActiveProfileTab = getItem("profile");
+  const storedActiveProfileTab = getItem("profile") || "general";
+  console.log(storedActiveProfileTab);
 
   const handleSelectProfileTag = useCallback(
     (tag) => {

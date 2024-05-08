@@ -1,34 +1,83 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
-import Files from "react-files";
+import React, { useMemo, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useForm } from "react-hook-form";
+import { v4 as uuidv4 } from "uuid";
+// Context
 import { useApiContext } from "@/context/api-context";
-import { updateUserAccount } from "@/firebase/auth/updateUserProfle";
+// Firebase
+import { auth, db, storage } from "@/firebase/config";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+// Components
+import MoveToSideProjects from "../dialogs/move-to-side-projects";
+import DeleteProject from "../dialogs/delete-project";
+// Icons
+import { ChevronRight, Shell, X } from "lucide-react";
+import { Ellipses } from "@/components/icons";
 
 // UI
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
-import { ChevronRight, Shell, X } from "lucide-react";
-import { auth, db, storage } from "@/firebase/config";
-import { addDoc, collection } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
+/**
+ * TODO: Save hide and show items to localStorage
+ * Drag and drop added projects
+ * Move project to 'side projects'
+ * Refactor projects page (it should be last todo)
+ */
+
+/**
+ * FIXME: Edit project | Delete project
+ *
+ */
 
 const Projects = () => {
-  const { user, projects, setProjects } = useApiContext();
+  const { user, projects, userUid } = useApiContext();
 
   const [addProject, setAddProject] = useState(false);
+  const [hide, setHide] = useState([]);
+  const [isEdit, setIsEdit] = useState(false);
+  const [editableId, setEditableId] = useState("");
 
-  console.log("projects", projects);
+  console.log("isEdit", isEdit);
 
   // if (loading) {
   //   return <p>Loading...</p>;
   // }
+
+  function handleEdit(id) {
+    setEditableId(id);
+    setIsEdit(true);
+  }
+
+  console.log("editableId", editableId);
+
+  const hideProject = (id) => {
+    if (hide.includes(id)) {
+      setHide(hide.filter((item) => item !== id));
+    } else {
+      setHide([...hide, id]);
+    }
+  };
+
+  console.log("userUid", userUid);
 
   return (
     <div className="">
@@ -40,27 +89,38 @@ const Projects = () => {
         </div>
         <Button
           onClick={() => setAddProject(true)}
-          className={addProject ? "hidden" : "block"}
+          className={addProject || isEdit ? "hidden" : "block"}
           variant="secondary"
         >
           Add project
         </Button>
       </div>
       <Separator />
-      {addProject ? (
-        <Form userData={user} setAddProject={setAddProject} />
+      {addProject || isEdit ? (
+        <Form
+          userData={user}
+          addProject={addProject}
+          setAddProject={setAddProject}
+          isEdit={isEdit}
+          setIsEdit={setIsEdit}
+          editableId={editableId}
+        />
       ) : (
         <>
           {projects.length ? (
             <div className="grid grid-cols-2 gap-3 my-2">
               {projects.map((project) => (
                 <div
-                  key={project.uid}
+                  key={project.id}
                   className="flex items-start justify-between bg-gray-50 cursor-grab py-2 px-4 rounded-md border"
                 >
                   <p>{project.year}</p>
                   <div className="space-y-3 w-[25rem]">
-                    <div>
+                    <div
+                      className={`${
+                        hide.includes(project.id) && "blur-[1.5px]"
+                      }`}
+                    >
                       <a
                         href={project.link}
                         target="_blank"
@@ -76,12 +136,14 @@ const Projects = () => {
                       {project.images && project.images.length > 0 && (
                         <div className="flex items-center gap-2">
                           {/* Map through images and render each */}
-                          {project.images.map((image, index) => (
-                            <div key={index} className="w-32 rounded-md">
+                          {project.images.map(({ url, id, name }) => (
+                            <div key={id} className="w-32 rounded-md">
                               <img
-                                src={image}
-                                alt={`Image ${index + 1}`}
-                                className="w-full h-full object-cover rounded cursor-pointer"
+                                src={url ? url : "/assets/avatars/1.png"}
+                                alt={name}
+                                className={`${
+                                  hide.includes(project.id) && "blur-[1.5px]"
+                                } w-full h-full object-cover rounded cursor-pointer`}
                               />
                             </div>
                           ))}
@@ -89,31 +151,40 @@ const Projects = () => {
                       )}
                     </div>
                     <div className="flex items-center justify-between">
-                      <div className="flex itemc space-x-2">
-                        <small className="hover:underline cursor-pointer">
-                          Hide
+                      <div className="flex items-center space-x-2">
+                        <small
+                          onClick={() => hideProject(project.id)}
+                          className="hover:underline cursor-pointer"
+                        >
+                          {hide.includes(project.id) ? "Show" : "Hide"}
                         </small>
-                        <small className="hover:underline cursor-pointer">
+                        <small
+                          onClick={() => handleEdit(project.id)}
+                          className="hover:underline cursor-pointer"
+                        >
                           Edit
                         </small>
-                        <small className="hover:underline cursor-pointer">
-                          Delete
-                        </small>
+                        <DeleteProject id={project.id} title={project.title}>
+                          <small className="hover:underline cursor-pointer">
+                            Delete
+                          </small>
+                        </DeleteProject>
                       </div>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-5 h-5 cursor-pointer"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
-                        />
-                      </svg>
+                      <Popover>
+                        <PopoverTrigger>
+                          <Ellipses />
+                        </PopoverTrigger>
+                        <PopoverContent align="end" className="w-fit p-2">
+                          <MoveToSideProjects
+                            id={project.id}
+                            projectName={project.title}
+                          >
+                            <Button variant="ghost" size="sm">
+                              Move to Side Projects
+                            </Button>
+                          </MoveToSideProjects>
+                        </PopoverContent>
+                      </Popover>
                     </div>
                   </div>
                 </div>
@@ -149,49 +220,43 @@ const Projects = () => {
 
 export default Projects;
 
-const Form = ({ userData, setAddProject }) => {
-  const defaultValues = useMemo(() => {
-    return {
-      name: userData?.displayName,
-      // username: userData?.username ? userData.username : "",
-      email: userData?.email ? userData.email : "",
-    };
-  }, [userData]);
+const Form = ({ addProject, setAddProject, isEdit, setIsEdit, editableId }) => {
+  return (
+    <>
+      {isEdit ? (
+        <EditProjectForm setIsEdit={setIsEdit} editableId={editableId} />
+      ) : null}
+      {addProject ? <AddProjectForm setAddProject={setAddProject} /> : null}
+    </>
+  );
+};
 
-  const form = useForm({
-    defaultValues: defaultValues,
-  });
-
-  const { register, formState, handleSubmit, setValue, reset, resetField } =
-    form;
-
-  const {
-    errors,
-    isDirty,
-    isValid,
-    isSubmitting,
-    isSubmitted,
-    isSubmitSuccessful,
-  } = formState;
-
-  useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset(defaultValues);
-    }
-  }, [defaultValues, isSubmitSuccessful, reset]);
-
+function AddProjectForm({ setAddProject }) {
+  const [isSending, setIsSending] = useState(false);
   const [files, setFiles] = useState([]);
 
+  const form = useForm();
+
+  const { register, formState, handleSubmit } = form;
+  const { errors, isDirty, isSubmitting } = formState;
+
+  const handleFileChange = (event) => {
+    setFiles([...files, ...event.target.files]);
+  };
+
+  // Delete all selected files
+  const handleClearFiles = () => {
+    setFiles([]);
+  };
+
+  // Delete one selected file
   const handleFileRemove = (fileId) => {
     setFiles((prevFiles) =>
       prevFiles.filter((prevFile) => prevFile.name !== fileId)
     );
   };
 
-  const handleClearFiles = () => {
-    setFiles([]);
-  };
-
+  // Drag and drop selected file
   function handleOnDragEnd(result) {
     if (!result.destination) return;
 
@@ -202,19 +267,15 @@ const Form = ({ userData, setAddProject }) => {
     setFiles(items);
   }
 
-  const [isSending, setIsSending] = useState(false);
+  console.log(files);
 
-  const handleFileChange = (event) => {
-    setFiles([...files, ...event.target.files]);
-  };
-
-  const saveProject = async (data) => {
+  // Add project to database
+  const addProject = async (data) => {
     if (isSending) return;
     setIsSending(true);
 
     const images = [];
 
-    // Upload images to Firebase Storage
     await Promise.all(
       files.map(async (file) => {
         const storageRef = ref(
@@ -223,18 +284,24 @@ const Form = ({ userData, setAddProject }) => {
         );
         await uploadBytes(storageRef, file);
         const downloadURL = await getDownloadURL(storageRef);
-        images.push(downloadURL);
+        images.push({ url: downloadURL, name: file.name, id: uuidv4() });
       })
     );
 
     try {
-      await addDoc(collection(db, `users/${auth.currentUser.uid}/projects`), {
+      const newDocRef = doc(
+        collection(db, `users/${auth.currentUser.uid}/projects`)
+      );
+
+      await setDoc(newDocRef, {
+        id: newDocRef.id,
         title: data.title,
         year: data.year,
         company: data.company,
         link: data.link,
         description: data.description,
         images: images,
+        hide: false,
         timestamp: new Date().getTime(),
       }).finally(() => {
         setAddProject(false);
@@ -248,7 +315,7 @@ const Form = ({ userData, setAddProject }) => {
 
   return (
     <form
-      onSubmit={handleSubmit(saveProject)}
+      onSubmit={handleSubmit(addProject)}
       className="space-y-3 md:space-y-6 mt-5"
       noValidate
     >
@@ -264,10 +331,6 @@ const Form = ({ userData, setAddProject }) => {
               required: {
                 value: true,
                 message: "Title is required",
-              },
-              maxLength: {
-                value: 20,
-                message: "Title is too long",
               },
             })}
           />
@@ -287,7 +350,7 @@ const Form = ({ userData, setAddProject }) => {
                 message: "Year is required",
               },
               maxLength: {
-                value: 20,
+                value: 4,
                 message: "Year is too long",
               },
             })}
@@ -304,11 +367,7 @@ const Form = ({ userData, setAddProject }) => {
             {...register("company", {
               required: {
                 value: true,
-                message: "Name is required",
-              },
-              maxLength: {
-                value: 20,
-                message: "Name is too long",
+                message: "Company name is required",
               },
             })}
           />
@@ -322,7 +381,7 @@ const Form = ({ userData, setAddProject }) => {
             {...register("link", {
               required: {
                 value: true,
-                message: "Name is required",
+                message: "Link is required",
               },
             })}
           />
@@ -341,8 +400,8 @@ const Form = ({ userData, setAddProject }) => {
               message: "Name is required",
             },
             maxLength: {
-              value: 70,
-              message: "Name is too long",
+              value: 300,
+              message: "Description is too long (only 300)",
             },
           })}
         />
@@ -410,8 +469,8 @@ const Form = ({ userData, setAddProject }) => {
                             <div className="flex items-center font-medium">
                               {file.name}
                               {/* <span className="text-sm pl-1 font-light">
-                                {file.size}
-                              </span> */}
+                              {file.size}
+                            </span> */}
                             </div>
                           </div>
                           <X
@@ -439,7 +498,7 @@ const Form = ({ userData, setAddProject }) => {
       <Separator />
       <div className="space-x-2 flex justify-end">
         <Button
-          disabled={isSubmitting || !isDirty}
+          disabled={isSubmitting}
           className="rounded-sm"
           variant="secondary"
           onClick={() => setAddProject(false)}
@@ -459,4 +518,295 @@ const Form = ({ userData, setAddProject }) => {
       </div>
     </form>
   );
-};
+}
+
+function EditProjectForm({ setIsEdit, editableId }) {
+  const { projects, setProjects } = useApiContext();
+  const [isSending, setIsSending] = useState(false);
+  const [files, setFiles] = useState([]);
+
+  const project = projects.find((p) => p.id === editableId);
+
+  const defaultValues = useMemo(() => {
+    return {
+      title: project?.title,
+      year: project?.year,
+      company: project?.company,
+      link: project?.link,
+      description: project?.description,
+    };
+  }, [project]);
+
+  const form = useForm({
+    defaultValues: defaultValues,
+  });
+
+  const { register, formState, handleSubmit } = form;
+  const { errors, isDirty, isSubmitting } = formState;
+
+  const getEditableProject = async () => {
+    return project;
+  };
+  console.log(project);
+
+  const handleFileChange = (event) => {
+    setFiles([...files, ...event.target.files]);
+  };
+
+  // Delete all selected files
+  const handleClearFiles = () => {
+    setFiles([]);
+  };
+
+  // Delete one selected file
+  const handleFileRemove = (fileId) => {
+    setFiles((prevFiles) =>
+      prevFiles.filter((prevFile) => prevFile.name !== fileId)
+    );
+  };
+
+  // Drag and drop selected file
+  function handleOnDragEnd(result) {
+    if (!result.destination) return;
+
+    const items = Array.from(files);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    setFiles(items);
+  }
+
+  // Add project to database
+  const updateProject = async (data) => {
+    if (isSending) return;
+    setIsSending(true);
+
+    const images = [];
+
+    await Promise.all(
+      files.map(async (file) => {
+        const storageRef = ref(
+          storage,
+          `projects/${auth.currentUser.uid}/images/${file.name}`
+        );
+        await uploadBytes(storageRef, file);
+        const downloadURL = await getDownloadURL(storageRef);
+        images.push(downloadURL);
+      })
+    );
+
+    try {
+      await updateDoc(
+        collection(db, `users/${auth.currentUser.uid}/projects`, editableId),
+        {
+          title: data.title,
+          year: data.year,
+          company: data.company,
+          link: data.link,
+          description: data.description,
+          images: images,
+          timestamp: new Date().getTime(),
+        }
+      ).finally(() => {
+        setIsEdit(false);
+        setIsSending(false);
+        console.log("perfect");
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  console.log(project);
+
+  return (
+    <form
+      onSubmit={handleSubmit(updateProject)}
+      className="space-y-3 md:space-y-6 mt-5"
+      noValidate
+    >
+      <div className="flex items-center gap-3">
+        <div className="space-y-1 w-full">
+          <Label htmlFor="title">
+            Title<span className="text-red-500">*</span>
+          </Label>
+          <Input
+            id="title"
+            placeholder="My Great Project"
+            {...register("title", {
+              required: {
+                value: true,
+                message: "Title is required",
+              },
+            })}
+          />
+          <p className="text-xs text-red-500">{errors.title?.message}</p>
+        </div>
+        <div className="space-y-1 w-full">
+          <Label htmlFor="year">
+            Year<span className="text-red-500">*</span>
+          </Label>
+          <Input
+            type="number"
+            id="year"
+            placeholder="2024"
+            {...register("year", {
+              required: {
+                value: true,
+                message: "Year is required",
+              },
+              maxLength: {
+                value: 4,
+                message: "Year is too long",
+              },
+            })}
+          />
+          <p className="text-xs text-red-500">{errors.year?.message}</p>
+        </div>
+      </div>
+      <div className="flex items-center gap-3">
+        <div className="space-y-1 w-full">
+          <Label htmlFor="company">Company or client</Label>
+          <Input
+            id="company"
+            placeholder="Acme inc."
+            {...register("company", {
+              required: {
+                value: true,
+                message: "Company name is required",
+              },
+            })}
+          />
+          <p className="text-xs text-red-500">{errors.company?.message}</p>
+        </div>
+        <div className="space-y-1 w-full">
+          <Label htmlFor="link">Link to project</Label>
+          <Input
+            id="link"
+            placeholder="https://example.com"
+            {...register("link", {
+              required: {
+                value: true,
+                message: "Link is required",
+              },
+            })}
+          />
+          <p className="text-xs text-red-500">{errors.link?.message}</p>
+        </div>
+      </div>
+      <div className="space-y-1 w-full">
+        <Label htmlFor="description">Description</Label>
+        <Textarea
+          id="description"
+          rows={4}
+          placeholder="Cool project"
+          {...register("description", {
+            required: {
+              value: true,
+              message: "Name is required",
+            },
+            maxLength: {
+              value: 300,
+              message: "Description is too long (only 300)",
+            },
+          })}
+        />
+        <p className="text-xs text-red-500">{errors.description?.message}</p>
+      </div>
+
+      <div className="space-y-1 w-full">
+        <div className="mx-auto w-full">
+          <Label htmlFor="upload">Attachments</Label>
+          <label className="flex w-full cursor-pointer appearance-none items-center justify-center rounded-md border-2 border-dashed border-gray-200 p-6 transition-all duration-300 hover:border-gray-400">
+            <div className="space-y-1 text-center">
+              <div className="text-gray-600">
+                <a
+                  href="#"
+                  className="font-medium text-primary-500 hover:text-primary-700"
+                >
+                  Click to upload
+                </a>
+              </div>
+              <p className="text-sm text-gray-500">
+                PNG, JPG or GIF (max. 800x400px)
+              </p>
+            </div>
+            <input
+              id="upload"
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleFileChange}
+              className="sr-only"
+            />
+          </label>
+        </div>
+
+        <DragDropContext onDragEnd={handleOnDragEnd}>
+          <Droppable droppableId="characters">
+            {(provided) => (
+              <ul
+                className="flex items-center gap-3 !mt-3"
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
+                {project?.images.map(({ url, name, id }) => {
+                  return (
+                    <Draggable key={id} draggableId={id} index={id}>
+                      {(provided) => (
+                        <li
+                          className="flex items-center justify-between p-1 rounded-md border cursor-grab"
+                          key={id}
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <div className="relative">
+                            <img className="w-28 rounded-md" src={url} />
+                            <X
+                              className="absolute top-1 right-1 w-6 bg-white text-black h-6 border rounded-full p-1 cursor-pointer"
+                              onClick={() => handleFileRemove(id)}
+                            />
+                          </div>
+                        </li>
+                      )}
+                    </Draggable>
+                  );
+                })}
+              </ul>
+            )}
+          </Droppable>
+        </DragDropContext>
+
+        {!!files.length && (
+          <div className="flex gap-2 !my-3">
+            <Button variant="destructive" onClick={handleClearFiles}>
+              Remove All Files
+            </Button>
+          </div>
+        )}
+      </div>
+      <Separator />
+      <div className="space-x-2 flex justify-end">
+        <Button
+          disabled={isSubmitting}
+          className="rounded-sm"
+          variant="secondary"
+          onClick={() => setIsEdit(false)}
+        >
+          Cancel
+        </Button>
+        <Button
+          disabled={isSubmitting || !isDirty}
+          className="rounded-sm"
+          type="submit"
+        >
+          {isSubmitting && (
+            <Shell className="opacity-50 animate-spin w-4 h-4 mr-1.5" />
+          )}
+          Edit
+        </Button>
+      </div>
+    </form>
+  );
+}

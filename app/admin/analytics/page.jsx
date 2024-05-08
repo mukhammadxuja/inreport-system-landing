@@ -10,6 +10,7 @@ import Subscribers from "@/components/admin/analytics/subscribers";
 import Locations from "@/components/admin/analytics/locations";
 import Devices from "@/components/admin/analytics/devices";
 import Icons from "@/components/admin/analytics/icons";
+import { useSessionStorage } from "@/hooks/useSessionStorage";
 
 function AnalyticsPage() {
   const [analytics, setAnalytics] = useState("activity");
@@ -52,9 +53,9 @@ function AnalyticsPage() {
     },
   ];
 
-  const { getItem, setItem } = useLocalStorage("analytics");
+  const { getItem, setItem } = useSessionStorage("analytics");
 
-  const storedActiveAnalyticsTab = getItem("analytics");
+  const storedActiveAnalyticsTab = getItem("analytics") || "activity";
 
   const handleSelectAnalyticsTag = useCallback(
     (tag) => {
