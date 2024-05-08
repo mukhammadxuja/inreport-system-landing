@@ -1,9 +1,18 @@
 import { auth, db } from "@/firebase/config";
-import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { deleteDoc, deleteField, doc, updateDoc } from "firebase/firestore";
 
 // Delete item
 export const deleteItem = async (collection, id) => {
   await deleteDoc(doc(db, `users/${auth.currentUser.uid}/${collection}`, id));
+};
+
+// Delete item image
+export const deleteItemImage = async (collection, id, index) => {
+  const itemRef = doc(db, `users/${auth.currentUser.uid}/${collection}`, id);
+
+  await updateDoc(itemRef, {
+    images: deleteField(),
+  });
 };
 
 // Hide item

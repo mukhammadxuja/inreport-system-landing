@@ -508,11 +508,22 @@ function AddProjectForm({ setAddProject }) {
 }
 
 function EditProjectForm({ setIsEdit, editableId }) {
-  const { projects, setProjects } = useApiContext();
+  const { projects } = useApiContext();
+  const project = projects.find((p) => p.id === editableId);
+
   const [isSending, setIsSending] = useState(false);
   const [files, setFiles] = useState([]);
+  const images = [...project.images];
 
-  const project = projects.find((p) => p.id === editableId);
+  files.map((file) => {
+    images.push({
+      url: URL.createObjectURL(file),
+      name: file.name,
+      id: uuidv4(),
+    });
+  });
+
+  console.log(files);
 
   const defaultValues = useMemo(() => {
     return {
@@ -530,11 +541,6 @@ function EditProjectForm({ setIsEdit, editableId }) {
 
   const { register, formState, handleSubmit } = form;
   const { errors, isDirty, isSubmitting } = formState;
-
-  const getEditableProject = async () => {
-    return project;
-  };
-  console.log(project);
 
   const handleFileChange = (event) => {
     setFiles([...files, ...event.target.files]);
@@ -563,6 +569,8 @@ function EditProjectForm({ setIsEdit, editableId }) {
     setFiles(items);
   }
 
+  console.log("files", files);
+
   // Add project to database
   const updateProject = async (data) => {
     if (isSending) return;
@@ -574,24 +582,30 @@ function EditProjectForm({ setIsEdit, editableId }) {
       files.map(async (file) => {
         const storageRef = ref(
           storage,
-          `projects/${auth.currentUser.uid}/images/${file.name}`
+          `projects/${auth.currentUser.email}/images/${file.name}`
         );
         await uploadBytes(storageRef, file);
         const downloadURL = await getDownloadURL(storageRef);
-        images.push(downloadURL);
+        images.push({
+          url: downloadURL,
+          name: file.name,
+          id: uuidv4(),
+        });
       })
     );
 
+    const mergedImages = [...project.images, ...images];
+
     try {
       await updateDoc(
-        collection(db, `users/${auth.currentUser.uid}/projects`, editableId),
+        doc(db, `users/${auth.currentUser.uid}/projects`, editableId),
         {
           title: data.title,
           year: data.year,
           company: data.company,
           link: data.link,
           description: data.description,
-          images: images,
+          images: mergedImages,
           timestamp: new Date().getTime(),
         }
       ).finally(() => {
@@ -603,8 +617,6 @@ function EditProjectForm({ setIsEdit, editableId }) {
       console.log(error);
     }
   };
-
-  console.log(project);
 
   return (
     <form
@@ -729,49 +741,26 @@ function EditProjectForm({ setIsEdit, editableId }) {
           </label>
         </div>
 
-        <DragDropContext onDragEnd={handleOnDragEnd}>
-          <Droppable droppableId="characters">
-            {(provided) => (
-              <ul
-                className="flex items-center gap-3 !mt-3"
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-              >
-                {project?.images.map(({ url, name, id }) => {
-                  return (
-                    <Draggable key={id} draggableId={id} index={id}>
-                      {(provided) => (
-                        <li
-                          className="flex items-center justify-between p-1 rounded-md border cursor-grab"
-                          key={id}
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                        >
-                          <div className="relative">
-                            <img className="w-28 rounded-md" src={url} />
-                            <X
-                              className="absolute top-1 right-1 w-6 bg-white text-black h-6 border rounded-full p-1 cursor-pointer"
-                              onClick={() => handleFileRemove(id)}
-                            />
-                          </div>
-                        </li>
-                      )}
-                    </Draggable>
-                  );
-                })}
-              </ul>
-            )}
-          </Droppable>
-        </DragDropContext>
-
-        {!!files.length && (
-          <div className="flex gap-2 !my-3">
-            <Button variant="destructive" onClick={handleClearFiles}>
-              Remove All Files
-            </Button>
-          </div>
-        )}
+        <div className="flex items-center gap-3">
+          <ul className="flex items-center gap-3 !mt-3">
+            {images.map(({ url, name, id }, index) => {
+              return (
+                <li
+                  className="flex items-center justify-between p-1 rounded-md border"
+                  key={id}
+                >
+                  <div className="relative">
+                    <img className="w-28 rounded-md" src={url} />
+                    <X
+                      className="absolute top-1 right-1 w-6 bg-white text-black h-6 border rounded-full p-1 cursor-pointer"
+                      onClick={() => console.log("deleted in your dream")}
+                    />
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
       <Separator />
       <div className="space-x-2 flex justify-end">
@@ -784,7 +773,7 @@ function EditProjectForm({ setIsEdit, editableId }) {
           Cancel
         </Button>
         <Button
-          disabled={isSubmitting || !isDirty}
+          disabled={isSubmitting}
           className="rounded-sm"
           type="submit"
         >
