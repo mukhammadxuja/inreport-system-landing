@@ -79,6 +79,18 @@ const Projects = () => {
 
   console.log("userUid", userUid);
 
+  const toggleHide = async (projectId, currentHideValue) => {
+    try {
+      const docRef = doc(db, `users/${userUid}/projects`, projectId);
+
+      await updateDoc(docRef, {
+        hide: !currentHideValue, // Toggle the hide value
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="">
       <div className="flex items-center justify-between mb-3">
@@ -116,11 +128,7 @@ const Projects = () => {
                 >
                   <p>{project.year}</p>
                   <div className="space-y-3 w-[25rem]">
-                    <div
-                      className={`${
-                        hide.includes(project.id) && "blur-[1.5px]"
-                      }`}
-                    >
+                    <div className={`${project.hide && "blur-[1.5px]"}`}>
                       <a
                         href={project.link}
                         target="_blank"
@@ -142,7 +150,7 @@ const Projects = () => {
                                 src={url ? url : "/assets/avatars/1.png"}
                                 alt={name}
                                 className={`${
-                                  hide.includes(project.id) && "blur-[1.5px]"
+                                  project.hide && "blur-[1.5px]"
                                 } w-full h-full object-cover rounded cursor-pointer`}
                               />
                             </div>
@@ -153,10 +161,10 @@ const Projects = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         <small
-                          onClick={() => hideProject(project.id)}
+                          onClick={() => toggleHide(project.id, project.hide)}
                           className="hover:underline cursor-pointer"
                         >
-                          {hide.includes(project.id) ? "Show" : "Hide"}
+                          {project.hide ? "Show" : "Hide"}
                         </small>
                         <small
                           onClick={() => handleEdit(project.id)}
