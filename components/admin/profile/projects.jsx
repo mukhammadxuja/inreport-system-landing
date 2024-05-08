@@ -38,15 +38,19 @@ import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 
 /**
- * TODO: Save hide and show items to localStorage
- * Drag and drop added projects
- * Move project to 'side projects'
+ * TODO:
+ * Loading and image lazy load
  * Refactor projects page (it should be last todo)
+ *
+ * FEATURES
+ * Move project to 'side projects'
+ * Drag and drop added projects
+ * Drag and drop project images
  */
 
 /**
- * FIXME: Edit project | Delete project
- *
+ * FIXME:
+ * adding another image during edit project image
  */
 
 const Projects = () => {
@@ -401,12 +405,9 @@ function AddProjectForm({ setAddProject }) {
           <label className="flex w-full cursor-pointer appearance-none items-center justify-center rounded-md border-2 border-dashed border-gray-200 p-6 transition-all duration-300 hover:border-gray-400">
             <div className="space-y-1 text-center">
               <div className="text-gray-600">
-                <a
-                  href="#"
-                  className="font-medium text-primary-500 hover:text-primary-700"
-                >
+              <p className="font-medium text-primary-500 hover:text-primary-700">
                   Click to upload
-                </a>
+                </p>
               </div>
               <p className="text-sm text-gray-500">
                 PNG, JPG or GIF (max. 800x400px)
@@ -719,12 +720,9 @@ function EditProjectForm({ setIsEdit, editableId }) {
           <label className="flex w-full cursor-pointer appearance-none items-center justify-center rounded-md border-2 border-dashed border-gray-200 p-6 transition-all duration-300 hover:border-gray-400">
             <div className="space-y-1 text-center">
               <div className="text-gray-600">
-                <a
-                  href="#"
-                  className="font-medium text-primary-500 hover:text-primary-700"
-                >
+                <p className="font-medium text-primary-500 hover:text-primary-700">
                   Click to upload
-                </a>
+                </p>
               </div>
               <p className="text-sm text-gray-500">
                 PNG, JPG or GIF (max. 800x400px)
@@ -772,11 +770,7 @@ function EditProjectForm({ setIsEdit, editableId }) {
         >
           Cancel
         </Button>
-        <Button
-          disabled={isSubmitting}
-          className="rounded-sm"
-          type="submit"
-        >
+        <Button disabled={isSubmitting} className="rounded-sm" type="submit">
           {isSubmitting && (
             <Shell className="opacity-50 animate-spin w-4 h-4 mr-1.5" />
           )}

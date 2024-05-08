@@ -83,5 +83,7 @@ export const createUserDocumentFromAuth = async (
     } catch (err) {
       console.log(err);
     }
+  } else {
+    console.log("this username already taken");
   }
 };

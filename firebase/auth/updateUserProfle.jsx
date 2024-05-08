@@ -12,5 +12,3 @@ export const updateUserAccount = async (data) => {
     throw error;
   }
 };
-
-console.log(updateUserAccount);
