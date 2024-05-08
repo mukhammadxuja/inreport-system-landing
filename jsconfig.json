@@ -5,10 +5,12 @@
     "paths": {
       "@/*": ["*"],
       "@/components/*": ["components/*"],
+      "@services/*": ["services/*"],
       "@/context/*": ["context/*"],
       "@/firebase": ["firebase/"],
+      "@utils/*": ["utils/*"],
+      "@hooks/*": ["hooks/*"],
       "@/lib/*": ["lib/*"],
-      "@utils/*": ["utils/*"]
     },
   },
 }

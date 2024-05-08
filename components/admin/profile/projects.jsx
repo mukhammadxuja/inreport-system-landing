@@ -20,6 +20,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 // Components
 import MoveToSideProjects from "../dialogs/move-to-side-projects";
 import DeleteProject from "../dialogs/delete-project";
+import { toggleHide } from "@/services/firestore-service";
 // Icons
 import { ChevronRight, Shell, X } from "lucide-react";
 import { Ellipses } from "@/components/icons";
@@ -66,30 +67,6 @@ const Projects = () => {
     setEditableId(id);
     setIsEdit(true);
   }
-
-  console.log("editableId", editableId);
-
-  const hideProject = (id) => {
-    if (hide.includes(id)) {
-      setHide(hide.filter((item) => item !== id));
-    } else {
-      setHide([...hide, id]);
-    }
-  };
-
-  console.log("userUid", userUid);
-
-  const toggleHide = async (projectId, currentHideValue) => {
-    try {
-      const docRef = doc(db, `users/${userUid}/projects`, projectId);
-
-      await updateDoc(docRef, {
-        hide: !currentHideValue, // Toggle the hide value
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <div className="">
@@ -161,7 +138,9 @@ const Projects = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         <small
-                          onClick={() => toggleHide(project.id, project.hide)}
+                          onClick={() =>
+                            toggleHide("projects", project.id, project.hide)
+                          }
                           className="hover:underline cursor-pointer"
                         >
                           {project.hide ? "Show" : "Hide"}

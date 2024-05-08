@@ -13,17 +13,10 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { db } from "@/firebase/config";
-import { deleteDoc, doc } from "firebase/firestore";
-import { useApiContext } from "@/context/api-context";
+import { deleteItem } from "@/services/firestore-service";
 
 function DeleteProject({ id, title, children }) {
-  const { userUid } = useApiContext();
   const [openDeleteProject, setOpenDeleteProject] = useState(false);
-
-  const deleteProject = async () => {
-    await deleteDoc(doc(db, `users/${userUid}/projects`, id));
-  };
 
   return (
     <AlertDialog open={openDeleteProject} onOpenChange={setOpenDeleteProject}>
@@ -37,7 +30,9 @@ function DeleteProject({ id, title, children }) {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={deleteProject}>Delete</AlertDialogAction>
+          <AlertDialogAction onClick={() => deleteItem("projects", id)}>
+            Delete
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
