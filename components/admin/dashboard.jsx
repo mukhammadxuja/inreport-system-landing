@@ -18,7 +18,7 @@ function Dashboard({ children }) {
 
   return (
     <div className="flex">
-      {loading && <Loading />}
+      {/* {loading && <Loading />} */}
       {user && (
         <>
           <Sidebar />

@@ -4,7 +4,7 @@
 import EmailVerificationAlert from "@/components/email-verification-alert";
 import { useApiContext } from "@/context/api-context";
 import { ChevronRight } from "lucide-react";
-import React, { useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
@@ -16,10 +16,6 @@ import {
 import { Ellipses } from "@/components/icons";
 import MoveToSideProjects from "@/components/admin/dialogs/move-to-side-projects";
 import { Button } from "@/components/ui/button";
-import { useFirestore, useFirestoreDoc } from "reactfire";
-import { auth, db } from "@/firebase/config";
-import { onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
 
 // TODO: refactor and make sure all function works before transfer to another file
 // Hide, Edit, Delete, Active tab with localStorage

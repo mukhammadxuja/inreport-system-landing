@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -10,23 +10,64 @@ import { updateUserAccount } from "@/firebase/auth/updateUserProfle";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Textarea } from "@/components/ui/textarea";
-import { useMainContext } from "@/context/main-context";
+import { Shell } from "lucide-react";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { auth, db } from "@/firebase/config";
+import { toast } from "sonner";
 
 const General = () => {
   const { user, userData } = useApiContext();
+  const hiddenFileInput = useRef(null);
+  const [image, setImage] = useState(null);
+
+  function removeFile() {
+    hiddenFileInput.current.value = null;
+    setImage(null);
+  }
+  const onChange = (e) => {
+    const fileUploaded = e.target.files[0];
+    if (!fileUploaded) return;
+    setImage(fileUploaded);
+  };
+
+  console.log(userData);
 
   return (
     <div className="">
       <div className="flex items-center gap-3 mb-3">
         <Avatar className="w-20 h-20">
-          <AvatarImage src={user.photoURL} alt={user.displayName} />
+          <AvatarImage
+            src={image ? URL.createObjectURL(image) : userData.photoURL}
+            alt={user.displayName}
+          />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
-        <Button variant="secondary">Remove</Button>
+        <div className="flex items-center space-x-2">
+          <Button onClick={removeFile} variant="secondary">
+            Remove
+          </Button>
+          <form>
+            <label htmlFor="photo" className="block">
+              <input
+                ref={hiddenFileInput}
+                id="photo"
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={onChange}
+                className="block file:rounded-md file:text-sm file:font-medium file:ring-offset-background file:transition-colors file:focus-visible:outline-none file:focus-visible:ring-2 file:focus-visible:ring-ring file:focus-visible:ring-offset-2 file:disabled:pointer-events-none file:disabled:opacity-50 file:bg-primary file:text-primary-foreground file:hover:bg-primary/90 file:h-10 file:px-4 file:py-2"
+              />
+            </label>
+          </form>
+        </div>
       </div>
       <Separator />
       {user ? (
-        <Form userData={userData} />
+        <Form
+          userData={userData}
+          image={image}
+          hiddenFileInput={hiddenFileInput}
+        />
       ) : (
         <div className="max-w-2xl space-y-6 mt-5">
           <Skeleton className="h-10 space-y-1 w-full" />
@@ -41,12 +82,17 @@ const General = () => {
 
 export default General;
 
-const Form = ({ userData }) => {
+const Form = ({ userData, image, hiddenFileInput }) => {
   const defaultValues = useMemo(() => {
     return {
-      name: userData?.displayName,
+      displayName: userData?.displayName,
       username: userData?.username ? userData.username : "",
       email: userData?.email ? userData.email : "",
+      profession: userData?.profession ? userData.profession : "",
+      location: userData?.location ? userData.location : "",
+      pronoun: userData?.pronoun ? userData.pronoun : "",
+      website: userData?.website ? userData.website : "",
+      bio: userData?.bio ? userData.bio : "",
     };
   }, [userData]);
 
@@ -54,8 +100,7 @@ const Form = ({ userData }) => {
     defaultValues: defaultValues,
   });
 
-  const { register, formState, handleSubmit, setValue, reset, resetField } =
-    form;
+  const { register, formState, handleSubmit, reset } = form;
 
   const {
     errors,
@@ -67,20 +112,31 @@ const Form = ({ userData }) => {
   } = formState;
 
   const onSubmit = async (data) => {
-    console.log("Submitted Data:", data); // Log submitted data
-    const { name, email } = data;
-    const newData = { displayName: name, email };
+    const storage = getStorage();
+    const storageRef = ref(
+      storage,
+      `users/${auth.currentUser.email}/profile/${image?.name}`
+    );
+
+    // Upload the file
+    await uploadBytes(storageRef, image);
+
+    // Get download URL
+    const photoURL = await getDownloadURL(storageRef);
+
     try {
-      await updateUserAccount(newData);
-      console.log("perfect");
+      await updateUserAccount(data, photoURL);
     } catch (error) {
       console.log(error);
+    } finally {
+      toast("Profile updated successfully");
+      hiddenFileInput.current.value = null;
     }
   };
 
   useEffect(() => {
     reset(userData);
-  }, [reset]);
+  }, [reset, userData]);
 
   return (
     <form
@@ -121,10 +177,6 @@ const Form = ({ userData }) => {
               required: {
                 value: true,
                 message: "Display name is required",
-              },
-              maxLength: {
-                value: 20,
-                message: "Display name is long",
               },
             })}
           />
@@ -184,40 +236,16 @@ const Form = ({ userData }) => {
       <Separator />
       <div className="space-x-2 flex justify-end">
         <Button
+          disabled={isSubmitting || !isDirty}
           onClick={() => reset()}
           className="rounded-sm"
           variant="secondary"
         >
           Reset
         </Button>
-        <Button
-          disabled={isSubmitting || !isDirty}
-          className="rounded-sm"
-          type="submit"
-        >
-          {isSubmitting && (
-            <svg
-              className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              ></circle>
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-              ></path>
-            </svg>
-          )}
-          Save
+        <Button disabled={isSubmitting} className="rounded-sm" type="submit">
+          {isSubmitting && <Shell className="animate-spin mr-2 h-4 w-4" />}
+          {isSubmitting ? "Saving" : "Save"}
         </Button>
       </div>
     </form>

@@ -42,6 +42,7 @@ export const ApiContextProvider = ({ children }) => {
     return () => unsubscribe();
   }, [auth.currentUser]);
 
+  // Get user from google auth
   useEffect(() => {
     setLoading(true);
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -57,6 +58,7 @@ export const ApiContextProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+  // Get user from fireStore
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
@@ -65,8 +67,6 @@ export const ApiContextProvider = ({ children }) => {
       }
     });
   }, []);
-
-  console.log("userData", userData);
 
   const values = { user, userUid, loading, userData, projects, setProjects };
 
