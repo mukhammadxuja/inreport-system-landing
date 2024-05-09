@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useEffect, useState } from "react";
@@ -24,7 +25,7 @@ import {
 import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Delete, Pencil, Trash2 } from "lucide-react";
+import { Delete, Pencil, Trash, Trash2, X } from "lucide-react";
 import {
   addDoc,
   collection,
@@ -33,15 +34,15 @@ import {
   getDocs,
   onSnapshot,
   query,
+  setDoc,
   updateDoc,
 } from "firebase/firestore";
 import { auth, db, storage } from "@/firebase/config";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 function TestPage() {
-  const form = useForm();
   const [files, setFiles] = useState([]);
-  const [images, setImages] = useState([]);
+  const [rate, setRate] = useState(0);
 
   const handleFileChange = (event) => {
     setFiles([...files, ...event.target.files]);
@@ -75,19 +76,29 @@ function TestPage() {
         })
       );
 
-      await addDoc(collection(db, "books"), {
-        title: newBook.title,
-        catalog: newBook.catalog,
-        price: newBook.price,
-        images: images,
-      });
-      console.log("Perfect");
-      setNewBook({
-        title: "",
-        catalog: "",
-        price: "",
-      });
-      setFiles([]);
+      try {
+        const docRef = doc(collection(db, "books"));
+
+        await addBook(docRef, {
+          id: docRef.id,
+          title: newBook.title,
+          catalog: newBook.catalog,
+          price: newBook.price,
+          images: images,
+          rate: rate,
+          timestamp: new Date().getTime(),
+        }).finally(() => {
+          setBooks({
+            title: "",
+            catalog: "",
+            price: null,
+          });
+          setFiles([]);
+          console.log("perfect");
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -131,7 +142,7 @@ function TestPage() {
         <div>
           <Label>Catalog</Label>
           <Select
-            defaultValue="romantic"
+            defaultValue="fantasy"
             onValueChange={(e) => setNewBook({ ...newBook, catalog: e })}
           >
             <SelectTrigger>
@@ -139,10 +150,17 @@ function TestPage() {
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectLabel>Fruits</SelectLabel>
-                <SelectItem value="horror">Horror</SelectItem>
-                <SelectItem value="romantic">Romantic</SelectItem>
-                <SelectItem value="coding">Coding</SelectItem>
+                <SelectLabel>Catalog</SelectLabel>
+                <SelectItem value="fantasy">Fantasy</SelectItem>
+                <SelectItem value="science-fiction">Science Fiction</SelectItem>
+                <SelectItem value="mystery">Mystery</SelectItem>
+                <SelectItem value="romance">Romance</SelectItem>
+                <SelectItem value="thriller">Thriller</SelectItem>
+                <SelectItem value="historical">Historical Fiction</SelectItem>
+                <SelectItem value="adventure">Adventure</SelectItem>
+                <SelectItem value="dystopian">Dystopian</SelectItem>
+                <SelectItem value="non-fiction">Non-Fiction</SelectItem>
+                <SelectItem value="biography">Biography</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
@@ -156,12 +174,70 @@ function TestPage() {
             placeholder="Price"
           />
         </div>
-        <input
-          type="file"
-          accept="image/*"
-          multiple
-          onChange={handleFileChange}
-        />
+
+        <div className="flex items-center gap-2">
+          {[...Array(5)].map((_, index) => (
+            <div
+              key={index}
+              onClick={() => setRate(index)}
+              className={`${
+                rate === index && "border-black"
+              } px-3 py-2 rounded-md border-2 !cursor-pointer hover:border-black duration-300`}
+            >
+              <img
+                className="w-6"
+                src={`/assets/emojis/${index + 1}.png`}
+                alt={index}
+              />
+            </div>
+          ))}
+        </div>
+
+        <div className="mx-auto w-full">
+          <Label htmlFor="upload">Attachments</Label>
+          <label className="flex w-full cursor-pointer appearance-none items-center justify-center rounded-md border-2 border-dashed border-gray-200 p-6 transition-all duration-300 hover:border-gray-400">
+            <div className="space-y-1 text-center">
+              <div className="text-gray-600">
+                <p className="font-medium text-primary-500 hover:text-primary-700">
+                  Click to upload
+                </p>
+              </div>
+              <p className="text-sm text-gray-500">
+                PNG, JPG or GIF (max. 800x400px)
+              </p>
+            </div>
+            <input
+              id="upload"
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleFileChange}
+              className="sr-only"
+            />
+          </label>
+        </div>
+
+        {files.length > 0 && (
+          <div className="flex items-center gap-2">
+            {files.map((file) => (
+              <li
+                className="flex items-center justify-between p-1 rounded-md border"
+                key={file.name}
+              >
+                <div className="relative">
+                  <img
+                    className="w-36 rounded-md"
+                    src={URL.createObjectURL(file)}
+                  />
+                  <X
+                    className="absolute top-1 right-1 w-6 bg-white text-black h-6 border rounded-full p-1 cursor-pointer"
+                    onClick={() => console.log("deleted in your dream")}
+                  />
+                </div>
+              </li>
+            ))}
+          </div>
+        )}
         <Button className="w-full" type="submit">
           Submit
         </Button>
@@ -189,8 +265,10 @@ function TestPage() {
                         />
                       </div>
                     ))}
+                    <Trash onClick={() => deleteBook(item.id)} />
                   </div>
                 )}
+                <img src={`/assets/emojis/${item?.rate}.png`} />
                 <div className="px-6 py-4">
                   <div className="font-bold text-xl mb-2">{item.title}</div>
                   <p className="text-gray-700 text-base">
@@ -204,22 +282,6 @@ function TestPage() {
           </ul>
         )}
       </div>
-
-      {files.length > 0 && (
-        <div>
-          <h2>Selected Files:</h2>
-          <div className="flex items-center gap-2">
-            {files.map((file, index) => (
-              <img
-                key={index}
-                src={URL.createObjectURL(file)}
-                alt={`image-${index}`}
-                className="w-44 rounded"
-              />
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 }
