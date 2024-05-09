@@ -27,6 +27,7 @@ import { useApiContext } from "@/context/api-context";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Loading from "@/components/admin/loading";
+import checkProfession from "@/utils";
 
 function Auth() {
   const { isPendingGoogleLogin } = useGoogleLogin();
@@ -46,11 +47,12 @@ function Auth() {
   const formEmailPassword = useForm();
 
   async function onSubmitEmailPasswordRegistration(data) {
+    const checkedProf = checkProfession(data.profession);
     await emailPasswordRegistration(
       data.email,
       data.username,
       data.password,
-      data.profession,
+      checkedProf,
       data.displayName
     );
   }
