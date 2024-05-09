@@ -2,7 +2,14 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth, db } from "@/firebase/config";
 import { onAuthStateChanged } from "firebase/auth";
-import { collection, onSnapshot, query, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
 
 export const ApiContext = createContext({});
 
@@ -51,26 +58,17 @@ export const ApiContextProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (auth.currentUser) {
-      let uid = auth.currentUser.uid;
-      const fetchUser = async () => {
-        const queryUser = query(
-          collection(db, "users"),
-          where("id", "==", uid)
-        );
-        onSnapshot(queryUser, (snapshot) => {
-          setUserData(
-            snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-          );
-        });
-      };
-      fetchUser();
-    }
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const snapshot = await getDoc(doc(db, "users", user.uid));
+        setUserData(snapshot.data());
+      }
+    });
   }, []);
 
   console.log("userData", userData);
 
-  const values = { user, userUid, loading, projects, setProjects };
+  const values = { user, userUid, loading, userData, projects, setProjects };
 
   return <ApiContext.Provider value={values}>{children}</ApiContext.Provider>;
 };

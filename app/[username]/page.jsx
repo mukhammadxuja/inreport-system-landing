@@ -9,6 +9,7 @@ function User() {
   const params = useParams();
   return (
     <div>
+      {params.username}
       <UserProfileClient username={params.username} />
     </div>
   );

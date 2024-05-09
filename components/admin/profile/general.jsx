@@ -13,10 +13,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useMainContext } from "@/context/main-context";
 
 const General = () => {
-  const { user } = useApiContext();
-  const { users } = useMainContext();
-
-  const userData = users.find((item) => item.uid === user.uid);
+  const { user, userData } = useApiContext();
 
   return (
     <div className="">
