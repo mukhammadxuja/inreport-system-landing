@@ -243,7 +243,11 @@ const Form = ({ userData, image, hiddenFileInput }) => {
         >
           Reset
         </Button>
-        <Button disabled={isSubmitting} className="rounded-sm" type="submit">
+        <Button
+          disabled={isSubmitting || !image}
+          className="rounded-sm"
+          type="submit"
+        >
           {isSubmitting && <Shell className="animate-spin mr-2 h-4 w-4" />}
           {isSubmitting ? "Saving" : "Save"}
         </Button>
