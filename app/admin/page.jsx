@@ -35,7 +35,9 @@ function AdminPage() {
               alt="@shadcn"
             />
           </Avatar>
-          <h3 className="text-xl font-semibold">{userData?.displayName}</h3>
+          <h3 className="text-xl font-semibold">
+            {userData?.displayName ? userData?.displayName : "Unknown"}
+          </h3>
         </div>
         <Popover>
           <PopoverTrigger>
@@ -48,7 +50,10 @@ function AdminPage() {
           </PopoverContent>
         </Popover>
       </div>
-      <Link href="anvarov">https://showcase.ai/avarov</Link>
+      <Link
+        target="_blank"
+        href={`/${userData?.username}`}
+      >{`http://localhost:3000/${userData?.username}`}</Link>
       {!!projects.length && <h4 className="text-sm">Projects</h4>}
       <div className="my-4">
         {projects.map((project) => (
