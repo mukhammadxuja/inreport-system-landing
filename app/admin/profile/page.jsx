@@ -80,18 +80,16 @@ function Profile() {
 
   return (
     <div className="px-4 md:px-6 py-4 md:mx-auto min-h-screen">
-      <EmailVerificationAlert />
       <Tabs
         defaultValue={storedActiveProfileTab}
         onValueChange={(e) => handleSelectProfileTag(e, profile)}
         className="w-full mt-0"
       >
         <div className="sticky top-4 z-40 overflow-x-auto">
-          <TabsList className="h-12 mx-auto flex items-center space-x-1 w-fit p-1 shadow-md rounded-2xl duration-300 bg-white border border-border group">
+          <TabsList className="mx-auto flex items-center w-fit">
             {profileTabs.map((profile) => (
               <TabsTrigger
                 key={profile.title}
-                className="bg-background data-[state=active]:bg-[#f3f3f1] h-10 py-2"
                 onClick={() => handleSelectProfileTag(profile.tag)}
                 value={profile.tag}
               >

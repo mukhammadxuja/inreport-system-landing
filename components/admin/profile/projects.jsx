@@ -23,7 +23,7 @@ import DeleteProject from "../dialogs/delete-project";
 import { toggleHide } from "@/services/firestore-service";
 // Icons
 import { ChevronRight, Shell, X } from "lucide-react";
-import { Ellipses } from "@/components/icons";
+import { EllipsesIcon } from "@/components/icons";
 
 // UI
 import {
@@ -170,7 +170,7 @@ const Projects = () => {
                       </div>
                       <Popover>
                         <PopoverTrigger>
-                          <Ellipses />
+                          <EllipsesIcon />
                         </PopoverTrigger>
                         <PopoverContent align="end" className="w-fit p-2">
                           <MoveToSideProjects

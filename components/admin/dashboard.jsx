@@ -21,7 +21,7 @@ function Dashboard({ children }) {
       {/* {loading && <Loading />} */}
       {user && (
         <>
-          {/* <Sidebar /> */}
+          <Sidebar />
           <div className={ifSidebar}>{children}</div>
         </>
       )}

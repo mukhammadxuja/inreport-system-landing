@@ -14,6 +14,8 @@ import { Shell } from "lucide-react";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { auth, db } from "@/firebase/config";
 import { toast } from "sonner";
+import EmailVerificationAlert from "@/components/email-verification-alert";
+import { LoadingIcon } from "@/components/icons";
 
 const General = () => {
   const { user, userData } = useApiContext();
@@ -34,13 +36,14 @@ const General = () => {
 
   return (
     <div>
+      <EmailVerificationAlert />
       <div className="flex flex-col md:flex-row md:items-center gap-3 mb-3">
         <Avatar className="w-20 h-20">
           <AvatarImage
-            src={image ? URL.createObjectURL(image) : userData.photoURL}
-            alt={user.displayName}
+            src={image ? URL.createObjectURL(image) : userData?.photoURL}
+            alt={userData?.displayName}
           />
-          <AvatarFallback>{user.displayName.charAt(0)}</AvatarFallback>
+          <AvatarFallback>{userData?.displayName}</AvatarFallback>
         </Avatar>
         <div className="flex items-center space-x-2 w-full overflow-hidden">
           <Button disabled={!image} onClick={removeFile} variant="secondary">
@@ -102,14 +105,7 @@ const Form = ({ userData, image, hiddenFileInput }) => {
 
   const { register, formState, handleSubmit, reset } = form;
 
-  const {
-    errors,
-    isDirty,
-    isValid,
-    isSubmitting,
-    isSubmitted,
-    isSubmitSuccessful,
-  } = formState;
+  const { errors, isDirty, isValid, isSubmitting } = formState;
 
   const onSubmit = async (data) => {
     const storage = getStorage();
@@ -167,20 +163,20 @@ const Form = ({ userData, image, hiddenFileInput }) => {
           <p className="text-xs text-red-500">{errors.username?.message}</p>
         </div>
         <div className="space-y-1 w-full">
-          <Label htmlFor="name">
+          <Label htmlFor="displayName">
             Display Name<span className="text-red-500">*</span>
           </Label>
           <Input
-            id="name"
-            placeholder="How your name appears on your profile"
-            {...register("name", {
+            id="displayName"
+            placeholder="How your displayName appears on your profile"
+            {...register("displayName", {
               required: {
                 value: true,
-                message: "Display name is required",
+                message: "Display displayName is required",
               },
             })}
           />
-          <p className="text-xs text-red-500">{errors.name?.message}</p>
+          <p className="text-xs text-red-500">{errors.displayName?.message}</p>
         </div>
       </div>
       <div className="flex flex-col md:flex-row items-center w-full gap-3">
@@ -244,11 +240,11 @@ const Form = ({ userData, image, hiddenFileInput }) => {
           Reset
         </Button>
         <Button
-          disabled={isSubmitting || !image}
+          disabled={isSubmitting || (!isDirty && !image)}
           className="rounded-sm"
           type="submit"
         >
-          {isSubmitting && <Shell className="animate-spin mr-2 h-4 w-4" />}
+          {isSubmitting && <LoadingIcon />}
           {isSubmitting ? "Saving" : "Save"}
         </Button>
       </div>

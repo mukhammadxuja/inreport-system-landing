@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 
-function Ellipses({ className }) {
+function EllipsesIcon({ className }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -20,4 +20,4 @@ function Ellipses({ className }) {
   );
 }
 
-export default Ellipses;
+export default EllipsesIcon;

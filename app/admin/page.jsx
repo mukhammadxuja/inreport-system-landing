@@ -13,7 +13,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Ellipses } from "@/components/icons";
+import { EllipsesIcon } from "@/components/icons";
 import MoveToSideProjects from "@/components/admin/dialogs/move-to-side-projects";
 import { Button } from "@/components/ui/button";
 
@@ -22,7 +22,7 @@ import { Button } from "@/components/ui/button";
 // Edit: https://codesandbox.io/p/sandbox/react-hooks-crud-firebase-z7nh3?file=%2Fsrc%2Ftables%2FUserTableRow.js%3A27%2C16-27%2C23
 
 function AdminPage() {
-  const { projects, user } = useApiContext();
+  const { projects, userData } = useApiContext();
 
   return (
     <div className="px-4 min-h-screen max-w-2xl mx-auto my-20">
@@ -31,15 +31,15 @@ function AdminPage() {
           <Avatar className="h-24 w-24 rounded-full">
             <AvatarImage
               className="object-cover"
-              src={user?.photoURL || "/assets/avatars/1.png"}
+              src={userData?.photoURL || "/assets/avatars/1.png"}
               alt="@shadcn"
             />
           </Avatar>
-          <h3 className="text-xl font-semibold">{user?.displayName}</h3>
+          <h3 className="text-xl font-semibold">{userData?.displayName}</h3>
         </div>
         <Popover>
           <PopoverTrigger>
-            <Ellipses />
+            <EllipsesIcon />
           </PopoverTrigger>
           <PopoverContent align="end" className="w-fit p-2">
             <Button variant="ghost" size="sm">
