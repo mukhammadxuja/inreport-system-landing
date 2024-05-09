@@ -79,77 +79,52 @@ function Profile() {
   );
 
   return (
-    <div className="px-4 md:px-6 py-5 mx-auto min-h-screen">
+    <div className="px-4 md:px-6 py-4 md:mx-auto min-h-screen">
       <EmailVerificationAlert />
       <Tabs
         defaultValue={storedActiveProfileTab}
         onValueChange={(e) => handleSelectProfileTag(e, profile)}
         className="w-full mt-0"
       >
-        <TabsList className="sticky top-4 z-40 h-12 mx-auto flex items-center space-x-1 w-fit p-1 shadow-md rounded-2xl duration-300 bg-white border border-border group">
-          {profileTabs.map((profile) => (
-            <TabsTrigger
-              key={profile.title}
-              className="bg-background data-[state=active]:bg-[#f3f3f1] h-10 py-2"
-              onClick={() => handleSelectProfileTag(profile.tag)}
-              value={profile.tag}
-            >
-              {profile.title}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="general"
-        >
+        <div className="sticky top-4 z-40 overflow-x-auto">
+          <TabsList className="h-12 mx-auto flex items-center space-x-1 w-fit p-1 shadow-md rounded-2xl duration-300 bg-white border border-border group">
+            {profileTabs.map((profile) => (
+              <TabsTrigger
+                key={profile.title}
+                className="bg-background data-[state=active]:bg-[#f3f3f1] h-10 py-2"
+                onClick={() => handleSelectProfileTag(profile.tag)}
+                value={profile.tag}
+              >
+                {profile.title}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </div>
+        <TabsContent value="general">
           <General />
         </TabsContent>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="projects"
-        >
+        <TabsContent value="projects">
           <Projects />
         </TabsContent>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="experience"
-        >
+        <TabsContent value="experience">
           <Experience />
         </TabsContent>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="volunteering"
-        >
+        <TabsContent value="volunteering">
           <Volunteering />
         </TabsContent>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="education"
-        >
+        <TabsContent value="education">
           <Education />
         </TabsContent>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="certifications"
-        >
+        <TabsContent value="certifications">
           <Certifications />
         </TabsContent>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="awards"
-        >
+        <TabsContent value="awards">
           <Awards />
         </TabsContent>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="skills"
-        >
+        <TabsContent value="skills">
           <Skills />
         </TabsContent>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="contact"
-        >
+        <TabsContent value="contact">
           <Contacts />
         </TabsContent>
       </Tabs>

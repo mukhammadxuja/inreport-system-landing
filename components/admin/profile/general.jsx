@@ -33,17 +33,17 @@ const General = () => {
   console.log(userData);
 
   return (
-    <div className="">
-      <div className="flex items-center gap-3 mb-3">
+    <div>
+      <div className="flex flex-col md:flex-row md:items-center gap-3 mb-3">
         <Avatar className="w-20 h-20">
           <AvatarImage
             src={image ? URL.createObjectURL(image) : userData.photoURL}
             alt={user.displayName}
           />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarFallback>{user.displayName.charAt(0)}</AvatarFallback>
         </Avatar>
-        <div className="flex items-center space-x-2">
-          <Button onClick={removeFile} variant="secondary">
+        <div className="flex items-center space-x-2 w-full overflow-hidden">
+          <Button disabled={!image} onClick={removeFile} variant="secondary">
             Remove
           </Button>
           <form>
@@ -144,7 +144,7 @@ const Form = ({ userData, image, hiddenFileInput }) => {
       className="space-y-3 md:space-y-6 mt-5"
       noValidate
     >
-      <div className="flex items-center w-full gap-3">
+      <div className="flex flex-col md:flex-row items-center w-full gap-3">
         <div className="space-y-1 w-full">
           <Label htmlFor="username">
             Username<span className="text-red-500">*</span>
@@ -183,7 +183,7 @@ const Form = ({ userData, image, hiddenFileInput }) => {
           <p className="text-xs text-red-500">{errors.name?.message}</p>
         </div>
       </div>
-      <div className="flex items-center w-full gap-3">
+      <div className="flex flex-col md:flex-row items-center w-full gap-3">
         <div className="space-y-1 w-full">
           <Label htmlFor="profession">What do you do?</Label>
           <Input
@@ -203,7 +203,7 @@ const Form = ({ userData, image, hiddenFileInput }) => {
           <p className="text-xs text-red-500">{errors.location?.message}</p>
         </div>
       </div>
-      <div className="flex items-center w-full gap-3">
+      <div className="flex flex-col md:flex-row items-center w-full gap-3">
         <div className="space-y-1 w-full">
           <Label htmlFor="pronoun">Pronouns</Label>
           <Input

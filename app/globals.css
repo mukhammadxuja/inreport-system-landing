@@ -88,6 +88,11 @@
     @apply w-full shadow-lg rounded-lg mt-4 bg-white pl-2 pr-5 py-4;
   }
 
+  /* Admin */
+  .tabs-content {
+    @apply !mt-6 md:!mt-10 w-full max-w-7xl mx-auto p-5 md:px-8 md:py-6 rounded-lg bg-white;
+  }
+
   .tiptap {
     @apply relative border bg-white w-[1240px] h-[1754px] py-10 px-20 rounded-sm mx-auto my-10;
   }

@@ -54,6 +54,7 @@ import { Textarea } from "@/components/ui/textarea";
 
 /**
  * FIXME:
+ * Responsive
  * adding another image during edit project image
  * uploaded and read image width
  * use only <Image />
