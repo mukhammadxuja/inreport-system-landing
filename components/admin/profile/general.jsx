@@ -36,7 +36,6 @@ const General = () => {
 
   return (
     <div>
-      <EmailVerificationAlert />
       <div className="flex flex-col md:flex-row md:items-center gap-3 mb-3">
         <Avatar className="w-20 h-20">
           <AvatarImage
@@ -64,6 +63,7 @@ const General = () => {
           </form>
         </div>
       </div>
+      <EmailVerificationAlert />
       <Separator />
       {user ? (
         <Form

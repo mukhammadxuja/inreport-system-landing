@@ -25,7 +25,7 @@ function AdminPage() {
   const { projects, userData } = useApiContext();
 
   return (
-    <div className="px-4 min-h-screen max-w-2xl mx-auto my-20">
+    <div className="px-4 min-h-screen max-w-3xl mx-auto my-20 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 !mt-6 md:!mt-10 w-full p-5 md:px-8 md:py-6 rounded-lg bg-white">
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <Avatar className="h-24 w-24 rounded-full">
@@ -35,9 +35,16 @@ function AdminPage() {
               alt="@shadcn"
             />
           </Avatar>
-          <h3 className="text-xl font-semibold">
-            {userData?.displayName ? userData?.displayName : "Unknown"}
-          </h3>
+          <div>
+            <h3 className="text-xl font-semibold">
+              {userData?.displayName ? userData?.displayName : "Unknown"}
+            </h3>
+            <Link
+              className="text-sm underline text-gray-500"
+              target="_blank"
+              href={`/${userData?.username}`}
+            >{`http://localhost:3000/${userData?.username}`}</Link>
+          </div>
         </div>
         <Popover>
           <PopoverTrigger>
@@ -50,10 +57,7 @@ function AdminPage() {
           </PopoverContent>
         </Popover>
       </div>
-      <Link
-        target="_blank"
-        href={`/${userData?.username}`}
-      >{`http://localhost:3000/${userData?.username}`}</Link>
+
       {!!projects.length && <h4 className="text-sm">Projects</h4>}
       <div className="my-4">
         {projects.map((project) => (
