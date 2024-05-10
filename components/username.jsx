@@ -88,7 +88,7 @@ export default function UserProfileClient({ username }) {
           <Avatar className="h-24 w-24 rounded-full">
             <AvatarImage
               className="object-cover"
-              src={userData?.photoURL || "/assets/avatars/1.png"}
+              src={userData?.photoURL || "/assets/avatars/unknown.jpg"}
               alt="@shadcn"
             />
           </Avatar>

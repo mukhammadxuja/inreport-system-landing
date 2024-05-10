@@ -13,6 +13,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDoc,
   setDoc,
   updateDoc,
 } from "firebase/firestore";
@@ -45,7 +46,6 @@ import { Textarea } from "@/components/ui/textarea";
  *
  * FEATURES
  * Move project to 'side projects'
- * Drag and drop added projects
  * Drag and drop project images
  *
  * unique username - https://www.reddit.com/r/Firebase/comments/pvkv4d/unique_usernames_in_firebase/
@@ -68,7 +68,7 @@ const Projects = () => {
   const [isEdit, setIsEdit] = useState(false);
   const [editableId, setEditableId] = useState("");
 
-  console.log("isEdit", isEdit);
+  console.log("projects", projects);
 
   // if (loading) {
   //   return <p>Loading...</p>;
@@ -560,22 +560,35 @@ function EditProjectForm({ setIsEdit, editableId }) {
   };
 
   // Delete one selected file
-  const handleFileRemove = (fileId) => {
+  const handleFileRemove = async (fileName, projectId, imageId) => {
     setFiles((prevFiles) =>
-      prevFiles.filter((prevFile) => prevFile.name !== fileId)
+      prevFiles.filter((prevFile) => prevFile.name !== fileName)
     );
+
+    try {
+      const projectRef = doc(
+        db,
+        `users/${auth.currentUser.uid}/projects`,
+        projectId
+      );
+
+      const projectSnapshot = await getDoc(projectRef);
+      const projectData = projectSnapshot.data();
+
+      if (!projectData) {
+        console.error("Project not found");
+        return;
+      }
+
+      const updatedImages = projectData.images.filter(
+        (image) => image.id !== imageId
+      );
+
+      await updateDoc(projectRef, { images: updatedImages });
+    } catch (error) {
+      console.error("Error deleting image from project:", error);
+    }
   };
-
-  // Drag and drop selected file
-  function handleOnDragEnd(result) {
-    if (!result.destination) return;
-
-    const items = Array.from(files);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-
-    setFiles(items);
-  }
 
   console.log("files", files);
 
@@ -758,7 +771,7 @@ function EditProjectForm({ setIsEdit, editableId }) {
                     <img className="w-28 rounded-md" src={url} />
                     <X
                       className="absolute top-1 right-1 w-6 bg-white text-black h-6 border rounded-full p-1 cursor-pointer"
-                      onClick={() => console.log("deleted in your dream")}
+                      onClick={() => handleFileRemove(name, project.id, id)}
                     />
                   </div>
                 </li>
