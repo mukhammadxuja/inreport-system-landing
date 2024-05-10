@@ -75,7 +75,7 @@ function AddProjectForm({ setAddProject }) {
       className="space-y-3 md:space-y-6 mt-5"
       noValidate
     >
-      <div className="flex items-center gap-3">
+      <div className="flex flex-col md:flex-row md:items-center gap-3">
         <div className="space-y-1 w-full">
           <Label htmlFor="title">
             Title<span className="text-red-500">*</span>
@@ -114,7 +114,7 @@ function AddProjectForm({ setAddProject }) {
           <p className="text-xs text-red-500">{errors.year?.message}</p>
         </div>
       </div>
-      <div className="flex items-center gap-3">
+      <div className="flex flex-col md:flex-row md:items-center gap-3">
         <div className="space-y-1 w-full">
           <Label htmlFor="company">Company or client</Label>
           <Input
@@ -193,7 +193,7 @@ function AddProjectForm({ setAddProject }) {
           <Droppable droppableId="characters">
             {(provided) => (
               <ul
-                className="grid grid-cols-2 gap-3 !mt-3"
+                className="grid grid-cols-1 md:grid-cols-2 gap-3 !mt-3"
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
@@ -220,9 +220,9 @@ function AddProjectForm({ setAddProject }) {
                               src={URL.createObjectURL(file)}
                               loading="lazy"
                               alt={file.name}
-                              className="w-32 h-24 object-cover rounded-sm cursor-pointer"
+                              className="w-16 h-16 md:w-32 md:h-24 object-cover rounded-sm cursor-pointer"
                             />
-                            <div className="flex items-center font-medium">
+                            <div className="flex items-center font-medium w-full truncate">
                               {file.name}
                             </div>
                           </div>

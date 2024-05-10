@@ -11,25 +11,12 @@ import EditProjectForm from "./projects/edit-project-form";
 // UI
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { toast } from "sonner";
 
 /**
  * TODO:
- * Loading and image lazy load
- * Refactor projects page (it should be last todo)
- *
- *
- * FEATURES
- * Move project to 'side projects'
- * Drag and drop project images
- *
  * unique username - https://www.reddit.com/r/Firebase/comments/pvkv4d/unique_usernames_in_firebase/
  * Analytics - https://chatgpt.com/c/d7cb4d18-bb6c-47d9-99fc-93f9e5381b17
- */
-
-/**
- * FIXME:
- * Responsive
+ *  FIXME:
  */
 
 const Projects = () => {
@@ -39,14 +26,12 @@ const Projects = () => {
   const [isEdit, setIsEdit] = useState(false);
   const [editableId, setEditableId] = useState("");
 
-  // if (loading) {
-  //   return <p>Loading...</p>;
-  // }
-
   return (
     <Fragment>
       <div className="flex items-center justify-between mb-3">
-        <h3 className="font-semibold leading-none tracking-tight">Projects</h3>
+        <h3 className="font-semibold leading-none tracking-tight text-lg md:text-xl xl:text-2xl">
+          Projects
+        </h3>
         <Button
           onClick={() => setAddProject(true)}
           className={addProject || isEdit ? "hidden" : "block"}
@@ -91,11 +76,11 @@ export default Projects;
 
 const Form = ({ addProject, setAddProject, isEdit, setIsEdit, editableId }) => {
   return (
-    <>
+    <Fragment>
       {isEdit ? (
         <EditProjectForm setIsEdit={setIsEdit} editableId={editableId} />
       ) : null}
       {addProject ? <AddProjectForm setAddProject={setAddProject} /> : null}
-    </>
+    </Fragment>
   );
 };

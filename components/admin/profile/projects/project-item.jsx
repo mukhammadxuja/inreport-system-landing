@@ -29,9 +29,9 @@ function ProjectItem({ project, setEditableId, setIsEdit }) {
   return (
     <div
       key={project.id}
-      className="grid grid-cols-3 bg-gray-50 cursor-grab py-2 px-4 rounded-md border"
+      className="grid grid-cols-1 md:grid-cols-3 bg-gray-50 cursor-grab py-2 px-4 rounded-md border"
     >
-      <p>{project.year}</p>
+      <p className="hidden md:block">{project.year}</p>
       <div className="space-y-3 col-span-2">
         <div className={`${project.hide && "blur-[1.5px]"}`}>
           <a
@@ -50,7 +50,10 @@ function ProjectItem({ project, setEditableId, setIsEdit }) {
             <div className="flex items-center gap-2">
               {/* Map through images and render each */}
               {project.images.map(({ url, id, name }) => (
-                <div key={id} className="w-[7.55rem] h-24 bg-indigo-200 rounded-md">
+                <div
+                  key={id}
+                  className="w-[7.55rem] h-24 bg-indigo-200 rounded-md"
+                >
                   <Image
                     width={250}
                     height={150}

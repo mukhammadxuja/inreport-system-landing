@@ -14,7 +14,7 @@ function LoadingIcon({ className }) {
       viewBox="0 0 40 40"
       enableBackground="new 0 0 40 40"
       xmlSpace="preserve"
-      className={cn(`w-5 h-5 animate-spin -ml-1 mr-2 ${className}`)}
+      className={cn(`w-5 h-5 animate-spin -ml-1 mr-2 opacity-50 ${className}`)}
     >
       <path
         opacity="0.2"

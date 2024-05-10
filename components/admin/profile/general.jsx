@@ -16,6 +16,7 @@ import { toast } from "sonner";
 import EmailVerificationAlert from "@/components/email-verification-alert";
 import { LoadingIcon } from "@/components/icons";
 import { updateUserAccount } from "@/firebase/auth/updateUserProfile";
+import Image from "next/image";
 
 const General = () => {
   const { user, userData } = useApiContext();

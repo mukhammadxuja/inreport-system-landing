@@ -83,7 +83,7 @@ function EditProjectForm({ setIsEdit, editableId }) {
       className="space-y-3 md:space-y-6 mt-5"
       noValidate
     >
-      <div className="flex items-center gap-3">
+      <div className="flex flex-col md:flex-row md:items-center gap-3">
         <div className="space-y-1 w-full">
           <Label htmlFor="title">
             Title<span className="text-red-500">*</span>
@@ -122,7 +122,7 @@ function EditProjectForm({ setIsEdit, editableId }) {
           <p className="text-xs text-red-500">{errors.year?.message}</p>
         </div>
       </div>
-      <div className="flex items-center gap-3">
+      <div className="flex flex-col md:flex-row md:items-center gap-3">
         <div className="space-y-1 w-full">
           <Label htmlFor="company">Company or client</Label>
           <Input
@@ -198,7 +198,7 @@ function EditProjectForm({ setIsEdit, editableId }) {
         </div>
 
         <div className="flex items-center gap-3">
-          <ul className="flex items-center gap-3 !mt-3">
+          <ul className="flex flex-wrap items-center gap-3 !mt-3">
             {images.map(({ url, name, id }) => {
               return (
                 <li
