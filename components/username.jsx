@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useApiContext } from "@/context/api-context";
-import { useMainContext } from "@/context/main-context";
+"use client";
 import { db } from "@/firebase/config";
 import {
   collection,
@@ -97,11 +96,7 @@ export default function UserProfileClient({ username }) {
             <h3 className="text-xl font-semibold">
               {userData?.displayName ? userData?.displayName : "Unknown"}
             </h3>
-            <Link
-              className="text-sm underline text-gray-500"
-              target="_blank"
-              href={`/${userData?.username}`}
-            >{`http://localhost:3000/${userData?.username}`}</Link>
+            <p>{userData?.profession}</p>
           </div>
         </div>
         <Popover>
