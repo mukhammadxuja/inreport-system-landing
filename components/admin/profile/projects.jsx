@@ -10,6 +10,7 @@ import { useApiContext } from "@/context/api-context";
 // Firebase
 import { auth, db, storage } from "@/firebase/config";
 import {
+  addDoc,
   collection,
   deleteDoc,
   doc,
@@ -38,6 +39,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
+import { toast } from "sonner";
 
 /**
  * TODO:
@@ -56,8 +58,6 @@ import Image from "next/image";
 /**
  * FIXME:
  * Responsive
- * uploaded and read image width
- * use only <Image />
  */
 
 const Projects = () => {
@@ -78,6 +78,40 @@ const Projects = () => {
     setEditableId(id);
     setIsEdit(true);
   }
+
+  const moveDocToAnotherCollection = async (
+    documentId,
+    title,
+    sourceCollection,
+    destinationCollection
+  ) => {
+    try {
+      // Retrieve the document from the source collection
+      const sourceDocRef = doc(
+        db,
+        `users/${auth.currentUser.uid}/projects`,
+        documentId
+      );
+      const sourceDocSnapshot = await getDoc(sourceDocRef);
+      if (!sourceDocSnapshot.exists()) {
+        console.error("Document not found in the source collection");
+        return;
+      }
+
+      // Add the document to the destination collection
+      const destinationCollectionRef = collection(
+        db,
+        `users/${auth.currentUser.uid}/side-projects`
+      );
+      await addDoc(destinationCollectionRef, sourceDocSnapshot.data());
+
+      // Delete the document from the original collection
+      await deleteDoc(sourceDocRef);
+      toast(`${title} moved to Side projects successfully`);
+    } catch (error) {
+      console.error("Error moving document:", error);
+    }
+  };
 
   return (
     <div className="">
@@ -184,7 +218,16 @@ const Projects = () => {
                             id={project.id}
                             projectName={project.title}
                           >
-                            <Button variant="ghost" size="sm">
+                            <Button
+                              onClick={() =>
+                                moveDocToAnotherCollection(
+                                  project.id,
+                                  project.title
+                                )
+                              }
+                              variant="ghost"
+                              size="sm"
+                            >
                               Move to Side Projects
                             </Button>
                           </MoveToSideProjects>
