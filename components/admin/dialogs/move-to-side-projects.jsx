@@ -13,6 +13,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { auth } from "@/firebase/config";
+import { moveDocToAnotherCollection } from "@/services/firestore-service";
 
 function MoveToSideProjects({ id, projectName, children }) {
   const [openMoveToSideProjects, setOpenMoveToSideProjects] = useState(false);
@@ -36,7 +38,16 @@ function MoveToSideProjects({ id, projectName, children }) {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={() => moveProjects(1)}>
+          <AlertDialogAction
+            onClick={() =>
+              moveDocToAnotherCollection(
+                id,
+                projectName,
+                `users/${auth.currentUser.uid}/projects`,
+                `users/${auth.currentUser.uid}/side-projects`
+              )
+            }
+          >
             Move
           </AlertDialogAction>
         </AlertDialogFooter>

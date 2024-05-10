@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useApiContext } from "@/context/api-context";
-import { updateUserAccount } from "@/firebase/auth/updateUserProfle";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Textarea } from "@/components/ui/textarea";
@@ -16,6 +15,7 @@ import { auth, db } from "@/firebase/config";
 import { toast } from "sonner";
 import EmailVerificationAlert from "@/components/email-verification-alert";
 import { LoadingIcon } from "@/components/icons";
+import { updateUserAccount } from "@/firebase/auth/updateUserProfile";
 
 const General = () => {
   const { user, userData } = useApiContext();

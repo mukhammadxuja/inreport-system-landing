@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useApiContext } from "@/context/api-context";
-import { updateUserAccount } from "@/firebase/auth/updateUserProfle";
+import { updateUserAccount } from "@/firebase/auth/updateUserProfile";
 // import { useToast } from "@/components/ui/use-toast";
 
 const Account = () => {

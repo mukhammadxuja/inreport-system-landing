@@ -6,7 +6,7 @@ import Files from "react-files";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useForm } from "react-hook-form";
 import { useApiContext } from "@/context/api-context";
-import { updateUserAccount } from "@/firebase/auth/updateUserProfle";
+import { updateUserAccount } from "@/firebase/auth/updateUserProfile";
 
 // UI
 import { Input } from "@/components/ui/input";
