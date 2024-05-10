@@ -24,7 +24,7 @@ import DeleteProject from "../dialogs/delete-project";
 import { toggleHide } from "@/services/firestore-service";
 // Icons
 import { ChevronRight, Shell, X } from "lucide-react";
-import { EllipsesIcon } from "@/components/icons";
+import { EllipsesIcon, LoadingIcon } from "@/components/icons";
 
 // UI
 import {
@@ -37,6 +37,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
+import Image from "next/image";
 
 /**
  * TODO:
@@ -55,18 +56,17 @@ import { Textarea } from "@/components/ui/textarea";
 /**
  * FIXME:
  * Responsive
- * adding another image during edit project image
  * uploaded and read image width
  * use only <Image />
  */
 
 const Projects = () => {
-  const { user, projects, userUid } = useApiContext();
+  const { user, projects } = useApiContext();
 
   const [addProject, setAddProject] = useState(false);
-  const [hide, setHide] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
   const [editableId, setEditableId] = useState("");
+  const [loaded, setLoaded] = useState(false);
 
   console.log("projects", projects);
 
@@ -133,12 +133,19 @@ const Projects = () => {
                         <div className="flex items-center gap-2">
                           {/* Map through images and render each */}
                           {project.images.map(({ url, id, name }) => (
-                            <div key={id} className="w-32 rounded-md">
-                              <img
-                                src={url ? url : "/assets/avatars/1.png"}
+                            <div
+                              key={id}
+                              className="w-32 h-24 bg-indigo-200 rounded-md"
+                            >
+                              <Image
+                                width={250}
+                                height={150}
+                                src={url ? url : "/assets/not-found.jpg"}
+                                quality={80}
+                                loading="lazy"
                                 alt={name}
-                                className={`${
-                                  project.hide && "blur-[1.5px]"
+                                className={`${project.hide && "blur-[1.5px]"} ${
+                                  loaded && "unblur"
                                 } w-full h-full object-cover rounded cursor-pointer`}
                               />
                             </div>
@@ -455,17 +462,17 @@ function AddProjectForm({ setAddProject }) {
                           className="flex items-center justify-between py-2 pl-2 pr-4 rounded-md border cursor-grab"
                         >
                           <div className="flex items-center gap-3">
-                            <img
+                            <Image
                               key={index}
+                              width={250}
+                              height={150}
                               src={URL.createObjectURL(file)}
-                              alt={`image-${index}`}
-                              className="w-24 rounded-md"
+                              loading="lazy"
+                              alt={file.name}
+                              className="w-32 h-24 object-cover rounded-sm cursor-pointer"
                             />
                             <div className="flex items-center font-medium">
                               {file.name}
-                              {/* <span className="text-sm pl-1 font-light">
-                              {file.size}
-                            </span> */}
                             </div>
                           </div>
                           <X
@@ -530,8 +537,6 @@ function EditProjectForm({ setIsEdit, editableId }) {
       id: uuidv4(),
     });
   });
-
-  console.log(files);
 
   const defaultValues = useMemo(() => {
     return {
@@ -761,14 +766,21 @@ function EditProjectForm({ setIsEdit, editableId }) {
 
         <div className="flex items-center gap-3">
           <ul className="flex items-center gap-3 !mt-3">
-            {images.map(({ url, name, id }, index) => {
+            {images.map(({ url, name, id }) => {
               return (
                 <li
                   className="flex items-center justify-between p-1 rounded-md border"
                   key={id}
                 >
                   <div className="relative">
-                    <img className="w-28 rounded-md" src={url} />
+                    <Image
+                      width={250}
+                      height={150}
+                      src={url}
+                      loading="lazy"
+                      alt={name}
+                      className="w-28 h-24 object-cover rounded-sm cursor-pointer"
+                    />
                     <X
                       className="absolute top-1 right-1 w-6 bg-white text-black h-6 border rounded-full p-1 cursor-pointer"
                       onClick={() => handleFileRemove(name, project.id, id)}
