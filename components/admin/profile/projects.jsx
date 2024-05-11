@@ -31,9 +31,7 @@ const Projects = () => {
   return (
     <Fragment>
       <div className="flex items-center justify-between mb-3">
-        <h3 className="font-semibold leading-none tracking-tight text-lg md:text-xl xl:text-2xl">
-          Projects
-        </h3>
+        <h3 className="tab-title">Projects</h3>
         <Button
           onClick={() => setAddProject(true)}
           className={addProject || isEdit ? "hidden" : "block"}

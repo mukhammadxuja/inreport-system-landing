@@ -73,18 +73,20 @@ function AnalyticsPage() {
         onValueChange={(e) => handleSelectAnalyticsTag(e, analytics)}
         className="w-full mt-0"
       >
-        <TabsList className="sticky top-4 z-40 h-12 mx-auto flex items-center space-x-1 w-fit p-1 shadow-md rounded-2xl duration-300 bg-white border border-border group">
-          {analyticsTabs.map((analytic) => (
-            <TabsTrigger
-              key={analytic.title}
-              className="bg-background data-[state=active]:bg-[#f3f3f1] h-10 py-2"
-              onClick={() => handleSelectAnalyticsTag(analytic.tag)}
-              value={analytic.tag}
-            >
-              {analytic.title}
-            </TabsTrigger>
-          ))}
-        </TabsList>
+        <div className="sticky top-4 z-40 overflow-x-auto">
+          <TabsList className="mx-auto flex items-center w-fit">
+            {analyticsTabs.map((analytic) => (
+              <TabsTrigger
+                key={analytic.title}
+                className="bg-background data-[state=active]:bg-[#f3f3f1] h-10 py-2"
+                onClick={() => handleSelectAnalyticsTag(analytic.tag)}
+                value={analytic.tag}
+              >
+                {analytic.title}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </div>
         <div className="w-full">
           <LifeTimeAnalytics />
         </div>

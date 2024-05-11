@@ -53,10 +53,8 @@ const Subscribers = () => {
   return (
     <div>
       <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center space-x-1">
-          <h3 className="font-semibold leading-none tracking-tight">
-            Subscribers
-          </h3>
+        <div className="flex items-center gap-x-1">
+          <h3 className="tab-title">Subscribers</h3>
         </div>
         <UpgradeDialog>
           <Button
@@ -81,25 +79,25 @@ const Subscribers = () => {
             </Button>
           </UpgradeDialog>
         </div>
-        <div className="flex items-center gap-x-10 border-b py-5">
-          <div className="flex items-center space-x-1.5">
+        <div className="flex flex-wrap items-center gap-x-4 md:gap-x-6 xl:gap-x-10 border-b py-5">
+          <div className="flex items-center gap-x-1.5">
             <div className="w-2 h-2 rounded-full bg-emerald-500" />
-            <p className="text-sm">Viewers:</p>
+            <p className="text-xs md:text-sm">Viewers:</p>
             <span className="text-base font-medium">0</span>
           </div>
-          <div className="flex items-center space-x-1.5">
+          <div className="flex items-center gap-x-1.5">
             <div className="w-2 h-2 rounded-full bg-purple-500" />
-            <p className="text-sm">Clicks:</p>
+            <p className="text-xs md:text-sm">Clicks:</p>
             <span className="text-base font-medium">0</span>
           </div>
-          <div className="flex items-center space-x-1.5">
+          <div className="flex items-center gap-x-1.5">
             <div className="w-2 h-2 rounded-full bg-orange-500" />
-            <p className="text-sm">CTR:</p>
+            <p className="text-xs md:text-sm">CTR:</p>
             <span className="text-base font-medium">0</span>
           </div>
-          <div className="flex items-center space-x-1.5">
+          <div className="flex items-center gap-x-1.5">
             <div className="w-2 h-2 rounded-full bg-blue-500" />
-            <p className="text-sm">Subscribers:</p>
+            <p className="text-xs md:text-sm">Subscribers:</p>
             <span className="text-base font-medium">0</span>
           </div>
         </div>

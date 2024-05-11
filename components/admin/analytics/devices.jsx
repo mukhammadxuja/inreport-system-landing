@@ -43,7 +43,7 @@ const Devices = () => {
     <div>
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center space-x-1">
-          <h3 className="font-semibold leading-none tracking-tight">Devices</h3>
+          <h3 className="tab-title">Devices</h3>
         </div>
         <UpgradeDialog>
           <Button

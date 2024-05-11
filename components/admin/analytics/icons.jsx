@@ -55,7 +55,7 @@ const Icons = () => {
     <div>
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center space-x-1">
-          <h3 className="font-semibold leading-none tracking-tight">Icons</h3>
+          <h3 className="tab-title">Icons</h3>
         </div>
         <UpgradeDialog>
           <Button

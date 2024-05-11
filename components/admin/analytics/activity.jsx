@@ -47,7 +47,7 @@ const Activity = () => {
     <div>
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center space-x-1">
-          <h3 className="font-semibold leading-none tracking-tight">
+          <h3 className="tab-title">
             Activity
           </h3>
           <TooltipProvider>
