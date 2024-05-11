@@ -11,6 +11,7 @@ import Locations from "@/components/admin/analytics/locations";
 import Devices from "@/components/admin/analytics/devices";
 import Icons from "@/components/admin/analytics/icons";
 import { useSessionStorage } from "@/hooks/useSessionStorage";
+import { Separator } from "@/components/ui/separator";
 
 function AnalyticsPage() {
   const [analytics, setAnalytics] = useState("activity");
@@ -84,56 +85,26 @@ function AnalyticsPage() {
             </TabsTrigger>
           ))}
         </TabsList>
-        <TabsContent className="mt-[1.2rem] max-w-7xl mx-auto" value="activity">
+        <div className="w-full">
           <LifeTimeAnalytics />
-          <div className="mx-auto px-8 py-6 rounded-lg bg-white">
-            <Activity />
-          </div>
+        </div>
+        <TabsContent className="!mt-2" value="activity">
+          <Activity />
         </TabsContent>
-        <TabsContent
-          className="mt-[1.2rem] max-w-7xl mx-auto"
-          value="performing-links"
-        >
-          <LifeTimeAnalytics />
-          <div className="mx-auto px-8 py-6 rounded-lg bg-white">
-            <PerformingLinks />
-          </div>
+        <TabsContent className="!mt-2" value="performing-links">
+          <PerformingLinks />
         </TabsContent>
-        <TabsContent
-          className="mt-[1.2rem] max-w-7xl mx-auto"
-          value="subscribers"
-        >
-          <LifeTimeAnalytics />
-          <div className="mx-auto px-8 py-6 rounded-lg bg-white">
-            <Subscribers />
-          </div>
+        <TabsContent className="!mt-2" value="subscribers">
+          <Subscribers />
         </TabsContent>
-        <TabsContent
-          className="mt-[1.2rem] max-w-7xl mx-auto"
-          value="locations"
-        >
-          <LifeTimeAnalytics />
-          <div className="mx-auto px-8 py-6 rounded-lg bg-white">
-            <Locations />
-          </div>
+        <TabsContent className="!mt-2" value="locations">
+          <Locations />
         </TabsContent>
-        {/* <TabsContent className="mt-[1.2rem] max-w-7xl mx-auto" value="activity">
-          <LifeTimeAnalytics />
-          <div className="mx-auto px-8 py-6 rounded-lg bg-white">
-            <Activity />
-          </div>
-        </TabsContent> */}
-        <TabsContent className="mt-[1.2rem] max-w-7xl mx-auto" value="devices">
-          <LifeTimeAnalytics />
-          <div className="mx-auto px-8 py-6 rounded-lg bg-white">
-            <Devices />
-          </div>
+        <TabsContent className="!mt-2" value="devices">
+          <Devices />
         </TabsContent>
-        <TabsContent className="mt-[1.2rem] max-w-7xl mx-auto" value="icons">
-          <LifeTimeAnalytics />
-          <div className="mx-auto px-8 py-6 rounded-lg bg-white">
-            <Icons />
-          </div>
+        <TabsContent className="!mt-2" value="icons">
+          <Icons />
         </TabsContent>
       </Tabs>
     </div>

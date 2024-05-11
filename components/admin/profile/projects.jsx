@@ -14,6 +14,8 @@ import { Separator } from "@/components/ui/separator";
 
 /**
  * TODO:
+ * Do another tabs like projects
+ *
  * unique username - https://www.reddit.com/r/Firebase/comments/pvkv4d/unique_usernames_in_firebase/
  * Analytics - https://chatgpt.com/c/d7cb4d18-bb6c-47d9-99fc-93f9e5381b17
  *  FIXME:

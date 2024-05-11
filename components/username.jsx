@@ -22,13 +22,14 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import Loading from "./admin/loading";
 import NotFound from "./admin/404";
+import Image from "next/image";
 // import NotFound from "@/app/not-found/page";
 
 export default function UserProfileClient({ username }) {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [projects, setProjects] = useState([]);
-  const [userNotFound, setUserNotFound] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,9 +70,6 @@ export default function UserProfileClient({ username }) {
 
     return () => unsubscribe();
   }, [userData]);
-
-  console.log("userData", userData);
-  console.log("projects", projects);
 
   if (loading) {
     return <Loading />;
@@ -138,10 +136,16 @@ export default function UserProfileClient({ username }) {
                     {/* Map through images and render each */}
                     {project.images.map(({ url, id, name }) => (
                       <div key={id} className="w-32 rounded-md">
-                        <img
-                          src={url}
+                        <Image
+                          width={250}
+                          height={150}
+                          src={url ? url : "/assets/not-found.jpg"}
+                          quality={80}
+                          loading="lazy"
                           alt={name}
-                          className="w-full h-full object-cover rounded"
+                          className={` ${
+                            loaded && "unblur"
+                          } w-full h-full object-cover rounded cursor-pointer`}
                         />
                       </div>
                     ))}
