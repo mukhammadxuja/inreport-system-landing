@@ -20,7 +20,7 @@ function EmptyProjects({ setAddProject }) {
       </svg>
 
       <Button onClick={() => setAddProject(true)} variant="secondary">
-        Add side project
+        Add project
       </Button>
     </div>
   );

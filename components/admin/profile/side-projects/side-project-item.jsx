@@ -19,7 +19,7 @@ import { Button } from "@/components/ui/button";
 import DeleteProject from "@/components/admin/dialogs/delete-project";
 import MoveProject from "@/components/admin/dialogs/move-project";
 
-function ProjectItem({ project, setEditableId, setIsEdit }) {
+function SideProjectItem({ project, setEditableId, setIsEdit }) {
   const [loaded, setLoaded] = useState(false);
 
   function handleEdit(id) {
@@ -73,7 +73,9 @@ function ProjectItem({ project, setEditableId, setIsEdit }) {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <small
-              onClick={() => toggleHide("projects", project.id, project.hide)}
+              onClick={() =>
+                toggleHide("side-projects", project.id, project.hide)
+              }
               className="hover:underline cursor-pointer"
             >
               {project.hide ? "Show" : "Hide"}
@@ -87,7 +89,7 @@ function ProjectItem({ project, setEditableId, setIsEdit }) {
             <DeleteProject
               id={project.id}
               title={project.title}
-              source="projects"
+              source="side-projects"
             >
               <small className="hover:underline cursor-pointer">Delete</small>
             </DeleteProject>
@@ -100,11 +102,11 @@ function ProjectItem({ project, setEditableId, setIsEdit }) {
               <MoveProject
                 id={project.id}
                 projectName={project.title}
-                from="projects"
-                to="side-projects"
+                from="side-projects"
+                to="projects"
               >
                 <Button variant="ghost" size="sm">
-                  Move to Side Projects
+                  Move to Projects
                 </Button>
               </MoveProject>
             </PopoverContent>
@@ -115,4 +117,4 @@ function ProjectItem({ project, setEditableId, setIsEdit }) {
   );
 }
 
-export default ProjectItem;
+export default SideProjectItem;

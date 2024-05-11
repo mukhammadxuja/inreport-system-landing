@@ -16,18 +16,15 @@ import {
 import { auth } from "@/firebase/config";
 import { moveDocToAnotherCollection } from "@/services/firestore-service";
 
-function MoveToSideProjects({ id, projectName, children }) {
-  const [openMoveToSideProjects, setOpenMoveToSideProjects] = useState(false);
+function MoveProject({ id, projectName, from, to, children }) {
+  const [openMoveProject, setOpenMoveProject] = useState(false);
 
   async function moveProjects({ projectId }) {
     await console.log(projectId);
   }
 
   return (
-    <AlertDialog
-      open={openMoveToSideProjects}
-      onOpenChange={setOpenMoveToSideProjects}
-    >
+    <AlertDialog open={openMoveProject} onOpenChange={setOpenMoveProject}>
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
@@ -43,8 +40,8 @@ function MoveToSideProjects({ id, projectName, children }) {
               moveDocToAnotherCollection(
                 id,
                 projectName,
-                `users/${auth.currentUser.uid}/projects`,
-                `users/${auth.currentUser.uid}/side-projects`
+                `users/${auth.currentUser.uid}/${from}`,
+                `users/${auth.currentUser.uid}/${to}`
               )
             }
           >
@@ -56,4 +53,4 @@ function MoveToSideProjects({ id, projectName, children }) {
   );
 }
 
-export default MoveToSideProjects;
+export default MoveProject;

@@ -18,9 +18,9 @@ import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { handleFileRemove, updateItem } from "@/services/firestore-service";
 
-function EditProjectForm({ setIsEdit, editableId }) {
-  const { projects } = useApiContext();
-  const project = projects.find((p) => p.id === editableId);
+function EditSideProjectForm({ setIsEdit, editableId }) {
+  const { sideProjects } = useApiContext();
+  const project = sideProjects.find((p) => p.id === editableId);
 
   const [isSending, setIsSending] = useState(false);
   const [files, setFiles] = useState([]);
@@ -62,7 +62,7 @@ function EditProjectForm({ setIsEdit, editableId }) {
 
     try {
       await updateItem(
-        "projects",
+        "side-projects",
         data,
         editableId,
         files,
@@ -218,7 +218,7 @@ function EditProjectForm({ setIsEdit, editableId }) {
                       className="absolute top-1 right-1 w-6 bg-white text-black h-6 border rounded-full p-1 cursor-pointer"
                       onClick={() =>
                         handleFileRemove(
-                          "projects",
+                          "side-projects",
                           name,
                           project.id,
                           id,
@@ -252,4 +252,4 @@ function EditProjectForm({ setIsEdit, editableId }) {
   );
 }
 
-export default EditProjectForm;
+export default EditSideProjectForm;

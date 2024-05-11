@@ -160,6 +160,7 @@ export const handleFileRemove = async (
   }
 };
 
+// Move Doc to another collection
 export const moveDocToAnotherCollection = async (
   documentId,
   title,

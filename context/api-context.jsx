@@ -2,14 +2,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth, db } from "@/firebase/config";
 import { onAuthStateChanged } from "firebase/auth";
-import {
-  collection,
-  doc,
-  getDoc,
-  onSnapshot,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, doc, getDoc, onSnapshot, query } from "firebase/firestore";
 
 export const ApiContext = createContext({});
 
@@ -23,23 +16,29 @@ export const ApiContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const [projects, setProjects] = useState([]);
+  const [sideProjects, setSideProjects] = useState([]);
+
+  console.log("sideProjects", sideProjects);
 
   const projectsCollection = collection(db, `users/${userUid}/projects`);
+  const sideProjectsCollection = collection(
+    db,
+    `users/${userUid}/side-projects`
+  );
 
   useEffect(() => {
-    const q = query(projectsCollection);
-
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      let projectsArr = [];
-
-      querySnapshot.forEach((doc) => {
-        projectsArr.push({ ...doc.data(), id: doc.id });
-      });
-
-      setProjects(projectsArr);
+    const queryProjects = query(projectsCollection);
+    onSnapshot(queryProjects, (snapshot) => {
+      setProjects(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });
 
-    return () => unsubscribe();
+    const querySideProjects = query(sideProjectsCollection);
+    onSnapshot(querySideProjects, (snapshot) => {
+      setSideProjects(
+        snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      );
+    });
+
   }, [auth.currentUser]);
 
   // Get user from google auth
@@ -68,7 +67,7 @@ export const ApiContextProvider = ({ children }) => {
     });
   }, []);
 
-  const values = { user, userUid, loading, userData, projects, setProjects };
+  const values = { user, userUid, loading, userData, projects, sideProjects };
 
   return <ApiContext.Provider value={values}>{children}</ApiContext.Provider>;
 };

@@ -13,6 +13,7 @@ import Awards from "@/components/admin/profile/awards";
 import Skills from "@/components/admin/profile/skills";
 import Contacts from "@/components/admin/profile/contact";
 import { useSessionStorage } from "@/hooks/useSessionStorage";
+import SideProjects from "@/components/admin/profile/side-projects";
 
 function Profile() {
   const [profile, setProfile] = useState("general");
@@ -27,6 +28,11 @@ function Profile() {
       id: 0,
       title: "Projects",
       tag: "projects",
+    },
+    {
+      id: 0,
+      title: "Side Projects",
+      tag: "side-projects",
     },
     {
       id: 0,
@@ -103,6 +109,9 @@ function Profile() {
         </TabsContent>
         <TabsContent value="projects">
           <Projects />
+        </TabsContent>
+        <TabsContent value="side-projects">
+          <SideProjects />
         </TabsContent>
         <TabsContent value="experience">
           <Experience />

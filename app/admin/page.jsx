@@ -14,7 +14,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { EllipsesIcon } from "@/components/icons";
-import MoveToSideProjects from "@/components/admin/dialogs/move-to-side-projects";
+import MoveToSideProjects from "@/components/admin/dialogs/move-project";
 import { Button } from "@/components/ui/button";
 
 // TODO: refactor and make sure all function works before transfer to another file

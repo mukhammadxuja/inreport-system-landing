@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { deleteItem } from "@/services/firestore-service";
 
-function DeleteProject({ id, title, children }) {
+function DeleteProject({ id, title, source, children }) {
   const [openDeleteProject, setOpenDeleteProject] = useState(false);
 
   return (
@@ -30,7 +30,7 @@ function DeleteProject({ id, title, children }) {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={() => deleteItem("projects", id)}>
+          <AlertDialogAction onClick={() => deleteItem(source, id)}>
             Delete
           </AlertDialogAction>
         </AlertDialogFooter>
