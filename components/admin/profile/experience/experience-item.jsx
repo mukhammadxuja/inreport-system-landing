@@ -22,7 +22,8 @@ function ExperienceItem({ experience, setEditableId, setIsEdit }) {
       className="grid grid-cols-1 md:grid-cols-3 bg-gray-50 py-2 px-4 rounded-md border"
     >
       <p className="hidden md:block">
-        {experience.from} — {experience.to}
+        {experience.from} — {experience?.to}
+        {experience?.present === "on" && "Present"}
       </p>
       <div className="space-y-3 col-span-2">
         <div className={`${experience.hide && "blur-[1.5px]"}`}>

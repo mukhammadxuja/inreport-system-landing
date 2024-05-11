@@ -6,7 +6,7 @@ import { toast } from "sonner";
 
 // Icons
 import { LoadingIcon } from "@/components/icons";
-import { X } from "lucide-react";
+import { Presentation, X } from "lucide-react";
 
 // UI
 import { Button } from "@/components/ui/button";
@@ -18,6 +18,7 @@ import { useState } from "react";
 import { addItem } from "@/services/firestore-service";
 import Image from "next/image";
 import { MAX_FILE_SIZE } from "@/utils/variables";
+import { Checkbox } from "@/components/ui/checkbox";
 
 function AddSideExperienceForm({ setAddExperience }) {
   const form = useForm();
@@ -25,6 +26,7 @@ function AddSideExperienceForm({ setAddExperience }) {
   const { errors, isDirty, isSubmitting } = formState;
 
   const [isSending, setIsSending] = useState(false);
+  const [present, setPresent] = useState(false);
   const [files, setFiles] = useState([]);
 
   const handleFileChange = (event) => {
@@ -76,7 +78,7 @@ function AddSideExperienceForm({ setAddExperience }) {
       className="space-y-3 md:space-y-6 mt-5"
       noValidate
     >
-      <div className="flex flex-col md:flex-row md:items-center gap-3">
+      <div className="flex flex-col md:flex-row md:items-start gap-3">
         <div className="space-y-1 w-full">
           <Label htmlFor="from">
             From<span className="text-red-500">*</span>
@@ -84,6 +86,7 @@ function AddSideExperienceForm({ setAddExperience }) {
           <Input
             id="from"
             type="number"
+            maxLength="4"
             placeholder="2019"
             {...register("from", {
               required: {
@@ -94,22 +97,40 @@ function AddSideExperienceForm({ setAddExperience }) {
           />
           <p className="text-xs text-red-500">{errors.from?.message}</p>
         </div>
+
         <div className="space-y-1 w-full">
-          <Label htmlFor="to">
-            To<span className="text-red-500">*</span>
-          </Label>
-          <Input
-            type="number"
-            id="to"
-            placeholder="2024"
-            {...register("to", {
-              required: {
-                value: true,
-                message: "To is required",
-              },
-            })}
-          />
-          <p className="text-xs text-red-500">{errors.to?.message}</p>
+          <div className="space-y-1 w-full">
+            <Label htmlFor="to">
+              To<span className="text-red-500">*</span>
+            </Label>
+            <Input
+              disabled={present}
+              maxLength={4}
+              type="number"
+              id="to"
+              placeholder="2024"
+              {...register("to", {
+                required: {
+                  value: !present,
+                  message: "To is required",
+                },
+              })}
+            />
+            <p className="text-xs text-red-500">{errors.to?.message}</p>
+          </div>
+          <div className="flex items-center space-x-1 w-fit">
+            <Checkbox
+              checked={present}
+              onCheckedChange={setPresent}
+              className="rounded"
+              id="present"
+              placeholder="2024"
+              {...register("present")}
+            />
+            <Label htmlFor="present">Present</Label>
+
+            <p className="text-xs text-red-500">{errors.year?.message}</p>
+          </div>
         </div>
       </div>
       <div className="flex flex-col md:flex-row md:items-center gap-3">

@@ -1,8 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
+import { useState } from "react";
+import Image from "next/image";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { addItem } from "@/services/firestore-service";
+import { MAX_FILE_SIZE } from "@/utils/variables";
 
 // Icons
 import { LoadingIcon } from "@/components/icons";
@@ -14,10 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
-import { addItem } from "@/services/firestore-service";
-import Image from "next/image";
-import { MAX_FILE_SIZE } from "@/utils/variables";
+import { Checkbox } from "@/components/ui/checkbox";
 
 function AddProjectForm({ setAddProject }) {
   const form = useForm();
@@ -93,6 +94,7 @@ function AddProjectForm({ setAddProject }) {
           />
           <p className="text-xs text-red-500">{errors.title?.message}</p>
         </div>
+
         <div className="space-y-1 w-full">
           <Label htmlFor="year">
             Year<span className="text-red-500">*</span>

@@ -17,12 +17,14 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { handleFileRemove, updateItem } from "@/services/firestore-service";
+import { Checkbox } from "@/components/ui/checkbox";
 
 function EditSideExperienceForm({ setIsEdit, editableId }) {
   const { experiences } = useApiContext();
   const project = experiences.find((p) => p.id === editableId);
 
   const [isSending, setIsSending] = useState(false);
+  const [present, setPresent] = useState(project?.present);
   const [files, setFiles] = useState([]);
   const images = [...project.images];
 
@@ -104,21 +106,38 @@ function EditSideExperienceForm({ setIsEdit, editableId }) {
           <p className="text-xs text-red-500">{errors.from?.message}</p>
         </div>
         <div className="space-y-1 w-full">
-          <Label htmlFor="to">
-            To<span className="text-red-500">*</span>
-          </Label>
-          <Input
-            type="number"
-            id="to"
-            placeholder="2024"
-            {...register("to", {
-              required: {
-                value: true,
-                message: "To is required",
-              },
-            })}
-          />
-          <p className="text-xs text-red-500">{errors.to?.message}</p>
+          <div className="space-y-1 w-full">
+            <Label htmlFor="to">
+              To<span className="text-red-500">*</span>
+            </Label>
+            <Input
+              disabled={present}
+              maxLength={4}
+              type="number"
+              id="to"
+              placeholder="2024"
+              {...register("to", {
+                required: {
+                  value: !present,
+                  message: "To is required",
+                },
+              })}
+            />
+            <p className="text-xs text-red-500">{errors.to?.message}</p>
+          </div>
+          <div className="flex items-center space-x-1 w-fit">
+            <Checkbox
+              checked={present}
+              onCheckedChange={setPresent}
+              className="rounded"
+              id="present"
+              placeholder="2024"
+              {...register("present")}
+            />
+            <Label htmlFor="present">Present</Label>
+
+            <p className="text-xs text-red-500">{errors.year?.message}</p>
+          </div>
         </div>
       </div>
       <div className="flex flex-col md:flex-row md:items-center gap-3">
