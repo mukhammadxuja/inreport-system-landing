@@ -11,6 +11,13 @@ import EmptyProjects from "./empty";
 // UI
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { CircleHelpIcon } from "@/components/icons";
 
 /**
  * TODO:
@@ -31,7 +38,22 @@ const SideProjects = () => {
   return (
     <Fragment>
       <div className="flex items-center justify-between mb-3">
-        <h3 className="tab-title">Side Projects</h3>
+        <div className="flex items-center space-x-1.5">
+          <h3 className="tab-title">Side Projects</h3>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <CircleHelpIcon />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p className="text-xs text-center">
+                  A hobby programming project that <br /> a developer builds
+                  alongside their job.
+                </p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
         <Button
           onClick={() => setAddProject(true)}
           className={addProject || isEdit ? "hidden" : "block"}
