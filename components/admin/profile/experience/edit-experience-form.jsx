@@ -18,9 +18,9 @@ import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { handleFileRemove, updateItem } from "@/services/firestore-service";
 
-function EditProjectForm({ setIsEdit, editableId }) {
-  const { projects } = useApiContext();
-  const project = projects.find((p) => p.id === editableId);
+function EditSideExperienceForm({ setIsEdit, editableId }) {
+  const { experiences } = useApiContext();
+  const project = experiences.find((p) => p.id === editableId);
 
   const [isSending, setIsSending] = useState(false);
   const [files, setFiles] = useState([]);
@@ -36,10 +36,12 @@ function EditProjectForm({ setIsEdit, editableId }) {
 
   const defaultValues = useMemo(() => {
     return {
+      from: project?.from,
+      to: project?.to,
       title: project?.title,
-      year: project?.year,
       company: project?.company,
-      link: project?.link,
+      location: project?.location,
+      url: project?.url,
       description: project?.description,
     };
   }, [project]);
@@ -56,13 +58,13 @@ function EditProjectForm({ setIsEdit, editableId }) {
   };
 
   // Update project to database
-  const updateProject = async (data) => {
+  const updateExperience = async (data) => {
     if (isSending) return;
     setIsSending(true);
 
     try {
       await updateItem(
-        "projects",
+        "experiences",
         data,
         editableId,
         files,
@@ -70,7 +72,7 @@ function EditProjectForm({ setIsEdit, editableId }) {
       ).finally(() => {
         setIsEdit(false);
         setIsSending(false);
-        toast("Project updated successfully");
+        toast("Experience updated successfully");
       });
     } catch (error) {
       console.log(error);
@@ -79,77 +81,91 @@ function EditProjectForm({ setIsEdit, editableId }) {
 
   return (
     <form
-      onSubmit={handleSubmit(updateProject)}
+      onSubmit={handleSubmit(updateExperience)}
       className="space-y-3 md:space-y-6 mt-5"
       noValidate
     >
       <div className="flex flex-col md:flex-row md:items-center gap-3">
         <div className="space-y-1 w-full">
-          <Label htmlFor="title">
-            Title<span className="text-red-500">*</span>
+          <Label htmlFor="from">
+            From<span className="text-red-500">*</span>
           </Label>
           <Input
-            id="title"
-            placeholder="My Great Project"
-            {...register("title", {
+            id="from"
+            type="number"
+            placeholder="2019"
+            {...register("from", {
               required: {
                 value: true,
-                message: "Title is required",
+                message: "From is required",
               },
             })}
           />
-          <p className="text-xs text-red-500">{errors.title?.message}</p>
+          <p className="text-xs text-red-500">{errors.from?.message}</p>
         </div>
         <div className="space-y-1 w-full">
-          <Label htmlFor="year">
-            Year<span className="text-red-500">*</span>
+          <Label htmlFor="to">
+            To<span className="text-red-500">*</span>
           </Label>
           <Input
             type="number"
-            id="year"
+            id="to"
             placeholder="2024"
-            {...register("year", {
+            {...register("to", {
               required: {
                 value: true,
-                message: "Year is required",
-              },
-              maxLength: {
-                value: 4,
-                message: "Year is too long",
+                message: "To is required",
               },
             })}
           />
-          <p className="text-xs text-red-500">{errors.year?.message}</p>
+          <p className="text-xs text-red-500">{errors.to?.message}</p>
         </div>
       </div>
       <div className="flex flex-col md:flex-row md:items-center gap-3">
         <div className="space-y-1 w-full">
-          <Label htmlFor="company">Company or client</Label>
+          <Label htmlFor="title">Title</Label>
+          <Input
+            id="title"
+            placeholder="Product Designer"
+            {...register("title")}
+          />
+          <p className="text-xs text-red-500">{errors.title?.message}</p>
+        </div>
+        <div className="space-y-1 w-full">
+          <Label htmlFor="company">
+            Company or client<span className="text-red-500">*</span>
+          </Label>
           <Input
             id="company"
             placeholder="Acme inc."
             {...register("company", {
               required: {
                 value: true,
-                message: "Company name is required",
+                message: "Company is required",
               },
             })}
           />
           <p className="text-xs text-red-500">{errors.company?.message}</p>
         </div>
+      </div>
+      <div className="flex flex-col md:flex-row md:items-center gap-3">
         <div className="space-y-1 w-full">
-          <Label htmlFor="link">Link to project</Label>
+          <Label htmlFor="location">Location</Label>
           <Input
-            id="link"
-            placeholder="https://example.com"
-            {...register("link", {
-              required: {
-                value: true,
-                message: "Link is required",
-              },
-            })}
+            id="location"
+            placeholder="Where was it"
+            {...register("location")}
           />
-          <p className="text-xs text-red-500">{errors.link?.message}</p>
+          <p className="text-xs text-red-500">{errors.location?.message}</p>
+        </div>
+        <div className="space-y-1 w-full">
+          <Label htmlFor="url">URL</Label>
+          <Input
+            id="url"
+            placeholder="https://example.com"
+            {...register("url")}
+          />
+          <p className="text-xs text-red-500">{errors.url?.message}</p>
         </div>
       </div>
       <div className="space-y-1 w-full">
@@ -159,13 +175,9 @@ function EditProjectForm({ setIsEdit, editableId }) {
           rows={4}
           placeholder="Cool project"
           {...register("description", {
-            required: {
-              value: true,
-              message: "Name is required",
-            },
             maxLength: {
-              value: 300,
-              message: "Description is too long (only 300)",
+              value: 200,
+              message: "Name is too long",
             },
           })}
         />
@@ -218,7 +230,7 @@ function EditProjectForm({ setIsEdit, editableId }) {
                       className="absolute top-1 right-1 w-6 bg-white text-black h-6 border rounded-full p-1 cursor-pointer"
                       onClick={() =>
                         handleFileRemove(
-                          "projects",
+                          "experiences",
                           name,
                           project.id,
                           id,
@@ -245,11 +257,11 @@ function EditProjectForm({ setIsEdit, editableId }) {
         </Button>
         <Button disabled={isSubmitting} className="rounded-sm" type="submit">
           {isSubmitting && <LoadingIcon />}
-          Edit
+          {isSubmitting ? "Updating" : "Update"}
         </Button>
       </div>
     </form>
   );
 }
 
-export default EditProjectForm;
+export default EditSideExperienceForm;

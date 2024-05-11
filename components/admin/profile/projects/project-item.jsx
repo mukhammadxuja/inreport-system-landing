@@ -99,7 +99,7 @@ function ProjectItem({ project, setEditableId, setIsEdit }) {
             <PopoverContent align="end" className="w-fit p-2">
               <MoveProject
                 id={project.id}
-                projectName={project.title}
+                name={project.title}
                 from="projects"
                 to="side-projects"
               >

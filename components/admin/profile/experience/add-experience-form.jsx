@@ -19,7 +19,7 @@ import { addItem } from "@/services/firestore-service";
 import Image from "next/image";
 import { MAX_FILE_SIZE } from "@/utils/variables";
 
-function AddSideProjectForm({ setAddProject }) {
+function AddSideExperienceForm({ setAddExperience }) {
   const form = useForm();
   const { register, formState, handleSubmit } = form;
   const { errors, isDirty, isSubmitting } = formState;
@@ -60,10 +60,10 @@ function AddSideProjectForm({ setAddProject }) {
     setIsSending(true);
 
     try {
-      await addItem("side-projects", data, files).finally(() => {
-        setAddProject(false);
+      await addItem("experiences", data, files).finally(() => {
+        setAddExperience(false);
         setIsSending(false);
-        toast("Project updated successfully");
+        toast("Project added successfully");
       });
     } catch (error) {
       console.log(error);
@@ -78,71 +78,85 @@ function AddSideProjectForm({ setAddProject }) {
     >
       <div className="flex flex-col md:flex-row md:items-center gap-3">
         <div className="space-y-1 w-full">
-          <Label htmlFor="title">
-            Title<span className="text-red-500">*</span>
+          <Label htmlFor="from">
+            From<span className="text-red-500">*</span>
           </Label>
           <Input
-            id="title"
-            placeholder="My Great Project"
-            {...register("title", {
+            id="from"
+            type="number"
+            placeholder="2019"
+            {...register("from", {
               required: {
                 value: true,
-                message: "Title is required",
+                message: "From is required",
               },
             })}
           />
-          <p className="text-xs text-red-500">{errors.title?.message}</p>
+          <p className="text-xs text-red-500">{errors.from?.message}</p>
         </div>
         <div className="space-y-1 w-full">
-          <Label htmlFor="year">
-            Year<span className="text-red-500">*</span>
+          <Label htmlFor="to">
+            To<span className="text-red-500">*</span>
           </Label>
           <Input
             type="number"
-            id="year"
+            id="to"
             placeholder="2024"
-            {...register("year", {
+            {...register("to", {
               required: {
                 value: true,
-                message: "Year is required",
-              },
-              maxLength: {
-                value: 4,
-                message: "Year is too long",
+                message: "To is required",
               },
             })}
           />
-          <p className="text-xs text-red-500">{errors.year?.message}</p>
+          <p className="text-xs text-red-500">{errors.to?.message}</p>
         </div>
       </div>
       <div className="flex flex-col md:flex-row md:items-center gap-3">
         <div className="space-y-1 w-full">
-          <Label htmlFor="company">Company or client</Label>
+          <Label htmlFor="title">Title</Label>
+          <Input
+            id="title"
+            placeholder="Product Designer"
+            {...register("title")}
+          />
+          <p className="text-xs text-red-500">{errors.title?.message}</p>
+        </div>
+        <div className="space-y-1 w-full">
+          <Label htmlFor="company">
+            Company or client<span className="text-red-500">*</span>
+          </Label>
           <Input
             id="company"
             placeholder="Acme inc."
             {...register("company", {
               required: {
                 value: true,
-                message: "Company name is required",
+                message: "Company is required",
               },
             })}
           />
           <p className="text-xs text-red-500">{errors.company?.message}</p>
         </div>
+      </div>
+      <div className="flex flex-col md:flex-row md:items-center gap-3">
         <div className="space-y-1 w-full">
-          <Label htmlFor="link">Link to project</Label>
+          <Label htmlFor="location">Location</Label>
           <Input
-            id="link"
-            placeholder="https://example.com"
-            {...register("link", {
-              required: {
-                value: true,
-                message: "Link is required",
-              },
-            })}
+            id="location"
+            placeholder="Where was it"
+            {...register("location")}
           />
-          <p className="text-xs text-red-500">{errors.link?.message}</p>
+          <p className="text-xs text-red-500">{errors.location?.message}</p>
+        </div>
+        <div className="space-y-1 w-full">
+          <Label htmlFor="url">URL</Label>
+          <Input
+            id="url"
+            placeholder="https://example.com"
+            {...register("url")}
+          />
+          <p className="text-xs text-red-500">{errors.url?.message}</p>
         </div>
       </div>
       <div className="space-y-1 w-full">
@@ -152,13 +166,9 @@ function AddSideProjectForm({ setAddProject }) {
           rows={4}
           placeholder="Cool project"
           {...register("description", {
-            required: {
-              value: true,
-              message: "Name is required",
-            },
             maxLength: {
-              value: 300,
-              message: "Description is too long (only 300)",
+              value: 200,
+              message: "Name is too long",
             },
           })}
         />
@@ -261,7 +271,7 @@ function AddSideProjectForm({ setAddProject }) {
           disabled={isSubmitting}
           className="rounded-sm"
           variant="secondary"
-          onClick={() => setAddProject(false)}
+          onClick={() => setAddExperience(false)}
         >
           Cancel
         </Button>
@@ -271,11 +281,11 @@ function AddSideProjectForm({ setAddProject }) {
           type="submit"
         >
           {isSubmitting && <LoadingIcon />}
-          Save
+          {isSubmitting ? "Saving" : "Save"}
         </Button>
       </div>
     </form>
   );
 }
 
-export default AddSideProjectForm;
+export default AddSideExperienceForm;

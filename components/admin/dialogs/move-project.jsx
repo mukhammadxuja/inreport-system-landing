@@ -16,7 +16,7 @@ import {
 import { auth } from "@/firebase/config";
 import { moveDocToAnotherCollection } from "@/services/firestore-service";
 
-function MoveProject({ id, projectName, from, to, children }) {
+function MoveProject({ id, name, from, to, children }) {
   const [openMoveProject, setOpenMoveProject] = useState(false);
 
   async function moveProjects({ projectId }) {
@@ -30,7 +30,7 @@ function MoveProject({ id, projectName, from, to, children }) {
         <AlertDialogHeader>
           <AlertDialogTitle>Move item</AlertDialogTitle>
           <AlertDialogDescription>
-            {projectName} will be moved to your Side Projects.
+            {name} will be moved to your Side Projects.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -39,7 +39,7 @@ function MoveProject({ id, projectName, from, to, children }) {
             onClick={() =>
               moveDocToAnotherCollection(
                 id,
-                projectName,
+                name,
                 `users/${auth.currentUser.uid}/${from}`,
                 `users/${auth.currentUser.uid}/${to}`
               )

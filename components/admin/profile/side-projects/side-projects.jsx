@@ -3,14 +3,14 @@ import React, { Fragment, useState } from "react";
 // Context
 import { useApiContext } from "@/context/api-context";
 // Child Components
-import EmptySideProjects from "./projects/empty";
-import AddSideProjectForm from "./side-projects/add-side-project-form";
-import EditSideProjectForm from "./side-projects/edit-side-project-form";
+import SideProjectItem from "./side-project-item";
+import EditSideProjectForm from "./edit-side-project-form";
+import AddSideProjectForm from "./add-side-project-form";
+import EmptyProjects from "./empty";
 
 // UI
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import SideProjectItem from "./side-projects/side-project-item";
 
 /**
  * TODO:
@@ -64,7 +64,7 @@ const SideProjects = () => {
               ))}
             </div>
           ) : (
-            <EmptySideProjects setAddProject={setAddProject} />
+            <EmptyProjects setAddProject={setAddProject} />
           )}
         </Fragment>
       )}
