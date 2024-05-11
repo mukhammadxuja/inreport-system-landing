@@ -17,6 +17,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { addItem } from "@/services/firestore-service";
 import Image from "next/image";
+import { MAX_FILE_SIZE } from "@/utils/variables";
 
 function AddProjectForm({ setAddProject }) {
   const form = useForm();
@@ -175,7 +176,7 @@ function AddProjectForm({ setAddProject }) {
                 </p>
               </div>
               <p className="text-sm text-gray-500">
-                PNG, JPG or GIF (max. 800x400px)
+                PNG, JPG or GIF (max. 5MG)
               </p>
             </div>
             <input
@@ -198,6 +199,12 @@ function AddProjectForm({ setAddProject }) {
                 ref={provided.innerRef}
               >
                 {files.map((file, index) => {
+                  if (file.size > MAX_FILE_SIZE) {
+                    setFiles([]);
+                    toast(`${file.name} exceeds the maximum file size of 5MB.`);
+                    return null;
+                  }
+
                   return (
                     <Draggable
                       key={file.name}

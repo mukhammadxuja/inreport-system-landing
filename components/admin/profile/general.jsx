@@ -43,7 +43,7 @@ const General = () => {
             src={image ? URL.createObjectURL(image) : userData?.photoURL}
             alt={userData?.displayName}
           />
-          <AvatarFallback>{userData?.displayName}</AvatarFallback>
+          <AvatarFallback>{userData?.displayName?.charAt(0)}</AvatarFallback>
         </Avatar>
         <div className="flex items-center space-x-2 w-full overflow-hidden">
           <Button disabled={!image} onClick={removeFile} variant="secondary">
