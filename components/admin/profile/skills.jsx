@@ -21,6 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { FancyMultiSelect } from "@/components/ui/multi-select";
 
 const Skills = () => {
   const { user } = useApiContext();
@@ -193,6 +194,7 @@ const Form = ({ userData, setAddSkill }) => {
             <SelectItem value="light">Light</SelectItem>
           </SelectContent>
         </Select>
+        <FancyMultiSelect />
         <p className="text-xs text-red-500">{errors.from?.message}</p>
       </div>
       <div className="space-x-2 flex justify-end">

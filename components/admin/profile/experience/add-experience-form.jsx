@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { useForm } from "react-hook-form";
+import { useWatch, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 // Icons
@@ -22,7 +22,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 function AddSideExperienceForm({ setAddExperience }) {
   const form = useForm();
-  const { register, formState, handleSubmit } = form;
+  const { register, formState, handleSubmit, control } = form;
   const { errors, isDirty, isSubmitting } = formState;
 
   const [isSending, setIsSending] = useState(false);
@@ -62,7 +62,7 @@ function AddSideExperienceForm({ setAddExperience }) {
     setIsSending(true);
 
     try {
-      await addItem("experiences", data, files).finally(() => {
+      await addItem("experiences", { ...data, present }, files).finally(() => {
         setAddExperience(false);
         setIsSending(false);
         toast("Project added successfully");
@@ -125,7 +125,6 @@ function AddSideExperienceForm({ setAddExperience }) {
               className="rounded"
               id="present"
               placeholder="2024"
-              {...register("present")}
             />
             <Label htmlFor="present">Present</Label>
 
@@ -287,6 +286,7 @@ function AddSideExperienceForm({ setAddExperience }) {
         )}
       </div>
       <Separator />
+
       <div className="space-x-2 flex justify-end">
         <Button
           disabled={isSubmitting}

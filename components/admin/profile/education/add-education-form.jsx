@@ -1,12 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
+import { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import Image from "next/image";
+
+import { addItem } from "@/services/firestore-service";
+import { MAX_FILE_SIZE } from "@/utils/variables";
 
 // Icons
 import { LoadingIcon } from "@/components/icons";
-import { Presentation, X } from "lucide-react";
+import { X } from "lucide-react";
 
 // UI
 import { Button } from "@/components/ui/button";
@@ -14,10 +19,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
-import { addItem } from "@/services/firestore-service";
-import Image from "next/image";
-import { MAX_FILE_SIZE } from "@/utils/variables";
 import { Checkbox } from "@/components/ui/checkbox";
 
 function AddSideExperienceForm({ setAddEducation }) {
@@ -28,8 +29,6 @@ function AddSideExperienceForm({ setAddEducation }) {
   const [isSending, setIsSending] = useState(false);
   const [present, setPresent] = useState(false);
   const [files, setFiles] = useState([]);
-
-  console.log(present);
 
   const handleFileChange = (event) => {
     setFiles([...files, ...event.target.files]);
@@ -66,7 +65,7 @@ function AddSideExperienceForm({ setAddEducation }) {
     console.log(data);
 
     try {
-      await addItem("educations", data, files).finally(() => {
+      await addItem("educations", { ...data, present }, files).finally(() => {
         setAddEducation(false);
         setIsSending(false);
         toast("Project added successfully");
