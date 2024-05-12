@@ -2,21 +2,18 @@
 import React, { useCallback, useState } from "react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Projects from "@/components/admin/profile/projects";
-import Experience from "@/components/admin/profile/experience";
-import Volunteering from "@/components/admin/profile/volunteering";
-import Education from "@/components/admin/profile/education";
+import { useSessionStorage } from "@/hooks/useSessionStorage";
+
 import Certifications from "@/components/admin/profile/certifications";
 import Awards from "@/components/admin/profile/awards";
 import Skills from "@/components/admin/profile/skills";
 import Contacts from "@/components/admin/profile/contact";
 import Subscription from "@/components/admin/settings/subscription";
-import { useSessionStorage } from "@/hooks/useSessionStorage";
 
 function SettingsPage() {
   const [settings, setSettings] = useState("subscription");
 
-  const profileTabs = [
+  const settingsTab = [
     {
       id: 0,
       title: "Subscription",
@@ -69,7 +66,7 @@ function SettingsPage() {
         className="w-full mt-0"
       >
         <TabsList className="sticky top-4 z-40 h-12 mx-auto flex items-center space-x-1 w-fit p-1 shadow-md rounded-2xl duration-300 bg-white border border-border group">
-          {profileTabs.map((profile) => (
+          {settingsTab.map((profile) => (
             <TabsTrigger
               key={profile.title}
               className="bg-background data-[state=active]:bg-[#f3f3f1] h-10 py-2"
@@ -85,30 +82,6 @@ function SettingsPage() {
           value="subscription"
         >
           <Subscription />
-        </TabsContent>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="projects"
-        >
-          <Projects />
-        </TabsContent>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="experience"
-        >
-          <Experience />
-        </TabsContent>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="volunteering"
-        >
-          <Volunteering />
-        </TabsContent>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="education"
-        >
-          <Education />
         </TabsContent>
         <TabsContent
           className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
