@@ -21,13 +21,13 @@ import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 
-function AddSideExperienceForm({ setAddEducation }) {
+function AddCertificationForm({ setAddCertification }) {
   const form = useForm();
   const { register, formState, handleSubmit } = form;
   const { errors, isDirty, isSubmitting } = formState;
 
   const [isSending, setIsSending] = useState(false);
-  const [present, setPresent] = useState(false);
+  const [notExpire, setNotExpire] = useState(false);
   const [files, setFiles] = useState([]);
 
   const handleFileChange = (event) => {
@@ -57,19 +57,19 @@ function AddSideExperienceForm({ setAddEducation }) {
     setFiles(items);
   }
 
-  // Add project to database
-  const addProject = async (data) => {
+  // Add certification to database
+  const addCertification = async (data) => {
     if (isSending) return;
     setIsSending(true);
 
-    console.log(data);
-
     try {
-      await addItem("educations", { ...data, present }, files).finally(() => {
-        setAddEducation(false);
-        setIsSending(false);
-        toast("Project added successfully");
-      });
+      await addItem("certifications", { ...data, notExpire }, files).finally(
+        () => {
+          setAddCertification(false);
+          setIsSending(false);
+          toast("Certification added successfully");
+        }
+      );
     } catch (error) {
       console.log(error);
     }
@@ -77,60 +77,60 @@ function AddSideExperienceForm({ setAddEducation }) {
 
   return (
     <form
-      onSubmit={handleSubmit(addProject)}
+      onSubmit={handleSubmit(addCertification)}
       className="space-y-3 md:space-y-6 mt-5"
       noValidate
     >
       <div className="flex flex-col md:flex-row md:items-start gap-3">
         <div className="space-y-1 w-full">
-          <Label htmlFor="from">
-            From<span className="text-red-500">*</span>
+          <Label htmlFor="issued">
+            Issued<span className="text-red-500">*</span>
           </Label>
           <Input
-            id="from"
+            id="issued"
             type="number"
             maxLength="4"
             placeholder="2019"
-            {...register("from", {
+            {...register("issued", {
               required: {
                 value: true,
-                message: "From is required",
+                message: "Issued is required",
               },
             })}
           />
-          <p className="text-xs text-red-500">{errors.from?.message}</p>
+          <p className="text-xs text-red-500">{errors.issued?.message}</p>
         </div>
 
         <div className="space-y-1 w-full">
           <div className="space-y-1 w-full">
-            <Label htmlFor="to">
-              To{!present && <span className="text-red-500">*</span>}
+            <Label htmlFor="expires">
+              Expires{!notExpire && <span className="text-red-500">*</span>}
             </Label>
             <Input
-              disabled={present}
+              disabled={notExpire}
               maxLength={4}
               type="number"
-              id="to"
+              id="expires"
               placeholder="2024"
-              {...register("to", {
+              {...register("expires", {
                 required: {
-                  value: !present,
-                  message: "To is required",
+                  value: !notExpire,
+                  message: "Expires is required",
                 },
               })}
             />
-            <p className="text-xs text-red-500">{errors.to?.message}</p>
+            <p className="text-xs text-red-500">{errors.expires?.message}</p>
           </div>
           <div className="flex items-center space-x-1 w-fit">
             <Checkbox
-              checked={present}
-              onCheckedChange={setPresent}
+              checked={notExpire}
+              onCheckedChange={setNotExpire}
               className="rounded"
-              id="present"
+              id="notExpire"
               placeholder="2024"
-              {...register("present")}
+              {...register("notExpire")}
             />
-            <Label htmlFor="present">Present</Label>
+            <Label htmlFor="notExpire">Does not expire</Label>
 
             <p className="text-xs text-red-500">{errors.year?.message}</p>
           </div>
@@ -138,57 +138,46 @@ function AddSideExperienceForm({ setAddEducation }) {
       </div>
       <div className="flex flex-col md:flex-row md:items-center gap-3">
         <div className="space-y-1 w-full">
-          <Label htmlFor="title">Title</Label>
+          <Label htmlFor="name">Name</Label>
           <Input
-            id="title"
-            placeholder="Product Designer"
-            {...register("title")}
+            id="name"
+            placeholder="My certification"
+            {...register("name")}
           />
-          <p className="text-xs text-red-500">{errors.title?.message}</p>
+          <p className="text-xs text-red-500">{errors.name?.message}</p>
         </div>
         <div className="space-y-1 w-full">
-          <Label htmlFor="company">
-            Company or client<span className="text-red-500">*</span>
+          <Label htmlFor="organization">
+            Organization<span className="text-red-500">*</span>
           </Label>
           <Input
-            id="company"
+            id="organization"
             placeholder="Acme inc."
-            {...register("company", {
+            {...register("organization", {
               required: {
                 value: true,
-                message: "Company is required",
+                message: "Organization is required",
               },
             })}
           />
-          <p className="text-xs text-red-500">{errors.company?.message}</p>
+          <p className="text-xs text-red-500">{errors.organization?.message}</p>
         </div>
       </div>
-      <div className="flex flex-col md:flex-row md:items-center gap-3">
-        <div className="space-y-1 w-full">
-          <Label htmlFor="location">Location</Label>
-          <Input
-            id="location"
-            placeholder="Where was it"
-            {...register("location")}
-          />
-          <p className="text-xs text-red-500">{errors.location?.message}</p>
-        </div>
-        <div className="space-y-1 w-full">
-          <Label htmlFor="url">URL</Label>
-          <Input
-            id="url"
-            placeholder="https://example.com"
-            {...register("url")}
-          />
-          <p className="text-xs text-red-500">{errors.url?.message}</p>
-        </div>
+      <div className="space-y-1 w-full">
+        <Label htmlFor="url">URL</Label>
+        <Input
+          id="url"
+          placeholder="https://example.com"
+          {...register("url")}
+        />
+        <p className="text-xs text-red-500">{errors.url?.message}</p>
       </div>
       <div className="space-y-1 w-full">
         <Label htmlFor="description">Description</Label>
         <Textarea
           id="description"
           rows={4}
-          placeholder="Cool project"
+          placeholder="Add some details, e.g. ID number"
           {...register("description", {
             maxLength: {
               value: 200,
@@ -294,7 +283,7 @@ function AddSideExperienceForm({ setAddEducation }) {
           disabled={isSubmitting}
           className="rounded-sm"
           variant="secondary"
-          onClick={() => setAddEducation(false)}
+          onClick={() => setAddCertification(false)}
         >
           Cancel
         </Button>
@@ -311,4 +300,4 @@ function AddSideExperienceForm({ setAddEducation }) {
   );
 }
 
-export default AddSideExperienceForm;
+export default AddCertificationForm;

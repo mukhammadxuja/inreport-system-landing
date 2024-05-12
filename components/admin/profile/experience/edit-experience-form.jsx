@@ -108,7 +108,7 @@ function EditSideExperienceForm({ setIsEdit, editableId }) {
         <div className="space-y-1 w-full">
           <div className="space-y-1 w-full">
             <Label htmlFor="to">
-              To<span className="text-red-500">*</span>
+              To{!present && <span className="text-red-500">*</span>}
             </Label>
             <Input
               disabled={present}

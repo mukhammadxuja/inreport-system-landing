@@ -19,14 +19,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { handleFileRemove, updateItem } from "@/services/firestore-service";
 import { Checkbox } from "@/components/ui/checkbox";
 
-function EditSideEducationForm({ setIsEdit, editableId }) {
-  const { educations } = useApiContext();
-  const education = educations.find((p) => p.id === editableId);
+function EditCertificationForm({ setIsEdit, editableId }) {
+  const { certifications } = useApiContext();
+  const certification = certifications.find((p) => p.id === editableId);
 
   const [isSending, setIsSending] = useState(false);
-  const [present, setPresent] = useState(education?.present);
+  const [notExpire, setNotExpire] = useState(certification?.notExpire);
   const [files, setFiles] = useState([]);
-  const images = [...education.images];
+  const images = [...certification?.images];
 
   files.map((file) => {
     images.push({
@@ -38,15 +38,14 @@ function EditSideEducationForm({ setIsEdit, editableId }) {
 
   const defaultValues = useMemo(() => {
     return {
-      from: education?.from,
-      to: education?.to,
-      title: education?.title,
-      company: education?.company,
-      location: education?.location,
-      url: education?.url,
-      description: education?.description,
+      issued: certification?.issued,
+      expires: certification?.expires,
+      name: certification?.name,
+      organization: certification?.organization,
+      url: certification?.url,
+      description: certification?.description,
     };
-  }, [education]);
+  }, [certification]);
 
   const form = useForm({
     defaultValues: defaultValues,
@@ -59,22 +58,22 @@ function EditSideEducationForm({ setIsEdit, editableId }) {
     setFiles([...files, ...event.target.files]);
   };
 
-  // Update education to database
+  // Update certification to database
   const updateEducation = async (data) => {
     if (isSending) return;
     setIsSending(true);
 
     try {
       await updateItem(
-        "educations",
-        { ...data, present },
+        "certifications",
+        { ...data, notExpire },
         editableId,
         files,
-        education.images
+        certification.images
       ).finally(() => {
         setIsEdit(false);
         setIsSending(false);
-        toast("Education updated successfully");
+        toast("Certification updated successfully");
       });
     } catch (error) {
       console.log(error);
@@ -89,51 +88,51 @@ function EditSideEducationForm({ setIsEdit, editableId }) {
     >
       <div className="flex flex-col md:flex-row md:items-center gap-3">
         <div className="space-y-1 w-full">
-          <Label htmlFor="from">
-            From<span className="text-red-500">*</span>
+          <Label htmlFor="issued">
+            Issued<span className="text-red-500">*</span>
           </Label>
           <Input
-            id="from"
+            id="issued"
             type="number"
             placeholder="2019"
-            {...register("from", {
+            {...register("issued", {
               required: {
                 value: true,
-                message: "From is required",
+                message: "Issued is required",
               },
             })}
           />
-          <p className="text-xs text-red-500">{errors.from?.message}</p>
+          <p className="text-xs text-red-500">{errors.issued?.message}</p>
         </div>
         <div className="space-y-1 w-full">
           <div className="space-y-1 w-full">
-            <Label htmlFor="to">
-              To{!present && <span className="text-red-500">*</span>}
+            <Label htmlFor="expires">
+              Expires{!notExpire && <span className="text-red-500">*</span>}
             </Label>
             <Input
-              disabled={present}
+              disabled={notExpire}
               maxLength={4}
               type="number"
-              id="to"
+              id="expires"
               placeholder="2024"
-              {...register("to", {
+              {...register("expires", {
                 required: {
-                  value: !present,
-                  message: "To is required",
+                  value: !notExpire,
+                  message: "Expire is required",
                 },
               })}
             />
-            <p className="text-xs text-red-500">{errors.to?.message}</p>
+            <p className="text-xs text-red-500">{errors.expires?.message}</p>
           </div>
           <div className="flex items-center space-x-1 w-fit">
             <Checkbox
-              checked={present}
-              onCheckedChange={setPresent}
+              checked={notExpire}
+              onCheckedChange={setNotExpire}
               className="rounded"
-              id="present"
+              id="notExpire"
               placeholder="2024"
             />
-            <Label htmlFor="present">Present</Label>
+            <Label htmlFor="notExpire">Does not expire</Label>
 
             <p className="text-xs text-red-500">{errors.year?.message}</p>
           </div>
@@ -141,61 +140,50 @@ function EditSideEducationForm({ setIsEdit, editableId }) {
       </div>
       <div className="flex flex-col md:flex-row md:items-center gap-3">
         <div className="space-y-1 w-full">
-          <Label htmlFor="title">Title</Label>
+          <Label htmlFor="name">Name</Label>
           <Input
-            id="title"
-            placeholder="Product Designer"
-            {...register("title")}
+            id="name"
+            placeholder="My certification"
+            {...register("name")}
           />
-          <p className="text-xs text-red-500">{errors.title?.message}</p>
+          <p className="text-xs text-red-500">{errors.name?.message}</p>
         </div>
         <div className="space-y-1 w-full">
-          <Label htmlFor="company">
-            Company or client<span className="text-red-500">*</span>
+          <Label htmlFor="organization">
+            Organization<span className="text-red-500">*</span>
           </Label>
           <Input
-            id="company"
+            id="organization"
             placeholder="Acme inc."
-            {...register("company", {
+            {...register("organization", {
               required: {
                 value: true,
-                message: "Company is required",
+                message: "Organization is required",
               },
             })}
           />
           <p className="text-xs text-red-500">{errors.company?.message}</p>
         </div>
       </div>
-      <div className="flex flex-col md:flex-row md:items-center gap-3">
-        <div className="space-y-1 w-full">
-          <Label htmlFor="location">Location</Label>
-          <Input
-            id="location"
-            placeholder="Where was it"
-            {...register("location")}
-          />
-          <p className="text-xs text-red-500">{errors.location?.message}</p>
-        </div>
-        <div className="space-y-1 w-full">
-          <Label htmlFor="url">URL</Label>
-          <Input
-            id="url"
-            placeholder="https://example.com"
-            {...register("url")}
-          />
-          <p className="text-xs text-red-500">{errors.url?.message}</p>
-        </div>
+      <div className="space-y-1 w-full">
+        <Label htmlFor="url">URL</Label>
+        <Input
+          id="url"
+          placeholder="https://example.com"
+          {...register("url")}
+        />
+        <p className="text-xs text-red-500">{errors.url?.message}</p>
       </div>
       <div className="space-y-1 w-full">
         <Label htmlFor="description">Description</Label>
         <Textarea
           id="description"
           rows={4}
-          placeholder="Cool education"
+          placeholder="Add some details, e.g. ID number"
           {...register("description", {
             maxLength: {
               value: 200,
-              message: "Name is too long",
+              message: "Description is too long",
             },
           })}
         />
@@ -247,9 +235,9 @@ function EditSideEducationForm({ setIsEdit, editableId }) {
                       className="absolute top-1 right-1 w-6 bg-white text-black h-6 border rounded-full p-1 cursor-pointer"
                       onClick={() =>
                         handleFileRemove(
-                          "educations",
+                          "certifications",
                           name,
-                          education.id,
+                          certification.id,
                           id,
                           setFiles
                         )
@@ -281,4 +269,4 @@ function EditSideEducationForm({ setIsEdit, editableId }) {
   );
 }
 
-export default EditSideEducationForm;
+export default EditCertificationForm;
