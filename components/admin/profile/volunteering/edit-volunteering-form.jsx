@@ -19,14 +19,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { handleFileRemove, updateItem } from "@/services/firestore-service";
 import { Checkbox } from "@/components/ui/checkbox";
 
-function EditSideExperienceForm({ setIsEdit, editableId }) {
-  const { experiences } = useApiContext();
-  const project = experiences.find((p) => p.id === editableId);
+function EditVolunteeringForm({ setIsEdit, editableId }) {
+  const { volunteerings } = useApiContext();
+  const volunteering = volunteerings.find((p) => p.id === editableId);
 
   const [isSending, setIsSending] = useState(false);
-  const [present, setPresent] = useState(project?.present);
+  const [present, setPresent] = useState(volunteering?.present);
   const [files, setFiles] = useState([]);
-  const images = [...project.images];
+  const images = [...volunteering?.images];
 
   files.map((file) => {
     images.push({
@@ -38,15 +38,15 @@ function EditSideExperienceForm({ setIsEdit, editableId }) {
 
   const defaultValues = useMemo(() => {
     return {
-      from: project?.from,
-      to: project?.to,
-      title: project?.title,
-      company: project?.company,
-      location: project?.location,
-      url: project?.url,
-      description: project?.description,
+      from: volunteering?.from,
+      to: volunteering?.to,
+      title: volunteering?.title,
+      organization: volunteering?.organization,
+      location: volunteering?.location,
+      url: volunteering?.url,
+      description: volunteering?.description,
     };
-  }, [project]);
+  }, [volunteering]);
 
   const form = useForm({
     defaultValues: defaultValues,
@@ -59,22 +59,22 @@ function EditSideExperienceForm({ setIsEdit, editableId }) {
     setFiles([...files, ...event.target.files]);
   };
 
-  // Update project to database
-  const updateExperience = async (data) => {
+  // Update volunteering to database
+  const updateEducation = async (data) => {
     if (isSending) return;
     setIsSending(true);
 
     try {
       await updateItem(
-        "experiences",
+        "volunteerings",
         { ...data, present },
         editableId,
         files,
-        project.images
+        volunteering.images
       ).finally(() => {
         setIsEdit(false);
         setIsSending(false);
-        toast("Experience updated successfully");
+        toast("Volunteering updated successfully");
       });
     } catch (error) {
       console.log(error);
@@ -83,7 +83,7 @@ function EditSideExperienceForm({ setIsEdit, editableId }) {
 
   return (
     <form
-      onSubmit={handleSubmit(updateExperience)}
+      onSubmit={handleSubmit(updateEducation)}
       className="space-y-3 md:space-y-6 mt-5"
       noValidate
     >
@@ -150,16 +150,16 @@ function EditSideExperienceForm({ setIsEdit, editableId }) {
           <p className="text-xs text-red-500">{errors.title?.message}</p>
         </div>
         <div className="space-y-1 w-full">
-          <Label htmlFor="company">
-            Company or client<span className="text-red-500">*</span>
+          <Label htmlFor="organization">
+            Organization<span className="text-red-500">*</span>
           </Label>
           <Input
-            id="company"
+            id="organization"
             placeholder="Acme inc."
-            {...register("company", {
+            {...register("organization", {
               required: {
                 value: true,
-                message: "Company is required",
+                message: "Organization is required",
               },
             })}
           />
@@ -191,7 +191,7 @@ function EditSideExperienceForm({ setIsEdit, editableId }) {
         <Textarea
           id="description"
           rows={4}
-          placeholder="Cool project"
+          placeholder="Cool volunteering"
           {...register("description", {
             maxLength: {
               value: 200,
@@ -201,7 +201,6 @@ function EditSideExperienceForm({ setIsEdit, editableId }) {
         />
         <p className="text-xs text-red-500">{errors.description?.message}</p>
       </div>
-
       <div className="space-y-1 w-full">
         <div className="mx-auto w-full">
           <Label htmlFor="upload">Attachments</Label>
@@ -248,9 +247,9 @@ function EditSideExperienceForm({ setIsEdit, editableId }) {
                       className="absolute top-1 right-1 w-6 bg-white text-black h-6 border rounded-full p-1 cursor-pointer"
                       onClick={() =>
                         handleFileRemove(
-                          "experiences",
+                          "volunteerings",
                           name,
-                          project.id,
+                          volunteering.id,
                           id,
                           setFiles
                         )
@@ -282,4 +281,4 @@ function EditSideExperienceForm({ setIsEdit, editableId }) {
   );
 }
 
-export default EditSideExperienceForm;
+export default EditVolunteeringForm;

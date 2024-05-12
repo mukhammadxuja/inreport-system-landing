@@ -5,7 +5,6 @@ import EmailVerificationAlert from "../../../components/email-verification-alert
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import General from "@/components/admin/profile/general";
 import Projects from "@/components/admin/profile/projects";
-import Volunteering from "@/components/admin/profile/volunteering";
 import Certifications from "@/components/admin/profile/certifications";
 import Awards from "@/components/admin/profile/awards";
 import Skills from "@/components/admin/profile/skills";
@@ -14,6 +13,7 @@ import { useSessionStorage } from "@/hooks/useSessionStorage";
 import SideProjects from "@/components/admin/profile/side-projects/side-projects";
 import Experience from "@/components/admin/profile/experience/experience";
 import Education from "@/components/admin/profile/education/education";
+import Volunteering from "@/components/admin/profile/volunteering/volunteering";
 
 function Profile() {
   const [profile, setProfile] = useState("general");

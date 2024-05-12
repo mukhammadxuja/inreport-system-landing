@@ -15,11 +15,11 @@ import {
 } from "@/components/ui/alert-dialog";
 import { deleteItem } from "@/services/firestore-service";
 
-function DeleteProject({ id, title, source, children }) {
-  const [openDeleteProject, setOpenDeleteProject] = useState(false);
+function DeleteItem({ id, title, source, children }) {
+  const [openDeleteItem, setOpenDeleteItem] = useState(false);
 
   return (
-    <AlertDialog open={openDeleteProject} onOpenChange={setOpenDeleteProject}>
+    <AlertDialog open={openDeleteItem} onOpenChange={setOpenDeleteItem}>
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
@@ -39,4 +39,4 @@ function DeleteProject({ id, title, source, children }) {
   );
 }
 
-export default DeleteProject;
+export default DeleteItem;

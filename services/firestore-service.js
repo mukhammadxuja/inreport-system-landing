@@ -20,11 +20,6 @@ export const addItem = async (source, data, files) => {
 
   await Promise.all(
     files.map(async (file) => {
-      if (file.size > 1 * 1024 * 1024) {
-        toast(`${file.name} exceeds the maximum file size of 1MB.`);
-        return;
-      }
-
       const storageRef = ref(
         storage,
         `${source}/${auth.currentUser.uid}/images/${file.name}`

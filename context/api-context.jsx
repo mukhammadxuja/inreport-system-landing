@@ -20,8 +20,9 @@ export const ApiContextProvider = ({ children }) => {
   const [sideProjects, setSideProjects] = useState([]);
   const [experiences, setExperiences] = useState([]);
   const [educations, setEducations] = useState([]);
+  const [volunteerings, setVolunteerings] = useState([]);
 
-  console.log("educations", educations);
+  console.log("volunteerings", volunteerings);
 
   const projectsCollection = collection(db, `users/${userUid}/projects`);
   const sideProjectsCollection = collection(
@@ -30,6 +31,10 @@ export const ApiContextProvider = ({ children }) => {
   );
   const experiencesCollection = collection(db, `users/${userUid}/experiences`);
   const educationsCollection = collection(db, `users/${userUid}/educations`);
+  const volunteeringsCollection = collection(
+    db,
+    `users/${userUid}/volunteerings`
+  );
 
   useEffect(() => {
     // fetch projects
@@ -58,6 +63,14 @@ export const ApiContextProvider = ({ children }) => {
     const queryEducation = query(educationsCollection);
     onSnapshot(queryEducation, (snapshot) => {
       setEducations(
+        snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      );
+    });
+
+    // fetch side volunteerings
+    const queryVolunteering = query(volunteeringsCollection);
+    onSnapshot(queryVolunteering, (snapshot) => {
+      setVolunteerings(
         snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       );
     });
@@ -98,6 +111,7 @@ export const ApiContextProvider = ({ children }) => {
     sideProjects,
     experiences,
     educations,
+    volunteerings,
   };
 
   return <ApiContext.Provider value={values}>{children}</ApiContext.Provider>;

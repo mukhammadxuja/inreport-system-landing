@@ -16,7 +16,7 @@ import {
 import { Button } from "@/components/ui/button";
 
 // Dialogs
-import DeleteProject from "@/components/admin/dialogs/delete-project";
+import DeleteItem from "@/components/admin/dialogs/delete-item";
 import MoveProject from "@/components/admin/dialogs/move-project";
 
 function ProjectItem({ project, setEditableId, setIsEdit }) {
@@ -84,13 +84,9 @@ function ProjectItem({ project, setEditableId, setIsEdit }) {
             >
               Edit
             </small>
-            <DeleteProject
-              id={project.id}
-              title={project.title}
-              source="projects"
-            >
+            <DeleteItem id={project.id} title={project.title} source="projects">
               <small className="hover:underline cursor-pointer">Delete</small>
-            </DeleteProject>
+            </DeleteItem>
           </div>
           <Popover>
             <PopoverTrigger>

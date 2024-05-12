@@ -67,7 +67,7 @@ function EditSideEducationForm({ setIsEdit, editableId }) {
     try {
       await updateItem(
         "educations",
-        data,
+        { ...data, present },
         editableId,
         files,
         education.images
@@ -132,7 +132,6 @@ function EditSideEducationForm({ setIsEdit, editableId }) {
               className="rounded"
               id="present"
               placeholder="2024"
-              {...register("present")}
             />
             <Label htmlFor="present">Present</Label>
 

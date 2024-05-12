@@ -1,10 +1,13 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
-import { useMemo, useState } from "react";
-import Image from "next/image";
+import { useState } from "react";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { v4 as uuidv4 } from "uuid";
-import { useApiContext } from "@/context/api-context";
+import Image from "next/image";
+
+import { addItem } from "@/services/firestore-service";
+import { MAX_FILE_SIZE } from "@/utils/variables";
 
 // Icons
 import { LoadingIcon } from "@/components/icons";
@@ -16,66 +19,57 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
-import { handleFileRemove, updateItem } from "@/services/firestore-service";
 import { Checkbox } from "@/components/ui/checkbox";
 
-function EditSideExperienceForm({ setIsEdit, editableId }) {
-  const { experiences } = useApiContext();
-  const project = experiences.find((p) => p.id === editableId);
+function AddVolunteeringForm({ setAddVolunteering }) {
+  const form = useForm();
+  const { register, formState, handleSubmit } = form;
+  const { errors, isDirty, isSubmitting } = formState;
 
   const [isSending, setIsSending] = useState(false);
-  const [present, setPresent] = useState(project?.present);
+  const [present, setPresent] = useState(false);
   const [files, setFiles] = useState([]);
-  const images = [...project.images];
-
-  files.map((file) => {
-    images.push({
-      url: URL.createObjectURL(file),
-      name: file.name,
-      id: uuidv4(),
-    });
-  });
-
-  const defaultValues = useMemo(() => {
-    return {
-      from: project?.from,
-      to: project?.to,
-      title: project?.title,
-      company: project?.company,
-      location: project?.location,
-      url: project?.url,
-      description: project?.description,
-    };
-  }, [project]);
-
-  const form = useForm({
-    defaultValues: defaultValues,
-  });
-
-  const { register, formState, handleSubmit } = form;
-  const { errors, isSubmitting } = formState;
 
   const handleFileChange = (event) => {
     setFiles([...files, ...event.target.files]);
   };
 
-  // Update project to database
-  const updateExperience = async (data) => {
+  // Delete all selected files
+  const handleClearFiles = () => {
+    setFiles([]);
+  };
+
+  // Delete one selected file
+  const handleFileRemove = (fileId) => {
+    setFiles((prevFiles) =>
+      prevFiles.filter((prevFile) => prevFile.name !== fileId)
+    );
+  };
+
+  // Drag and drop selected file
+  function handleOnDragEnd(result) {
+    if (!result.destination) return;
+
+    const items = Array.from(files);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    setFiles(items);
+  }
+
+  // Add volunteering to database
+  const addVolunteering = async (data) => {
     if (isSending) return;
     setIsSending(true);
 
     try {
-      await updateItem(
-        "experiences",
-        { ...data, present },
-        editableId,
-        files,
-        project.images
-      ).finally(() => {
-        setIsEdit(false);
-        setIsSending(false);
-        toast("Experience updated successfully");
-      });
+      await addItem("volunteerings", { ...data, present }, files).finally(
+        () => {
+          setAddVolunteering(false);
+          setIsSending(false);
+          toast("Volunteering added successfully");
+        }
+      );
     } catch (error) {
       console.log(error);
     }
@@ -83,11 +77,11 @@ function EditSideExperienceForm({ setIsEdit, editableId }) {
 
   return (
     <form
-      onSubmit={handleSubmit(updateExperience)}
+      onSubmit={handleSubmit(addVolunteering)}
       className="space-y-3 md:space-y-6 mt-5"
       noValidate
     >
-      <div className="flex flex-col md:flex-row md:items-center gap-3">
+      <div className="flex flex-col md:flex-row md:items-start gap-3">
         <div className="space-y-1 w-full">
           <Label htmlFor="from">
             From<span className="text-red-500">*</span>
@@ -95,6 +89,7 @@ function EditSideExperienceForm({ setIsEdit, editableId }) {
           <Input
             id="from"
             type="number"
+            maxLength="4"
             placeholder="2019"
             {...register("from", {
               required: {
@@ -105,6 +100,7 @@ function EditSideExperienceForm({ setIsEdit, editableId }) {
           />
           <p className="text-xs text-red-500">{errors.from?.message}</p>
         </div>
+
         <div className="space-y-1 w-full">
           <div className="space-y-1 w-full">
             <Label htmlFor="to">
@@ -132,6 +128,7 @@ function EditSideExperienceForm({ setIsEdit, editableId }) {
               className="rounded"
               id="present"
               placeholder="2024"
+              {...register("present")}
             />
             <Label htmlFor="present">Present</Label>
 
@@ -150,20 +147,20 @@ function EditSideExperienceForm({ setIsEdit, editableId }) {
           <p className="text-xs text-red-500">{errors.title?.message}</p>
         </div>
         <div className="space-y-1 w-full">
-          <Label htmlFor="company">
-            Company or client<span className="text-red-500">*</span>
+          <Label htmlFor="organization">
+            Organization<span className="text-red-500">*</span>
           </Label>
           <Input
-            id="company"
+            id="organization"
             placeholder="Acme inc."
-            {...register("company", {
+            {...register("organization", {
               required: {
                 value: true,
-                message: "Company is required",
+                message: "Organization is required",
               },
             })}
           />
-          <p className="text-xs text-red-500">{errors.company?.message}</p>
+          <p className="text-xs text-red-500">{errors.organization?.message}</p>
         </div>
       </div>
       <div className="flex flex-col md:flex-row md:items-center gap-3">
@@ -201,7 +198,6 @@ function EditSideExperienceForm({ setIsEdit, editableId }) {
         />
         <p className="text-xs text-red-500">{errors.description?.message}</p>
       </div>
-
       <div className="space-y-1 w-full">
         <div className="mx-auto w-full">
           <Label htmlFor="upload">Attachments</Label>
@@ -213,7 +209,7 @@ function EditSideExperienceForm({ setIsEdit, editableId }) {
                 </p>
               </div>
               <p className="text-sm text-gray-500">
-                PNG, JPG or GIF (max. 800x400px)
+                PNG, JPG or GIF (max. 5MG)
               </p>
             </div>
             <input
@@ -227,41 +223,70 @@ function EditSideExperienceForm({ setIsEdit, editableId }) {
           </label>
         </div>
 
-        <div className="flex items-center gap-3">
-          <ul className="flex flex-wrap items-center gap-3 !mt-3">
-            {images.map(({ url, name, id }) => {
-              return (
-                <li
-                  className="flex items-center justify-between p-1 rounded-md border"
-                  key={id}
-                >
-                  <div className="relative">
-                    <Image
-                      width={250}
-                      height={150}
-                      src={url}
-                      loading="lazy"
-                      alt={name}
-                      className="w-28 h-24 object-cover rounded-sm cursor-pointer"
-                    />
-                    <X
-                      className="absolute top-1 right-1 w-6 bg-white text-black h-6 border rounded-full p-1 cursor-pointer"
-                      onClick={() =>
-                        handleFileRemove(
-                          "experiences",
-                          name,
-                          project.id,
-                          id,
-                          setFiles
-                        )
-                      }
-                    />
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+        <DragDropContext onDragEnd={handleOnDragEnd}>
+          <Droppable droppableId="characters">
+            {(provided) => (
+              <ul
+                className="grid grid-cols-1 md:grid-cols-2 gap-3 !mt-3"
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
+                {files.map((file, index) => {
+                  if (file.size > MAX_FILE_SIZE) {
+                    setFiles([]);
+                    toast(`${file.name} exceeds the maximum file size of 5MB.`);
+                    return null;
+                  }
+
+                  return (
+                    <Draggable
+                      key={file.name}
+                      draggableId={file.name}
+                      index={index}
+                    >
+                      {(provided) => (
+                        <li
+                          key={file.name}
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          className="flex items-center justify-between py-2 pl-2 pr-4 rounded-md border cursor-grab"
+                        >
+                          <div className="flex items-center gap-3">
+                            <Image
+                              width={250}
+                              height={150}
+                              key={index}
+                              src={URL.createObjectURL(file)}
+                              loading="lazy"
+                              alt={file.name}
+                              className="w-16 h-16 md:w-32 md:h-24 object-cover rounded-sm cursor-pointer"
+                            />
+                            <div className="flex items-center font-medium w-full truncate">
+                              {file.name}
+                            </div>
+                          </div>
+                          <X
+                            className="w-5 h-5 cursor-pointer"
+                            onClick={() => handleFileRemove(file.name)}
+                          />
+                        </li>
+                      )}
+                    </Draggable>
+                  );
+                })}
+              </ul>
+            )}
+          </Droppable>
+        </DragDropContext>
+
+        {!!files.length && (
+          <div className="flex gap-2 !my-3">
+            <Button variant="destructive" onClick={handleClearFiles}>
+              Remove All Files
+            </Button>
+          </div>
+        )}
       </div>
       <Separator />
       <div className="space-x-2 flex justify-end">
@@ -269,17 +294,21 @@ function EditSideExperienceForm({ setIsEdit, editableId }) {
           disabled={isSubmitting}
           className="rounded-sm"
           variant="secondary"
-          onClick={() => setIsEdit(false)}
+          onClick={() => setAddVolunteering(false)}
         >
           Cancel
         </Button>
-        <Button disabled={isSubmitting} className="rounded-sm" type="submit">
+        <Button
+          disabled={isSubmitting || !isDirty}
+          className="rounded-sm"
+          type="submit"
+        >
           {isSubmitting && <LoadingIcon />}
-          {isSubmitting ? "Updating" : "Update"}
+          {isSubmitting ? "Saving" : "Save"}
         </Button>
       </div>
     </form>
   );
 }
 
-export default EditSideExperienceForm;
+export default AddVolunteeringForm;
