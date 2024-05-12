@@ -7,7 +7,7 @@ import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 
 // Dialogs
-import DeleteProject from "@/components/admin/dialogs/delete-project";
+import DeleteItem from "@/components/admin/dialogs/delete-item";
 
 function EducationItem({ education, setEditableId, setIsEdit }) {
   const [loaded, setLoaded] = useState(false);
@@ -22,8 +22,8 @@ function EducationItem({ education, setEditableId, setIsEdit }) {
       className="grid grid-cols-1 md:grid-cols-3 bg-gray-50 py-2 px-4 rounded-md border"
     >
       <p className="hidden md:block">
-        {education.from} — {education?.to}
-        {education?.present === "on" && "Present"}
+        {education.from} —
+        {education?.present ? " Present" : education?.to}
       </p>
       <div className="space-y-3 col-span-2">
         <div className={`${education.hide && "blur-[1.5px]"}`}>
@@ -79,13 +79,13 @@ function EducationItem({ education, setEditableId, setIsEdit }) {
           >
             Edit
           </small>
-          <DeleteProject
+          <DeleteItem
             id={education.id}
             title={education.title}
             source="educations"
           >
             <small className="hover:underline cursor-pointer">Delete</small>
-          </DeleteProject>
+          </DeleteItem>
         </div>
       </div>
     </div>

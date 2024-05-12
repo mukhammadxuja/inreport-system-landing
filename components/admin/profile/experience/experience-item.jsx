@@ -7,7 +7,7 @@ import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 
 // Dialogs
-import DeleteProject from "@/components/admin/dialogs/delete-project";
+import DeleteItem from "@/components/admin/dialogs/delete-item";
 
 function ExperienceItem({ experience, setEditableId, setIsEdit }) {
   const [loaded, setLoaded] = useState(false);
@@ -22,8 +22,8 @@ function ExperienceItem({ experience, setEditableId, setIsEdit }) {
       className="grid grid-cols-1 md:grid-cols-3 bg-gray-50 py-2 px-4 rounded-md border"
     >
       <p className="hidden md:block">
-        {experience.from} — {experience?.to}
-        {experience?.present && "Present"}
+        {experience.from} —
+        {experience?.present ? " Present" : experience?.to}
       </p>
       <div className="space-y-3 col-span-2">
         <div className={`${experience.hide && "blur-[1.5px]"}`}>
@@ -79,13 +79,13 @@ function ExperienceItem({ experience, setEditableId, setIsEdit }) {
           >
             Edit
           </small>
-          <DeleteProject
+          <DeleteItem
             id={experience.id}
             title={experience.title}
             source="experiences"
           >
             <small className="hover:underline cursor-pointer">Delete</small>
-          </DeleteProject>
+          </DeleteItem>
         </div>
       </div>
     </div>
