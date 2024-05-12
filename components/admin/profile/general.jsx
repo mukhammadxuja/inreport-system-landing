@@ -1,22 +1,112 @@
 "use client";
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import EmailVerificationAlert from "@/components/email-verification-alert";
+import { updateUserAccount } from "@/firebase/auth/updateUserProfile";
+import { useApiContext } from "@/context/api-context";
+import { LoadingIcon } from "@/components/icons";
+
+// Firebase
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { auth } from "@/firebase/config";
+
+// UI
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { useForm } from "react-hook-form";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useApiContext } from "@/context/api-context";
 import { Separator } from "@/components/ui/separator";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Textarea } from "@/components/ui/textarea";
-import { Shell } from "lucide-react";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import { auth, db } from "@/firebase/config";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { toast } from "sonner";
-import EmailVerificationAlert from "@/components/email-verification-alert";
-import { LoadingIcon } from "@/components/icons";
-import { updateUserAccount } from "@/firebase/auth/updateUserProfile";
-import Image from "next/image";
+import { Combobox } from "@/components/ui/combobox";
+
+const templates = [
+  {
+    value: "terra-nova",
+    label: "Terra Nova",
+  },
+  {
+    value: "professional-edge",
+    label: "Professional Edge",
+  },
+  {
+    value: "creative-spark",
+    label: "Creative Spark",
+  },
+  {
+    value: "modern-chic",
+    label: "Modern Chic",
+  },
+  {
+    value: "sleek-signature",
+    label: "Sleek Signature",
+  },
+  {
+    value: "elegant-essence",
+    label: "Elegant Essence",
+  },
+  {
+    value: "dynamic-fusion",
+    label: "Dynamic Fusion",
+  },
+  {
+    value: "bold-impact",
+    label: "Bold Impact",
+  },
+  {
+    value: "timeless-elegance",
+    label: "Timeless Elegance",
+  },
+  {
+    value: "stylish-spectrum",
+    label: "Stylish Spectrum",
+  },
+  {
+    value: "artistic-aura",
+    label: "Artistic Aura",
+  },
+  {
+    value: "sophisticated-style",
+    label: "Sophisticated Style",
+  },
+  {
+    value: "minimalist-magic",
+    label: "Minimalist Magic",
+  },
+  {
+    value: "vibrant-visions",
+    label: "Vibrant Visions",
+  },
+  {
+    value: "professional-polish",
+    label: "Professional Polish",
+  },
+  {
+    value: "innovative-insight",
+    label: "Innovative Insight",
+  },
+  {
+    value: "streamlined-showcase",
+    label: "Streamlined Showcase",
+  },
+  {
+    value: "creative-canvas",
+    label: "Creative Canvas",
+  },
+  {
+    value: "inspired-impact",
+    label: "Inspired Impact",
+  },
+  {
+    value: "versatile-visions",
+    label: "Versatile Visions",
+  },
+  {
+    value: "classic-charm",
+    label: "Classic Charm",
+  },
+];
 
 const General = () => {
   const { user, userData } = useApiContext();
@@ -32,8 +122,6 @@ const General = () => {
     if (!fileUploaded) return;
     setImage(fileUploaded);
   };
-
-  console.log(userData);
 
   return (
     <div>
@@ -87,6 +175,8 @@ const General = () => {
 export default General;
 
 const Form = ({ userData, image, hiddenFileInput }) => {
+  const [template, setTemplate] = useState("");
+
   const defaultValues = useMemo(() => {
     return {
       displayName: userData?.displayName,
@@ -94,7 +184,6 @@ const Form = ({ userData, image, hiddenFileInput }) => {
       email: userData?.email ? userData.email : "",
       profession: userData?.profession ? userData.profession : "",
       location: userData?.location ? userData.location : "",
-      pronoun: userData?.pronoun ? userData.pronoun : "",
       website: userData?.website ? userData.website : "",
       bio: userData?.bio ? userData.bio : "",
     };
@@ -122,7 +211,7 @@ const Form = ({ userData, image, hiddenFileInput }) => {
     const photoURL = await getDownloadURL(storageRef);
 
     try {
-      await updateUserAccount(data, photoURL);
+      await updateUserAccount({ ...data, template }, photoURL);
     } catch (error) {
       console.log(error);
     } finally {
@@ -200,16 +289,7 @@ const Form = ({ userData, image, hiddenFileInput }) => {
           <p className="text-xs text-red-500">{errors.location?.message}</p>
         </div>
       </div>
-      <div className="flex flex-col md:flex-row items-center w-full gap-3">
-        <div className="space-y-1 w-full">
-          <Label htmlFor="pronoun">Pronouns</Label>
-          <Input
-            id="pronoun"
-            placeholder="He/Him, etc"
-            {...register("pronoun")}
-          />
-          <p className="text-xs text-red-500">{errors.pronoun?.message}</p>
-        </div>
+      <div className="flex flex-col md:flex-row items-start w-full gap-3">
         <div className="space-y-1 w-full">
           <Label htmlFor="website">Website</Label>
           <Input
@@ -218,6 +298,27 @@ const Form = ({ userData, image, hiddenFileInput }) => {
             {...register("website")}
           />
           <p className="text-xs text-red-500">{errors.website?.message}</p>
+        </div>
+        <div className="space-y-1 w-full">
+          <Label htmlFor="template">Template</Label>
+          <div className="flex items-center gap-2">
+            <Combobox
+              data={templates}
+              templateValue={template}
+              setTemplateValue={setTemplate}
+              userTemplate={userData?.template}
+            />
+            {/* <Button
+                type="button"
+                className="whitespace-nowrap"
+                variant="secondary"
+              >
+                Show templates
+              </Button> */}
+          </div>
+          <a className="text-xs text-gray-600 cursor-pointer underline">
+            Show templates
+          </a>
         </div>
       </div>
       <div className="space-y-1 w-full">
@@ -241,7 +342,7 @@ const Form = ({ userData, image, hiddenFileInput }) => {
           Reset
         </Button>
         <Button
-          disabled={isSubmitting || (!isDirty && !image)}
+          disabled={isSubmitting || (!isDirty && !image && !template)}
           className="rounded-sm"
           type="submit"
         >
