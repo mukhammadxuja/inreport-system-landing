@@ -8,6 +8,7 @@ import { useEmailVerification } from "../firebase/auth/emailVerificationLink";
 import { useApiContext } from "@/context/api-context";
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
 
 function EmailVerificationAlert() {
   const { user, userData } = useApiContext();
@@ -37,11 +38,23 @@ function EmailVerificationAlert() {
   return (
     <>
       {user?.emailVerified ? (
-        <Alert className="bg-blue-100 justify-between my-4 flex">
+        <Alert
+          variant="ready"
+          className="bg-indigo-100 justify-between my-4 flex"
+        >
           <div className="flex items-start gap-3">
             <AlertCircle className="h-4 w-4" />
             <div>
-              <AlertTitle>Your Profile is now active. </AlertTitle>
+              <AlertTitle className="flex items-center gap-x-1.5">
+                <Image
+                  width={20}
+                  height={20}
+                  src={"/assets/emojis/fire.png"}
+                  alt="Fire emoji"
+                  className="w-5 h-5"
+                />
+                <span>Your Profile is now active.</span>
+              </AlertTitle>
               <AlertDescription>
                 Share your Showcase to your socials:
                 <Link
@@ -55,7 +68,7 @@ function EmailVerificationAlert() {
           <Button
             onClick={copyToClipboard}
             variant="ghost"
-            className="bg-white hover:bg-gray-50 duration-300"
+            className="bg-white hover:bg-gray-50 hover:text-indigo-600/80 duration-300"
           >
             {isEmailVerificationPending && (
               <Shell className="mr-2 h-4 w-4 animate-spin" />
@@ -64,11 +77,23 @@ function EmailVerificationAlert() {
           </Button>
         </Alert>
       ) : (
-        <Alert variant="destructive" className="flex ite justify-between mb-2">
+        <Alert
+          variant="destructive"
+          className="flex items-center bg-red-100 justify-between my-4"
+        >
           <div className="flex items-start gap-3">
             <AlertCircle className="h-4 w-4" />
             <div>
-              <AlertTitle>Your Profile is not active.</AlertTitle>
+              <AlertTitle className="flex items-center gap-x-1.5">
+                <Image
+                  width={20}
+                  height={20}
+                  src={"/assets/emojis/4.png"}
+                  alt="Fire emoji"
+                  className="w-5 h-5"
+                />
+                <span>Your Profile is not active.</span>
+              </AlertTitle>
               <AlertDescription>
                 Please verify your email address to access your profile.
               </AlertDescription>

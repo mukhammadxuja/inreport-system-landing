@@ -14,6 +14,9 @@ export const ApiContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [userUid, setUserUid] = useState(null);
   const [loading, setLoading] = useState(true);
+  // Emoji
+  const [emojis, setEmojis] = useState([]);
+  console.log("emojis", emojis);
 
   // Profile
   const [projects, setProjects] = useState([]);
@@ -24,6 +27,8 @@ export const ApiContextProvider = ({ children }) => {
   const [certifications, setCertifications] = useState([]);
   const [awards, setAwards] = useState([]);
 
+  const emojisCollection = collection(db, "emojis");
+  // Profile
   const awardsCollection = collection(db, `users/${userUid}/awards`);
   const projectsCollection = collection(db, `users/${userUid}/projects`);
   const sideProjectsCollection = collection(
@@ -42,6 +47,12 @@ export const ApiContextProvider = ({ children }) => {
   );
 
   useEffect(() => {
+    // fetch awards
+    const queryEmojis = query(emojisCollection);
+    onSnapshot(queryEmojis, (snapshot) => {
+      setEmojis(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    });
+
     // fetch awards
     const queryAwards = query(awardsCollection);
     onSnapshot(queryAwards, (snapshot) => {
@@ -126,6 +137,7 @@ export const ApiContextProvider = ({ children }) => {
     userUid,
     loading,
     userData,
+    emojis,
     projects,
     sideProjects,
     experiences,

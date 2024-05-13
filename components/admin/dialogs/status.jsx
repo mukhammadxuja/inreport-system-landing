@@ -1,32 +1,32 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
-import { useState } from "react";
-import EmailVerificationAlert from "@/components/email-verification-alert";
-import { useApiContext } from "@/context/api-context";
-import { ChevronRight, Pencil } from "lucide-react";
-import Picker from "emoji-picker-react";
-import Link from "next/link";
+import React, { useState } from "react";
 
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
+// UI
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { EllipsesIcon } from "@/components/icons";
-import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
-
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
-import { emojiPlus } from "@/utils/variables";
+import { useApiContext } from "@/context/api-context";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "@/firebase/config";
 import { toast } from "sonner";
-import StatusDialog from "@/components/admin/dialogs/status";
-
-// TODO: refactor and make sure all function works before transfer to another file
-// Hide, Edit, Delete, Active tab with localStorage
-// Edit: https://codesandbox.io/p/sandbox/react-hooks-crud-firebase-z7nh3?file=%2Fsrc%2Ftables%2FUserTableRow.js%3A27%2C16-27%2C23
+import { emojiPlus } from "@/utils/variables";
+import { LoadingIcon } from "@/components/icons";
 
 const emojis = [
   {
@@ -175,172 +175,120 @@ const emojis = [
   },
 ];
 
-function AdminPage() {
-  const { projects, userData, userUid } = useApiContext();
-  const [projectsVisible, setProjectsVisible] = useState(true);
-  const [openStatus, setOpenStatus] = useState(false);
+function StatusDialog({ openStatus, setOpenStatus, children }) {
+  const { userData, userUid } = useApiContext();
+
   const [statusTitle, setStatusTitle] = useState(userData?.status?.title);
   const [selectedEmoji, setSelectedEmoji] = useState(null);
+
+  const [isSending, setIsSending] = useState(false);
 
   const handleEmojiClick = (imgUrl) => {
     setSelectedEmoji(imgUrl);
   };
 
-  console.log(statusTitle);
-
   const addFieldToDocument = async () => {
-    const docRef = doc(db, "users", userUid);
+    setIsSending(true);
 
+    if (!selectedEmoji && !statusTitle) {
+      setIsSending(false);
+      toast("Emoji or Status title empty");
+      return;
+    }
+
+    const docRef = doc(db, "users", userUid);
     try {
-      // Fetch the document
       const docSnapshot = await getDoc(docRef);
 
-      // Check if the document exists
       if (docSnapshot.exists()) {
-        // Get the data of the document
         const data = docSnapshot.data();
-
-        // Update the data with the new field
         data["status"] = { emoji: selectedEmoji, title: statusTitle };
-
-        // Update the document in Firestore
         await updateDoc(docRef, data);
-
-        setStatusTitle(statusTitle);
-
-        toast("Status updated successfully");
       }
     } catch (error) {
       console.error("Error adding field to document:", error);
+    } finally {
+      setOpenStatus(false);
+      toast("Status updated successfully");
+      setIsSending(false);
     }
   };
 
   return (
-    <div>
-      <div className="max-w-3xl mx-auto min-h-screen">
-        <EmailVerificationAlert />
-        <div className="px-4 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 w-full p-5 md:px-8 md:py-6 rounded-lg bg-white">
-          <div className="mb-6 flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="relative w-fit">
-                <Avatar className="h-24 w-24 rounded-full">
-                  <AvatarImage
-                    className="object-cover"
-                    src={userData?.photoURL || "/assets/avatars/unknown.jpg"}
-                    alt="@shadcn"
-                  />
-                </Avatar>
-              </div>
-              <div className="">
-                <h3 className="text-xl font-semibold">
-                  {userData?.displayName ? userData?.displayName : "Unknown"}
-                </h3>
-                <p>
-                  {userData?.profession
-                    ? userData?.profession
-                    : "Unknown Profession"}
-                </p>
-                <StatusDialog
-                  openStatus={openStatus}
-                  setOpenStatus={setOpenStatus}
-                >
-                  <div className="w-fit flex items-center gap-1 py-1 px-2 rounded-full bg-indigo-100 shadow-sm cursor-pointer group">
-                    <Image
-                      width={20}
-                      height={20}
-                      src={
-                        selectedEmoji
-                          ? selectedEmoji
-                          : userData?.status?.emoji || emojiPlus
-                      }
-                      alt="Fire emoji"
-                      className="w-5 h-5"
-                    />
-                    <small className="text-xs pr-1">
-                      {userData?.status?.title}
-                    </small>
-                  </div>
-                </StatusDialog>
-              </div>
-            </div>
+    <Dialog open={openStatus} onOpenChange={setOpenStatus}>
+      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Set status</DialogTitle>
+        </DialogHeader>
+
+        <div className="space-y-4 w-full">
+          <div className="flex items-center gap-1.5">
             <Popover>
               <PopoverTrigger>
-                <EllipsesIcon />
+                <Image
+                  width={24}
+                  height={24}
+                  src={
+                    selectedEmoji
+                      ? selectedEmoji
+                      : userData?.status?.emoji || emojiPlus
+                  }
+                  alt="Fire emoji"
+                  className="w-7 h-auto object-contain"
+                />
               </PopoverTrigger>
-              <PopoverContent align="end" className="w-fit p-2">
-                <Button variant="ghost" size="sm">
-                  Edit Profile
-                </Button>
+              <PopoverContent className="w-fit py-2 px-3" align="start">
+                <ul className="grid grid-cols-6 gap-2">
+                  {emojis.map((emoji, index) => (
+                    <Image
+                      key={index}
+                      onClick={() => handleEmojiClick(emoji.img)}
+                      width={20}
+                      height={20}
+                      loading="lazy"
+                      src={emoji.img}
+                      alt={emoji.title}
+                      title={emoji.title}
+                      className="w-6 h-6 cursor-pointer hover:scale-105 duration-200"
+                    />
+                  ))}
+                </ul>
               </PopoverContent>
             </Popover>
-          </div>
 
-          {!!projects.length && (
-            <div className="flex items-center justify-between">
-              <h4 className="text-sm">Projects</h4>
-              <Switch
-                checked={projectsVisible}
-                onCheckedChange={setProjectsVisible}
-              />
-            </div>
-          )}
-          <div className="my-4">
-            {projects.map((project) => (
-              <div
-                key={project.uid}
-                className="flex items-start justify-between py-2 pl-2 pr-4 border-b"
-              >
-                <p>{project.year}</p>
-                <div className="space-y-3 w-[25rem]">
-                  <div>
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center font-medium hover:underline cursor-pointer"
-                    >
-                      {project.title} at {project.company}
-                      <ChevronRight className="w-4 h-4" />
-                    </a>
-                    <p className="text-gray-500">{project.description}</p>
-                  </div>
-                  <div className="flex items-center gap-3 overflow-x-scroll">
-                    {project.images && project.images.length > 0 && (
-                      <div className="flex items-center gap-2">
-                        {/* Map through images and render each */}
-                        {project.images.map(({ url, id, name }) => (
-                          <div key={id} className="w-32 rounded-md">
-                            <Image
-                              width={250}
-                              height={150}
-                              src={url ? url : "/assets/not-found.jpg"}
-                              quality={80}
-                              loading="lazy"
-                              alt={name}
-                              className={`w-full h-full object-cover rounded cursor-pointer`}
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
+            <Input
+              className="h-10 w-full"
+              value={statusTitle}
+              onChange={(e) => setStatusTitle(e.target.value)}
+              placeholder="Your statusTitle"
+            />
           </div>
         </div>
-      </div>
-      <Link className="fixed bottom-4 right-4" href="/admin/profile">
-        <Button
-          variant="secondary"
-          className="flex items-center bg-white shadow-lg gap-2"
-        >
-          <Pencil className="w-4 h-4" />
-          <span className="text-sm">Edit Profile</span>
-        </Button>
-      </Link>
-    </div>
+        <DialogFooter>
+          <div className="space-x-2 flex justify-end">
+            <Button
+              onClick={() => setOpenStatus(false)}
+              size="sm"
+              className="rounded-sm"
+              variant="secondary"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={addFieldToDocument}
+              size="sm"
+              disabled={isSending}
+              type="submit"
+            >
+              {isSending && <LoadingIcon />}
+              {isSending ? "Updating" : "Set status"}
+            </Button>
+          </div>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }
 
-export default AdminPage;
+export default StatusDialog;
