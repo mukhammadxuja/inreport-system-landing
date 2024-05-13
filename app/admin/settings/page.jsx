@@ -5,7 +5,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useSessionStorage } from "@/hooks/useSessionStorage";
 
 import Certifications from "@/components/admin/profile/certifications";
-import Awards from "@/components/admin/profile/awards";
 import Skills from "@/components/admin/profile/skills";
 import Contacts from "@/components/admin/profile/contact";
 import Subscription from "@/components/admin/settings/subscription";
@@ -88,12 +87,6 @@ function SettingsPage() {
           value="certifications"
         >
           <Certifications />
-        </TabsContent>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="awards"
-        >
-          <Awards />
         </TabsContent>
         <TabsContent
           className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"

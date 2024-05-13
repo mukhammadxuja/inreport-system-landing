@@ -3,7 +3,6 @@ import { useState } from "react";
 import EmailVerificationAlert from "@/components/email-verification-alert";
 import { useApiContext } from "@/context/api-context";
 import { ChevronRight, Pencil } from "lucide-react";
-import Picker from "emoji-picker-react";
 import Link from "next/link";
 
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
@@ -17,7 +16,6 @@ import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 
 import Image from "next/image";
-import { Input } from "@/components/ui/input";
 import { emojiPlus } from "@/utils/variables";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "@/firebase/config";
