@@ -6,9 +6,12 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle, Shell } from "lucide-react";
 import { useEmailVerification } from "../firebase/auth/emailVerificationLink";
 import { useApiContext } from "@/context/api-context";
+import Link from "next/link";
+import { useState } from "react";
 
 function EmailVerificationAlert() {
-  const { user } = useApiContext();
+  const { user, userData } = useApiContext();
+  const [copy, setCopy] = useState(false);
 
   const {
     isEmailVerificationSent,
@@ -25,32 +28,39 @@ function EmailVerificationAlert() {
     }
   };
 
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(`showcase.ai/${userData?.username}`);
+    setCopy(true);
+    setTimeout(() => setCopy(false), 3000);
+  };
+
   return (
     <>
       {user?.emailVerified ? (
-        <Alert className="bg-blue-100 justify-between my-4 hidden">
+        <Alert className="bg-blue-100 justify-between my-4 flex">
           <div className="flex items-start gap-3">
             <AlertCircle className="h-4 w-4" />
             <div>
               <AlertTitle>Your Profile is now active. </AlertTitle>
               <AlertDescription>
-                Share your Showcase to your socials.
-                <a
-                  href={`https://showcase.ai/${user.username}`}
+                Share your Showcase to your socials:
+                <Link
+                  className="text-sm underline ml-1"
                   target="_blank"
-                  rel="noopener noreferrer"
-                  className="ml-2 underline"
-                >
-                  showcase.ai/{user.username}
-                </a>
+                  href={`/${userData?.username}`}
+                >{`showcase.ai/${userData?.username}`}</Link>
               </AlertDescription>
             </div>
           </div>
-          <Button onClick={() => {}} variant="ghost" className="bg-white">
+          <Button
+            onClick={copyToClipboard}
+            variant="ghost"
+            className="bg-white hover:bg-gray-50 duration-300"
+          >
             {isEmailVerificationPending && (
               <Shell className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Copy Url
+            {copy ? "Copied" : "Copy Url"}
           </Button>
         </Alert>
       ) : (

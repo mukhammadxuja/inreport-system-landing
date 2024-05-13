@@ -16,7 +16,7 @@ function Auth() {
   const { googleLogin, isPendingGoogleLogin } = useGoogleLogin();
   const { isPendingEmailPasswordLogin } = useEmailPasswordLogin();
   const { isPendingEmailPasswordRegistration } = useEmailPasswordRegistration();
-  const { isEmailVerificationPending, sendEmailVerificationLink } =
+  const { isEmailVerificationPending } =
     useEmailVerification();
 
   const { user, loading } = useApiContext();
