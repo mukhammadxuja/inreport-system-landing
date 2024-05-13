@@ -16,12 +16,6 @@ const colorScale = scaleLinear()
   .domain([0.29, 0.68])
   .range(["#ffedea", "#ff5233"]);
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Zap } from "lucide-react";

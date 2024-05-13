@@ -4,14 +4,12 @@ import React, { useCallback, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Activity from "@/components/admin/analytics/activity";
 import PerformingLinks from "@/components/admin/analytics/performing-links";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
 import LifeTimeAnalytics from "@/components/admin/analytics/lifetime";
 import Subscribers from "@/components/admin/analytics/subscribers";
-import Locations from "@/components/admin/analytics/locations";
 import Devices from "@/components/admin/analytics/devices";
 import Icons from "@/components/admin/analytics/icons";
 import { useSessionStorage } from "@/hooks/useSessionStorage";
-import { Separator } from "@/components/ui/separator";
+import Locations from "@/components/admin/analytics/locations";
 
 function AnalyticsPage() {
   const [analytics, setAnalytics] = useState("activity");
@@ -37,11 +35,6 @@ function AnalyticsPage() {
       title: "Locations",
       tag: "locations",
     },
-    // {
-    //   id: 0,
-    //   title: "Referrers",
-    //   tag: "referrers",
-    // },
     {
       id: 0,
       title: "Devices",
