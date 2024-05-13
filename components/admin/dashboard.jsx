@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import Sidebar from "../sidebar";
 import { useApiContext } from "@/context/api-context";
 import { useMainContext } from "@/context/main-context";
-import Loading from "./loading";
 import { useRouter } from "next/navigation";
 
 function Dashboard({ children }) {
@@ -16,9 +15,11 @@ function Dashboard({ children }) {
     ? "pl-[270px] duration-300 w-full"
     : "pl-0 md:pl-16 duration-300 w-full";
 
-  if (!user) {
-    router.push("/signup");
-  }
+  useEffect(() => {
+    if (!user) {
+      router.push("/signup");
+    }
+  }, [router, user]);
 
   return (
     <div className="flex">
