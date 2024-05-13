@@ -175,11 +175,10 @@ const emojis = [
   },
 ];
 
-function StatusDialog({ openStatus, setOpenStatus, children }) {
+function StatusDialog({ openStatus, setOpenStatus, children, selectedEmoji, setSelectedEmoji }) {
   const { userData, userUid } = useApiContext();
 
   const [statusTitle, setStatusTitle] = useState(userData?.status?.title);
-  const [selectedEmoji, setSelectedEmoji] = useState(null);
 
   const [isSending, setIsSending] = useState(false);
 

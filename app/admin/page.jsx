@@ -22,6 +22,8 @@ import StatusDialog from "@/components/admin/dialogs/status";
 function AdminPage() {
   const { projects, userData } = useApiContext();
   const [projectsVisible, setProjectsVisible] = useState(true);
+
+  const [selectedEmoji, setSelectedEmoji] = useState(null);
   const [openStatus, setOpenStatus] = useState(false);
 
   return (
@@ -52,8 +54,10 @@ function AdminPage() {
                 <StatusDialog
                   openStatus={openStatus}
                   setOpenStatus={setOpenStatus}
+                  selectedEmoji={selectedEmoji}
+                  setSelectedEmoji={setSelectedEmoji}
                 >
-                  <div className="w-fit flex items-center gap-1 py-1 px-2 rounded-full bg-indigo-100 shadow-sm cursor-pointer group">
+                  <div className="w-fit flex items-center gap-1 py-1 px-2 rounded-full bg-gray-100 shadow-sm cursor-pointer group">
                     <Image
                       width={20}
                       height={20}
@@ -63,9 +67,9 @@ function AdminPage() {
                           : userData?.status?.emoji || emojiPlus
                       }
                       alt="Fire emoji"
-                      className="w-5 h-5"
+                      className="w-4 h-4"
                     />
-                    <small className="text-xs pr-1">
+                    <small className="text-xs pr-1 max-w-32 group-hover:w-full duration-300 truncate">
                       {userData?.status?.title}
                     </small>
                   </div>

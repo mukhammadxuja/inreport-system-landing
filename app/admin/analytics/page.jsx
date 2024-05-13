@@ -2,14 +2,13 @@
 import React, { useCallback, useState } from "react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useSessionStorage } from "@/hooks/useSessionStorage";
+import LifeTimeAnalytics from "@/components/admin/analytics/lifetime";
 import Activity from "@/components/admin/analytics/activity";
 import PerformingLinks from "@/components/admin/analytics/performing-links";
-import LifeTimeAnalytics from "@/components/admin/analytics/lifetime";
 import Subscribers from "@/components/admin/analytics/subscribers";
 import Devices from "@/components/admin/analytics/devices";
 import Icons from "@/components/admin/analytics/icons";
-import { useSessionStorage } from "@/hooks/useSessionStorage";
-import Locations from "@/components/admin/analytics/locations";
 
 function AnalyticsPage() {
   const [analytics, setAnalytics] = useState("activity");
@@ -92,9 +91,9 @@ function AnalyticsPage() {
         <TabsContent className="!mt-2" value="subscribers">
           <Subscribers />
         </TabsContent>
-        <TabsContent className="!mt-2" value="locations">
+        {/* <TabsContent className="!mt-2" value="locations">
           <Locations />
-        </TabsContent>
+        </TabsContent> */}
         <TabsContent className="!mt-2" value="devices">
           <Devices />
         </TabsContent>
