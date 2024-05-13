@@ -15,11 +15,11 @@ function Dashboard({ children }) {
     ? "pl-[270px] duration-300 w-full"
     : "pl-0 md:pl-16 duration-300 w-full";
 
-  useEffect(() => {
-    if (!user) {
-      router.push("/signup");
-    }
-  }, [router, user]);
+  // useEffect(() => {
+  //   if (!user) {
+  //     router.push("/signup");
+  //   }
+  // }, [router, user]);
 
   return (
     <div className="flex">

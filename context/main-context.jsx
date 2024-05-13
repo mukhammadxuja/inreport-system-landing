@@ -19,7 +19,7 @@ export const useMainContext = () => {
 export const MainContextProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
 
-  const [projects, setProjects] = useState([]);
+  const [projectsVisibility, setProjectsVisibility] = useState(true);
 
   // Open something
   const [openSidebar, setOpenSidebar] = useState(false);
@@ -120,13 +120,16 @@ export const MainContextProvider = ({ children }) => {
   };
 
   const contextValue = {
-    users,
     openSidebar,
     setOpenSidebar,
     getUser,
     colorVariants,
     textColorVariants,
     textHighlightVariants,
+    projectsVisibility,
+    setProjectsVisibility,
+
+    // resume i think I do not need anymore
     size,
     setSize,
     color,
