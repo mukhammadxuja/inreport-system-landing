@@ -16,6 +16,8 @@ import {
 import { EllipsesIcon } from "@/components/icons";
 import MoveToSideProjects from "@/components/admin/dialogs/move-project";
 import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
+import { useState } from "react";
 
 // TODO: refactor and make sure all function works before transfer to another file
 // Hide, Edit, Delete, Active tab with localStorage
@@ -23,6 +25,7 @@ import { Button } from "@/components/ui/button";
 
 function AdminPage() {
   const { projects, userData } = useApiContext();
+  const [projectsVisible, setProjectsVisible] = useState(true);
 
   return (
     <div className="px-4 min-h-screen max-w-3xl mx-auto my-20 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 !mt-6 md:!mt-10 w-full p-5 md:px-8 md:py-6 rounded-lg bg-white">
@@ -58,7 +61,15 @@ function AdminPage() {
         </Popover>
       </div>
 
-      {!!projects.length && <h4 className="text-sm">Projects</h4>}
+      {!!projects.length && (
+        <div className="flex items-center justify-between">
+          <h4 className="text-sm">Projects</h4>
+          <Switch
+            checked={projectsVisible}
+            onCheckedChange={setProjectsVisible}
+          />
+        </div>
+      )}
       <div className="my-4">
         {projects.map((project) => (
           <div

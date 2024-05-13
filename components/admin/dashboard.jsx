@@ -7,7 +7,7 @@ import Loading from "./loading";
 import { useRouter } from "next/navigation";
 
 function Dashboard({ children }) {
-  const { user, loading } = useApiContext();
+  const { user } = useApiContext();
   const { openSidebar } = useMainContext();
 
   const router = useRouter();
@@ -15,6 +15,10 @@ function Dashboard({ children }) {
   const ifSidebar = openSidebar
     ? "pl-[270px] duration-300 w-full"
     : "pl-0 md:pl-16 duration-300 w-full";
+
+  if (!user) {
+    router.push("/signup");
+  }
 
   return (
     <div className="flex">

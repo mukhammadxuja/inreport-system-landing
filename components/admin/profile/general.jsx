@@ -21,6 +21,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { toast } from "sonner";
 import { Combobox } from "@/components/ui/combobox";
 
+/**
+ * Templates: https://www.canvas.supply/products/linx 
+ */
+
 const templates = [
   {
     value: "terra-nova",

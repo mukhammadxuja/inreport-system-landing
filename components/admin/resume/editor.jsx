@@ -1,9 +1,11 @@
 // import "./styles.scss";
 
-"use client"
+"use client";
 import { Button } from "@/components/ui/button";
 import { useCurrentEditor } from "@tiptap/react";
 import React from "react";
+
+// richtexteditor;
 
 export const MenuBar = () => {
   const { editor } = useCurrentEditor();

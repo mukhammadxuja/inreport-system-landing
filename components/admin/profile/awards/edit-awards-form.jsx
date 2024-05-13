@@ -17,16 +17,14 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { handleFileRemove, updateItem } from "@/services/firestore-service";
-import { Checkbox } from "@/components/ui/checkbox";
 
-function EditVolunteeringForm({ setIsEdit, editableId }) {
-  const { volunteerings } = useApiContext();
-  const volunteering = volunteerings.find((p) => p.id === editableId);
+function EditAwardForm({ setIsEdit, editableId }) {
+  const { awards } = useApiContext();
+  const award = awards.find((p) => p.id === editableId);
 
   const [isSending, setIsSending] = useState(false);
-  const [present, setPresent] = useState(volunteering?.present);
   const [files, setFiles] = useState([]);
-  const images = [...volunteering?.images];
+  const images = [...award?.images];
 
   files.map((file) => {
     images.push({
@@ -38,15 +36,13 @@ function EditVolunteeringForm({ setIsEdit, editableId }) {
 
   const defaultValues = useMemo(() => {
     return {
-      from: volunteering?.from,
-      to: volunteering?.to,
-      title: volunteering?.title,
-      organization: volunteering?.organization,
-      location: volunteering?.location,
-      url: volunteering?.url,
-      description: volunteering?.description,
+      title: award?.title,
+      year: award?.year,
+      presentedBy: award?.presentedBy,
+      url: award?.url,
+      description: award?.description,
     };
-  }, [volunteering]);
+  }, [award]);
 
   const form = useForm({
     defaultValues: defaultValues,
@@ -59,23 +55,19 @@ function EditVolunteeringForm({ setIsEdit, editableId }) {
     setFiles([...files, ...event.target.files]);
   };
 
-  // Update volunteering to database
-  const updateEducation = async (data) => {
+  // Update award to database
+  const updateAward = async (data) => {
     if (isSending) return;
     setIsSending(true);
 
     try {
-      await updateItem(
-        "volunteerings",
-        { ...data, present },
-        editableId,
-        files,
-        volunteering.images
-      ).finally(() => {
-        setIsEdit(false);
-        setIsSending(false);
-        toast("Volunteering updated successfully");
-      });
+      await updateItem("awards", data, editableId, files, award.images).finally(
+        () => {
+          setIsEdit(false);
+          setIsSending(false);
+          toast("Award updated successfully");
+        }
+      );
     } catch (error) {
       console.log(error);
     }
@@ -83,98 +75,58 @@ function EditVolunteeringForm({ setIsEdit, editableId }) {
 
   return (
     <form
-      onSubmit={handleSubmit(updateEducation)}
+      onSubmit={handleSubmit(updateAward)}
       className="space-y-3 md:space-y-6 mt-5"
       noValidate
     >
       <div className="flex flex-col md:flex-row md:items-center gap-3">
         <div className="space-y-1 w-full">
-          <Label htmlFor="from">
-            From<span className="text-red-500">*</span>
+          <Label htmlFor="title">
+            Award title<span className="text-red-500">*</span>
           </Label>
           <Input
-            id="from"
-            type="number"
-            placeholder="2019"
-            {...register("from", {
+            id="title"
+            placeholder="My great award"
+            {...register("title", {
               required: {
                 value: true,
-                message: "From is required",
+                message: "Award title is required",
               },
             })}
-          />
-          <p className="text-xs text-red-500">{errors.from?.message}</p>
-        </div>
-        <div className="space-y-1 w-full">
-          <div className="space-y-1 w-full">
-            <Label htmlFor="to">
-              To<span className="text-red-500">*</span>
-            </Label>
-            <Input
-              disabled={present}
-              maxLength={4}
-              type="number"
-              id="to"
-              placeholder="2024"
-              {...register("to", {
-                required: {
-                  value: !present,
-                  message: "To is required",
-                },
-              })}
-            />
-            <p className="text-xs text-red-500">{errors.to?.message}</p>
-          </div>
-          <div className="flex items-center space-x-1 w-fit">
-            <Checkbox
-              checked={present}
-              onCheckedChange={setPresent}
-              className="rounded"
-              id="present"
-              placeholder="2024"
-            />
-            <Label htmlFor="present">Present</Label>
-
-            <p className="text-xs text-red-500">{errors.year?.message}</p>
-          </div>
-        </div>
-      </div>
-      <div className="flex flex-col md:flex-row md:items-center gap-3">
-        <div className="space-y-1 w-full">
-          <Label htmlFor="title">Title</Label>
-          <Input
-            id="title"
-            placeholder="Product Designer"
-            {...register("title")}
           />
           <p className="text-xs text-red-500">{errors.title?.message}</p>
         </div>
         <div className="space-y-1 w-full">
-          <Label htmlFor="organization">
-            Organization<span className="text-red-500">*</span>
+          <Label htmlFor="year">
+            Year<span className="text-red-500">*</span>
           </Label>
           <Input
-            id="organization"
-            placeholder="Acme inc."
-            {...register("organization", {
+            type="number"
+            id="year"
+            placeholder="2024"
+            {...register("year", {
               required: {
                 value: true,
-                message: "Organization is required",
+                message: "Year is required",
+              },
+              maxLength: {
+                value: 4,
+                message: "Year is too long",
               },
             })}
           />
-          <p className="text-xs text-red-500">{errors.company?.message}</p>
+          <p className="text-xs text-red-500">{errors.year?.message}</p>
         </div>
       </div>
       <div className="flex flex-col md:flex-row md:items-center gap-3">
         <div className="space-y-1 w-full">
-          <Label htmlFor="location">Location</Label>
+          <Label htmlFor="presentedBy">PresentedBy</Label>
           <Input
-            id="location"
-            placeholder="Where was it"
-            {...register("location")}
+            id="presentedBy"
+            placeholder="Google"
+            {...register("presentedBy")}
           />
-          <p className="text-xs text-red-500">{errors.location?.message}</p>
+          <p className="text-xs text-red-500">{errors.presentedBy?.message}</p>
         </div>
         <div className="space-y-1 w-full">
           <Label htmlFor="url">URL</Label>
@@ -191,16 +143,17 @@ function EditVolunteeringForm({ setIsEdit, editableId }) {
         <Textarea
           id="description"
           rows={4}
-          placeholder="Cool volunteering"
+          placeholder="Cool award"
           {...register("description", {
             maxLength: {
-              value: 200,
-              message: "Name is too long",
+              value: 300,
+              message: "Description is too long (only 300)",
             },
           })}
         />
         <p className="text-xs text-red-500">{errors.description?.message}</p>
       </div>
+
       <div className="space-y-1 w-full">
         <div className="mx-auto w-full">
           <Label htmlFor="upload">Attachments</Label>
@@ -246,13 +199,7 @@ function EditVolunteeringForm({ setIsEdit, editableId }) {
                     <X
                       className="absolute top-1 right-1 w-6 bg-white text-black h-6 border rounded-full p-1 cursor-pointer"
                       onClick={() =>
-                        handleFileRemove(
-                          "volunteerings",
-                          name,
-                          volunteering.id,
-                          id,
-                          setFiles
-                        )
+                        handleFileRemove("awards", name, award.id, id, setFiles)
                       }
                     />
                   </div>
@@ -275,10 +222,11 @@ function EditVolunteeringForm({ setIsEdit, editableId }) {
         <Button disabled={isSubmitting} className="rounded-sm" type="submit">
           {isSubmitting && <LoadingIcon />}
           {isSubmitting ? "Saving" : "Save"}
+          Edit
         </Button>
       </div>
     </form>
   );
 }
 
-export default EditVolunteeringForm;
+export default EditAwardForm;

@@ -271,7 +271,7 @@ function AddSideProjectForm({ setAddProject }) {
           type="submit"
         >
           {isSubmitting && <LoadingIcon />}
-          Save
+          {isSubmitting ? "Saving" : "Save"}
         </Button>
       </div>
     </form>

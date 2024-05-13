@@ -245,7 +245,7 @@ function EditSideProjectForm({ setIsEdit, editableId }) {
         </Button>
         <Button disabled={isSubmitting} className="rounded-sm" type="submit">
           {isSubmitting && <LoadingIcon />}
-          Edit
+          {isSubmitting ? "Saving" : "Save"}
         </Button>
       </div>
     </form>

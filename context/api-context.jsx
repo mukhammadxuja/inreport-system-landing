@@ -22,9 +22,9 @@ export const ApiContextProvider = ({ children }) => {
   const [educations, setEducations] = useState([]);
   const [volunteerings, setVolunteerings] = useState([]);
   const [certifications, setCertifications] = useState([]);
+  const [awards, setAwards] = useState([]);
 
-  console.log("certifications", certifications);
-
+  const awardsCollection = collection(db, `users/${userUid}/awards`);
   const projectsCollection = collection(db, `users/${userUid}/projects`);
   const sideProjectsCollection = collection(
     db,
@@ -42,6 +42,12 @@ export const ApiContextProvider = ({ children }) => {
   );
 
   useEffect(() => {
+    // fetch awards
+    const queryAwards = query(awardsCollection);
+    onSnapshot(queryAwards, (snapshot) => {
+      setAwards(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    });
+
     // fetch projects
     const queryProjects = query(projectsCollection);
     onSnapshot(queryProjects, (snapshot) => {
@@ -126,6 +132,7 @@ export const ApiContextProvider = ({ children }) => {
     educations,
     volunteerings,
     certifications,
+    awards,
   };
 
   return <ApiContext.Provider value={values}>{children}</ApiContext.Provider>;

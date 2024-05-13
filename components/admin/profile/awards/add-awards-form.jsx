@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 import { useState } from "react";
 import Image from "next/image";
@@ -20,7 +19,7 @@ import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 
-function AddProjectForm({ setAddProject }) {
+function AddAwardsForm({ setAddAward }) {
   const form = useForm();
   const { register, formState, handleSubmit } = form;
   const { errors, isDirty, isSubmitting } = formState;
@@ -55,16 +54,16 @@ function AddProjectForm({ setAddProject }) {
     setFiles(items);
   }
 
-  // Add project to database
-  const addProject = async (data) => {
+  // Add award to database
+  const addAward = async (data) => {
     if (isSending) return;
     setIsSending(true);
 
     try {
-      await addItem("projects", data, files).finally(() => {
-        setAddProject(false);
+      await addItem("awards", data, files).finally(() => {
+        setAddAward(false);
         setIsSending(false);
-        toast("Project added successfully");
+        toast("Award added successfully");
       });
     } catch (error) {
       console.log(error);
@@ -73,22 +72,22 @@ function AddProjectForm({ setAddProject }) {
 
   return (
     <form
-      onSubmit={handleSubmit(addProject)}
+      onSubmit={handleSubmit(addAward)}
       className="space-y-3 md:space-y-6 mt-5"
       noValidate
     >
       <div className="flex flex-col md:flex-row md:items-center gap-3">
         <div className="space-y-1 w-full">
           <Label htmlFor="title">
-            Title<span className="text-red-500">*</span>
+            Award title<span className="text-red-500">*</span>
           </Label>
           <Input
             id="title"
-            placeholder="My Great Project"
+            placeholder="My great award"
             {...register("title", {
               required: {
                 value: true,
-                message: "Title is required",
+                message: "Award title is required",
               },
             })}
           />
@@ -119,32 +118,27 @@ function AddProjectForm({ setAddProject }) {
       </div>
       <div className="flex flex-col md:flex-row md:items-center gap-3">
         <div className="space-y-1 w-full">
-          <Label htmlFor="company">Company or client</Label>
+          <Label htmlFor="presentedBy">Presented by</Label>
           <Input
-            id="company"
-            placeholder="Acme inc."
-            {...register("company", {
+            id="presentedBy"
+            placeholder="Google"
+            {...register("presentedBy", {
               required: {
                 value: true,
                 message: "Company name is required",
               },
             })}
           />
-          <p className="text-xs text-red-500">{errors.company?.message}</p>
+          <p className="text-xs text-red-500">{errors.presentedBy?.message}</p>
         </div>
         <div className="space-y-1 w-full">
-          <Label htmlFor="link">Link to project</Label>
+          <Label htmlFor="url">URL</Label>
           <Input
-            id="link"
+            id="url"
             placeholder="https://example.com"
-            {...register("link", {
-              required: {
-                value: true,
-                message: "Link is required",
-              },
-            })}
+            {...register("url")}
           />
-          <p className="text-xs text-red-500">{errors.link?.message}</p>
+          <p className="text-xs text-red-500">{errors.url?.message}</p>
         </div>
       </div>
       <div className="space-y-1 w-full">
@@ -152,12 +146,8 @@ function AddProjectForm({ setAddProject }) {
         <Textarea
           id="description"
           rows={4}
-          placeholder="Cool project"
+          placeholder="Cool award"
           {...register("description", {
-            required: {
-              value: true,
-              message: "Name is required",
-            },
             maxLength: {
               value: 300,
               message: "Description is too long (only 300)",
@@ -263,7 +253,7 @@ function AddProjectForm({ setAddProject }) {
           disabled={isSubmitting}
           className="rounded-sm"
           variant="secondary"
-          onClick={() => setAddProject(false)}
+          onClick={() => setAddAward(false)}
         >
           Cancel
         </Button>
@@ -280,4 +270,4 @@ function AddProjectForm({ setAddProject }) {
   );
 }
 
-export default AddProjectForm;
+export default AddAwardsForm;

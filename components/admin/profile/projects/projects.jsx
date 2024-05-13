@@ -3,10 +3,10 @@ import React, { Fragment, useState } from "react";
 // Context
 import { useApiContext } from "@/context/api-context";
 // Child Components
-import ProjectItem from "./projects/project-item";
-import EmptyProjects from "./projects/empty";
-import AddProjectForm from "./projects/add-project-form";
-import EditProjectForm from "./projects/edit-project-form";
+import EditProjectForm from "./edit-project-form";
+import AddProjectForm from "./add-project-form";
+import ProjectItem from "./project-item";
+import EmptyProjects from "./empty";
 
 // UI
 import { Button } from "@/components/ui/button";
