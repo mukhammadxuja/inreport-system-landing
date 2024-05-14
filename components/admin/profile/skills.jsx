@@ -24,7 +24,7 @@ import {
 import { FancyMultiSelect } from "@/components/ui/multi-select";
 
 const Skills = () => {
-  const { user } = useApiContext();
+  const { userData } = useApiContext();
 
   const [addSkill, setAddSkill] = useState(false);
 
@@ -44,7 +44,7 @@ const Skills = () => {
       </div>
       <Separator />
       {addSkill ? (
-        <Form userData={user} setAddSkill={setAddSkill} />
+        <Form userData={userData} setAddSkill={setAddSkill} />
       ) : (
         <div className="flex flex-col items-center justify-center !min-h-[calc(100vh-14rem)] py-10 space-y-3">
           <svg

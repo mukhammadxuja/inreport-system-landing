@@ -54,13 +54,16 @@ function StatusDialog({
     defaultValues: defaultValues,
   });
 
-  const { register, formState, handleSubmit } = form;
+  const { register, formState, setError, handleSubmit } = form;
 
   const { errors, isDirty, isSubmitting } = formState;
 
   const addStatus = async (data) => {
-    if (!selectedEmoji) {
-      toast("Select emoji before update");
+    if (!data.title) {
+      setError("title", {
+        type: "manual",
+        message: "Select emoji before update",
+      });
       return;
     }
 
@@ -70,14 +73,20 @@ function StatusDialog({
 
       if (docSnapshot.exists()) {
         const gotUserData = docSnapshot.data();
-        gotUserData["status"] = { emoji: selectedEmoji, title: data.title };
+        gotUserData["status"] = {
+          ...data.stats,
+          emoji: selectedEmoji,
+          title: data.title,
+        };
         await updateDoc(docRef, gotUserData);
       }
     } catch (error) {
       console.error("Error adding field to document:", error);
     } finally {
       setOpenStatus(false);
-      toast("Status updated successfully");
+      toast(
+        "Status updated successfully! Showing new status might take some minute"
+      );
     }
   };
 
@@ -171,27 +180,6 @@ function StatusDialog({
             </form>
           </div>
         </div>
-        {/* <DialogFooter>
-          <div className="space-x-2 flex justify-end">
-            <Button
-              onClick={() => setOpenStatus(false)}
-              size="sm"
-              className="rounded-sm"
-              variant="secondary"
-            >
-              Cancel
-            </Button>
-            <Button
-              onClick={addFieldToDocument}
-              size="sm"
-              disabled={isSending}
-              type="submit"
-            >
-              {isSending && <LoadingIcon />}
-              {isSending ? "Updating" : "Set status"}
-            </Button>
-          </div>
-        </DialogFooter> */}
       </DialogContent>
     </Dialog>
   );

@@ -215,13 +215,6 @@ const Form = ({ userData, image, hiddenFileInput }) => {
               setTemplateValue={setTemplate}
               userTemplate={userData?.template}
             />
-            {/* <Button
-                type="button"
-                className="whitespace-nowrap"
-                variant="secondary"
-              >
-                Show templates
-              </Button> */}
           </div>
           <a className="text-xs text-gray-600 cursor-pointer underline">
             Show templates
