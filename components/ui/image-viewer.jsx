@@ -3,7 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Button } from "./button";
 
-export const ImageViewer = ({ images, onClose }) => {
+export const ImageViewer = ({ images, selectedImageIndex, onClose }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const nextImage = () => {
@@ -30,7 +30,7 @@ export const ImageViewer = ({ images, onClose }) => {
           quality={80}
           loading="lazy"
           className="h-[80vh] w-auto rounded-md object-cover mt-4 md:mt-8 xl:mt-12"
-          src={images[currentImageIndex].url}
+          src={images[selectedImageIndex].url}
           alt={`Image ${currentImageIndex + 1}`}
         />
       </div>

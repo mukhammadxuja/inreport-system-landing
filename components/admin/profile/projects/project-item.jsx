@@ -89,7 +89,11 @@ function ProjectItem({ project, setEditableId, setIsEdit }) {
           )}
         </div>
         {showViewer && (
-          <ImageViewer images={project?.images} onClose={closeImageViewer} />
+          <ImageViewer
+            images={project?.images}
+            selectedImageIndex={selectedImageIndex}
+            onClose={closeImageViewer}
+          />
         )}
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
