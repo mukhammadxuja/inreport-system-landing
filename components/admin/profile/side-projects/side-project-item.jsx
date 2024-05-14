@@ -18,14 +18,26 @@ import { Button } from "@/components/ui/button";
 // Dialogs
 import DeleteItem from "@/components/admin/dialogs/delete-item";
 import MoveProject from "@/components/admin/dialogs/move-project";
+import { ImageViewer } from "@/components/ui/image-viewer";
 
 function SideProjectItem({ project, setEditableId, setIsEdit }) {
+  const [showViewer, setShowViewer] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [loaded, setLoaded] = useState(false);
 
   function handleEdit(id) {
     setEditableId(id);
     setIsEdit(true);
   }
+
+  const openImageViewer = (index) => {
+    setSelectedImageIndex(index);
+    setShowViewer(true);
+  };
+
+  const closeImageViewer = () => {
+    setShowViewer(false);
+  };
   return (
     <div
       key={project.id}
@@ -49,7 +61,7 @@ function SideProjectItem({ project, setEditableId, setIsEdit }) {
           {project.images && project.images.length > 0 && (
             <div className="flex items-center gap-2">
               {/* Map through images and render each */}
-              {project.images.map(({ url, id, name }) => (
+              {project.images.map(({ url, id, name }, index) => (
                 <div
                   key={id}
                   className="w-[7.55rem] h-24 bg-indigo-200 rounded-md"
@@ -61,6 +73,7 @@ function SideProjectItem({ project, setEditableId, setIsEdit }) {
                     quality={80}
                     loading="lazy"
                     alt={name}
+                    onClick={() => openImageViewer(index)}
                     className={`${project.hide && "blur-[1.5px]"} ${
                       loaded && "unblur"
                     } w-full h-full object-cover rounded cursor-pointer`}
@@ -70,6 +83,14 @@ function SideProjectItem({ project, setEditableId, setIsEdit }) {
             </div>
           )}
         </div>
+        {showViewer && (
+          <ImageViewer
+            images={project?.images}
+            selectedImageIndex={selectedImageIndex}
+            setSelectedImageIndex={setSelectedImageIndex}
+            onClose={closeImageViewer}
+          />
+        )}
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <small

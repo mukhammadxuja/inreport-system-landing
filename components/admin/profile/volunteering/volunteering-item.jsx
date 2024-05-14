@@ -8,14 +8,26 @@ import { ChevronRight } from "lucide-react";
 
 // Dialogs
 import DeleteItem from "@/components/admin/dialogs/delete-item";
+import { ImageViewer } from "@/components/ui/image-viewer";
 
 function EducationItem({ volunteering, setEditableId, setIsEdit }) {
+  const [showViewer, setShowViewer] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [loaded, setLoaded] = useState(false);
 
   function handleEdit(id) {
     setEditableId(id);
     setIsEdit(true);
   }
+
+  const openImageViewer = (index) => {
+    setSelectedImageIndex(index);
+    setShowViewer(true);
+  };
+
+  const closeImageViewer = () => {
+    setShowViewer(false);
+  };
   return (
     <div
       key={volunteering.id}
@@ -43,7 +55,7 @@ function EducationItem({ volunteering, setEditableId, setIsEdit }) {
           {volunteering.images && volunteering.images.length > 0 && (
             <div className="flex items-center gap-2">
               {/* Map through images and render each */}
-              {volunteering.images.map(({ url, id, name }) => (
+              {volunteering.images.map(({ url, id, name }, index) => (
                 <div
                   key={id}
                   className="w-[7.55rem] h-24 bg-indigo-200 rounded-md"
@@ -55,6 +67,7 @@ function EducationItem({ volunteering, setEditableId, setIsEdit }) {
                     quality={80}
                     loading="lazy"
                     alt={name}
+                    onClick={() => openImageViewer(index)}
                     className={`${volunteering.hide && "blur-[1.5px]"} ${
                       loaded && "unblur"
                     } w-full h-full object-cover rounded cursor-pointer`}
@@ -64,6 +77,14 @@ function EducationItem({ volunteering, setEditableId, setIsEdit }) {
             </div>
           )}
         </div>
+        {showViewer && (
+          <ImageViewer
+            images={volunteering?.images}
+            selectedImageIndex={selectedImageIndex}
+            setSelectedImageIndex={setSelectedImageIndex}
+            onClose={closeImageViewer}
+          />
+        )}
         <div className="flex items-center space-x-2">
           <small
             onClick={() =>

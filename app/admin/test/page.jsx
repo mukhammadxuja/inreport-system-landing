@@ -40,6 +40,7 @@ import {
 import { auth, db, storage } from "@/firebase/config";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { toast } from "sonner";
+import { ImageViewer } from "@/components/ui/image-viewer";
 
 function TestPage() {
   const [files, setFiles] = useState([]);
@@ -313,7 +314,12 @@ function TestPage() {
           ))}
         </div>
         {showViewer && (
-          <ImageViewer images={images} onClose={closeImageViewer} />
+          <ImageViewer
+            images={images}
+            selectedImageIndex={selectedImageIndex}
+            setSelectedImageIndex={setSelectedImageIndex}
+            onClose={closeImageViewer}
+          />
         )}
       </div>
     </div>
@@ -321,72 +327,3 @@ function TestPage() {
 }
 
 export default TestPage;
-
-const ImageViewer = ({ images, onClose }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const nextImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
-
-  const handleMouseEnter = (event) => {
-    const { clientX, target } = event;
-    const { left, width } = target.getBoundingClientRect();
-    const offsetX = clientX - left;
-    if (offsetX <= width / 2) {
-      event.target.style.cursor =
-        'url("https://cdn-icons-png.flaticon.com/512/748/748113.png"), auto';
-    } else {
-      event.target.style.cursor =
-        'url("https://cdn-icons-png.flaticon.com/512/748/748121.png"), auto';
-    }
-  };
-
-  const handleMouseLeave = (event) => {
-    event.target.style.cursor = "auto";
-  };
-
-  const handleMouseMove = (event) => {
-    const { clientX, target } = event;
-    const { left, width } = target.getBoundingClientRect();
-    const offsetX = clientX - left;
-    if (offsetX <= width / 2) {
-      target.style.cursor =
-        'url("https://cdn-icons-png.flaticon.com/512/748/748113.png"), auto';
-    } else {
-      target.style.cursor =
-        'url("https://cdn-icons-png.flaticon.com/512/748/748121.png"), auto';
-    }
-  };
-
-  return (
-    <div className="image-viewer">
-      <div className="overlay" onClick={onClose}></div>
-      <div
-        className="modal"
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-      >
-        <img
-          src={images[currentImageIndex]}
-          alt={images[currentImageIndex]}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        />
-        <div className="controls">
-          <button onClick={prevImage}>&#10094;</button>
-          <button onClick={nextImage}>&#10095;</button>
-          <button onClick={onClose}>Close</button>
-        </div>
-      </div>
-    </div>
-  );
-};

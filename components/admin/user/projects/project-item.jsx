@@ -14,9 +14,8 @@ import {
 } from "@/components/ui/popover";
 import { EllipsesIcon } from "@/components/icons";
 import MoveProject from "../../dialogs/move-project";
-import { toggleHide } from "@/services/firestore-service";
 
-function ProjectItem({ project, profile = true, setEditableId, setIsEdit }) {
+function ProjectItem({ item, profile = true, setEditableId, setIsEdit }) {
   const [showViewer, setShowViewer] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
@@ -26,11 +25,6 @@ function ProjectItem({ project, profile = true, setEditableId, setIsEdit }) {
     setShowViewer(true);
   };
 
-  function handleEdit(id) {
-    setEditableId(id);
-    setIsEdit(true);
-  }
-
   const closeImageViewer = () => {
     setShowViewer(false);
   };
@@ -38,21 +32,21 @@ function ProjectItem({ project, profile = true, setEditableId, setIsEdit }) {
   return (
     <div className="relative md:flex md:items-start md:justify-between py-4 pr-4">
       <di className="hidden md:flex items-center space-x-1">
-        <p>{project.year ? project.year : project.from}</p>
-        <p>{project?.present ? " — Present" : project?.to}</p>
+        <p>{item.year ? item.year : item.from}</p>
+        <p>{item?.present ? " — Present" : item?.to}</p>
       </di>
-      <div className={`${project.hide && "blur-[1.5px]"} space-y-3 w-full md:w-[25rem]`}>
+      <div className="space-y-3 w-full md:w-[25rem]">
         <div className="-space-y-1">
           <div className="flex items-center justify-between w-full">
             <Button variant="linkHover1">
               <Link
                 className="flex items-center space-x-1.5 group"
-                href={`${project.link}`}
+                href={`${item.link}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <span>
-                  {project.title} at {project.company}
+                  {item.title} at {item.company}
                 </span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -71,16 +65,16 @@ function ProjectItem({ project, profile = true, setEditableId, setIsEdit }) {
               </Link>
             </Button>
             <p className="block md:hidden ml-auto">
-              {project.year ? project.year : project.from}
+              {item.year ? item.year : item.from}
             </p>
           </div>
-          <p className="text-gray-600 text-sm">{project.description}</p>
+          <p className="text-gray-600 text-sm">{item.description}</p>
         </div>
         <div className="flex items-center gap-3 overflow-x-scroll">
-          {project.images && project.images.length > 0 && (
+          {item.images && item.images.length > 0 && (
             <div className="flex items-center gap-2">
               {/* Map through images and render each */}
-              {project?.images?.map(({ url, id, name }, index) => (
+              {item?.images?.map(({ url, id, name }, index) => (
                 <div key={id} className="w-32 rounded-md">
                   <Image
                     width={250}
@@ -101,22 +95,18 @@ function ProjectItem({ project, profile = true, setEditableId, setIsEdit }) {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <small
-                onClick={() => toggleHide("projects", project.id, project.hide)}
+                onClick={() => toggleHide("projects", item.id, item.hide)}
                 className="hover:underline cursor-pointer"
               >
-                {project.hide ? "Show" : "Hide"}
+                {item.hide ? "Show" : "Hide"}
               </small>
               <small
-                onClick={() => handleEdit(project.id)}
+                onClick={() => handleEdit(item.id)}
                 className="hover:underline cursor-pointer"
               >
                 Edit
               </small>
-              <DeleteItem
-                id={project.id}
-                title={project.title}
-                source="projects"
-              >
+              <DeleteItem id={item.id} title={item.title} source="projects">
                 <small className="hover:underline cursor-pointer">Delete</small>
               </DeleteItem>
             </div>
@@ -126,8 +116,8 @@ function ProjectItem({ project, profile = true, setEditableId, setIsEdit }) {
               </PopoverTrigger>
               <PopoverContent align="end" className="w-fit p-2">
                 <MoveProject
-                  id={project.id}
-                  name={project.title}
+                  id={item.id}
+                  name={item.title}
                   from="projects"
                   to="side-projects"
                 >
@@ -141,7 +131,7 @@ function ProjectItem({ project, profile = true, setEditableId, setIsEdit }) {
         )}
         {showViewer && (
           <ImageViewer
-            images={project?.images}
+            images={item?.images}
             selectedImageIndex={selectedImageIndex}
             setSelectedImageIndex={setSelectedImageIndex}
             onClose={closeImageViewer}

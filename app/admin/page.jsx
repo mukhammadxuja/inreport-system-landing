@@ -18,7 +18,7 @@ import { Switch } from "@/components/ui/switch";
 
 import { emojiPlus } from "@/utils/variables";
 import StatusDialog from "@/components/admin/dialogs/status";
-import ProjectList from "@/components/admin/user/project-list";
+import ProjectList from "@/components/admin/user/projects/project-list";
 import { useMainContext } from "@/context/main-context";
 
 function AdminPage() {
