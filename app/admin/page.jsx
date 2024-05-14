@@ -27,6 +27,7 @@ function AdminPage() {
 
   const [selectedEmoji, setSelectedEmoji] = useState(null);
   const [openStatus, setOpenStatus] = useState(false);
+  const [statusTitle, setStatusTitle] = useState(userData?.status?.title || "");
 
   return (
     <div>

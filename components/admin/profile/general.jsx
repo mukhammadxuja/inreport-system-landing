@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import EmailVerificationAlert from "@/components/email-verification-alert";
 import { updateUserAccount } from "@/firebase/auth/updateUserProfile";
 import { useApiContext } from "@/context/api-context";
 import { LoadingIcon } from "@/components/icons";
@@ -20,97 +19,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { toast } from "sonner";
 import { Combobox } from "@/components/ui/combobox";
+import { templates } from "@/utils/variables";
 
 /**
- * Templates: https://www.canvas.supply/products/linx 
+ * Templates: https://www.canvas.supply/products/linx
  */
-
-const templates = [
-  {
-    value: "terra-nova",
-    label: "Terra Nova",
-  },
-  {
-    value: "professional-edge",
-    label: "Professional Edge",
-  },
-  {
-    value: "creative-spark",
-    label: "Creative Spark",
-  },
-  {
-    value: "modern-chic",
-    label: "Modern Chic",
-  },
-  {
-    value: "sleek-signature",
-    label: "Sleek Signature",
-  },
-  {
-    value: "elegant-essence",
-    label: "Elegant Essence",
-  },
-  {
-    value: "dynamic-fusion",
-    label: "Dynamic Fusion",
-  },
-  {
-    value: "bold-impact",
-    label: "Bold Impact",
-  },
-  {
-    value: "timeless-elegance",
-    label: "Timeless Elegance",
-  },
-  {
-    value: "stylish-spectrum",
-    label: "Stylish Spectrum",
-  },
-  {
-    value: "artistic-aura",
-    label: "Artistic Aura",
-  },
-  {
-    value: "sophisticated-style",
-    label: "Sophisticated Style",
-  },
-  {
-    value: "minimalist-magic",
-    label: "Minimalist Magic",
-  },
-  {
-    value: "vibrant-visions",
-    label: "Vibrant Visions",
-  },
-  {
-    value: "professional-polish",
-    label: "Professional Polish",
-  },
-  {
-    value: "innovative-insight",
-    label: "Innovative Insight",
-  },
-  {
-    value: "streamlined-showcase",
-    label: "Streamlined Showcase",
-  },
-  {
-    value: "creative-canvas",
-    label: "Creative Canvas",
-  },
-  {
-    value: "inspired-impact",
-    label: "Inspired Impact",
-  },
-  {
-    value: "versatile-visions",
-    label: "Versatile Visions",
-  },
-  {
-    value: "classic-charm",
-    label: "Classic Charm",
-  },
-];
 
 const General = () => {
   const { user, userData } = useApiContext();
@@ -156,22 +69,12 @@ const General = () => {
           </form>
         </div>
       </div>
-      <EmailVerificationAlert />
       <Separator />
-      {user ? (
-        <Form
-          userData={userData}
-          image={image}
-          hiddenFileInput={hiddenFileInput}
-        />
-      ) : (
-        <div className="max-w-2xl space-y-6 mt-5">
-          <Skeleton className="h-10 space-y-1 w-full" />
-          <Skeleton className="h-10 space-y-1 w-full" />
-          <Skeleton className="h-10 space-y-1 w-full" />
-          <Skeleton className="h-10 space-y-1 w-44" />
-        </div>
-      )}
+      <Form
+        userData={userData}
+        image={image}
+        hiddenFileInput={hiddenFileInput}
+      />
     </div>
   );
 };
@@ -199,7 +102,7 @@ const Form = ({ userData, image, hiddenFileInput }) => {
 
   const { register, formState, handleSubmit, reset } = form;
 
-  const { errors, isDirty, isValid, isSubmitting } = formState;
+  const { errors, isDirty, isSubmitting } = formState;
 
   const onSubmit = async (data) => {
     const storage = getStorage();

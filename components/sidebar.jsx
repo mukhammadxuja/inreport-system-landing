@@ -64,7 +64,7 @@ import NotificationSheet from "./admin/dialogs/notification";
 function Sidebar() {
   const { openSidebar, setOpenSidebar } = useMainContext();
   const [openNotification, setOpenNotification] = useState(false);
-  const { user } = useApiContext();
+  const { userData } = useApiContext();
   const { logout } = useLogout();
   const pathname = usePathname();
 
@@ -213,15 +213,18 @@ function Sidebar() {
                   <Avatar className="h-8 w-8 rounded-md">
                     <AvatarImage
                       className="object-cover"
-                      src={user?.photoURL || "/assets/avatars/1.png"}
+                      src={userData?.photoURL || "/assets/avatars/1.png"}
                       alt="@shadcn"
                     />
                   </Avatar>
                   {openSidebar && (
                     <span className="font-semibold truncate">
                       @
-                      {user?.username?.split(" ")[0].toLowerCase() ||
-                        user?.email?.slice(0, user?.email?.indexOf("@")) ||
+                      {userData?.username?.split(" ")[0].toLowerCase() ||
+                        userData?.email?.slice(
+                          0,
+                          userData?.email?.indexOf("@")
+                        ) ||
                         "Anonymous"}
                     </span>
                   )}
@@ -231,12 +234,15 @@ function Sidebar() {
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col space-y-1">
                     <p className="text-sm font-medium leading-none">
-                      {user?.displayName ||
-                        user?.email?.slice(0, user?.email?.indexOf("@")) ||
+                      {userData?.displayName ||
+                        userData?.email?.slice(
+                          0,
+                          userData?.email?.indexOf("@")
+                        ) ||
                         "Anonymous"}
                     </p>
                     <p className="text-xs leading-none text-muted-foreground">
-                      {user?.email || "No email"}
+                      {userData?.email || "No email"}
                     </p>
                   </div>
                 </DropdownMenuLabel>
