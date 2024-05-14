@@ -18,11 +18,11 @@ import { Switch } from "@/components/ui/switch";
 
 import { emojiPlus } from "@/utils/variables";
 import StatusDialog from "@/components/admin/dialogs/status";
-import UserItem from "@/components/admin/user/user-item";
+import ProjectList from "@/components/admin/user/project-list";
 import { useMainContext } from "@/context/main-context";
 
 function AdminPage() {
-  const { projects, experiences, userData } = useApiContext();
+  const { projects, sideProjects, experiences, userData } = useApiContext();
   const { projectsVisibility, setProjectsVisibility } = useMainContext();
 
   const [selectedEmoji, setSelectedEmoji] = useState(null);
@@ -91,15 +91,15 @@ function AdminPage() {
             </Popover>
           </div>
 
-          <UserItem
+          <ProjectList
             data={projects}
             section="Projects"
             visibility={projectsVisibility}
             setVisibility={setProjectsVisibility}
           />
-          <UserItem
-            data={experiences}
-            section="Experiences"
+          <ProjectList
+            data={sideProjects}
+            section="Side Projects"
             visibility={projectsVisibility}
             setVisibility={setProjectsVisibility}
           />

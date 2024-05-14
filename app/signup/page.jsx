@@ -1,8 +1,20 @@
 "use client";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { EyeIcon, EyeOffIcon, Shell } from "lucide-react";
+import { toast } from "sonner";
+
+import { useApiContext } from "@/context/api-context";
+import Loading from "@/components/admin/loading";
+import checkProfession from "@/utils";
+
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { useGoogleLogin } from "@/firebase/auth/googleLogin";
 import { useEmailPasswordLogin } from "@/firebase/auth/emailPasswordLogin";
 import { useEmailPasswordRegistration } from "@/firebase/auth/emailPasswordRegistration";
 import { useEmailVerification } from "@/firebase/auth/emailVerificationLink";
+import { db } from "@/firebase/config";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -21,15 +33,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { Shell } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { useApiContext } from "@/context/api-context";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import Loading from "@/components/admin/loading";
-import checkProfession from "@/utils";
 
 function Auth() {
+  const [isUsernameAlreadyTaken, setIsUsernameAlreadyTaken] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const { isPendingGoogleLogin } = useGoogleLogin();
   const {
     emailPasswordLogin,
@@ -47,6 +54,20 @@ function Auth() {
   const formEmailPassword = useForm();
 
   async function onSubmitEmailPasswordRegistration(data) {
+    setIsUsernameAlreadyTaken(false);
+    const q = query(
+      collection(db, "users"),
+      where("username", "==", data.username)
+    );
+    const usernameSnapshot = await getDocs(q);
+    if (!usernameSnapshot.empty) {
+      setIsUsernameAlreadyTaken(true);
+      toast("Username is already taken.");
+      return;
+    }
+
+    setIsUsernameAlreadyTaken(false);
+
     const checkedProf = checkProfession(data.profession);
     await emailPasswordRegistration(
       data.email,
@@ -64,14 +85,14 @@ function Auth() {
     if (user) {
       router.push("/admin");
     }
-  }, [user]);
+  }, [router, user]);
 
   return (
     <>
       {loading && <Loading />}
       <div className="w-full max-w-2xl mx-auto flex flex-col items-center justify-center h-screen">
         <Form {...formEmailPassword}>
-          <form className="w-full space-y-6">
+          <form className="w-full space-y-4">
             <FormField
               control={formEmailPassword.control}
               name="email"
@@ -96,7 +117,12 @@ function Auth() {
                 <FormItem>
                   <FormLabel>Username</FormLabel>
                   <FormControl>
-                    <Input required placeholder="Enter username" {...field} />
+                    <div>
+                      <Input required placeholder="Enter username" {...field} />
+                      <p className="text-xs text-red-500">
+                        {isUsernameAlreadyTaken && "Username already taken"}
+                      </p>
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -153,12 +179,31 @@ function Auth() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input
-                      required
-                      type="password"
-                      placeholder="enter password"
-                      {...field}
-                    />
+                    <div className="relative">
+                      <Input
+                        type={showPassword ? "text" : "password"}
+                        required
+                        placeholder="enter password"
+                        {...field}
+                        className="pr-10"
+                      />
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                      >
+                        {showPassword ? (
+                          <EyeIcon className="h-4 w-4" aria-hidden="true" />
+                        ) : (
+                          <EyeOffIcon className="h-4 w-4" aria-hidden="true" />
+                        )}
+                        <span className="sr-only">
+                          {showPassword ? "Hide password" : "Show password"}
+                        </span>
+                      </Button>
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

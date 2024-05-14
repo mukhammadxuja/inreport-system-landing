@@ -2,6 +2,7 @@ import { useState } from "react";
 import { auth, db } from "@/firebase/config";
 import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import { toast } from "sonner";
 
 export const useEmailPasswordRegistration = () => {
   const [errorEmailPasswordRegistration, setErrorEmailPasswordRegistration] =
@@ -62,6 +63,7 @@ export const createUserDocumentFromAuth = async (
   additionalInformation = {}
 ) => {
   if (!userAuth) return;
+
   const docUser = doc(db, `users`, userAuth.uid);
   const userSnapshot = await getDoc(docUser);
   if (!userSnapshot.exists()) {

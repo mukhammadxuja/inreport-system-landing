@@ -19,9 +19,9 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         linkHover1:
-          "relative after:absolute after:bg-primary after:bg-opacity-70 after:bottom-2 after:h-[1px] after:w-full after:origin-bottom-left after:scale-x-100 hover:after:origin-bottom-right hover:after:scale-x-0 after:transition-transform after:ease-in-out after:duration-300 !px-0",
+          "relative after:absolute after:bg-primary after:bg-opacity-70 after:bottom-2 after:h-[1px] after:w-full after:origin-bottom-left after:scale-x-100 hover:after:origin-bottom-right hover:after:scale-x-0 after:transition-transform after:ease-in-out after:duration-300 !p-0 w-fit truncate",
         linkHover2:
-          "relative after:absolute after:bg-primary after:bottom-2 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300 !px-0",
+          "relative after:absolute after:bg-primary after:bottom-2 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300 !p-0 w-fit truncate",
       },
       size: {
         default: "h-10 px-4 py-2",
