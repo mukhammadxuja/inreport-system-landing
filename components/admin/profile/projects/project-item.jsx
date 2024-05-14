@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useState } from "react";
 import { toggleHide } from "@/services/firestore-service";
@@ -18,6 +19,7 @@ import { Button } from "@/components/ui/button";
 // Dialogs
 import DeleteItem from "@/components/admin/dialogs/delete-item";
 import MoveProject from "@/components/admin/dialogs/move-project";
+import { ImageViewer } from "@/components/ui/image-viewer";
 
 function ProjectItem({ project, setEditableId, setIsEdit }) {
   const [loaded, setLoaded] = useState(false);
@@ -26,6 +28,21 @@ function ProjectItem({ project, setEditableId, setIsEdit }) {
     setEditableId(id);
     setIsEdit(true);
   }
+
+  const [showViewer, setShowViewer] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const openImageViewer = (index) => {
+    console.log(index);
+    setSelectedImageIndex(index);
+    setShowViewer(true);
+  };
+
+  const closeImageViewer = () => {
+    setShowViewer(false);
+  };
+  console.log(project.images);
+
   return (
     <div
       key={project.id}
@@ -49,7 +66,7 @@ function ProjectItem({ project, setEditableId, setIsEdit }) {
           {project.images && project.images.length > 0 && (
             <div className="flex items-center gap-2">
               {/* Map through images and render each */}
-              {project.images.map(({ url, id, name }) => (
+              {project.images.map(({ url, id, name }, index) => (
                 <div
                   key={id}
                   className="w-[7.55rem] h-24 bg-indigo-200 rounded-md"
@@ -61,6 +78,7 @@ function ProjectItem({ project, setEditableId, setIsEdit }) {
                     quality={80}
                     loading="lazy"
                     alt={name}
+                    onClick={() => openImageViewer(index)}
                     className={`${project.hide && "blur-[1.5px]"} ${
                       loaded && "unblur"
                     } w-full h-full object-cover rounded cursor-pointer`}
@@ -70,6 +88,9 @@ function ProjectItem({ project, setEditableId, setIsEdit }) {
             </div>
           )}
         </div>
+        {showViewer && (
+          <ImageViewer images={project?.images} onClose={closeImageViewer} />
+        )}
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <small
