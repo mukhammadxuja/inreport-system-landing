@@ -23,7 +23,7 @@ import { Button } from "./ui/button";
 import Loading from "./admin/loading";
 import NotFound from "./admin/404";
 import Image from "next/image";
-import SendMessageDialog from "./admin/dialogs/MESSAGE";
+import SendMessageDialog from "./admin/dialogs/message";
 // import NotFound from "@/app/not-found/page";
 
 export default function UserProfileClient({ username }) {
