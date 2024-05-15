@@ -8,7 +8,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Send } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
@@ -23,6 +23,7 @@ import { Button } from "./ui/button";
 import Loading from "./admin/loading";
 import NotFound from "./admin/404";
 import Image from "next/image";
+import SendMessageDialog from "./admin/dialogs/MESSAGE";
 // import NotFound from "@/app/not-found/page";
 
 export default function UserProfileClient({ username }) {
@@ -51,6 +52,8 @@ export default function UserProfileClient({ username }) {
 
     fetchData();
   }, [username]);
+
+  console.log(userData);
 
   useEffect(() => {
     if (!userData) return; // Wait until userData is fetched
@@ -156,6 +159,12 @@ export default function UserProfileClient({ username }) {
           </div>
         ))}
       </div>
+
+      <SendMessageDialog userId={userData?.uid} username={username}>
+        <Button className="fixed bottom-4 left-4 flex items-center shadow-lg gap-2">
+          <Send className="w-4 h-4" />
+        </Button>
+      </SendMessageDialog>
 
       <Link
         className="fixed bottom-4 right-4 flex items-center shadow-lg rounded-sm py-2 px-3 gap-1.5"

@@ -86,7 +86,7 @@ function ProjectItem({ project, profile = true, setEditableId, setIsEdit }) {
                     width={250}
                     height={150}
                     src={url ? url : "/assets/not-found.jpg"}
-                    quality={80}
+                    quality={90}
                     loading="lazy"
                     alt={name}
                     onClick={() => openImageViewer(index)}

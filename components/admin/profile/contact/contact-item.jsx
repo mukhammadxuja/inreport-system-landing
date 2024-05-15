@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import { toggleHide } from "@/services/firestore-service";
 
 // Icons
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Link, Link2 } from "lucide-react";
 
 // Dialogs
 import DeleteItem from "@/components/admin/dialogs/delete-item";
+import { removeSubstring } from "@/lib/utils";
 
 function ContactItem({ contact, setEditableId, setIsEdit }) {
   function handleEdit(id) {
@@ -27,7 +28,8 @@ function ContactItem({ contact, setEditableId, setIsEdit }) {
             rel="noopener noreferrer"
             className="flex items-center font-medium hover:underline cursor-pointer"
           >
-            {contact.link}
+            <Link className="w-3 h-3 mr-1" />
+            {removeSubstring(contact.link, "https://")}
             <ChevronRight className="w-4 h-4" />
           </a>
         </div>

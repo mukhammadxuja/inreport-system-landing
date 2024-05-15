@@ -25,7 +25,10 @@ export const ApiContextProvider = ({ children }) => {
   const [awards, setAwards] = useState([]);
   const [contacts, setContacts] = useState([]);
 
-  console.log(contacts);
+  // Messages
+  const [messages, setMessages] = useState([]);
+
+  console.log("messages", messages);
 
   // Profile
   const awardsCollection = collection(db, `users/${userUid}/awards`);
@@ -45,6 +48,9 @@ export const ApiContextProvider = ({ children }) => {
     db,
     `users/${userUid}/certifications`
   );
+
+  // messages
+  const messagesCollection = collection(db, `users/${userUid}/messages`);
 
   useEffect(() => {
     // fetch awards
@@ -104,6 +110,12 @@ export const ApiContextProvider = ({ children }) => {
         snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       );
     });
+
+    // fetch messages
+    const queryMessages = query(messagesCollection);
+    onSnapshot(queryMessages, (snapshot) => {
+      setMessages(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    });
   }, [auth.currentUser]);
 
   // Get user from google auth
@@ -145,6 +157,9 @@ export const ApiContextProvider = ({ children }) => {
     certifications,
     awards,
     contacts,
+
+    // messages
+    messages,
   };
 
   return <ApiContext.Provider value={values}>{children}</ApiContext.Provider>;

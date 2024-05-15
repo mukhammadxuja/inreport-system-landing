@@ -6,6 +6,7 @@ import {
   Gem,
   GraduationCap,
   LayoutDashboard,
+  MessageCircle,
   PieChart,
   Settings,
   Share2,
@@ -59,11 +60,11 @@ import { usePathname } from "next/navigation";
 import { useApiContext } from "@/context/api-context";
 import { useLogout } from "@/firebase/auth/logout";
 import UpgradeDialog from "./admin/dialogs/upgrade";
-import NotificationSheet from "./admin/dialogs/notification";
+import MessagesSheet from "./admin/dialogs/messages-sheet";
 
 function Sidebar() {
   const { openSidebar, setOpenSidebar } = useMainContext();
-  const [openNotification, setOpenNotification] = useState(false);
+  const [openMessages, setOpenMessages] = useState(false);
   const { userData } = useApiContext();
   const { logout } = useLogout();
   const pathname = usePathname();
@@ -197,9 +198,9 @@ function Sidebar() {
                 )}
               </Button>
             </UpgradeDialog>
-            <NotificationSheet
-              openNotification={openNotification}
-              setOpenNotification={setOpenNotification}
+            <MessagesSheet
+              openMessages={openMessages}
+              setOpenMessages={setOpenMessages}
             />
             <DropdownMenu>
               <DropdownMenuTrigger className="" asChild>
@@ -255,9 +256,9 @@ function Sidebar() {
                       <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                     </DropdownMenuItem>
                   </Link>
-                  <DropdownMenuItem onClick={() => setOpenNotification(true)}>
-                    <Bell className="mr-2 h-4 w-4" />
-                    <span>Notification</span>
+                  <DropdownMenuItem onClick={() => setOpenMessages(true)}>
+                    <MessageCircle className="mr-2 h-4 w-4" />
+                    <span>Messages</span>
                     <div className="w-2 h-2 rounded-full bg-red-500 ml-auto" />
                   </DropdownMenuItem>
                   <Link href="/admin/settings">
