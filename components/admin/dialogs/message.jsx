@@ -18,14 +18,16 @@ import { Textarea } from "@/components/ui/textarea";
 import { LoadingIcon } from "@/components/icons";
 import { useForm } from "react-hook-form";
 import { collection, doc, setDoc } from "firebase/firestore";
-import { auth, db } from "@/firebase/config";
+import { db } from "@/firebase/config";
 import { toast } from "sonner";
 import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { useApiContext } from "@/context/api-context";
 
 function SendMessageDialog({ userId, username, children }) {
   const [openSendMessage, setOpenSendMessage] = useState(false);
+  const { setUnreadMessages } = useApiContext();
 
   const form = useForm();
   const { register, formState, handleSubmit } = form;
@@ -33,14 +35,18 @@ function SendMessageDialog({ userId, username, children }) {
 
   // Add award to database
   const sendMessage = async (data) => {
+    if (!userUid) return;
+
     const itemDoc = doc(collection(db, "users", userId, "messages"));
 
     try {
       await setDoc(itemDoc, {
         id: itemDoc.id,
         ...data,
+        read: false,
         timestamp: new Date().getTime(),
       });
+      setUnreadMessages((prevCount) => prevCount + 1);
     } catch (error) {
       console.log(error);
     } finally {
@@ -70,6 +76,14 @@ function SendMessageDialog({ userId, username, children }) {
                 </p>
               </div>
               <div className="space-y-1 w-full">
+                <Label id="email">Your email</Label>
+                <Input
+                  type="email"
+                  placeholder="Your email"
+                  {...register("email")}
+                />
+              </div>
+              <div className="space-y-1 w-full">
                 <Label htmlFor="title">
                   Message<span className="text-red-500">*</span>
                 </Label>
@@ -85,14 +99,6 @@ function SendMessageDialog({ userId, username, children }) {
                 <p className="text-xs text-red-500">
                   {errors.message?.message}
                 </p>
-              </div>
-              <div className="space-y-1 w-full">
-                <Label id="email">Your email</Label>
-                <Input
-                  type="email"
-                  placeholder="Your email"
-                  {...register("email")}
-                />
               </div>
             </DialogDescription>
           </DialogHeader>

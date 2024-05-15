@@ -18,17 +18,8 @@ import React, { useState } from "react";
 import classNames from "classnames";
 import {
   Cloud,
-  CreditCard,
-  Github,
   Keyboard,
-  LifeBuoy,
   LogOut,
-  Mail,
-  MessageSquare,
-  Plus,
-  PlusCircle,
-  UserPlus,
-  Users,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -65,7 +56,7 @@ import MessagesSheet from "./admin/dialogs/messages-sheet";
 function Sidebar() {
   const { openSidebar, setOpenSidebar } = useMainContext();
   const [openMessages, setOpenMessages] = useState(false);
-  const { userData } = useApiContext();
+  const { userData, messages, unreadMessages } = useApiContext();
   const { logout } = useLogout();
   const pathname = usePathname();
 
@@ -259,7 +250,12 @@ function Sidebar() {
                   <DropdownMenuItem onClick={() => setOpenMessages(true)}>
                     <MessageCircle className="mr-2 h-4 w-4" />
                     <span>Messages</span>
-                    <div className="w-2 h-2 rounded-full bg-red-500 ml-auto" />
+                    {messages.length && (
+                      <span className="h-5 w-5 flex items-center justify-center text-white rounded-full bg-indigo-500 ml-auto text-xs">
+                        {unreadMessages}
+                      </span>
+                    )}
+                    {/* <div /> */}
                   </DropdownMenuItem>
                   <Link href="/admin/settings">
                     <DropdownMenuItem>

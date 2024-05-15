@@ -2,7 +2,16 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth, db } from "@/firebase/config";
 import { onAuthStateChanged } from "firebase/auth";
-import { collection, doc, getDoc, onSnapshot, query } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  onSnapshot,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 
 export const ApiContext = createContext({});
 
@@ -27,6 +36,43 @@ export const ApiContextProvider = ({ children }) => {
 
   // Messages
   const [messages, setMessages] = useState([]);
+  const [unreadMessages, setUnreadMessages] = useState(0); // State to track unread messages count
+
+  console.log(unreadMessages);
+
+  const fetchUnreadMessagesCount = async () => {
+    if (!userUid) return;
+
+    const userMessagesRef = collection(db, "users", userUid, "messages");
+
+    try {
+      const unreadMessagesQuery = query(
+        userMessagesRef,
+        where("read", "==", false)
+      );
+      const unreadMessagesSnapshot = await getDocs(unreadMessagesQuery);
+      setUnreadMessages(unreadMessagesSnapshot.size);
+    } catch (error) {
+      console.error("Error fetching unread messages: ", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUnreadMessagesCount();
+  }, [auth.currentUser]);
+
+  const markMessageAsRead = async (messageId) => {
+    if (!userUid) return;
+
+    const messageRef = doc(db, "users", userUid, "messages", messageId);
+
+    try {
+      await updateDoc(messageRef, { read: true });
+      setUnreadMessages((prevCount) => Math.max(0, prevCount - 1));
+    } catch (error) {
+      console.error("Error marking message as read: ", error);
+    }
+  };
 
   console.log("messages", messages);
 
@@ -160,6 +206,9 @@ export const ApiContextProvider = ({ children }) => {
 
     // messages
     messages,
+    unreadMessages,
+    setUnreadMessages,
+    markMessageAsRead,
   };
 
   return <ApiContext.Provider value={values}>{children}</ApiContext.Provider>;
