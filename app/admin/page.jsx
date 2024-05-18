@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import EmailVerificationAlert from "@/components/email-verification-alert";
 import { useApiContext } from "@/context/api-context";
-import { ChevronRight, LayoutGrid, Pencil, ThumbsUp } from "lucide-react";
+import { LayoutGrid, Pencil, ThumbsUp } from "lucide-react";
 
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/popover";
 import { EllipsesIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
 
 import { emojiPlus } from "@/utils/variables";
 import StatusDialog from "@/components/admin/dialogs/status";
@@ -58,7 +57,7 @@ function AdminPage() {
                   setSelectedEmoji={setSelectedEmoji}
                 >
                   <div
-                    className={`absolute bottom-0 right-0 gap-1 p-1 rounded-full  bg-gray-100 border border-gray-300 shadow-sm group ${
+                    className={`absolute bottom-0 right-0 gap-1 p-1 rounded-full cursor-pointer bg-gray-100 border border-gray-300 shadow-sm group ${
                       userData?.status?.title && "hover:rounded-r-lg"
                     }`}
                   >

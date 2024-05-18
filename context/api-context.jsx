@@ -38,8 +38,6 @@ export const ApiContextProvider = ({ children }) => {
   const [messages, setMessages] = useState([]);
   const [unreadMessages, setUnreadMessages] = useState(0); // State to track unread messages count
 
-  console.log(unreadMessages);
-
   const fetchUnreadMessagesCount = async () => {
     if (!userUid) return;
 
@@ -73,8 +71,6 @@ export const ApiContextProvider = ({ children }) => {
       console.error("Error marking message as read: ", error);
     }
   };
-
-  console.log("messages", messages);
 
   // Profile
   const awardsCollection = collection(db, `users/${userUid}/awards`);

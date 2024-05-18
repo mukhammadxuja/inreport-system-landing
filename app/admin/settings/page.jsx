@@ -8,6 +8,7 @@ import Certifications from "@/components/admin/profile/certifications";
 import Skills from "@/components/admin/profile/skills";
 import Contacts from "@/components/admin/profile/contact";
 import Subscription from "@/components/admin/settings/subscription";
+import General from "@/components/admin/settings/general";
 
 function SettingsPage() {
   const [settings, setSettings] = useState("subscription");
@@ -15,33 +16,39 @@ function SettingsPage() {
   const settingsTab = [
     {
       id: 0,
+      title: "General",
+      tag: "general",
+      disabled: false,
+    },
+    {
+      id: 0,
       title: "Subscription",
       tag: "subscription",
+      disabled: true,
     },
     {
       id: 0,
       title: "Personal Domain",
       tag: "personal-domain",
+      disabled: true,
     },
     {
       id: 0,
       title: "Insights",
       tag: "insights",
+      disabled: true,
     },
     {
       id: 0,
       title: "Billing",
       tag: "billing",
-    },
-    {
-      id: 0,
-      title: "Settings",
-      tag: "settings",
+      disabled: true,
     },
     {
       id: 0,
       title: "Invite friend!",
       tag: "invite-friend",
+      disabled: false,
     },
   ];
 
@@ -67,6 +74,7 @@ function SettingsPage() {
         <TabsList className="sticky top-4 z-40 h-12 mx-auto flex items-center space-x-1 w-fit p-1 shadow-md rounded-2xl duration-300 bg-white border border-border group">
           {settingsTab.map((profile) => (
             <TabsTrigger
+              disabled={profile.disabled}
               key={profile.title}
               className="bg-background data-[state=active]:bg-[#f3f3f1] h-10 py-2"
               onClick={() => handleSelectSettingsTag(profile.tag)}
@@ -76,6 +84,12 @@ function SettingsPage() {
             </TabsTrigger>
           ))}
         </TabsList>
+        <TabsContent
+          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
+          value="general"
+        >
+          <General />
+        </TabsContent>
         <TabsContent
           className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
           value="subscription"
