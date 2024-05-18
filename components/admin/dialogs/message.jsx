@@ -35,8 +35,6 @@ function SendMessageDialog({ userId, username, children }) {
 
   // Add award to database
   const sendMessage = async (data) => {
-    if (!userUid) return;
-
     const itemDoc = doc(collection(db, "users", userId, "messages"));
 
     try {

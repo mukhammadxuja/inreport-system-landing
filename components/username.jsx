@@ -24,6 +24,7 @@ import Loading from "./admin/loading";
 import NotFound from "./admin/404";
 import Image from "next/image";
 import SendMessageDialog from "./admin/dialogs/message";
+import { emojiPlus } from "@/utils/variables";
 // import NotFound from "@/app/not-found/page";
 
 export default function UserProfileClient({ username }) {
@@ -86,13 +87,30 @@ export default function UserProfileClient({ username }) {
     <div className="px-4 min-h-screen max-w-3xl mx-auto my-20 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 !mt-6 md:!mt-10 w-full p-5 md:px-8 md:py-6 rounded-lg bg-white">
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center space-x-4">
-          <Avatar className="h-24 w-24 rounded-full">
-            <AvatarImage
-              className="object-cover"
-              src={userData?.photoURL || "/assets/avatars/unknown.jpg"}
-              alt="@shadcn"
-            />
-          </Avatar>
+          <div className="relative inline-block">
+            <Avatar className="h-24 w-24 rounded-full">
+              <AvatarImage
+                className="object-cover"
+                src={userData?.photoURL || "/assets/avatars/unknown.jpg"}
+                alt="@shadcn"
+              />
+            </Avatar>
+            <div className="absolute bottom-0 right-0 gap-1 p-1 rounded-full hover:rounded-r-lg bg-gray-100 border border-gray-300 shadow-sm group">
+              <div className="relative flex items-center">
+                <Image
+                  width={20}
+                  height={20}
+                  src={userData?.status?.emoji || emojiPlus}
+                  priority={false}
+                  alt="Fire emoji"
+                  className="w-5 h-5"
+                />
+                <small className="absolute -bottom-[0.28rem] left-6 whitespace-nowrap max-w-72 truncate bg-gray-100 border border-gray-300 border-l-gray-100 shadow-sm text-gray-800 text-xs rounded-r-lg py-1.5 pr-2 hidden group-hover:block">
+                  {userData?.status?.title}
+                </small>
+              </div>
+            </div>
+          </div>
           <div>
             <h3 className="text-xl font-semibold">
               {userData?.displayName ? userData?.displayName : "Unknown"}

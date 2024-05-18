@@ -36,7 +36,7 @@ function AdminPage() {
         <div className="px-4 w-full p-5 md:px-8 md:py-6 rounded-lg bg-white">
           <div className="mb-6 flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className="relative w-fit">
+              <div className="relative inline-block">
                 <Avatar className="h-24 w-24 rounded-full">
                   <AvatarImage
                     className="object-cover"
@@ -44,6 +44,32 @@ function AdminPage() {
                     alt="@shadcn"
                   />
                 </Avatar>
+                <StatusDialog
+                  openStatus={openStatus}
+                  setOpenStatus={setOpenStatus}
+                  selectedEmoji={selectedEmoji}
+                  setSelectedEmoji={setSelectedEmoji}
+                >
+                  <div className="absolute bottom-0 right-0 gap-1 p-1 rounded-full hover:rounded-r-lg bg-gray-100 border border-gray-300 shadow-sm cursor-pointer group">
+                    <div className="relative flex items-center">
+                      <Image
+                        width={20}
+                        height={20}
+                        src={
+                          selectedEmoji
+                            ? selectedEmoji
+                            : userData?.status?.emoji || emojiPlus
+                        }
+                        priority={false}
+                        alt="Fire emoji"
+                        className="w-5 h-5"
+                      />
+                      <small className="absolute -bottom-[0.28rem] left-6 whitespace-nowrap max-w-72 truncate bg-gray-100 border border-gray-300 border-l-gray-100 shadow-sm text-gray-800 text-xs rounded-r-lg py-1.5 pr-2 hidden group-hover:block">
+                        {userData?.status?.title}
+                      </small>
+                    </div>
+                  </div>
+                </StatusDialog>
               </div>
               <div className="">
                 <h3 className="text-xl font-semibold">
@@ -54,30 +80,6 @@ function AdminPage() {
                     ? userData?.profession
                     : "Unknown Profession"}
                 </p>
-                <StatusDialog
-                  openStatus={openStatus}
-                  setOpenStatus={setOpenStatus}
-                  selectedEmoji={selectedEmoji}
-                  setSelectedEmoji={setSelectedEmoji}
-                >
-                  <div className="w-fit flex items-center gap-1 py-1 px-2 rounded-full bg-gray-100 shadow-sm cursor-pointer group">
-                    <Image
-                      width={20}
-                      height={20}
-                      src={
-                        selectedEmoji
-                          ? selectedEmoji
-                          : userData?.status?.emoji || emojiPlus
-                      }
-                      priority={false}
-                      alt="Fire emoji"
-                      className="w-4 h-4"
-                    />
-                    <small className="text-xs pr-1 max-w-32 group-hover:w-full duration-300 truncate">
-                      {userData?.status?.title}
-                    </small>
-                  </div>
-                </StatusDialog>
               </div>
             </div>
             <Popover>

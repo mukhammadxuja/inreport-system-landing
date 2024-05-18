@@ -149,7 +149,7 @@ function StatusDialog({
                       message: "Status title is required",
                     },
                     maxLength: {
-                      value: 20,
+                      value: 50,
                       message: "Status title is too long",
                     },
                   })}
