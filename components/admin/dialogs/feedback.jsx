@@ -25,8 +25,10 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useApiContext } from "@/context/api-context";
 
-function FeedbackDialog({ userId, username, children }) {
+function FeedbackDialog({ children }) {
   const [openFeedback, setOpenFeedback] = useState(false);
+
+  const { userData } = useApiContext();
 
   const form = useForm();
   const { register, formState, handleSubmit } = form;
@@ -40,6 +42,7 @@ function FeedbackDialog({ userId, username, children }) {
       await setDoc(itemDoc, {
         id: itemDoc.id,
         ...data,
+        username: userData?.username,
         timestamp: new Date().getTime(),
       });
     } catch (error) {

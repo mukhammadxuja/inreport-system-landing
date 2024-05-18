@@ -121,33 +121,36 @@ function AdminPage() {
           />
         </div>
       </div>
-      <div className="fixed top-4 right-4 flex items-center gap-2">
+      <div className="fixed top-4 right-2 md:right-4 flex items-center gap-1 md:gap-2">
         <FeedbackDialog>
           <Button
             variant="secondary"
-            className="flex items-center bg-white shadow-lg gap-2"
+            className="py-2 px-3 rounded-full md:rounded-md flex items-center bg-white shadow-lg gap-2"
           >
             <ThumbsUp className="w-4 h-4" />
-            <span className="text-sm">Feedback</span>
+            <span className="hidden md:block text-sm">Feedback</span>
           </Button>
         </FeedbackDialog>
         <AppsDialog>
           <Button
             variant="secondary"
-            className="flex items-center bg-white shadow-lg gap-2"
+            className="py-2 px-3 rounded-full md:rounded-md flex items-center bg-white shadow-lg gap-2"
           >
             <LayoutGrid className="w-4 h-4" />
-            <span className="text-sm">Apps</span>
+            <span className="hidden md:block text-sm">Apps</span>
           </Button>
         </AppsDialog>
       </div>
-      <Link className="fixed bottom-4 right-4" href="/admin/profile">
+      <Link
+        className="fixed bottom-4 right-2 md:right-4 gap-1 md:gap-2"
+        href="/admin/profile"
+      >
         <Button
           variant="secondary"
-          className="flex items-center bg-white shadow-lg gap-2"
+          className="py-2 px-3 rounded-full md:rounded-md flex items-center bg-white shadow-lg gap-2"
         >
           <Pencil className="w-4 h-4" />
-          <span className="text-sm">Edit Profile</span>
+          <span className="hidden md:block text-sm">Edit Profile</span>
         </Button>
       </Link>
     </div>
