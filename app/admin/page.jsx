@@ -22,6 +22,7 @@ import ProjectList from "@/components/admin/user/projects/project-list";
 import { useMainContext } from "@/context/main-context";
 import AppsDialog from "@/components/admin/dialogs/apps";
 import FeedbackDialog from "@/components/admin/dialogs/feedback";
+import { getFirstNumberFromUserID } from "@/lib/utils";
 
 function AdminPage() {
   const { projects, sideProjects, experiences, userData } = useApiContext();
@@ -29,7 +30,6 @@ function AdminPage() {
 
   const [selectedEmoji, setSelectedEmoji] = useState(null);
   const [openStatus, setOpenStatus] = useState(false);
-  const [statusTitle, setStatusTitle] = useState(userData?.status?.title || "");
 
   return (
     <div>
@@ -42,7 +42,12 @@ function AdminPage() {
                 <Avatar className="h-24 w-24 rounded-full">
                   <AvatarImage
                     className="object-cover"
-                    src={userData?.photoURL || "/assets/avatars/unknown.jpg"}
+                    src={
+                      userData?.photoURL ||
+                      `/assets/avatars/${getFirstNumberFromUserID(
+                        userData?.uid
+                      )}.svg`
+                    }
                     alt="@shadcn"
                   />
                 </Avatar>
@@ -52,7 +57,11 @@ function AdminPage() {
                   selectedEmoji={selectedEmoji}
                   setSelectedEmoji={setSelectedEmoji}
                 >
-                  <div className="absolute bottom-0 right-0 gap-1 p-1 rounded-full hover:rounded-r-lg bg-gray-100 border border-gray-300 shadow-sm cursor-pointer group">
+                  <div
+                    className={`absolute bottom-0 right-0 gap-1 p-1 rounded-full  bg-gray-100 border border-gray-300 shadow-sm group ${
+                      userData?.status?.title && "hover:rounded-r-lg"
+                    }`}
+                  >
                     <div className="relative flex items-center">
                       <Image
                         width={20}
@@ -66,9 +75,11 @@ function AdminPage() {
                         alt="Fire emoji"
                         className="w-5 h-5"
                       />
-                      <small className="absolute -bottom-[0.28rem] left-6 whitespace-nowrap max-w-72 truncate bg-gray-100 border border-gray-300 border-l-gray-100 shadow-sm text-gray-800 text-xs rounded-r-lg py-1.5 pr-2 hidden group-hover:block">
-                        {userData?.status?.title}
-                      </small>
+                      {userData?.status?.title && (
+                        <small className="absolute -bottom-[0.28rem] left-6 whitespace-nowrap max-w-72 truncate bg-gray-100 border border-gray-300 border-l-gray-100 shadow-sm text-gray-800 text-xs rounded-r-lg py-1.5 pr-2 hidden group-hover:block">
+                          {userData?.status?.title}
+                        </small>
+                      )}
                     </div>
                   </div>
                 </StatusDialog>

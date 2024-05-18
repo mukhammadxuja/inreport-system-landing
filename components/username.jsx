@@ -25,6 +25,7 @@ import NotFound from "./admin/404";
 import Image from "next/image";
 import SendMessageDialog from "./admin/dialogs/message";
 import { emojiPlus } from "@/utils/variables";
+import { getFirstNumberFromUserID } from "@/lib/utils";
 // import NotFound from "@/app/not-found/page";
 
 export default function UserProfileClient({ username }) {
@@ -91,11 +92,20 @@ export default function UserProfileClient({ username }) {
             <Avatar className="h-24 w-24 rounded-full">
               <AvatarImage
                 className="object-cover"
-                src={userData?.photoURL || "/assets/avatars/unknown.jpg"}
+                src={
+                  userData?.photoURL ||
+                  `/assets/avatars/${getFirstNumberFromUserID(
+                    userData?.uid
+                  )}.svg`
+                }
                 alt="@shadcn"
               />
             </Avatar>
-            <div className="absolute bottom-0 right-0 gap-1 p-1 rounded-full hover:rounded-r-lg bg-gray-100 border border-gray-300 shadow-sm group">
+            <div
+              className={`absolute bottom-0 right-0 gap-1 p-1 rounded-full  bg-gray-100 border border-gray-300 shadow-sm group ${
+                userData?.status?.title && "hover:rounded-r-lg"
+              }`}
+            >
               <div className="relative flex items-center">
                 <Image
                   width={20}
@@ -105,9 +115,11 @@ export default function UserProfileClient({ username }) {
                   alt="Fire emoji"
                   className="w-5 h-5"
                 />
-                <small className="absolute -bottom-[0.28rem] left-6 whitespace-nowrap max-w-72 truncate bg-gray-100 border border-gray-300 border-l-gray-100 shadow-sm text-gray-800 text-xs rounded-r-lg py-1.5 pr-2 hidden group-hover:block">
-                  {userData?.status?.title}
-                </small>
+                {userData?.status?.title && (
+                  <small className="absolute -bottom-[0.28rem] left-6 whitespace-nowrap max-w-72 truncate bg-gray-100 border border-gray-300 border-l-gray-100 shadow-sm text-gray-800 text-xs rounded-r-lg py-1.5 pr-2 hidden group-hover:block">
+                    {userData?.status?.title}
+                  </small>
+                )}
               </div>
             </div>
           </div>

@@ -49,6 +49,7 @@ import { useLogout } from "@/firebase/auth/logout";
 import UpgradeDialog from "./admin/dialogs/upgrade";
 import MessagesSheet from "./admin/dialogs/messages-sheet";
 import AppsDialog from "./admin/dialogs/apps";
+import { getFirstNumberFromUserID } from "@/lib/utils";
 
 function Sidebar() {
   const { openSidebar, setOpenSidebar } = useMainContext();
@@ -56,6 +57,8 @@ function Sidebar() {
   const { userData, messages, unreadMessages } = useApiContext();
   const { logout } = useLogout();
   const pathname = usePathname();
+
+  console.log(getFirstNumberFromUserID(userData?.uid));
 
   const navData = [
     {
@@ -209,7 +212,12 @@ function Sidebar() {
                   <Avatar className="h-8 w-8 rounded-md">
                     <AvatarImage
                       className="object-cover"
-                      src={userData?.photoURL || "/assets/avatars/1.png"}
+                      src={
+                        userData?.photoURL ||
+                        `/assets/avatars/${getFirstNumberFromUserID(
+                          userData?.uid
+                        )}.svg`
+                      }
                       alt="@shadcn"
                     />
                   </Avatar>

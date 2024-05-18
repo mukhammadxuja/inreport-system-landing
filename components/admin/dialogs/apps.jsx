@@ -63,7 +63,7 @@ function AppsDialog({ children }) {
               </p>
             </Link>
             <Link
-              href="https://frontendresources.vercel.app/jobs"
+              href="https://frontendresources.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
               className="px-3 py-4 rounded-md hover:bg-gray-200 duration-200"
