@@ -25,77 +25,54 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useApiContext } from "@/context/api-context";
 
-function SendMessageDialog({ userId, username, children }) {
-  const [openSendMessage, setOpenSendMessage] = useState(false);
-  const { setUnreadMessages } = useApiContext();
+function FeedbackDialog({ userId, username, children }) {
+  const [openFeedback, setOpenFeedback] = useState(false);
 
   const form = useForm();
   const { register, formState, handleSubmit } = form;
   const { errors, isDirty, isSubmitting } = formState;
 
   // Add award to database
-  const sendMessage = async (data) => {
-    const itemDoc = doc(collection(db, "users", userId, "messages"));
+  const sendFeedback = async (data) => {
+    const itemDoc = doc(collection(db, "feedbacks"));
 
     try {
       await setDoc(itemDoc, {
         id: itemDoc.id,
         ...data,
-        read: false,
         timestamp: new Date().getTime(),
       });
-      setUnreadMessages((prevCount) => prevCount + 1);
     } catch (error) {
       console.log(error);
     } finally {
-      toast("Your message sended");
-      setOpenSendMessage(false);
+      toast("Thank you! Your feedback sended.");
+      setOpenFeedback(false);
     }
   };
 
   return (
-    <Dialog open={openSendMessage} onOpenChange={setOpenSendMessage}>
+    <Dialog open={openFeedback} onOpenChange={setOpenFeedback}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <form
-          onSubmit={handleSubmit(sendMessage)}
+          onSubmit={handleSubmit(sendFeedback)}
           noValidate
           className="space-y-3 md:space-y-6 mt-5"
         >
           <DialogHeader>
-            <DialogTitle>New message</DialogTitle>
-            <DialogDescription className="!mt-2 space-y-3">
-              <Separator />
+            <DialogTitle>Feedback</DialogTitle>
+            <Separator />
+            <DialogDescription className="!mt-2">
               <div className="space-y-1 w-full">
-                <Label id="username">Your username</Label>
-                <Input placeholder="Your username" {...register("username")} />
-                <p className="text-xs text-red-500">
-                  {errors.username?.message}
-                </p>
-              </div>
-              <div className="space-y-1 w-full">
-                <Label id="email">Your email</Label>
-                <Input
-                  type="email"
-                  placeholder="Your email"
-                  {...register("email")}
-                />
-              </div>
-              <div className="space-y-1 w-full">
-                <Label htmlFor="title">
-                  Message<span className="text-red-500">*</span>
+                <Label htmlFor="feedback">
+                  Feedback<span className="text-red-500">*</span>
                 </Label>
                 <Textarea
-                  placeholder={`Message to @${username}`}
-                  {...register("message", {
-                    required: {
-                      value: true,
-                      message: "Message is required",
-                    },
-                  })}
+                  placeholder="Your feedback about app."
+                  {...register("feedback")}
                 />
                 <p className="text-xs text-red-500">
-                  {errors.message?.message}
+                  {errors.feedback?.message}
                 </p>
               </div>
             </DialogDescription>
@@ -106,7 +83,7 @@ function SendMessageDialog({ userId, username, children }) {
                 disabled={isSubmitting}
                 type="button"
                 variant="secondary"
-                onClick={() => setAddContact(false)}
+                onClick={() => setOpenFeedback(false)}
               >
                 Cancel
               </Button>
@@ -122,4 +99,4 @@ function SendMessageDialog({ userId, username, children }) {
   );
 }
 
-export default SendMessageDialog;
+export default FeedbackDialog;

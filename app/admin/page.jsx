@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import EmailVerificationAlert from "@/components/email-verification-alert";
 import { useApiContext } from "@/context/api-context";
-import { ChevronRight, Pencil } from "lucide-react";
+import { ChevronRight, LayoutGrid, Pencil, ThumbsUp } from "lucide-react";
 
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -20,6 +20,8 @@ import { emojiPlus } from "@/utils/variables";
 import StatusDialog from "@/components/admin/dialogs/status";
 import ProjectList from "@/components/admin/user/projects/project-list";
 import { useMainContext } from "@/context/main-context";
+import AppsDialog from "@/components/admin/dialogs/apps";
+import FeedbackDialog from "@/components/admin/dialogs/feedback";
 
 function AdminPage() {
   const { projects, sideProjects, experiences, userData } = useApiContext();
@@ -107,6 +109,26 @@ function AdminPage() {
             setVisibility={setProjectsVisibility}
           />
         </div>
+      </div>
+      <div className="fixed top-4 right-4 flex items-center gap-2">
+        <FeedbackDialog>
+          <Button
+            variant="secondary"
+            className="flex items-center bg-white shadow-lg gap-2"
+          >
+            <ThumbsUp className="w-4 h-4" />
+            <span className="text-sm">Feedback</span>
+          </Button>
+        </FeedbackDialog>
+        <AppsDialog>
+          <Button
+            variant="secondary"
+            className="flex items-center bg-white shadow-lg gap-2"
+          >
+            <LayoutGrid className="w-4 h-4" />
+            <span className="text-sm">Apps</span>
+          </Button>
+        </AppsDialog>
       </div>
       <Link className="fixed bottom-4 right-4" href="/admin/profile">
         <Button

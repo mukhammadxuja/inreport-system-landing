@@ -16,11 +16,7 @@ import {
 import Link from "next/link";
 import React, { useState } from "react";
 import classNames from "classnames";
-import {
-  Cloud,
-  Keyboard,
-  LogOut,
-} from "lucide-react";
+import { Cloud, Keyboard, LogOut } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
@@ -52,6 +48,7 @@ import { useApiContext } from "@/context/api-context";
 import { useLogout } from "@/firebase/auth/logout";
 import UpgradeDialog from "./admin/dialogs/upgrade";
 import MessagesSheet from "./admin/dialogs/messages-sheet";
+import AppsDialog from "./admin/dialogs/apps";
 
 function Sidebar() {
   const { openSidebar, setOpenSidebar } = useMainContext();
@@ -172,23 +169,30 @@ function Sidebar() {
             ))}
           </ul>
           <div className="mt-auto space-y-2 w-full">
-            <UpgradeDialog>
-              <Button
-                variant="secondary"
-                className={classNames(
-                  "w-full bg-indigo-50 hover:bg-indigo-100 flex items-center justify-center h-10",
-                  {
-                    "gap-2": openSidebar,
-                    "p-0.5 rounded-full": !openSidebar,
-                  }
-                )}
-              >
-                <Zap className="h-4 w-4 text-indigo-600" />
-                {openSidebar && (
-                  <span className="text-indigo-600">Try Pro for free</span>
-                )}
-              </Button>
-            </UpgradeDialog>
+            <Tooltip>
+              <TooltipTrigger className="w-full">
+                <UpgradeDialog>
+                  <Button
+                    variant="secondary"
+                    className={classNames(
+                      "!w-full bg-indigo-50 hover:bg-indigo-100 flex items-center justify-center h-10",
+                      {
+                        "gap-2": openSidebar,
+                        "p-0.5 rounded-full": !openSidebar,
+                      }
+                    )}
+                  >
+                    <Zap className="h-4 w-4 text-indigo-600" />
+                    {openSidebar && (
+                      <span className="text-indigo-600">Try Pro for free</span>
+                    )}
+                  </Button>
+                </UpgradeDialog>
+              </TooltipTrigger>
+              {!openSidebar && (
+                <TooltipContent side="right">Upgrade</TooltipContent>
+              )}
+            </Tooltip>
             <MessagesSheet
               openMessages={openMessages}
               setOpenMessages={setOpenMessages}
@@ -275,10 +279,12 @@ function Sidebar() {
                   <Share2 className="mr-2 h-4 w-4" />
                   <span>Share</span>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Coffee className="mr-2 h-4 w-4" />
-                  <span>Support</span>
-                </DropdownMenuItem>
+                <AppsDialog>
+                  <DropdownMenuItem>
+                    <Coffee className="mr-2 h-4 w-4" />
+                    <span>Apps</span>
+                  </DropdownMenuItem>
+                </AppsDialog>
                 <DropdownMenuItem disabled>
                   <Cloud className="mr-2 h-4 w-4" />
                   <span>API</span>
