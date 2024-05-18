@@ -26,7 +26,7 @@ import { templates } from "@/utils/variables";
  */
 
 const General = () => {
-  const { user, userData } = useApiContext();
+  const { userData } = useApiContext();
   const hiddenFileInput = useRef(null);
   const [image, setImage] = useState(null);
 
@@ -84,6 +84,8 @@ export default General;
 const Form = ({ userData, image, hiddenFileInput }) => {
   const [template, setTemplate] = useState("");
 
+  console.log(template);
+
   const defaultValues = useMemo(() => {
     return {
       displayName: userData?.displayName,
@@ -105,20 +107,24 @@ const Form = ({ userData, image, hiddenFileInput }) => {
   const { errors, isDirty, isSubmitting } = formState;
 
   const onSubmit = async (data) => {
-    const storage = getStorage();
-    const storageRef = ref(
-      storage,
-      `users/${auth.currentUser.email}/profile/${image?.name}`
-    );
+    let photoURL = null;
 
-    // Upload the file
-    await uploadBytes(storageRef, image);
+    if (image) {
+      const storage = getStorage();
+      const storageRef = ref(
+        storage,
+        `users/${auth.currentUser.email}/profile/${image.name}`
+      );
 
-    // Get download URL
-    const photoURL = await getDownloadURL(storageRef);
+      // Upload the file
+      await uploadBytes(storageRef, image);
+
+      // Get download URL
+      photoURL = await getDownloadURL(storageRef);
+    }
 
     try {
-      await updateUserAccount({ ...data, template }, photoURL);
+      await updateUserAccount(data, photoURL, template);
     } catch (error) {
       console.log(error);
     } finally {
