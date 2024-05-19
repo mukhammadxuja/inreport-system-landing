@@ -1,30 +1,45 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { db } from "@/firebase/config";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { auth, db } from "@/firebase/config";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { useGoogleLogin } from "@/firebase/auth/googleLogin";
+import { useEmailPasswordLogin } from "@/firebase/auth/emailPasswordLogin";
+import { useEmailPasswordRegistration } from "@/firebase/auth/emailPasswordRegistration";
+import { useEmailVerification } from "@/firebase/auth/emailVerificationLink";
 
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { EllipsesIcon, LoadingIcon } from "@/components/icons";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Loading from "@/components/admin/loading";
 import NotFound from "@/components/admin/404";
 import Image from "next/image";
-import SendMessageDialog from "@/components/admin/dialogs/message";
 import { emojiPlus } from "@/utils/variables";
 import { getFirstNumberFromUserID } from "@/lib/utils";
-import { Github } from "lucide-react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from "next/navigation";
+import { LoadingIcon } from "../icons";
+import { useApiContext } from "@/context/api-context";
 
 function Join({ username }) {
+  const { user } = useApiContext();
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [loaded, setLoaded] = useState(false);
+  const router = useRouter();
+
+  const { googleLogin, isPendingGoogleLogin } = useGoogleLogin();
+  const { isPendingEmailPasswordLogin } = useEmailPasswordLogin();
+  const { isPendingEmailPasswordRegistration } = useEmailPasswordRegistration();
+  const { isEmailVerificationPending } = useEmailVerification();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,6 +62,12 @@ function Join({ username }) {
     fetchData();
   }, [username]);
 
+  useEffect(() => {
+    if (user) {
+      router.push("/admin");
+    }
+  }, [router, user]);
+
   console.log(userData);
 
   if (loading) {
@@ -56,6 +77,33 @@ function Join({ username }) {
   if (!userData) {
     return <NotFound />;
   }
+
+  const handleClick = async () => {
+    await googleLogin();
+    try {
+      const inviterQuery = await getDocs(
+        query(collection(db, "users"), where("username", "==", username))
+      );
+
+      if (inviterQuery.exists()) {
+        const gotUserData = inviterQuery.data();
+        gotUserData["invite"] = "working";
+        await updateDoc(docRef, gotUserData);
+
+        await addDoc(
+          collection(db, `users/${auth.currentUser.uid}/adminNotifications`),
+          {
+            message: `New user signed up through ${username}'s invite link.`,
+            timestamp: new Date(),
+          }
+        );
+      }
+
+      router.push("/admin");
+    } catch (error) {
+      console.error("Error signing up: ", error);
+    }
+  };
 
   return (
     <div className="flex items-center justify-center h-screen">
@@ -70,12 +118,7 @@ function Join({ username }) {
             <Avatar className="h-16 w-16 md:w-20 md:h-20 rounded-full">
               <AvatarImage
                 className="object-cover"
-                src={
-                  userData?.photoURL ||
-                  `/assets/avatars/${getFirstNumberFromUserID(
-                    userData?.uid
-                  )}.svg`
-                }
+                src={userData?.photoURL || `/assets/avatars/unknown.jpg`}
                 alt="@shadcn"
               />
             </Avatar>
@@ -120,14 +163,29 @@ function Join({ username }) {
             beautiful profiles and meaningful connections.
           </p>
           <div className="space-y-1">
-            <Button className="w-full" type="button" variant="secondary">
-              <Image
-                width={20}
-                height={20}
-                src="/google.svg"
-                alt="Google logo svg"
-                className="mr-1.5 h-6 w-6"
-              />
+            <Button
+              className="w-full"
+              type="button"
+              variant="secondary"
+              onClick={handleClick}
+              disabled={
+                isPendingGoogleLogin ||
+                isPendingEmailPasswordLogin ||
+                isPendingEmailPasswordRegistration ||
+                isEmailVerificationPending
+              }
+            >
+              {isPendingGoogleLogin ? (
+                <LoadingIcon className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                <Image
+                  width={20}
+                  height={20}
+                  src="/google.svg"
+                  alt="Google logo svg"
+                  className="mr-1.5 h-6 w-6"
+                />
+              )}
               Continue with Google
             </Button>
             <Button className="w-full" type="button" variant="secondary">
@@ -142,6 +200,16 @@ function Join({ username }) {
             </Button>
           </div>
         </div>
+        {/* <form onSubmit={handleSignup}>
+          <input type="email" placeholder="Email" name="email" required />
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            required
+          />
+          <button type="submit">Sign Up</button>
+        </form> */}
       </div>
     </div>
   );

@@ -41,12 +41,7 @@ function AdminPage() {
                 <Avatar className="h-24 w-24 rounded-full">
                   <AvatarImage
                     className="object-cover"
-                    src={
-                      userData?.photoURL ||
-                      `/assets/avatars/${getFirstNumberFromUserID(
-                        userData?.uid
-                      )}.svg`
-                    }
+                    src={userData?.photoURL || `/assets/avatars/unknown.jpg`}
                     alt="@shadcn"
                   />
                 </Avatar>

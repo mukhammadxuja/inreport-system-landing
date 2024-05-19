@@ -9,9 +9,10 @@ import Skills from "@/components/admin/profile/skills";
 import Contacts from "@/components/admin/profile/contact";
 import Subscription from "@/components/admin/settings/subscription";
 import General from "@/components/admin/settings/general";
+import Invite from "@/components/admin/settings/invite";
 
 function SettingsPage() {
-  const [settings, setSettings] = useState("subscription");
+  const [settings, setSettings] = useState("general");
 
   const settingsTab = [
     {
@@ -47,14 +48,14 @@ function SettingsPage() {
     {
       id: 0,
       title: "Invite friend!",
-      tag: "invite-friend",
+      tag: "invite",
       disabled: false,
     },
   ];
 
   const { getItem, setItem } = useSessionStorage("settings");
 
-  const storedActiveSettingsTab = getItem("settings") || "subscription";
+  const storedActiveSettingsTab = getItem("settings") || "general";
 
   const handleSelectSettingsTag = useCallback(
     (tag) => {
@@ -110,9 +111,9 @@ function SettingsPage() {
         </TabsContent>
         <TabsContent
           className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="contact"
+          value="invite"
         >
-          <Contacts />
+          <Invite />
         </TabsContent>
       </Tabs>
     </div>

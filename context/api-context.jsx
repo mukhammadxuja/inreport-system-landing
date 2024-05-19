@@ -24,6 +24,8 @@ export const ApiContextProvider = ({ children }) => {
   const [userUid, setUserUid] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  console.log(userData);
+
   // Profile
   const [projects, setProjects] = useState([]);
   const [sideProjects, setSideProjects] = useState([]);
@@ -211,7 +213,6 @@ export const ApiContextProvider = ({ children }) => {
     }
   }, [userUid]);
 
-
   // Get user from google auth
   useEffect(() => {
     setLoading(true);
@@ -236,7 +237,7 @@ export const ApiContextProvider = ({ children }) => {
         setUserData(snapshot.data());
       }
     });
-  }, []);
+  }, [userUid]);
 
   const values = {
     user,

@@ -11,6 +11,7 @@ import { Globe2, Shell } from "lucide-react";
 import { useApiContext } from "@/context/api-context";
 import Loading from "@/components/admin/loading";
 import Image from "next/image";
+import { LoadingIcon } from "@/components/icons";
 
 function Auth() {
   const { googleLogin, isPendingGoogleLogin } = useGoogleLogin();
@@ -45,7 +46,7 @@ function Auth() {
           }
         >
           {isPendingGoogleLogin ? (
-            <Shell className="mr-2 h-4 w-4 animate-spin" />
+            <LoadingIcon/>
           ) : (
             <Image
               width={20}

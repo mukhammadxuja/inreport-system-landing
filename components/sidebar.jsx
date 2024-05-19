@@ -212,12 +212,7 @@ function Sidebar() {
                   <Avatar className="h-8 w-8 rounded-md">
                     <AvatarImage
                       className="object-cover"
-                      src={
-                        userData?.photoURL ||
-                        `/assets/avatars/${getFirstNumberFromUserID(
-                          userData?.uid
-                        )}.svg`
-                      }
+                      src={userData?.photoURL || `/assets/avatars/unknown.jpg`}
                       alt="@shadcn"
                     />
                   </Avatar>

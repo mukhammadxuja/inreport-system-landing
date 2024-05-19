@@ -63,18 +63,18 @@ function SendMessageDialog({ userId, username, children }) {
           className="space-y-3 md:space-y-6 mt-5"
         >
           <DialogHeader>
-            <DialogTitle>New message</DialogTitle>
+            <DialogTitle className="-mt-5">New message</DialogTitle>
+            <Separator className="!my-2" />
             <DialogDescription className="!mt-2 space-y-3">
-              <Separator />
               <div className="space-y-1 w-full">
-                <Label id="username">Your username</Label>
+                <Label id="username">Your username [optional]</Label>
                 <Input placeholder="Your username" {...register("username")} />
                 <p className="text-xs text-red-500">
                   {errors.username?.message}
                 </p>
               </div>
               <div className="space-y-1 w-full">
-                <Label id="email">Your email</Label>
+                <Label id="email">Your email [optional]</Label>
                 <Input
                   type="email"
                   placeholder="Your email"
