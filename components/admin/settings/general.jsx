@@ -24,6 +24,10 @@ import { Separator } from "@/components/ui/separator";
 import { Zap } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import InviteDialog from "../dialogs/invite";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { auth, db } from "@/firebase/config";
+import { toast } from "sonner";
+import { Switch } from "@/components/ui/switch";
 
 const General = () => {
   const { userData } = useApiContext();
@@ -45,128 +49,70 @@ const General = () => {
 
 export default General;
 
-const Form = ({ userData, setAddGeneral }) => {
-  const defaultValues = useMemo(() => {
-    return {
-      name: userData?.displayName,
-      // username: userData?.username ? userData.username : "",
-      email: userData?.email ? userData.email : "",
-    };
-  }, [userData]);
+const Form = ({ userData }) => {
+  const [hideMark, setHideMark] = useState();
 
-  const form = useForm({
-    defaultValues: defaultValues,
-  });
-
-  const { register, formState, handleSubmit, setValue, reset, resetField } =
-    form;
-
-  const { errors, isDirty, isSubmitting, isSubmitted, isSubmitSuccessful } =
-    formState;
-
-  const onSubmit = async (data) => {
-    console.log("Submitted Data:", data); // Log submitted data
-    const { name, email } = data;
-    const newData = { displayName: name, email };
-    try {
-      await updateUserAccount(newData);
-      console.log("perfect");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const settingsDocRef = doc(
+    db,
+    "users",
+    auth.currentUser.uid,
+    "settings",
+    "settingsDoc"
+  );
 
   useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset(defaultValues);
-    }
-  }, [isSubmitSuccessful, reset]);
+    const fetchSettings = async () => {
+      const docSnap = await getDoc(settingsDocRef);
+      if (docSnap.exists()) {
+        setHideMark(docSnap.data().hideMark);
+      }
+    };
 
-  const [files, setFiles] = useState([]);
+    fetchSettings();
+  }, [settingsDocRef]);
 
-  const handleChange = (newFiles) => {
-    setFiles((prevFiles) => [...prevFiles, ...newFiles]);
-  };
+  const onCheckedChange = async (newHideMarkValue) => {
+    setHideMark(newHideMarkValue);
 
-  const handleFileRemove = (fileId) => {
-    setFiles((prevFiles) =>
-      prevFiles.filter((prevFile) => prevFile.id !== fileId)
-    );
-  };
-
-  const handleClearFiles = () => {
-    setFiles([]);
-  };
-
-  console.log(files);
-
-  const handleUploadFiles = () => {
-    const formData = new FormData();
-    files.forEach((file) => {
-      formData.append(
-        file.id,
-        new Blob([file], { type: file.type }),
-        file.name || "file"
+    try {
+      await setDoc(
+        settingsDocRef,
+        { hideMark: newHideMarkValue }
+        // { merge: true }
       );
-    });
-
-    axios
-      .post("/files", formData)
-      .then(() => {
-        window.alert(`${files.length} files uploaded succesfully!`);
-        setFiles([]);
-      })
-      .catch((err) => {
-        window.alert(`Error uploading files: ${err.message}`);
-      });
+      toast("Settings updated successfully");
+    } catch (error) {
+      console.error("Error updating settings:", error);
+      toast("Failed to update settings");
+    }
   };
-
-  function handleOnDragEnd(result) {
-    if (!result.destination) return;
-
-    const items = Array.from(files);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-
-    setFiles(items);
-  }
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="space-y-3 md:space-y-6 mt-5"
-      noValidate
-    >
+    <div className="space-y-3 md:space-y-6 mt-5">
       <div className="w-full flex items-center justify-between">
         <div className="">
-          <h6 className="setting-title">
-            Allow send message
-          </h6>
-          <small className="setting-p">
-            Everyone can message you
-          </small>
+          <h6 className="setting-title">Allow send message</h6>
+          <small className="setting-p">Everyone can message you</small>
         </div>
         <Checkbox defaultChecked className="h-5 w-5 rounded" />
       </div>
       <div className="w-full flex items-center justify-between">
         <div className="">
-          <h6 className="setting-title">
-            Hide mark
-          </h6>
+          <h6 className="setting-title">Hide mark</h6>
           <small className="setting-p">
             Hide in /{userData?.username} - build with showcase button
           </small>
         </div>
-        <Checkbox className="h-5 w-5 rounded" />
+        <Switch
+          checked={hideMark}
+          onCheckedChange={onCheckedChange}
+          // className="h-5 w-5 rounded accent-primary"
+        />
       </div>
       <div className="w-full flex items-center justify-between">
         <div className="">
-          <h6 className="setting-title">
-            Appearance
-          </h6>
-          <small className="setting-p">
-            Inherits OS dark mode
-          </small>
+          <h6 className="setting-title">Appearance</h6>
+          <small className="setting-p">Inherits OS dark mode</small>
         </div>
         <Select disabled>
           <SelectTrigger className="w-44">
@@ -182,18 +128,14 @@ const Form = ({ userData, setAddGeneral }) => {
       <Separator />
       <div className="w-full flex items-center justify-between">
         <div className="">
-          <h6 className="setting-title">
-            {userData?.displayName}
-          </h6>
+          <h6 className="setting-title">{userData?.displayName}</h6>
           <small className="setting-p">Not you?</small>
         </div>
         <Button variant="secondary">Log out</Button>
       </div>
       <div className="w-full flex items-center justify-between">
         <div className="">
-          <h6 className="setting-title">
-            Invite friend
-          </h6>
+          <h6 className="setting-title">Invite friend</h6>
           <small className="setting-p">Thank you ❤️</small>
         </div>
         <InviteDialog userData={userData}>
@@ -211,24 +153,16 @@ const Form = ({ userData, setAddGeneral }) => {
       </div>
       <div className="w-full flex items-center justify-between">
         <div className="">
-          <h6 className="setting-title">
-            Email address
-          </h6>
-          <small className="setting-p">
-            {userData?.email}
-          </small>
+          <h6 className="setting-title">Email address</h6>
+          <small className="setting-p">{userData?.email}</small>
         </div>
         <Button variant="secondary">Change</Button>
       </div>
       <Separator />
       <div className="w-full flex items-center justify-between">
         <div className="">
-          <h6 className="setting-title">
-            Account
-          </h6>
-          <small className="setting-p">
-            Joined 3 months ago
-          </small>
+          <h6 className="setting-title">Account</h6>
+          <small className="setting-p">Joined 3 months ago</small>
         </div>
         <Button variant="destructive">Delete</Button>
       </div>
@@ -297,6 +231,6 @@ const Form = ({ userData, setAddGeneral }) => {
           Save
         </Button>
       </div> */}
-    </form>
+    </div>
   );
 };

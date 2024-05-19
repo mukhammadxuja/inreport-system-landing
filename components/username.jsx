@@ -26,9 +26,12 @@ import Image from "next/image";
 import SendMessageDialog from "./admin/dialogs/message";
 import { emojiPlus } from "@/utils/variables";
 import { getFirstNumberFromUserID } from "@/lib/utils";
+import { useApiContext } from "@/context/api-context";
 // import NotFound from "@/app/not-found/page";
 
 export default function UserProfileClient({ username }) {
+  const { settings } = useApiContext();
+
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [projects, setProjects] = useState([]);
@@ -192,17 +195,19 @@ export default function UserProfileClient({ username }) {
         </Button>
       </SendMessageDialog>
 
-      <Link
-        className="fixed bottom-4 right-4 flex items-center shadow-lg rounded-sm py-2 px-3 gap-1.5"
-        href="http://localhost:3000/"
-      >
-        <img
-          className="w-3 h-3 rotate-90"
-          src="/logo.svg"
-          alt="Showcase logo"
-        />
-        <span className="text-xs font-bold">Made in Showcase</span>
-      </Link>
+      {settings?.hideMark && (
+        <Link
+          className="fixed bottom-4 right-4 flex items-center shadow-lg rounded-sm py-2 px-3 gap-1.5"
+          href="http://localhost:3000/"
+        >
+          <img
+            className="w-3 h-3 rotate-90"
+            src="/logo.svg"
+            alt="Showcase logo"
+          />
+          <span className="text-xs font-bold">Made in Showcase</span>
+        </Link>
+      )}
     </div>
   );
 }

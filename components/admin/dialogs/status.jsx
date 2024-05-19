@@ -85,7 +85,7 @@ function StatusDialog({
     } finally {
       setOpenStatus(false);
       toast(
-        "Status updated successfully! Showing new status might take some minute"
+        "Status updated successfully!"
       );
     }
   };

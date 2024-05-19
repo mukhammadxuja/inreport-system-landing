@@ -38,7 +38,10 @@ export const ApiContextProvider = ({ children }) => {
 
   // Messages
   const [messages, setMessages] = useState([]);
-  const [unreadMessages, setUnreadMessages] = useState(0); // State to track unread messages count
+  const [unreadMessages, setUnreadMessages] = useState(0);
+
+  // Settings
+  const [settings, setSettings] = useState([]);
 
   const fetchUnreadMessagesCount = async () => {
     if (!userUid) return;
@@ -73,6 +76,36 @@ export const ApiContextProvider = ({ children }) => {
       console.error("Error marking message as read: ", error);
     }
   };
+
+  console.log(settings);
+
+  useEffect(() => {
+    const fetchSettings = async () => {
+      if (!userUid) {
+        console.error("User UID is null or undefined");
+        return;
+      }
+
+      try {
+        const settingsDocRef = doc(
+          db,
+          "users",
+          userUid,
+          "settings",
+          "settingsDoc"
+        );
+        const docSnap = await getDoc(settingsDocRef);
+        if (docSnap.exists()) {
+          setSettings(docSnap.data());
+        }
+      } catch (error) {
+        console.error("Error fetching settings:", error);
+        toast.error("Failed to load settings");
+      }
+    };
+
+    fetchSettings();
+  }, [userUid]);
 
   useEffect(() => {
     if (userUid) {
@@ -258,6 +291,10 @@ export const ApiContextProvider = ({ children }) => {
     unreadMessages,
     setUnreadMessages,
     markMessageAsRead,
+
+    // settings
+    settings,
+    
   };
 
   return <ApiContext.Provider value={values}>{children}</ApiContext.Provider>;

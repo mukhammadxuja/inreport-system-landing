@@ -178,10 +178,10 @@ function Sidebar() {
                   <Button
                     variant="secondary"
                     className={classNames(
-                      "!w-full bg-indigo-50 hover:bg-indigo-100 flex items-center justify-center h-10",
+                      "!w-full bg-indigo-50 hover:bg-indigo-100 flex items-center h-10",
                       {
-                        "gap-2": openSidebar,
-                        "p-0.5 rounded-full": !openSidebar,
+                        "gap-2 justify-start": openSidebar,
+                        "p-0.5 rounded-full justify-center": !openSidebar,
                       }
                     )}
                   >
