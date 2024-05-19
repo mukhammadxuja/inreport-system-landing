@@ -6,7 +6,6 @@ import { useSessionStorage } from "@/hooks/useSessionStorage";
 
 import Certifications from "@/components/admin/profile/certifications";
 import Skills from "@/components/admin/profile/skills";
-import Contacts from "@/components/admin/profile/contact";
 import Subscription from "@/components/admin/settings/subscription";
 import General from "@/components/admin/settings/general";
 import Invite from "@/components/admin/settings/invite";
@@ -25,7 +24,7 @@ function SettingsPage() {
       id: 0,
       title: "Subscription",
       tag: "subscription",
-      disabled: true,
+      disabled: false,
     },
     {
       id: 0,
@@ -85,34 +84,19 @@ function SettingsPage() {
             </TabsTrigger>
           ))}
         </TabsList>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="general"
-        >
+        <TabsContent value="general">
           <General />
         </TabsContent>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="subscription"
-        >
+        <TabsContent value="subscription">
           <Subscription />
         </TabsContent>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="certifications"
-        >
+        <TabsContent value="certifications">
           <Certifications />
         </TabsContent>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="skills"
-        >
+        <TabsContent value="skills">
           <Skills />
         </TabsContent>
-        <TabsContent
-          className="mt-[2.5rem] max-w-7xl mx-auto px-8 py-6 rounded-lg bg-white"
-          value="invite"
-        >
+        <TabsContent value="invite">
           <Invite />
         </TabsContent>
       </Tabs>

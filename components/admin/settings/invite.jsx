@@ -8,7 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 
-import { CheckCircle, CheckCircle2, Circle, Loader } from "lucide-react";
+import { CheckCircle2, Loader } from "lucide-react";
 
 const Invite = () => {
   const { userData } = useApiContext();
@@ -39,10 +39,8 @@ const Invite = () => {
         </div>
         <div className="flex flex-col md:flex-row md:items-center md:justify-between rounded-lg p-4 border gap-2">
           <div>
-            <h5 className="text-base font-medium leading-none tracking-tight">
-              10 invites
-            </h5>
-            <p className="text-sm text-gray-500">
+            <h5 className="setting-title">10 invites</h5>
+            <p className="setting-p">
               Invite your friend get all templates for free.
             </p>
           </div>

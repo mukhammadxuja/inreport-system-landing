@@ -101,13 +101,21 @@
     @apply w-full shadow-lg rounded-lg mt-4 bg-white pl-2 pr-5 py-4;
   }
 
+  .setting-title {
+    @apply text-base text-primary font-medium leading-none tracking-tight;
+  }
+
+  .setting-p {
+    @apply text-sm text-muted-foreground
+  }
+
   /* Admin */
   .tabs-content {
     @apply !mt-6 md:!mt-10 w-full max-w-7xl mx-auto p-5 md:px-8 md:py-6 rounded-lg bg-white;
   }
 
   .tab-title {
-    @apply font-semibold leading-none tracking-tight text-lg md:text-xl xl:text-2xl
+    @apply font-semibold leading-none tracking-tight text-lg md:text-xl xl:text-2xl;
   }
 
   .tiptap {

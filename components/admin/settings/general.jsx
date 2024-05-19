@@ -139,15 +139,21 @@ const Form = ({ userData, setAddGeneral }) => {
     >
       <div className="w-full flex items-center justify-between">
         <div className="">
-          <h6>Allow send message</h6>
-          <small className="text-sm">Everyone can message you</small>
+          <h6 className="setting-title">
+            Allow send message
+          </h6>
+          <small className="setting-p">
+            Everyone can message you
+          </small>
         </div>
         <Checkbox defaultChecked className="h-5 w-5 rounded" />
       </div>
       <div className="w-full flex items-center justify-between">
         <div className="">
-          <h6>Hide mark</h6>
-          <small className="text-sm">
+          <h6 className="setting-title">
+            Hide mark
+          </h6>
+          <small className="setting-p">
             Hide in /{userData?.username} - build with showcase button
           </small>
         </div>
@@ -155,8 +161,12 @@ const Form = ({ userData, setAddGeneral }) => {
       </div>
       <div className="w-full flex items-center justify-between">
         <div className="">
-          <h6>Appearance</h6>
-          <small className="text-sm">Inherits OS dark mode</small>
+          <h6 className="setting-title">
+            Appearance
+          </h6>
+          <small className="setting-p">
+            Inherits OS dark mode
+          </small>
         </div>
         <Select disabled>
           <SelectTrigger className="w-44">
@@ -172,15 +182,19 @@ const Form = ({ userData, setAddGeneral }) => {
       <Separator />
       <div className="w-full flex items-center justify-between">
         <div className="">
-          <h6>{userData?.displayName}</h6>
-          <small className="text-sm">Not you?</small>
+          <h6 className="setting-title">
+            {userData?.displayName}
+          </h6>
+          <small className="setting-p">Not you?</small>
         </div>
         <Button variant="secondary">Log out</Button>
       </div>
       <div className="w-full flex items-center justify-between">
         <div className="">
-          <h6>Invite friend</h6>
-          <small className="text-sm">Thank you ❤️</small>
+          <h6 className="setting-title">
+            Invite friend
+          </h6>
+          <small className="setting-p">Thank you ❤️</small>
         </div>
         <InviteDialog userData={userData}>
           <Button variant="secondary" className="flex items-center gap-1.5">
@@ -197,16 +211,24 @@ const Form = ({ userData, setAddGeneral }) => {
       </div>
       <div className="w-full flex items-center justify-between">
         <div className="">
-          <h6>Email address</h6>
-          <small className="text-sm">{userData?.email}</small>
+          <h6 className="setting-title">
+            Email address
+          </h6>
+          <small className="setting-p">
+            {userData?.email}
+          </small>
         </div>
         <Button variant="secondary">Change</Button>
       </div>
       <Separator />
       <div className="w-full flex items-center justify-between">
         <div className="">
-          <h6>Account</h6>
-          <small className="text-sm">Joined 3 months ago</small>
+          <h6 className="setting-title">
+            Account
+          </h6>
+          <small className="setting-p">
+            Joined 3 months ago
+          </small>
         </div>
         <Button variant="destructive">Delete</Button>
       </div>
