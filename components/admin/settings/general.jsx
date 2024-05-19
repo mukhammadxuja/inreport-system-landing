@@ -23,6 +23,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Zap } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
+import InviteDialog from "../dialogs/invite";
 
 const General = () => {
   const { userData } = useApiContext();
@@ -181,16 +182,18 @@ const Form = ({ userData, setAddGeneral }) => {
           <h6>Invite friend</h6>
           <small className="text-sm">Thank you ❤️</small>
         </div>
-        <Button variant="secondary" className="flex items-center gap-1.5">
-          <Image
-            width={10}
-            height={10}
-            className="w-4 h-4 -ml-1"
-            src="/assets/emojis/1.png"
-            alt="love emoji"
-          />
-          <span>Invite</span>
-        </Button>
+        <InviteDialog userData={userData}>
+          <Button variant="secondary" className="flex items-center gap-1.5">
+            <Image
+              width={10}
+              height={10}
+              className="w-4 h-4 -ml-1"
+              src="/assets/emojis/1.png"
+              alt="love emoji"
+            />
+            <span>Invite</span>
+          </Button>
+        </InviteDialog>
       </div>
       <div className="w-full flex items-center justify-between">
         <div className="">
