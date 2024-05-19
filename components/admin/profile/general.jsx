@@ -113,7 +113,7 @@ const Form = ({ userData, image, hiddenFileInput }) => {
       const storage = getStorage();
       const storageRef = ref(
         storage,
-        `users/${auth.currentUser.email}/profile/${image.name}`
+        `users/${userData?.username}/profile/${image.name}`
       );
 
       // Upload the file

@@ -14,15 +14,17 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "sonner";
 
+// `users/${userData?.username}/profile/${image.name}`
+
 // Add Item
-export const addItem = async (source, data, files) => {
+export const addItem = async (source, data, files, user) => {
   const images = [];
 
   await Promise.all(
     files.map(async (file) => {
       const storageRef = ref(
         storage,
-        `${source}/${auth.currentUser.uid}/images/${file.name}`
+        `users/${auth.currentUser?.email}/${source}/${file.name}`
       );
       await uploadBytes(storageRef, file);
       const downloadURL = await getDownloadURL(storageRef);
@@ -60,7 +62,7 @@ export const updateItem = async (
     files.map(async (file) => {
       const storageRef = ref(
         storage,
-        `${source}/${auth.currentUser.email}/images/${file.name}`
+        `users/${auth.currentUser?.email}/${source}/${file.name}`
       );
       await uploadBytes(storageRef, file);
       const downloadURL = await getDownloadURL(storageRef);
