@@ -89,7 +89,7 @@ export default function UserProfileClient({ username }) {
   }
 
   return (
-    <div className="px-4 min-h-screen max-w-3xl mx-auto my-20 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 !mt-6 md:!mt-10 w-full p-5 md:px-8 md:py-6 rounded-lg bg-white">
+    <div className="px-4 max-w-3xl mx-auto my-20 !mt-6 md:!mt-10 w-full p-5 md:px-8 md:py-6 rounded-lg bg-white">
       <DefaultHome />
 
       {settings?.canMessage && (

@@ -20,6 +20,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { toast } from "sonner";
 import { Combobox } from "@/components/ui/combobox";
 import { templates } from "@/utils/variables";
+import { Switch } from "@/components/ui/switch";
 
 /**
  * Templates: https://www.canvas.supply/products/linx
@@ -83,8 +84,9 @@ export default General;
 
 const Form = ({ userData, image, hiddenFileInput }) => {
   const [template, setTemplate] = useState("");
-
-  console.log(template);
+  const [isOpenToWork, setIsOpenToWork] = useState(
+    true || userData?.isOpenToWork
+  );
 
   const defaultValues = useMemo(() => {
     return {
@@ -95,6 +97,7 @@ const Form = ({ userData, image, hiddenFileInput }) => {
       location: userData?.location ? userData.location : "",
       website: userData?.website ? userData.website : "",
       bio: userData?.bio ? userData.bio : "",
+      pronoun: userData?.pronoun ? userData.pronoun : "",
     };
   }, [userData]);
 
@@ -124,7 +127,7 @@ const Form = ({ userData, image, hiddenFileInput }) => {
     }
 
     try {
-      await updateUserAccount(data, photoURL, template);
+      await updateUserAccount({ ...data, isOpenToWork }, photoURL, template);
     } catch (error) {
       console.log(error);
     } finally {
@@ -227,6 +230,34 @@ const Form = ({ userData, image, hiddenFileInput }) => {
           </a>
         </div>
       </div>
+      <div className="flex flex-col md:flex-row items-center w-full gap-3">
+        <div className="space-y-1 w-full">
+          <Label htmlFor="pronoun">Pronoun</Label>
+          <Input id="pronoun" placeholder="He/Him" {...register("pronoun")} />
+          <p className="text-xs text-red-500">{errors.pronoun?.message}</p>
+        </div>
+        <div className="w-full">
+          <Label htmlFor="isOpenToWork" className="">
+            Do you open to work?
+          </Label>
+          <div className="flex items-center justify-between py-2 px-4 rounded-md border border-border w-full">
+            <p className="text-sm font-medium">
+              {isOpenToWork
+                ? "Yes, I am open to work"
+                : "No, I am not open to work"}
+            </p>
+            <Switch
+              className="ml-auto"
+              id="isOpenToWork"
+              checked={isOpenToWork}
+              onCheckedChange={setIsOpenToWork}
+            />
+            <p className="text-xs text-red-500">
+              {errors.isOpenToWork?.message}
+            </p>
+          </div>
+        </div>
+      </div>
       <div className="space-y-1 w-full">
         <Label htmlFor="bio">About</Label>
         <Textarea
@@ -248,7 +279,9 @@ const Form = ({ userData, image, hiddenFileInput }) => {
           Reset
         </Button>
         <Button
-          disabled={isSubmitting || (!isDirty && !image && !template)}
+          disabled={
+            isSubmitting || (!isDirty && !image && !template)
+          }
           className="rounded-sm"
           type="submit"
         >
