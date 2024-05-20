@@ -50,7 +50,7 @@ function ExperienceItem({ experience, setEditableId, setIsEdit }) {
           <p className="text-gray-500">{experience.location}</p>
           <p className="text-gray-500">{experience.description}</p>
         </div>
-        <div className="flex items-center gap-3 overflow-x-scroll">
+        <div className="flex items-center gap-3 overflow-x-auto">
           {experience.images && experience.images.length > 0 && (
             <div className="flex items-center gap-2">
               {/* Map through images and render each */}

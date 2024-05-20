@@ -43,7 +43,9 @@ function SideProjectItem({ project, setEditableId, setIsEdit }) {
       key={project.id}
       className="grid grid-cols-1 md:grid-cols-3 bg-gray-50 py-2 px-4 rounded-md border"
     >
-      <p className="hidden md:block">{project.year}</p>
+      <p className="hidden md:block">
+        {project?.ongoing ? "Ongoing" : project.year}
+      </p>
       <div className="space-y-3 col-span-2">
         <div className={`${project.hide && "blur-[1.5px]"}`}>
           <a
@@ -57,7 +59,7 @@ function SideProjectItem({ project, setEditableId, setIsEdit }) {
           </a>
           <p className="text-gray-500">{project.description}</p>
         </div>
-        <div className="flex items-center gap-3 overflow-x-scroll">
+        <div className="flex items-center gap-3 overflow-x-auto">
           {project.images && project.images.length > 0 && (
             <div className="flex items-center gap-2">
               {/* Map through images and render each */}

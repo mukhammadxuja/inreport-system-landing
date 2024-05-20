@@ -144,12 +144,7 @@ function EditAwardForm({ setIsEdit, editableId }) {
           id="description"
           rows={4}
           placeholder="Cool award"
-          {...register("description", {
-            maxLength: {
-              value: 300,
-              message: "Description is too long (only 300)",
-            },
-          })}
+          {...register("description")}
         />
         <p className="text-xs text-red-500">{errors.description?.message}</p>
       </div>
@@ -222,7 +217,6 @@ function EditAwardForm({ setIsEdit, editableId }) {
         <Button disabled={isSubmitting} className="rounded-sm" type="submit">
           {isSubmitting && <LoadingIcon />}
           {isSubmitting ? "Saving" : "Save"}
-          Edit
         </Button>
       </div>
     </form>

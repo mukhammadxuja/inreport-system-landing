@@ -31,7 +31,7 @@ function CertificationItem({ certification, setEditableId, setIsEdit }) {
   return (
     <div
       key={certification.id}
-      className="grid grid-cols-1 md:grid-cols-3 bg-gray-50 py-2 px-4 rounded-md border"
+      className="bg-gray-50 py-2 px-4 rounded-md border"
     >
       <p className="hidden md:block">
         {certification.issued} —
@@ -50,7 +50,7 @@ function CertificationItem({ certification, setEditableId, setIsEdit }) {
           </a>
           <p className="text-gray-500">{certification.description}</p>
         </div>
-        <div className="flex items-center gap-3 overflow-x-scroll">
+        <div className="flex items-center gap-3 overflow-x-auto">
           {certification.images && certification.images.length > 0 && (
             <div className="flex items-center gap-2">
               {/* Map through images and render each */}

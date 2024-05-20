@@ -180,12 +180,7 @@ function EditCertificationForm({ setIsEdit, editableId }) {
           id="description"
           rows={4}
           placeholder="Add some details, e.g. ID number"
-          {...register("description", {
-            maxLength: {
-              value: 200,
-              message: "Description is too long",
-            },
-          })}
+          {...register("description")}
         />
         <p className="text-xs text-red-500">{errors.description?.message}</p>
       </div>

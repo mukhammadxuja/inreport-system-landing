@@ -38,10 +38,13 @@ function ProjectItem({ project, profile = true, setEditableId, setIsEdit }) {
   return (
     <div className="relative md:flex md:items-start md:justify-between py-4 pr-4">
       <di className="hidden md:flex items-center space-x-1">
-        <p>{project.year ? project.year : project.from}</p>
-        <p>{project?.present ? " — Present" : project?.to}</p>
+        <p>{project?.ongoing ? 'Ongoing' : project.year}</p>
       </di>
-      <div className={`${project.hide && "blur-[1.5px]"} space-y-3 w-full md:w-[25rem]`}>
+      <div
+        className={`${
+          project.hide && "blur-[1.5px]"
+        } space-y-3 w-full md:w-[25rem]`}
+      >
         <div className="-space-y-1">
           <div className="flex items-center justify-between w-full">
             <Button variant="linkHover1">
@@ -71,12 +74,12 @@ function ProjectItem({ project, profile = true, setEditableId, setIsEdit }) {
               </Link>
             </Button>
             <p className="block md:hidden ml-auto">
-              {project.year ? project.year : project.from}
+              {project?.ongoing ? 'Ongoing' : project.year}
             </p>
           </div>
           <p className="text-gray-600 text-sm">{project.description}</p>
         </div>
-        <div className="flex items-center gap-3 overflow-x-scroll">
+        <div className="flex items-center gap-3 overflow-x-auto">
           {project.images && project.images.length > 0 && (
             <div className="flex items-center gap-2">
               {/* Map through images and render each */}

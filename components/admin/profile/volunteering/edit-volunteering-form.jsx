@@ -192,12 +192,7 @@ function EditVolunteeringForm({ setIsEdit, editableId }) {
           id="description"
           rows={4}
           placeholder="Cool volunteering"
-          {...register("description", {
-            maxLength: {
-              value: 200,
-              message: "Name is too long",
-            },
-          })}
+          {...register("description")}
         />
         <p className="text-xs text-red-500">{errors.description?.message}</p>
       </div>

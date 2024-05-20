@@ -47,7 +47,7 @@ function AwardItem({ award, setEditableId, setIsEdit }) {
           </a>
           <p className="text-gray-500">{award.description}</p>
         </div>
-        <div className="flex items-center gap-3 overflow-x-scroll">
+        <div className="flex items-center gap-3 overflow-x-auto">
           {award.images && award.images.length > 0 && (
             <div className="flex items-center gap-2">
               {/* Map through images and render each */}

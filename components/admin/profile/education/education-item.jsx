@@ -44,13 +44,13 @@ function EducationItem({ education, setEditableId, setIsEdit }) {
             rel="noopener noreferrer"
             className="flex items-center font-medium hover:underline cursor-pointer"
           >
-            {education.title} at {education.company}
+            {education.degree} at {education.school}
             <ChevronRight className="w-4 h-4" />
           </a>
           <p className="text-gray-500">{education.location}</p>
           <p className="text-gray-500">{education.description}</p>
         </div>
-        <div className="flex items-center gap-3 overflow-x-scroll">
+        <div className="flex items-center gap-3 overflow-x-auto">
           {education.images && education.images.length > 0 && (
             <div className="flex items-center gap-2">
               {/* Map through images and render each */}

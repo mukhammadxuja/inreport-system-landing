@@ -24,8 +24,6 @@ export const ApiContextProvider = ({ children }) => {
   const [userUid, setUserUid] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  console.log(userData);
-
   // Profile
   const [projects, setProjects] = useState([]);
   const [sideProjects, setSideProjects] = useState([]);
@@ -76,8 +74,6 @@ export const ApiContextProvider = ({ children }) => {
       console.error("Error marking message as read: ", error);
     }
   };
-
-  console.log(settings);
 
   useEffect(() => {
     const fetchSettings = async () => {
@@ -148,7 +144,7 @@ export const ApiContextProvider = ({ children }) => {
     if (userUid) {
       const sideProjectsCollection = collection(
         db,
-        `users/${userUid}/sideProjects`
+        `users/${userUid}/side-projects`
       );
       const querySideProjects = query(sideProjectsCollection);
       const unsubscribeSideProjects = onSnapshot(
@@ -294,7 +290,6 @@ export const ApiContextProvider = ({ children }) => {
 
     // settings
     settings,
-    
   };
 
   return <ApiContext.Provider value={values}>{children}</ApiContext.Provider>;

@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import React from "react";
 
-function EmptyExperience({ setEduction }) {
+function EmptyExperience({ setAddEducation }) {
   return (
     <div className="flex flex-col items-center justify-center !min-h-[calc(100vh-14rem)] py-10 space-y-3">
       <svg
@@ -19,7 +19,7 @@ function EmptyExperience({ setEduction }) {
         />
       </svg>
 
-      <Button onClick={() => setEduction(true)} variant="secondary">
+      <Button onClick={() => setAddEducation(true)} variant="secondary">
         Add experience
       </Button>
     </div>

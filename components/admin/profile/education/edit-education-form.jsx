@@ -40,8 +40,8 @@ function EditSideEducationForm({ setIsEdit, editableId }) {
     return {
       from: education?.from,
       to: education?.to,
-      title: education?.title,
-      company: education?.company,
+      degree: education?.degree,
+      school: education?.school,
       location: education?.location,
       url: education?.url,
       description: education?.description,
@@ -141,29 +141,30 @@ function EditSideEducationForm({ setIsEdit, editableId }) {
       </div>
       <div className="flex flex-col md:flex-row md:items-center gap-3">
         <div className="space-y-1 w-full">
-          <Label htmlFor="title">Title</Label>
+          <Label htmlFor="degree">Degree or certification</Label>
           <Input
-            id="title"
-            placeholder="Product Designer"
-            {...register("title")}
+            id="degree"
+            placeholder="Bachelor of design"
+            {...register("degree")}
           />
-          <p className="text-xs text-red-500">{errors.title?.message}</p>
+          <p className="text-xs text-red-500">{errors.degree?.message}</p>
         </div>
         <div className="space-y-1 w-full">
-          <Label htmlFor="company">
-            Company or client<span className="text-red-500">*</span>
+          <Label htmlFor="school">
+            School or institution
+            <span className="text-red-500">*</span>
           </Label>
           <Input
-            id="company"
-            placeholder="Acme inc."
-            {...register("company", {
+            id="school"
+            placeholder="Emily Carr University"
+            {...register("school", {
               required: {
                 value: true,
-                message: "Company is required",
+                message: "School or institution is required",
               },
             })}
           />
-          <p className="text-xs text-red-500">{errors.company?.message}</p>
+          <p className="text-xs text-red-500">{errors.school?.message}</p>
         </div>
       </div>
       <div className="flex flex-col md:flex-row md:items-center gap-3">
@@ -192,12 +193,7 @@ function EditSideEducationForm({ setIsEdit, editableId }) {
           id="description"
           rows={4}
           placeholder="Cool education"
-          {...register("description", {
-            maxLength: {
-              value: 200,
-              message: "Name is too long",
-            },
-          })}
+          {...register("description")}
         />
         <p className="text-xs text-red-500">{errors.description?.message}</p>
       </div>

@@ -17,12 +17,14 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { handleFileRemove, updateItem } from "@/services/firestore-service";
+import { Checkbox } from "@/components/ui/checkbox";
 
 function EditSideProjectForm({ setIsEdit, editableId }) {
   const { sideProjects } = useApiContext();
   const project = sideProjects.find((p) => p.id === editableId);
 
   const [isSending, setIsSending] = useState(false);
+  const [ongoing, setOngoing] = useState(project?.ongoing);
   const [files, setFiles] = useState([]);
   const images = [...project.images];
 
@@ -63,7 +65,7 @@ function EditSideProjectForm({ setIsEdit, editableId }) {
     try {
       await updateItem(
         "side-projects",
-        data,
+        { ...data, ongoing },
         editableId,
         files,
         project.images
@@ -101,25 +103,36 @@ function EditSideProjectForm({ setIsEdit, editableId }) {
           <p className="text-xs text-red-500">{errors.title?.message}</p>
         </div>
         <div className="space-y-1 w-full">
-          <Label htmlFor="year">
-            Year<span className="text-red-500">*</span>
-          </Label>
-          <Input
-            type="number"
-            id="year"
-            placeholder="2024"
-            {...register("year", {
-              required: {
-                value: true,
-                message: "Year is required",
-              },
-              maxLength: {
-                value: 4,
-                message: "Year is too long",
-              },
-            })}
-          />
-          <p className="text-xs text-red-500">{errors.year?.message}</p>
+          <div className="space-y-1 w-full">
+            <Label htmlFor="year">
+              Year{!ongoing && <span className="text-red-500">*</span>}
+            </Label>
+            <Input
+              disabled={ongoing}
+              maxLength={4}
+              type="number"
+              id="year"
+              placeholder="2024"
+              {...register("year", {
+                required: {
+                  value: !ongoing,
+                  message: "Year is required",
+                },
+              })}
+            />
+            <p className="text-xs text-red-500">{errors.year?.message}</p>
+          </div>
+          <div className="flex items-center space-x-1 w-fit">
+            <Checkbox
+              checked={ongoing}
+              onCheckedChange={setOngoing}
+              className="rounded"
+              id="ongoing"
+            />
+            <Label htmlFor="ongoing">Ongoing</Label>
+
+            <p className="text-xs text-red-500">{errors.year?.message}</p>
+          </div>
         </div>
       </div>
       <div className="flex flex-col md:flex-row md:items-center gap-3">
