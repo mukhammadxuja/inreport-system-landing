@@ -1,14 +1,18 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useMemo } from "react";
+import Image from "next/image";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { useApiContext } from "@/context/api-context";
+import { emojiPlus, emojis } from "@/utils/variables";
+import { LoadingIcon } from "@/components/icons";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { db } from "@/firebase/config";
 
 // UI
 import {
   Dialog,
-  DialogClose,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -19,17 +23,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import Image from "next/image";
 import { Input } from "@/components/ui/input";
-import { useApiContext } from "@/context/api-context";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { db } from "@/firebase/config";
-import { toast } from "sonner";
-import { emojiPlus, emojis } from "@/utils/variables";
-import { LoadingIcon } from "@/components/icons";
-import { Label } from "@/components/ui/label";
-import { useMemo } from "react";
-import { useForm } from "react-hook-form";
 
 function StatusDialog({
   openStatus,
@@ -84,9 +78,7 @@ function StatusDialog({
       console.error("Error adding field to document:", error);
     } finally {
       setOpenStatus(false);
-      toast(
-        "Status updated successfully!"
-      );
+      toast("Status updated successfully!");
     }
   };
 

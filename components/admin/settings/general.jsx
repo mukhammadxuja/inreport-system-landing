@@ -28,6 +28,7 @@ import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { auth, db } from "@/firebase/config";
 import { toast } from "sonner";
 import { Switch } from "@/components/ui/switch";
+import { useLogout } from "@/firebase/auth/logout";
 
 const General = () => {
   const { userData } = useApiContext();
@@ -50,7 +51,10 @@ const General = () => {
 export default General;
 
 const Form = ({ userData }) => {
-  const [hideMark, setHideMark] = useState();
+  const [hideMark, setHideMark] = useState(true);
+  const [canMessage, setCanMessage] = useState(true);
+
+  const { logout } = useLogout();
 
   const settingsDocRef = doc(
     db,
@@ -62,9 +66,16 @@ const Form = ({ userData }) => {
 
   useEffect(() => {
     const fetchSettings = async () => {
-      const docSnap = await getDoc(settingsDocRef);
-      if (docSnap.exists()) {
-        setHideMark(docSnap.data().hideMark);
+      try {
+        const docSnap = await getDoc(settingsDocRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          setHideMark(data.hideMark);
+          setCanMessage(data.canMessage);
+        }
+      } catch (error) {
+        console.error("Error fetching settings:", error);
+        toast("Failed to fetch settings");
       }
     };
 
@@ -75,12 +86,23 @@ const Form = ({ userData }) => {
     setHideMark(newHideMarkValue);
 
     try {
-      await setDoc(
-        settingsDocRef,
-        { hideMark: newHideMarkValue }
-        // { merge: true }
-      );
-      toast("Settings updated successfully");
+      await setDoc(settingsDocRef, { hideMark: newHideMarkValue, canMessage });
+      toast(`Water mark ${hideMark ? "show" : "hide"} now`);
+    } catch (error) {
+      console.error("Error updating settings:", error);
+      toast("Failed to update settings");
+    }
+  };
+
+  const handleCanMessageCheck = async (newCanMessageValue) => {
+    setCanMessage(newCanMessageValue);
+
+    try {
+      await setDoc(settingsDocRef, {
+        hideMark,
+        canMessage: newCanMessageValue,
+      });
+      toast(`Users ${newCanMessageValue ? "can" : "cannot"} message you now`);
     } catch (error) {
       console.error("Error updating settings:", error);
       toast("Failed to update settings");
@@ -94,7 +116,7 @@ const Form = ({ userData }) => {
           <h6 className="setting-title">Allow send message</h6>
           <small className="setting-p">Everyone can message you</small>
         </div>
-        <Checkbox defaultChecked className="h-5 w-5 rounded" />
+        <Switch checked={canMessage} onCheckedChange={handleCanMessageCheck} />
       </div>
       <div className="w-full flex items-center justify-between">
         <div className="">
@@ -103,11 +125,7 @@ const Form = ({ userData }) => {
             Hide in /{userData?.username} - build with showcase button
           </small>
         </div>
-        <Switch
-          checked={hideMark}
-          onCheckedChange={onCheckedChange}
-          // className="h-5 w-5 rounded accent-primary"
-        />
+        <Switch checked={hideMark} onCheckedChange={onCheckedChange} />
       </div>
       <div className="w-full flex items-center justify-between">
         <div className="">
@@ -131,7 +149,9 @@ const Form = ({ userData }) => {
           <h6 className="setting-title">{userData?.displayName}</h6>
           <small className="setting-p">Not you?</small>
         </div>
-        <Button variant="secondary">Log out</Button>
+        <Button onClick={logout} variant="secondary">
+          Log out
+        </Button>
       </div>
       <div className="w-full flex items-center justify-between">
         <div className="">
