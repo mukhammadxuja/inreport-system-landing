@@ -10,6 +10,7 @@ import DefaultAwards from "./awards/awards";
 import DefaultContacts from "./contacts/contacts";
 import BentoGridExperiences from "./experiences/experiences";
 import BentoGridEducation from "./education/education";
+import BentoGridFooter from "./footer";
 
 function BentoGridHome({ data }) {
   const {
@@ -25,40 +26,44 @@ function BentoGridHome({ data }) {
   } = data;
 
   return (
-    <main className="flex flex-col lg:flex-row gap-4 px-4 md:px-0 max-w-7xl mx-auto my-5 w-full">
-      <div className="space-y-4 w-full">
-        <DefaultHeader userData={userData} />
+    <main className="px-4 md:px-0 max-w-7xl mx-auto my-5 w-full">
+      <div className="flex flex-col lg:flex-row gap-4">
+        <div className="space-y-4 w-full">
+          <DefaultHeader userData={userData} />
 
-        <DefaultAwards awards={awards} section="Awards" />
+          <DefaultAwards awards={awards} section="Awards" />
 
-        <DefaultProjects projects={projects} section="Projects" />
+          <DefaultProjects projects={projects} section="Projects" />
 
-        <DefaultSideProjects
-          sideProjects={sideProjects}
-          section="Side Projects"
-        />
+          <DefaultSideProjects
+            sideProjects={sideProjects}
+            section="Side Projects"
+          />
 
-        <DefaultContacts contacts={contacts} section="Contacts" />
+          <DefaultContacts contacts={contacts} section="Contacts" />
+        </div>
+
+        <div className="space-y-4 w-full">
+          <BentoGridEducation educations={educations} section="Educations" />
+
+          <BentoGridExperiences
+            experiences={experiences}
+            section="Work Experiences"
+          />
+
+          <DefaultCertification
+            certifications={certifications}
+            section="Certifications"
+          />
+
+          <DefaultVolunteering
+            volunteerings={volunteerings}
+            section="Volunteerings"
+          />
+        </div>
       </div>
 
-      <div className="space-y-4 w-full">
-        <BentoGridEducation educations={educations} section="Educations" />
-
-        <BentoGridExperiences
-          experiences={experiences}
-          section="Work Experiences"
-        />
-
-        <DefaultCertification
-          certifications={certifications}
-          section="Certifications"
-        />
-
-        <DefaultVolunteering
-          volunteerings={volunteerings}
-          section="Volunteerings"
-        />
-      </div>
+      <BentoGridFooter userData={userData} />
     </main>
   );
 }

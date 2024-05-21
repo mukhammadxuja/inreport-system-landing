@@ -14,8 +14,6 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "sonner";
 
-// `users/${userData?.username}/profile/${image.name}`
-
 // Add Item
 export const addItem = async (source, data, files, user) => {
   const images = [];

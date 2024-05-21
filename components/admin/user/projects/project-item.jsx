@@ -75,7 +75,7 @@ function ProjectItem({ item, profile = true, setEditableId, setIsEdit }) {
             <div className="flex items-center gap-2">
               {/* Map through images and render each */}
               {item?.images?.map(({ url, id, name }, index) => (
-                <div key={id} className="w-32 rounded-md">
+                <div key={id} className="w-32 h-24 rounded-md">
                   <Image
                     width={250}
                     height={150}
@@ -84,7 +84,7 @@ function ProjectItem({ item, profile = true, setEditableId, setIsEdit }) {
                     loading="lazy"
                     alt={name}
                     onClick={() => openImageViewer(index)}
-                    className={`w-full h-full object-cover rounded cursor-pointer`}
+                    className={`w-full h-auto object-cover rounded cursor-pointer`}
                   />
                 </div>
               ))}

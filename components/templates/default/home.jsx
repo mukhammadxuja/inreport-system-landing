@@ -10,7 +10,7 @@ import DefaultCertification from "./certification/certification";
 import DefaultAwards from "./awards/awards";
 import DefaultContacts from "./contacts/contacts";
 
-function DefaultHome({ data }) {
+function DefaultHome({ data, admin }) {
   const {
     userData,
     awards,
@@ -24,8 +24,12 @@ function DefaultHome({ data }) {
   } = data;
 
   return (
-    <main className="px-4 max-w-3xl mx-auto my-20 !mt-6 md:!mt-10 w-full p-5 md:px-8 md:py-6 rounded-lg bg-white">
-      <DefaultHeader userData={userData} />
+    <main
+      className={`px-4 max-w-3xl mx-auto w-full p-5 md:px-8 md:py-6 rounded-lg ${
+        admin ? "bg-white" : "bg-white my-20 !mt-6 md:!mt-10"
+      }`}
+    >
+      <DefaultHeader userData={userData} admin={admin} />
 
       <DefaultContacts contacts={contacts} section="Contacts" />
 

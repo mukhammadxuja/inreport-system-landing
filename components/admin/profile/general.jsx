@@ -19,6 +19,7 @@ import { toast } from "sonner";
 import { Combobox } from "@/components/ui/combobox";
 import { templates } from "@/utils/variables";
 import { Switch } from "@/components/ui/switch";
+import { auth } from "@/firebase/config";
 
 /**
  * Templates: https://www.canvas.supply/products/linx
@@ -116,7 +117,7 @@ const Form = ({ userData, image, hiddenFileInput }) => {
       const storage = getStorage();
       const storageRef = ref(
         storage,
-        `users/${userData?.username}/profile/${image.name}`
+        `users/${auth.currentUser?.email}/profile/${image.name}`
       );
 
       // Upload the file

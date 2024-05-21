@@ -14,8 +14,13 @@ import { removeSubstring } from "@/lib/utils";
 import { Heart } from "lucide-react";
 import { EllipsesIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
+import StatusDialog from "@/components/admin/dialogs/status";
+import { useState } from "react";
 
-function DefaultHeader({ userData }) {
+function DefaultHeader({ userData, admin = false }) {
+  const [selectedEmoji, setSelectedEmoji] = useState(null);
+  const [openStatus, setOpenStatus] = useState(false);
+
   return (
     <header className="mb-6 flex items-center justify-between">
       <div className="flex items-center space-x-4">
@@ -27,27 +32,62 @@ function DefaultHeader({ userData }) {
               alt="@shadcn"
             />
           </Avatar>
-          <div
-            className={`absolute bottom-0 right-0 gap-1 p-1 rounded-full bg-gray-100 border border-gray-300 shadow-sm group ${
-              userData?.status?.title && "hover:rounded-r-lg"
-            }`}
-          >
-            <div className="relative flex items-center">
-              <Image
-                width={20}
-                height={20}
-                src={userData?.status?.emoji || emojiPlus}
-                priority={false}
-                alt="Fire emoji"
-                className="w-5 h-5"
-              />
-              {userData?.status?.title && (
-                <small className="absolute -bottom-[0.28rem] left-6 whitespace-nowrap max-w-72 truncate bg-gray-100 border border-gray-300 border-l-gray-100 shadow-sm text-gray-800 text-xs rounded-r-lg py-1.5 pr-2 hidden group-hover:block">
-                  {userData?.status?.title}
-                </small>
-              )}
+          {admin ? (
+            <StatusDialog
+              openStatus={openStatus}
+              setOpenStatus={setOpenStatus}
+              selectedEmoji={selectedEmoji}
+              setSelectedEmoji={setSelectedEmoji}
+            >
+              <div
+                className={`absolute bottom-0 right-0 gap-1 p-1 rounded-full cursor-pointer bg-accent border border-lime-500 shadow-sm group ${
+                  userData?.status?.title && "hover:rounded-r-lg"
+                }`}
+              >
+                <div className="relative flex items-center">
+                  <Image
+                    width={20}
+                    height={20}
+                    src={
+                      selectedEmoji
+                        ? selectedEmoji
+                        : userData?.status?.emoji || emojiPlus
+                    }
+                    priority={false}
+                    alt="Fire emoji"
+                    className="w-5 h-5"
+                  />
+                  {userData?.status?.title && (
+                    <small className="absolute -bottom-[0.28rem] left-6 whitespace-nowrap max-w-72 truncate bg-gray-100 border border-gray-300 border-l-gray-100 shadow-sm text-gray-800 text-xs rounded-r-lg py-1.5 pr-2 hidden group-hover:block">
+                      {userData?.status?.title}
+                    </small>
+                  )}
+                </div>
+              </div>
+            </StatusDialog>
+          ) : (
+            <div
+              className={`absolute bottom-0 right-0 gap-1 p-1 rounded-full cursor-text bg-accent border border-lime-500 shadow-sm group ${
+                userData?.status?.title && "hover:rounded-r-lg"
+              }`}
+            >
+              <div className="relative flex items-center">
+                <Image
+                  width={20}
+                  height={20}
+                  src={userData?.status?.emoji}
+                  priority={false}
+                  alt="Fire emoji"
+                  className="w-5 h-5"
+                />
+                {userData?.status?.title && (
+                  <small className="absolute -bottom-[0.28rem] left-6 whitespace-nowrap max-w-72 truncate bg-gray-100 border border-gray-300 border-l-gray-100 shadow-sm text-gray-800 text-xs rounded-r-lg py-1.5 pr-2 hidden group-hover:block">
+                    {userData?.status?.title}
+                  </small>
+                )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
         <div className="inline-block">
           <h3 className="default-template-name">

@@ -1,19 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  async rewrites() {
-    return [
-      {
-        source: "/:username",
-        destination: "/:username",
-      },
-    ];
-  },
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
         hostname: "firebasestorage.googleapis.com",
+        pathname: "**",
       },
     ],
   },

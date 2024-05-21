@@ -10,6 +10,7 @@ import SendMessageDialog from "./admin/dialogs/message";
 import templates from "./templates";
 import useUserData from "@/hooks/useUserData";
 import useUserSubcollections from "@/hooks/useUserSubcollections";
+import useUserSettings from "@/hooks/useUserSettings";
 
 export default function UserProfileClient({ username }) {
   const { userData, loading } = useUserData(db, username);
@@ -34,7 +35,7 @@ export default function UserProfileClient({ username }) {
     "volunteerings"
   );
   const contacts = useUserSubcollections(db, userData?.uid, "contacts");
-  const settings = useUserSubcollections(db, userData?.uid, "settings");
+  const settings = useUserSettings(db, userData?.uid);
 
   const TemplateComponent = userData?.template
     ? templates[userData?.template]
@@ -60,6 +61,8 @@ export default function UserProfileClient({ username }) {
     contacts,
     settings,
   };
+
+  console.log(settings);
 
   return (
     <div className="">

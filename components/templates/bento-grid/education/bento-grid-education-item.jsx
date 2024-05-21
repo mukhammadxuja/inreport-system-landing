@@ -69,7 +69,7 @@ function BentoGridEducationItem({ education }) {
             <div className="flex items-center gap-2">
               {/* Map through images and render each */}
               {education?.images?.map(({ url, id, name }, index) => (
-                <div key={id} className="w-32 rounded-md">
+                <div key={id} className="w-32 h-24 rounded-md">
                   <Image
                     width={250}
                     height={150}
