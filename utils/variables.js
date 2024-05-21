@@ -5,6 +5,17 @@ export const emojiPlus =
 
 export const templates = [
   {
+    value: "Default",
+    label: "Default",
+  },
+  {
+    value: "BentoGrid",
+    label: "Bento Grid",
+  },
+];
+
+export const templatesOld = [
+  {
     value: "terra-nova",
     label: "Terra Nova",
   },

@@ -7,13 +7,11 @@ import { LoadingIcon } from "@/components/icons";
 
 // Firebase
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import { auth } from "@/firebase/config";
 
 // UI
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -83,7 +81,9 @@ const General = () => {
 export default General;
 
 const Form = ({ userData, image, hiddenFileInput }) => {
-  const [template, setTemplate] = useState("");
+  const [template, setTemplate] = useState(
+    userData?.template == "Default" ? "Default" : userData?.template
+  );
   const [isOpenToWork, setIsOpenToWork] = useState(
     true || userData?.isOpenToWork
   );
@@ -279,9 +279,7 @@ const Form = ({ userData, image, hiddenFileInput }) => {
           Reset
         </Button>
         <Button
-          disabled={
-            isSubmitting || (!isDirty && !image && !template)
-          }
+          disabled={isSubmitting || (!isDirty && !image && !template)}
           className="rounded-sm"
           type="submit"
         >

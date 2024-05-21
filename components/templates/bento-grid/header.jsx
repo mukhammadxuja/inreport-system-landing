@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { emojiPlus } from "@/utils/variables";
+import { useApiContext } from "@/context/api-context";
 
 // UI
 import {
@@ -17,7 +18,7 @@ import { Button } from "@/components/ui/button";
 
 function DefaultHeader({ userData }) {
   return (
-    <header className="mb-6 flex items-center justify-between">
+    <header className="p-4 bg-accent rounded-lg w-full">
       <div className="flex items-center space-x-4">
         <div className="relative inline-block">
           <Avatar className="h-24 w-24 rounded-full">
@@ -49,14 +50,25 @@ function DefaultHeader({ userData }) {
             </div>
           </div>
         </div>
-        <div className="inline-block">
-          <h3 className="default-template-name">
-            {userData?.displayName ? userData?.displayName : "Unknown"}
-          </h3>
+        <div className="w-full">
+          <div className="flex items-center justify-between">
+            <h3 className="bento-grid-template-name">
+              {userData?.displayName ? userData?.displayName : "Unknown"}
+            </h3>
+            <Popover>
+              <PopoverTrigger>
+                <EllipsesIcon />
+              </PopoverTrigger>
+              <PopoverContent align="end" className="w-fit p-0">
+                <Button variant="ghost" size="sm">
+                  Report
+                </Button>
+              </PopoverContent>
+            </Popover>
+          </div>
           {!!userData?.profession && (
-            <p className="default-template-profession">
-              {userData?.profession} {userData?.location && "in"}{" "}
-              <br className="block md:hidden" />
+            <p className="bento-grid-template-profession">
+              {userData?.profession} {userData?.location && "in"} <br />
               {`${userData?.location}`}, {userData?.pronoun}
             </p>
           )}
@@ -66,13 +78,13 @@ function DefaultHeader({ userData }) {
                 href={`${userData?.website}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="default-template-website"
+                className="bento-grid-template-website"
               >
                 {removeSubstring(userData?.website, "https://")}
               </Link>
             )}
             {!!userData?.profession && (
-              <span className="default-template-supporter">
+              <span className="bento-grid-template-supporter">
                 <Heart className="w-3 h-3" />
                 supporter
               </span>
@@ -80,16 +92,6 @@ function DefaultHeader({ userData }) {
           </div>
         </div>
       </div>
-      <Popover>
-        <PopoverTrigger>
-          <EllipsesIcon />
-        </PopoverTrigger>
-        <PopoverContent align="end" className="w-fit p-0">
-          <Button variant="ghost" size="sm">
-            Report
-          </Button>
-        </PopoverContent>
-      </Popover>
     </header>
   );
 }

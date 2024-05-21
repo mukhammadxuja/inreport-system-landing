@@ -1,8 +1,6 @@
 import React from "react";
 
 import DefaultHeader from "./header";
-import ProjectList from "@/components/admin/user/projects/project-list";
-import { useApiContext } from "@/context/api-context";
 import DefaultProjects from "./projects/projects";
 import DefaultSideProjects from "./side-projects/side-projects";
 import DefaultExperiences from "./experiences/experiences";
@@ -12,8 +10,9 @@ import DefaultCertification from "./certification/certification";
 import DefaultAwards from "./awards/awards";
 import DefaultContacts from "./contacts/contacts";
 
-function DefaultHome() {
+function DefaultHome({ data }) {
   const {
+    userData,
     awards,
     projects,
     contacts,
@@ -22,11 +21,11 @@ function DefaultHome() {
     experiences,
     volunteerings,
     certifications,
-  } = useApiContext();
+  } = data;
 
   return (
-    <main>
-      <DefaultHeader />
+    <main className="px-4 max-w-3xl mx-auto my-20 !mt-6 md:!mt-10 w-full p-5 md:px-8 md:py-6 rounded-lg bg-white">
+      <DefaultHeader userData={userData} />
 
       <DefaultContacts contacts={contacts} section="Contacts" />
 

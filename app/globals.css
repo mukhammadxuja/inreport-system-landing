@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import url(../styles/templates/default.css);
+@import url(../styles/templates/bento-grid.css);
 
 @layer base {
   :root {

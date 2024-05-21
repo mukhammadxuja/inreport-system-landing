@@ -1,84 +1,44 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { db } from "@/firebase/config";
-import {
-  collection,
-  getDocs,
-  onSnapshot,
-  query,
-  where,
-} from "firebase/firestore";
-import { ChevronRight, Send } from "lucide-react";
-import { useEffect, useState } from "react";
-
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { EllipsesIcon } from "@/components/icons";
+import { Send } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import Loading from "./admin/loading";
 import NotFound from "./admin/404";
-import Image from "next/image";
 import SendMessageDialog from "./admin/dialogs/message";
-import { emojiPlus } from "@/utils/variables";
-import { getFirstNumberFromUserID } from "@/lib/utils";
-import { useApiContext } from "@/context/api-context";
-import DefaultHome from "./templates/default/home";
-// import NotFound from "@/app/not-found/page";
+import templates from "./templates";
+import useUserData from "@/hooks/useUserData";
+import useUserSubcollections from "@/hooks/useUserSubcollections";
 
 export default function UserProfileClient({ username }) {
-  const { settings } = useApiContext();
+  const { userData, loading } = useUserData(db, username);
 
-  const [userData, setUserData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [projects, setProjects] = useState([]);
-  const [loaded, setLoaded] = useState(false);
+  const projects = useUserSubcollections(db, userData?.uid, "projects");
+  const sideProjects = useUserSubcollections(
+    db,
+    userData?.uid,
+    "side-projects"
+  );
+  const experiences = useUserSubcollections(db, userData?.uid, "experiences");
+  const educations = useUserSubcollections(db, userData?.uid, "educations");
+  const certifications = useUserSubcollections(
+    db,
+    userData?.uid,
+    "certifications"
+  );
+  const awards = useUserSubcollections(db, userData?.uid, "awards");
+  const volunteerings = useUserSubcollections(
+    db,
+    userData?.uid,
+    "volunteerings"
+  );
+  const contacts = useUserSubcollections(db, userData?.uid, "contacts");
+  const settings = useUserSubcollections(db, userData?.uid, "settings");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const q = query(
-        collection(db, "users"),
-        where("username", "==", username)
-      );
-      const querySnapshot = await getDocs(q);
-      if (!querySnapshot.empty) {
-        querySnapshot.forEach((doc) => {
-          setUserData(doc.data());
-          setLoading(false);
-        });
-      } else {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [username]);
-
-  console.log(userData);
-
-  useEffect(() => {
-    if (!userData) return; // Wait until userData is fetched
-
-    const projectsCollection = collection(db, `users/${userData.uid}/projects`);
-
-    const q = query(projectsCollection);
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      let projectsArr = [];
-
-      querySnapshot.forEach((doc) => {
-        projectsArr.push({ ...doc.data(), id: doc.id });
-      });
-
-      setProjects(projectsArr);
-    });
-
-    return () => unsubscribe();
-  }, [userData]);
+  const TemplateComponent = userData?.template
+    ? templates[userData?.template]
+    : null;
 
   if (loading) {
     return <Loading />;
@@ -88,9 +48,22 @@ export default function UserProfileClient({ username }) {
     return <NotFound />;
   }
 
+  const data = {
+    userData,
+    projects,
+    sideProjects,
+    experiences,
+    educations,
+    certifications,
+    awards,
+    volunteerings,
+    contacts,
+    settings,
+  };
+
   return (
-    <div className="px-4 max-w-3xl mx-auto my-20 !mt-6 md:!mt-10 w-full p-5 md:px-8 md:py-6 rounded-lg bg-white">
-      <DefaultHome />
+    <div className="">
+      <TemplateComponent data={data} text="It is working" />
 
       {settings?.canMessage && (
         <SendMessageDialog userId={userData?.uid} username={username}>
