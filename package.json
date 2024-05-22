@@ -66,6 +66,7 @@
     "d3-scale": "^4.0.2",
     "eslint": "^8",
     "eslint-config-next": "14.1.1",
+    "gsap": "^3.12.5",
     "next-seo": "^6.5.0",
     "postcss": "^8",
     "react-beautiful-dnd": "^13.1.1",
