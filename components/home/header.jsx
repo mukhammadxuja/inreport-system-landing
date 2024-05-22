@@ -59,7 +59,7 @@ function Header() {
       }}
       class="h-screen w-screen overflow-hidden relative"
     >
-      <div class="absolute left-1/2 top-[45%] transform -translate-x-1/2 -translate-y-1/2 text-sm">
+      <div class="absolute left-1/2 top-[45%] transform -translate-x-1/2 -translate-y-1/2 text-sm z-50">
         <h1 class="font-normal text-white m-0 text-center">
           Floating Images Gallery
         </h1>
