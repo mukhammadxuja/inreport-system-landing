@@ -12,6 +12,10 @@ export const templates = [
     value: "BentoGrid",
     label: "Bento Grid",
   },
+  {
+    value: "Minimalistic",
+    label: "Minimalistic",
+  },
 ];
 
 export const templatesOld = [

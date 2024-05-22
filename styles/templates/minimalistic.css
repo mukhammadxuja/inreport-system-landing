@@ -1,0 +1,49 @@
+@tailwind components;
+
+@layer components {
+  /* Header */
+  .minimalistic-template-name {
+    @apply text-sm uppercase font-medium;
+  }
+
+  .minimalistic-template-profession {
+    @apply text-xs uppercase text-foreground;
+  }
+
+  .minimalistic-template-website {
+    @apply text-xs py-1 px-2 rounded-full bg-orange-100 hover:bg-orange-200/70 duration-200 text-orange-500 hover:text-orange-600 shadow-sm;
+  }
+
+  .minimalistic-template-supporter {
+    @apply flex items-center gap-1 text-xs py-1 px-2 rounded-full bg-lime-100 duration-200 text-lime-600 hover:text-lime-700 shadow-sm;
+  }
+
+  /* Items */
+  .minimalistic-template-item-title {
+    @apply text-xs uppercase text-foreground py-2;
+  }
+
+  .minimalistic-template-item-border {
+    @apply border-dotted border-b-2 border-muted-foreground h-1 w-full mx-3;
+  }
+
+  .minimalistic-template-item {
+    @apply text-foreground whitespace-nowrap;
+  }
+
+  .minimalistic-template-item-small {
+    @apply text-foreground whitespace-nowrap;
+  }
+
+  .minimalistic-template-item-date-sm {
+    @apply block md:hidden ml-auto;
+  }
+
+  .minimalistic-template-item-desc {
+    @apply text-muted-foreground text-sm;
+  }
+
+  .minimalistic-template-item-img {
+    @apply w-full h-full object-cover rounded cursor-pointer;
+  }
+}

@@ -4,6 +4,7 @@
 
 @import url(../styles/templates/default.css);
 @import url(../styles/templates/bento-grid.css);
+@import url(../styles/templates/minimalistic.css);
 
 @layer base {
   :root {

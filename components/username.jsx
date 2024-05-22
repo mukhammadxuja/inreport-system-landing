@@ -62,10 +62,8 @@ export default function UserProfileClient({ username }) {
     settings,
   };
 
-  console.log(settings);
-
   return (
-    <div className="">
+    <div>
       <TemplateComponent data={data} text="It is working" />
 
       {settings?.canMessage && (
