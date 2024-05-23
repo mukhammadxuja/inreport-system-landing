@@ -4,13 +4,13 @@ import React from "react";
 function Card({ image, name, username, job, position }) {
   return (
     <div
-      className={`absolute bg-accent border-2 border-border shadow-lg rounded-lg py-4 px-6 gap-4 flex items-center ${position}`}
+      className={`absolute border-2 border-border bg-white shadow-lg rounded-lg py-4 pl-4 pr-6 gap-4 flex items-center ${position}`}
     >
       <div className="!rounded-lg">
         <Image
           width={100}
           height={100}
-          className="w-20 h-20 !rounded-lg"
+          className="w-20 h-20 !rounded-lg shadow"
           src={image}
           alt="User image"
         />
