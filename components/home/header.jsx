@@ -2,7 +2,12 @@
 
 function Header() {
   return (
-    <header className="w-full flex flex-col items-center justify-center h-screen bg-indigo-300"></header>
+    <header className="container m-auto">
+      <h1 className="mb-14 md:mb-20 mt-20 md:mt-32 lg:mt-40 tracking-[1.12] leading-[-.005em] text-clamp font-bold">
+        Showcase. Your. <br /> Talent. Achieve. <br />
+        <span className="text-muted-foreground">Greatness.</span>
+      </h1>
+    </header>
   );
 }
 

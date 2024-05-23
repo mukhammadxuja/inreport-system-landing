@@ -1,7 +1,7 @@
 "use client";
 import { useRef } from "react";
 import gsap from "gsap";
-import Card from "./cards/card";
+import Card from "./card";
 
 function Cards() {
   const plane1 = useRef(null);
@@ -59,7 +59,7 @@ function Cards() {
       onMouseMove={(e) => {
         manageMouseMove(e);
       }}
-      className="h-screen w-screen overflow-hidden relative"
+      className="h-screen w-screen !overflow-hidden relative"
     >
       <div className="absolute left-1/2 top-[45%] transform -translate-x-1/2 -translate-y-1/2 text-sm z-50">
         <h1 className="font-normal text-white m-0 text-center">
