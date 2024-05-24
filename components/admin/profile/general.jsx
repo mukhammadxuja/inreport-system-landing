@@ -83,11 +83,15 @@ export default General;
 
 const Form = ({ userData, image, hiddenFileInput }) => {
   const [template, setTemplate] = useState(
-    userData?.template == "Default" ? "Default" : userData?.template
+    "Default" || userData?.template == "Default"
+      ? "Default"
+      : userData?.template
   );
   const [isOpenToWork, setIsOpenToWork] = useState(
     true || userData?.isOpenToWork
   );
+
+  console.log(template);
 
   const defaultValues = useMemo(() => {
     return {

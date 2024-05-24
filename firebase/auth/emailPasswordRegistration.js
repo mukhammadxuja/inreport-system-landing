@@ -15,7 +15,8 @@ export const useEmailPasswordRegistration = () => {
     username,
     password,
     profession,
-    displayName
+    displayName,
+    template
   ) => {
     setErrorEmailPasswordRegistration(null);
     setIsPendingEmailRegistration(true);
@@ -39,6 +40,7 @@ export const useEmailPasswordRegistration = () => {
         password: password,
         profession: profession,
         displayName: displayName || null,
+        template: template,
       });
     } catch (error) {
       console.error("Error during email/password registration:", error);

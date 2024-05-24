@@ -74,7 +74,8 @@ function Auth() {
       data.username,
       data.password,
       checkedProf,
-      data.displayName
+      data.displayName,
+      "Default"
     );
   }
 
