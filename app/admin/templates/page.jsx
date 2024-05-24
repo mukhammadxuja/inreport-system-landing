@@ -6,6 +6,7 @@ import React, { useCallback, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useMainContext } from "@/context/main-context";
 import { useSessionStorage } from "@/hooks/useSessionStorage";
+import Image from "next/image";
 
 function TemplatesPage() {
   const { openSidebar } = useMainContext();
@@ -105,135 +106,48 @@ function TemplatesPage() {
         >
           <div
             onClick={() => setSelectedTemplate(1)}
-            className={`relative rounded-2xl cursor-pointer shadow-md bg-white hover:bg-blue-50 duration-300 border-4 border-transparent w-full h-[27rem] p-6 group ${
+            className={`relative rounded-2xl cursor-pointer shadow-md bg-accent duration-300 border-4 border-transparent w-full h-[27rem] p-2 group ${
               selectedTemplate === 1 && "border-blue-500"
             }`}
           >
-            <img
-              className="absolute rounded group-hover:scale-105 duration-300 top-5 left-5 h-28 z-10"
-              src="https://images.refero.design/screenshots/wise.com/desktop/01ac4629-4a0a-419a-b7c3-0b360e577ad9_thumb.jpg"
+            <Image
+              width={300}
+              height={400}
+              className="w-full h-full object-cover"
+              src="/assets/templates/default.png"
               alt="image"
             />
-            <img
-              className="absolute rounded group-hover:scale-105 duration-300 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 h-44 z-20"
-              src="https://images.refero.design/screenshots/overflow.io/desktop/39b7a3de-225f-4f7f-9b35-e302484d03c1_thumb.jpg"
-              alt="image"
-            />
-            <img
-              className="absolute rounded group-hover:scale-105 duration-300 bottom-5 right-5 h-28 z-30"
-              src="https://images.refero.design/screenshots/apple.com/desktop/6296a6b9-a85e-4cc2-a7e4-4158dc4ac32d_thumb.jpg"
-              alt="image"
-            />
+            <h3 className="text-center text-muted-foreground mt-3">Default</h3>
           </div>
           <div
-            onClick={() => setSelectedTemplate(2)}
-            className={`relative rounded-2xl cursor-pointer shadow-md bg-white hover:bg-blue-50 duration-300 border-4 border-transparent w-full h-[27rem] p-6 group ${
-              selectedTemplate === 2 && "border-blue-500"
+            onClick={() => setSelectedTemplate(1)}
+            className={`relative rounded-2xl cursor-pointer shadow-md bg-accent duration-300 border-4 border-transparent w-full h-[27rem] p-2 group ${
+              selectedTemplate === 1 && "border-blue-500"
             }`}
           >
-            <img
-              className="absolute rounded group-hover:scale-105 duration-300 top-5 left-5 h-28 z-10"
-              src="https://images.refero.design/screenshots/wise.com/desktop/01ac4629-4a0a-419a-b7c3-0b360e577ad9_thumb.jpg"
+            <Image
+              width={300}
+              height={400}
+              className="w-full h-full object-cover"
+              src="/assets/templates/bento-grid.png"
               alt="image"
             />
-            <img
-              className="absolute rounded group-hover:scale-105 duration-300 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 h-44 z-20"
-              src="https://images.refero.design/screenshots/overflow.io/desktop/39b7a3de-225f-4f7f-9b35-e302484d03c1_thumb.jpg"
-              alt="image"
-            />
-            <img
-              className="absolute rounded group-hover:scale-105 duration-300 bottom-5 right-5 h-28 z-30"
-              src="https://images.refero.design/screenshots/apple.com/desktop/6296a6b9-a85e-4cc2-a7e4-4158dc4ac32d_thumb.jpg"
-              alt="image"
-            />
+            <h3 className="text-center text-muted-foreground mt-3">Bento grid</h3>
           </div>
           <div
-            onClick={() => setSelectedTemplate(3)}
-            className={`relative rounded-2xl cursor-pointer shadow-md bg-white hover:bg-blue-50 duration-300 border-4 border-transparent w-full h-[27rem] p-6 group ${
-              selectedTemplate === 3 && "border-blue-500"
+            onClick={() => setSelectedTemplate(1)}
+            className={`relative rounded-2xl cursor-pointer shadow-md bg-accent duration-300 border-4 border-transparent w-full h-[27rem] p-2 group ${
+              selectedTemplate === 1 && "border-blue-500"
             }`}
           >
-            <img
-              className="absolute rounded group-hover:scale-105 duration-300 top-5 left-5 h-28 z-10"
-              src="https://images.refero.design/screenshots/wise.com/desktop/01ac4629-4a0a-419a-b7c3-0b360e577ad9_thumb.jpg"
+            <Image
+              width={300}
+              height={400}
+              className="w-full h-full object-cover"
+              src="/assets/templates/minimalistic.png"
               alt="image"
             />
-            <img
-              className="absolute rounded group-hover:scale-105 duration-300 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 h-44 z-20"
-              src="https://images.refero.design/screenshots/overflow.io/desktop/39b7a3de-225f-4f7f-9b35-e302484d03c1_thumb.jpg"
-              alt="image"
-            />
-            <img
-              className="absolute rounded group-hover:scale-105 duration-300 bottom-5 right-5 h-28 z-30"
-              src="https://images.refero.design/screenshots/apple.com/desktop/6296a6b9-a85e-4cc2-a7e4-4158dc4ac32d_thumb.jpg"
-              alt="image"
-            />
-          </div>
-          <div
-            onClick={() => setSelectedTemplate(4)}
-            className={`relative rounded-2xl cursor-pointer shadow-md bg-white hover:bg-blue-50 duration-300 border-4 border-transparent w-full h-[27rem] p-6 group ${
-              selectedTemplate === 4 && "border-blue-500"
-            }`}
-          >
-            <img
-              className="absolute rounded group-hover:scale-105 duration-300 top-5 left-5 h-28 z-10"
-              src="https://images.refero.design/screenshots/wise.com/desktop/01ac4629-4a0a-419a-b7c3-0b360e577ad9_thumb.jpg"
-              alt="image"
-            />
-            <img
-              className="absolute rounded group-hover:scale-105 duration-300 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 h-44 z-20"
-              src="https://images.refero.design/screenshots/overflow.io/desktop/39b7a3de-225f-4f7f-9b35-e302484d03c1_thumb.jpg"
-              alt="image"
-            />
-            <img
-              className="absolute rounded group-hover:scale-105 duration-300 bottom-5 right-5 h-28 z-30"
-              src="https://images.refero.design/screenshots/apple.com/desktop/6296a6b9-a85e-4cc2-a7e4-4158dc4ac32d_thumb.jpg"
-              alt="image"
-            />
-          </div>
-          <div
-            onClick={() => setSelectedTemplate(5)}
-            className={`relative rounded-2xl cursor-pointer shadow-md bg-white hover:bg-blue-50 duration-300 border-4 border-transparent w-full h-[27rem] p-6 group ${
-              selectedTemplate === 5 && "border-blue-500"
-            }`}
-          >
-            <img
-              className="absolute rounded group-hover:scale-105 duration-300 top-5 left-5 h-28 z-10"
-              src="https://images.refero.design/screenshots/wise.com/desktop/01ac4629-4a0a-419a-b7c3-0b360e577ad9_thumb.jpg"
-              alt="image"
-            />
-            <img
-              className="absolute rounded group-hover:scale-105 duration-300 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 h-44 z-20"
-              src="https://images.refero.design/screenshots/overflow.io/desktop/39b7a3de-225f-4f7f-9b35-e302484d03c1_thumb.jpg"
-              alt="image"
-            />
-            <img
-              className="absolute rounded group-hover:scale-105 duration-300 bottom-5 right-5 h-28 z-30"
-              src="https://images.refero.design/screenshots/apple.com/desktop/6296a6b9-a85e-4cc2-a7e4-4158dc4ac32d_thumb.jpg"
-              alt="image"
-            />
-          </div>
-          <div
-            onClick={() => setSelectedTemplate(6)}
-            className={`relative rounded-2xl cursor-pointer shadow-md bg-white hover:bg-blue-50 duration-600 border-4 border-transparent w-full h-[27rem] p-6 group ${
-              selectedTemplate === 6 && "border-blue-500"
-            }`}
-          >
-            <img
-              className="absolute rounded group-hover:scale-105 duration-300 top-5 left-5 h-28 z-10"
-              src="https://images.refero.design/screenshots/wise.com/desktop/01ac4629-4a0a-419a-b7c3-0b360e577ad9_thumb.jpg"
-              alt="image"
-            />
-            <img
-              className="absolute rounded group-hover:scale-105 duration-300 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 h-44 z-20"
-              src="https://images.refero.design/screenshots/overflow.io/desktop/39b7a3de-225f-4f7f-9b35-e302484d03c1_thumb.jpg"
-              alt="image"
-            />
-            <img
-              className="absolute rounded group-hover:scale-105 duration-300 bottom-5 right-5 h-28 z-30"
-              src="https://images.refero.design/screenshots/apple.com/desktop/6296a6b9-a85e-4cc2-a7e4-4158dc4ac32d_thumb.jpg"
-              alt="image"
-            />
+            <h3 className="text-center text-muted-foreground mt-3">Minimalistic</h3>
           </div>
         </TabsContent>
       </Tabs>

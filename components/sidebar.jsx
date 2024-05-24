@@ -74,12 +74,12 @@ function Sidebar() {
       title: "Profile",
       icon: User,
     },
-    {
-      id: 3,
-      link: "/admin/resume",
-      title: "Resume",
-      icon: GraduationCap,
-    },
+    // {
+    //   id: 3,
+    //   link: "/admin/resume",
+    //   title: "Resume",
+    //   icon: GraduationCap,
+    // },
     {
       id: 4,
       link: "/admin/analytics",

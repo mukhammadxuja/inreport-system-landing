@@ -83,9 +83,7 @@ export default General;
 
 const Form = ({ userData, image, hiddenFileInput }) => {
   const [template, setTemplate] = useState(
-    "Default" || userData?.template == "Default"
-      ? "Default"
-      : userData?.template
+    userData?.template == "Default" ? "Default" : userData?.template
   );
   const [isOpenToWork, setIsOpenToWork] = useState(
     true || userData?.isOpenToWork
