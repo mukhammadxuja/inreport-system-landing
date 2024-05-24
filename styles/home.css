@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+  .nav-link {
+    @apply h-10 inline-flex items-center justify-center rounded-[16px] text-sm md:text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 font-semibold transition-all duration-300 ease-button relative after:absolute after:bg-yellow-700 after:bottom-2 after:!h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 border-none hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:ease-in-out after:duration-300 !p-0 w-fit truncate cursor-pointer;
+  }
+}

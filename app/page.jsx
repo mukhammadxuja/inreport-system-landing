@@ -10,6 +10,9 @@ import { useEffect, useRef } from "react";
 import Lenis from "lenis";
 import { useScroll } from "framer-motion";
 import CardTemplate from "@/components/home/card-template";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import Test from "@/components/home/test";
 
 const projects = [
   {
@@ -81,11 +84,19 @@ export default function Home() {
     <main>
       <HomeNavbar />
       <Header />
-      <Templates />
-      <section ref={container}>
-        <h2 className="text-4xl font-semibold text-center my-10">
-          Your product can look <br /> something like this too
-        </h2>
+
+      <section ref={container} className="py-16 md:py-20">
+        <div className="w-full">
+          <h2 className="text-clamp-title items-center text-center">
+            <span className="text-muted-foreground">Testimonials.</span>
+            <br />
+            Our wall of love.
+          </h2>
+          <Button className="flex items-center gap-1.5 mx-auto mt-5">
+            <span>View templates</span>
+            <ArrowRight className="w-3 h-3" />
+          </Button>
+        </div>
         {projects.map((project, i) => {
           const targetScale = 1 - (projects.length - i) * 0.05;
           return (
@@ -101,6 +112,7 @@ export default function Home() {
         })}
       </section>
       <Cards />
+      <Templates />
       <LastSection />
       <HomeFooter />
     </main>

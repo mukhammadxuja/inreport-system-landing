@@ -15,8 +15,13 @@ module.exports = {
       },
     },
     extend: {
+      transitionTimingFunction: {
+        button: "cubic-bezier(.4,0,.2,1)",
+      },
       fontSize: {
-        "clamp": "clamp(2.25rem, 4.186vw + 1.151rem, 4.5rem)",
+        clamp: "clamp(2rem, 4.186vw + 1.151rem, 4rem)",
+        "clamp-title": "clamp(1.875rem,2.093vw + 1.326rem,3rem)",
+        "clamp-footer": "clamp(1.625rem,.465vw + 1.503rem,1.875rem)",
       },
       colors: {
         border: "hsl(var(--border))",

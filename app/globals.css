@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url(../styles/home.css);
+
 @import url(../styles/templates/default.css);
 @import url(../styles/templates/bento-grid.css);
 @import url(../styles/templates/minimalistic.css);

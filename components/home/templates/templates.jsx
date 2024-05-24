@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import Template from "./template";
 import TemplateModal from "./modal";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 const projects = [
   {
@@ -29,7 +31,14 @@ const projects = [
 function Templates() {
   const [modal, setModal] = useState({ active: false, index: 0 });
   return (
-    <main className="flex h-screen items-center justify-center">
+    <section>
+      <div className="container mx-auto w-full mt-10 mb-5">
+        <h2 className="text-clamp-title items-center">
+          <span className="text-muted-foreground">Blog.</span>
+          <br />
+          Our very own magazine.
+        </h2>
+      </div>
       <div className="w-full flex flex-col items-center justify-center">
         {projects.map((project, index) => (
           <Template
@@ -41,7 +50,7 @@ function Templates() {
         ))}
       </div>
       <TemplateModal modal={modal} projects={projects} />
-    </main>
+    </section>
   );
 }
 
