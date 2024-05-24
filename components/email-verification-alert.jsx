@@ -30,7 +30,9 @@ function EmailVerificationAlert() {
   };
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(`showcase.ai/${userData?.username}`);
+    navigator.clipboard.writeText(
+      `https://showcaseai.vercel.app/${userData?.username}`
+    );
     setCopy(true);
     setTimeout(() => setCopy(false), 3000);
   };
