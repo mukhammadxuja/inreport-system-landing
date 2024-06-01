@@ -73,17 +73,17 @@ export default function TemplateModal({ modal, projects }) {
         variants={scaleAnimation}
         initial="initial"
         animate={active ? "enter" : "closed"}
-        className="h-[350px] w-[400px] absolute bg-white overflow-hidden pointer-events-none flex items-center justify-center"
+        className="h-[400px] w-[300px] absolute bg-white overflow-hidden pointer-events-none flex items-center justify-center rounded-3xl"
       >
         <div
           style={{ top: index * -100 + "%" }}
-          className="h-full w-full absolute transition-[top] duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]"
+          className="h-full w-full rounded-xl absolute transition-[top] duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]"
         >
           {projects.map((project, index) => {
             const { src, color } = project;
             return (
               <div
-                className="h-full w-full flex items-center justify-center"
+                className="h-full w-full flex items-center justify-center px-4"
                 style={{ backgroundColor: color }}
                 key={`modal_${index}`}
               >
@@ -92,7 +92,7 @@ export default function TemplateModal({ modal, projects }) {
                   width={300}
                   height={0}
                   alt="image"
-                  className="h-auto"
+                  className="h-auto rounded-2xl"
                 />
               </div>
             );

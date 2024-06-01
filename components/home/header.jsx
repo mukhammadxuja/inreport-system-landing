@@ -15,7 +15,7 @@ function Header() {
         y: 0,
         opacity: 1,
         stagger: 0.3,
-        duration: 1,
+        duration: 0.5,
         ease: "power3.out",
       }
     );

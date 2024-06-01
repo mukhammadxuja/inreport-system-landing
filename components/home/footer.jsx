@@ -2,28 +2,34 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
+import { useInView } from "framer-motion";
 
 function HomeFooter() {
   const textRef = useRef(null);
+  const ref = useRef(null);
+  const isInView = useInView(ref);
 
   useEffect(() => {
-    const words = textRef.current.children;
+    if (isInView) {
+      const words = textRef.current.children;
 
-    gsap.fromTo(
-      words,
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        stagger: 0.3,
-        duration: 1,
-        ease: "power3.out",
-      }
-    );
-  }, []);
+      gsap.fromTo(
+        words,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.3,
+          duration: 1,
+          ease: "power3.out",
+        }
+      );
+    }
+  }, [isInView]);
 
   return (
     <footer
+      ref={ref}
       className="relative h-[50vh] md:h-[60vh] lg:h-[65vh] bg-[#171717] -mt-2"
       style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
     >
@@ -46,7 +52,10 @@ function HomeFooter() {
               <span style={{ display: "inline-block" }}>Talent.</span>
               <span style={{ display: "inline-block" }}>Achieve.</span>
               <br />
-              <span style={{ display: "inline-block" }} className="!opacity-60">
+              <span
+                style={{ display: "inline-block" }}
+                className="text-gray-400"
+              >
                 Greatness.
               </span>
             </h1>

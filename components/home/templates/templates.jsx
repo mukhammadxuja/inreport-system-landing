@@ -7,22 +7,26 @@ import { ArrowRight } from "lucide-react";
 
 const projects = [
   {
-    title: "C2 Montreal",
+    title: "Elsa Jonson",
+    avatar: "./assets/avatars/3.png",
     src: "./assets/avatars/3.png",
     color: "#000000",
   },
   {
     title: "Office Studio",
+    avatar: "./assets/avatars/2.png",
     src: "./assets/avatars/3.png",
     color: "#8C8C8C",
   },
   {
     title: "Locomotive",
+    avatar: "./assets/avatars/7.png",
     src: "./assets/avatars/3.png",
     color: "#EFE8D3",
   },
   {
     title: "Silencio",
+    avatar: "./assets/avatars/9.png",
     src: "./assets/avatars/3.png",
     color: "#706D63",
   },
@@ -44,6 +48,7 @@ function Templates() {
           <Template
             index={index}
             title={project.title}
+            avatar={project.avatar}
             setModal={setModal}
             key={index}
           />
