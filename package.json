@@ -73,6 +73,7 @@
     "next-seo": "^6.5.0",
     "postcss": "^8",
     "react-beautiful-dnd": "^13.1.1",
+    "react-dom-box2d": "^0.4.1-patch.1",
     "react-files": "^3.0.0",
     "react-simple-maps": "^3.0.0",
     "tailwindcss": "^3",

@@ -30,7 +30,7 @@ export const ApiContextProvider = ({ children }) => {
   const projects = useUserSubcollections(db, userUid, "projects");
   const sideProjects = useUserSubcollections(db, userUid, "side-projects");
   const experiences = useUserSubcollections(db, userUid, "experiences");
-  const educations = useUserSubcollections(db, userUid, "educations");
+  const educations = useUserSubcollections(db, userUid, "educations", "from");
   const volunteerings = useUserSubcollections(db, userUid, "volunteerings");
   const certifications = useUserSubcollections(db, userUid, "certifications");
   const awards = useUserSubcollections(db, userUid, "awards");

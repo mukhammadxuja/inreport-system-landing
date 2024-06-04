@@ -101,7 +101,7 @@ export default function TemplateModal({ modal, projects }) {
       </motion.div>
       <motion.div
         ref={cursor}
-        className="w-[80px] h-[80px] rounded-full bg-[#455CE9] text-white absolute z-2 flex items-center justify-center text-[14px] font-light pointer-events-none"
+        className="w-[80px] h-[80px] rounded-full bg-black bg-opacity-60 backdrop-blur-sm text-white absolute z-2 flex items-center justify-center text-[14px] font-light pointer-events-none"
         variants={scaleAnimation}
         initial="initial"
         animate={active ? "enter" : "closed"}

@@ -10,7 +10,7 @@ const projects = [
     title: "Elsa Jonson",
     avatar: "./assets/avatars/3.png",
     src: "./assets/avatars/3.png",
-    color: "#000000",
+    color: "#615EFC",
   },
   {
     title: "Office Studio",
@@ -35,7 +35,7 @@ const projects = [
 function Templates() {
   const [modal, setModal] = useState({ active: false, index: 0 });
   return (
-    <section>
+    <section id="templates">
       <div className="container mx-auto w-full mt-10 mb-5">
         <h2 className="text-clamp-title items-center">
           <span className="text-muted-foreground">Blog.</span>

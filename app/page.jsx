@@ -13,6 +13,7 @@ import CardTemplate from "@/components/home/card-template";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Test from "@/components/home/test";
+import Image from "next/image";
 
 const projects = [
   {
@@ -81,9 +82,19 @@ export default function Home() {
   }, []);
 
   return (
-    <main>
+    <main className="relative">
       <HomeNavbar />
       <Header />
+
+      <section id="about" className="container mx-auto">
+        <Image
+          width={200}
+          height={200}
+          className="h-screen w-full rounded-lg"
+          src="/assets/showcase.webp"
+          alt="Showcase ai"
+        />
+      </section>
 
       <section ref={container} className="py-16 md:py-20">
         <div className="w-full">

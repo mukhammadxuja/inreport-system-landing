@@ -49,10 +49,16 @@ function HomeNavbar() {
         </Link>
         <div className="flex items-center gap-6">
           <ul className="flex items-center gap-4">
-            <li className="nav-link">Templates</li>
+            <li className="nav-link">
+              <a href="#templates">Templates</a>
+            </li>
             <li className="nav-link">Services</li>
-            <li className="nav-link">About</li>
-            <li className="nav-link">Contact</li>
+            <li className="nav-link">
+              <a href="#about">About</a>
+            </li>
+            <li className="nav-link">
+              <a href="#contact">Contact</a>
+            </li>
           </ul>
           {user ? (
             <Link href="/admin">
