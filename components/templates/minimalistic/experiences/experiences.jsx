@@ -2,9 +2,9 @@
 import MinimalisticProjectItem from "./default-experience-item";
 
 function MinimalisticExperiences({ experiences, section, activeSection }) {
-  const visibleExperience = experiences.filter(
-    (experience) => !experience.hide
-  );
+  const visibleExperience = experiences
+    .filter((experience) => !experience.hide)
+    .sort((a, b) => parseInt(b.from) - parseInt(a.from));
 
   return (
     <div id="experiences">

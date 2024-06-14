@@ -2,7 +2,9 @@
 import MinimalisticAwardItem from "./default-awards-item";
 
 function MinimalisticAwards({ awards, section, activeSection }) {
-  const visibleAwards = awards.filter((award) => !award.hide);
+  const visibleAwards = awards
+    .filter((award) => !award.hide)
+    .sort((a, b) => parseInt(b.year) - parseInt(a.year));
 
   return (
     <div id="awards">

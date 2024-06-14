@@ -2,9 +2,9 @@
 import DefaultCertificationItem from "./default-certification-item";
 
 function DefaultCertification({ certifications, section }) {
-  const visibleCertifications = certifications.filter(
-    (certification) => !certification.hide
-  );
+  const visibleCertifications = certifications
+    .filter((certification) => !certification.hide)
+    .sort((a, b) => parseInt(b.issued) - parseInt(a.issued));
 
   return (
     <div className="p-4 md:p-6 bg-accent rounded-lg w-full">

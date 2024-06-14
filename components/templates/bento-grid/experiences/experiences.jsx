@@ -2,9 +2,9 @@
 import BentoGridExperienceItem from "./bento-grid-experience-item";
 
 function BentoGridExperiences({ experiences, section }) {
-  const visibleExperience = experiences.filter(
-    (experience) => !experience.hide
-  );
+  const visibleExperience = experiences
+    .filter((experience) => !experience.hide)
+    .sort((a, b) => parseInt(b.from) - parseInt(a.from));
 
   return (
     <div className="p-4 md:p-6 bg-accent rounded-lg w-full">

@@ -2,9 +2,9 @@
 import MinimalisticVolunteeringItem from "./default-volunteering-item";
 
 function MinimalisticVolunteering({ volunteerings, section, activeSection }) {
-  const visibleVolunteering = volunteerings.filter(
-    (volunteering) => !volunteering.hide
-  );
+  const visibleVolunteering = volunteerings
+    .filter((volunteering) => !volunteering.hide)
+    .sort((a, b) => parseInt(b.from) - parseInt(a.from));
 
   return (
     <div id="volunteerings">

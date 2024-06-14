@@ -2,9 +2,9 @@
 import DefaultProjectItem from "./default-volunteering-item";
 
 function DefaultVolunteering({ volunteerings, section }) {
-  const visibleVolunteering = volunteerings.filter(
-    (volunteering) => !volunteering.hide
-  );
+  const visibleVolunteering = volunteerings
+    .filter((volunteering) => !volunteering.hide)
+    .sort((a, b) => parseInt(b.from) - parseInt(a.from));
 
   return (
     <div>

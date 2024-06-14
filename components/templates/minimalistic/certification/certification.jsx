@@ -2,9 +2,11 @@
 import MinimalisticCertificationItem from "./default-certification-item";
 
 function MinimalisticCertification({ certifications, section, activeSection }) {
-  const visibleCertifications = certifications.filter(
-    (certification) => !certification.hide
-  );
+  const visibleCertifications = certifications
+    .filter((certification) => !certification.hide)
+    .sort((a, b) => parseInt(b.issued) - parseInt(a.issued));
+
+    console.log('visibleCertifications', visibleCertifications);
 
   return (
     <div id="certifications">

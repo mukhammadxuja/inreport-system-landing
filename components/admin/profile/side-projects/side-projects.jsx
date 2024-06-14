@@ -35,6 +35,8 @@ const SideProjects = () => {
   const [isEdit, setIsEdit] = useState(false);
   const [editableId, setEditableId] = useState("");
 
+  console.log("sideProjects", sideProjects);
+
   return (
     <Fragment>
       <div className="flex items-center justify-between mb-3">

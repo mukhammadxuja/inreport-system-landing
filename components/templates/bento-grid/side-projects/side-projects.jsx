@@ -2,7 +2,13 @@
 import DefaultProjectItem from "./default-project-item";
 
 function DefaultSideProjects({ sideProjects, section }) {
-  const visibleSideProjects = sideProjects.filter((project) => !project.hide);
+  const visibleSideProjects = sideProjects
+    .filter((project) => !project.hide)
+    .sort((a, b) => {
+      if (a.ongoing && !b.ongoing) return -1;
+      if (!a.ongoing && b.ongoing) return 1;
+      return parseInt(b.year) - parseInt(a.year);
+    });
 
   return (
     <div className="p-4 md:p-6 bg-accent rounded-lg w-full">

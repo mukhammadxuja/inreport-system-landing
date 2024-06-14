@@ -2,7 +2,9 @@
 import BentoGridEducationItem from "./bento-grid-education-item";
 
 function BentoGridEducation({ educations, section }) {
-  const visibleEducations = educations.filter((education) => !education.hide);
+  const visibleEducations = educations
+    .filter((education) => !education.hide)
+    .sort((a, b) => parseInt(b.from) - parseInt(a.from));
 
   return (
     <div className="p-4 md:p-6 bg-accent rounded-lg w-full">

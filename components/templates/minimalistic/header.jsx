@@ -25,15 +25,15 @@ function MinimalisticHeader({ userData, admin = false }) {
     <header className="mb-6">
       <div className="flex items-center justify-between">
         <div className="relative inline-block">
-          <Avatar className="h-16 w-16 rounded-full">
+          <Avatar className="h-16 w-16 md:w-20 md:h-20 rounded-full p-1 bg-gray-100 border border-border">
             <AvatarImage
-              className="object-cover"
+              className="object-cover rounded-full"
               src={userData?.photoURL || `/assets/avatars/unknown.jpg`}
               alt="@shadcn"
             />
           </Avatar>
           <div
-            className={`absolute -bottom-1 -right-1 gap-1 p-1 rounded-full bg-orange-100 border border-orange-300 shadow-sm group ${
+            className={`absolute -bottom-1 -right-1 gap-1 p-1 rounded-full bg-gray-100 border border-border shadow-sm group ${
               userData?.status?.title && "hover:rounded-r-lg"
             }`}
           >
@@ -47,7 +47,7 @@ function MinimalisticHeader({ userData, admin = false }) {
                 className="w-5 h-5"
               />
               {userData?.status?.title && (
-                <small className="absolute -bottom-[0.28rem] left-6 whitespace-nowrap max-w-72 truncate bg-orange-100 border border-orange-300 border-l-orange-100 shadow-sm text-orange-800 text-xs rounded-r-lg py-1.5 pr-2 hidden group-hover:block">
+                <small className="absolute -bottom-[0.28rem] left-6 whitespace-nowrap max-w-72 truncate bg-gray-100 border border-gray-300 border-l-gray-100 shadow-sm text-gray-800 text-xs rounded-r-lg py-1.5 pr-2 hidden group-hover:block">
                   {userData?.status?.title}
                 </small>
               )}

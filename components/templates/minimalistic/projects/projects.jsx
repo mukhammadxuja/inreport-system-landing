@@ -2,7 +2,13 @@
 import MinimalisticProjectItem from "./default-project-item";
 
 function MinimalisticProjects({ projects, section, activeSection }) {
-  const visibleProjects = projects.filter((project) => !project.hide);
+  const visibleProjects = projects
+    .filter((project) => !project.hide)
+    .sort((a, b) => {
+      if (a.ongoing && !b.ongoing) return -1;
+      if (!a.ongoing && b.ongoing) return 1;
+      return parseInt(b.year) - parseInt(a.year);
+    });
 
   return (
     <div id="projects">

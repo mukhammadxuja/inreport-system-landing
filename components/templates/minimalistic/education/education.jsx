@@ -2,7 +2,9 @@
 import MinimalisticEducationItem from "./default-education-item";
 
 function MinimalisticEducation({ educations, section, activeSection }) {
-  const visibleEducations = educations.filter((education) => !education.hide);
+  const visibleEducations = educations
+    .filter((education) => !education.hide)
+    .sort((a, b) => parseInt(b.from) - parseInt(a.from));
 
   return (
     <div id="educations">

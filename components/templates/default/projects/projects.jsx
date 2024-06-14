@@ -2,7 +2,13 @@
 import DefaultProjectItem from "./default-project-item";
 
 function DefaultProjects({ projects, section }) {
-  const visibleProjects = projects.filter((project) => !project.hide);
+  const visibleProjects = projects
+    .filter((project) => !project.hide)
+    .sort((a, b) => {
+      if (a.ongoing && !b.ongoing) return -1;
+      if (!a.ongoing && b.ongoing) return 1;
+      return parseInt(b.year) - parseInt(a.year);
+    });
 
   return (
     <div>

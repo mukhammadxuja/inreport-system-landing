@@ -54,14 +54,16 @@ const Education = () => {
         <Fragment>
           {educations.length ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 my-2">
-              {educations.map((education) => (
-                <EducationItem
-                  key={education.id}
-                  education={education}
-                  setEditableId={setEditableId}
-                  setIsEdit={setIsEdit}
-                />
-              ))}
+              {educations
+                .map((education) => (
+                  <EducationItem
+                    key={education.id}
+                    education={education}
+                    setEditableId={setEditableId}
+                    setIsEdit={setIsEdit}
+                  />
+                ))
+                .sort((a, b) => parseInt(b.from) - parseInt(a.from))}
             </div>
           ) : (
             <EmptyProjects setAddEducation={setAddEducation} />

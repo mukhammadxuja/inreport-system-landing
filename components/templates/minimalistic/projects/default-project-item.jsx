@@ -26,7 +26,7 @@ function DefaultProjectItem({ project }) {
         <div className="flex items-center justify-between w-full">
           <div className={`minimalistic-template-item flex items-center`}>
             <p className="mr-1">{project.year ? project.year : project.from}</p>
-            <p>{project?.ongoing ? " – Ongoing" : ` – ${project?.to}`}</p>
+            <p>{project?.ongoing && " – Ongoing"}</p>
           </div>
           <div className="minimalistic-template-item-border" />
           <a

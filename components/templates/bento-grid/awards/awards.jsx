@@ -2,7 +2,9 @@
 import DefaultProjectItem from "./default-awards-item";
 
 function DefaultAwards({ awards, section }) {
-  const visibleAwards = awards.filter((award) => !award.hide);
+  const visibleAwards = awards
+    .filter((award) => !award.hide)
+    .sort((a, b) => parseInt(b.year) - parseInt(a.year));
 
   return (
     <div className="p-4 md:p-6 bg-accent rounded-lg w-full">

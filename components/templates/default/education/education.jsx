@@ -2,7 +2,9 @@
 import DefaultProjectItem from "./default-education-item";
 
 function DefaultEducation({ educations, section }) {
-  const visibleEducations = educations.filter((education) => !education.hide);
+  const visibleEducations = educations
+    .filter((education) => !education.hide)
+    .sort((a, b) => parseInt(b.from) - parseInt(a.from));
 
   return (
     <div>
