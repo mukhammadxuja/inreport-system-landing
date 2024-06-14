@@ -81,6 +81,12 @@ export default function Home() {
     requestAnimationFrame(raf);
   }, []);
 
+  // Step 1: Define your initial array
+  const years = [2022, 2018, 2024];
+
+  // Step 2: Sort the array in descending order
+  const sortedYears = years.sort((a, b) => b - a);
+
   return (
     <main className="relative">
       <HomeNavbar />

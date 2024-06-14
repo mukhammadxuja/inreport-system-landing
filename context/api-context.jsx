@@ -37,6 +37,8 @@ export const ApiContextProvider = ({ children }) => {
   const contacts = useUserSubcollections(db, userUid, "contacts");
   const messages = useUserSubcollections(db, userUid, "messages");
 
+  console.log("projects", projects);
+
   // Messages
   const [unreadMessages, setUnreadMessages] = useState(0);
 

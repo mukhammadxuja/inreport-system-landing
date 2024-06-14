@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
+import { collection, query, onSnapshot } from "firebase/firestore";
 
-const useUserSubcollections = (db, userId, collectionName, from) => {
+const useUserSubcollections = (db, userId, collectionName) => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    if (!userId || !from) return;
+    if (!userId) return;
 
     const subcollection = collection(db, `users/${userId}/${collectionName}`);
-    const q = query(subcollection, orderBy(from));
+    const q = query(subcollection);
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const itemsArr = querySnapshot.docs.map((doc) => ({
         ...doc.data(),
@@ -18,7 +18,7 @@ const useUserSubcollections = (db, userId, collectionName, from) => {
     });
 
     return () => unsubscribe();
-  }, [db, userId, collectionName, from]);
+  }, [db, userId, collectionName]);
 
   return items;
 };

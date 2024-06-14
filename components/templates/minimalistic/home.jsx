@@ -59,6 +59,8 @@ function MinimalisticHome({ data, admin }) {
     }
   };
 
+  console.log(educations);
+
   return (
     <main
       className={`px-4 max-w-2xl bg-orange-200 mx-auto w-full p-5 md:p-0 rounded-lg ${

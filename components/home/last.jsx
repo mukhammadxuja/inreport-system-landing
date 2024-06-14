@@ -17,20 +17,20 @@ function LastSection() {
   }, [isInView]);
 
   return (
-    <div id="contact" className="relative">
-      <div className="absolute z-20 flex flex-col justify-center top-1/3 -translate-y-1/3 left-1/2 -translate-x-1/2 space-y-2">
+    <div id="contact" className="relative h-[70vh]">
+      <div className="absolute z-20 flex flex-col justify-center top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 space-y-2">
         <h2 className="text-clamp-title text-center">
           How can we
           <span className="text-muted-foreground"> help?</span>
         </h2>
-        <div className="flex md:hidden items-center gap-2 mx-auto">
+        <div className="flex items-center gap-2 mx-auto">
           <Input className="w-full md:w-72" placeholder="Send something" />
           <Button>
             <ArrowRight className="w-4 h-4" />
           </Button>
         </div>
       </div>
-      <Phys.World
+      {/* <Phys.World
         ref={ref}
         width={window.innerWidth}
         height={500}
@@ -195,7 +195,7 @@ function LastSection() {
             <div className="w-2 h-2 bg-[#e0341a] absolute -bottom-1 -right-1" />
           </div>
         </Phys.Item>
-      </Phys.World>
+      </Phys.World> */}
     </div>
   );
 }
