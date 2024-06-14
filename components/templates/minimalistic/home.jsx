@@ -64,7 +64,9 @@ function MinimalisticHome({ data, admin }) {
   return (
     <main
       className={`px-4 max-w-2xl bg-orange-200 mx-auto w-full p-5 md:p-0 rounded-lg ${
-        admin ? "bg-white" : "bg-white my-20 mt-6 md:my-10 mb-20 md:!mb-28"
+        admin
+          ? "bg-white"
+          : "bg-white my-10 mt-0 md:mt-6 md:my-10 mb-20 md:!mb-28"
       }`}
     >
       <div className="fixed max-w-2xl bottom-0 left-1/2 -translate-x-1/2 z-[60] w-full h-10 bg-gradient-to-t from-lime-100 via-lime-100/40 to-transparent blur-md rounded-full"></div>

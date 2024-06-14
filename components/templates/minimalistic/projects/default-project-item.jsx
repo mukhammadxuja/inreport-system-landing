@@ -43,7 +43,7 @@ function DefaultProjectItem({ project }) {
         <small className={`minimalistic-template-item opacity-80`}>
           {project?.title}
         </small>
-        <div className="w-full max-w-96 mt-1 md:mt-0">
+        <div className="w-full max-w-[25rem] mt-1 md:mt-0">
           <div className="w-full text-right">
             <small
               className={`minimalistic-template-item leading-tight whitespace-pre-line opacity-80`}
@@ -52,7 +52,7 @@ function DefaultProjectItem({ project }) {
             </small>
           </div>
           <div className={`space-y-3 w-full mt-2`}>
-            <div className="flex items-center gap-3 overflow-x-auto">
+            <div className="flex flex-row-reverse items-center gap-3 overflow-x-auto">
               {project.images && project.images.length > 0 && (
                 <div className="flex items-center gap-2">
                   {project?.images?.map(({ url, id, name }, index) => (

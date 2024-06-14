@@ -26,7 +26,7 @@ function MinimalisticEducationItem({ education }) {
         <div className="flex items-center justify-between w-full">
           <div
             className={`minimalistic-template-item flex items-center ${
-              education?.present && "text-orange-600"
+              education?.present && "text-lime-600"
             }`}
           >
             <p className="mr-1">
@@ -36,7 +36,7 @@ function MinimalisticEducationItem({ education }) {
           </div>
           <div
             className={`minimalistic-template-item-border ${
-              education?.present && "border-orange-600"
+              education?.present && "border-lime-600"
             }`}
           />
           <div className="flex items-center gap-1">
@@ -56,7 +56,7 @@ function MinimalisticEducationItem({ education }) {
             )}
             <a
               className={`minimalistic-template-item hover:underline ${
-                education?.present && "text-orange-600"
+                education?.present && "text-lime-600"
               }`}
               href={`${education.url}`}
               target="_blank"
@@ -70,7 +70,7 @@ function MinimalisticEducationItem({ education }) {
       <div className="flex flex-col md:flex-row md:items-start md:justify-between w-full">
         <small
           className={`minimalistic-template-item opacity-80 ${
-            education?.present && "text-orange-700/80"
+            education?.present && "text-lime-700/80"
           }`}
         >
           {education?.degree}
@@ -78,7 +78,7 @@ function MinimalisticEducationItem({ education }) {
         {education?.description ? (
           <small
             className={`minimalistic-template-item w-full max-w-96 whitespace-pre-line md:text-right opacity-80 mt-1 md:mt-0 ${
-              education?.present && "text-orange-700/80"
+              education?.present && "text-lime-700/80"
             }`}
           >
             {education?.description}
@@ -86,7 +86,7 @@ function MinimalisticEducationItem({ education }) {
         ) : (
           <small
             className={`minimalistic-template-item w-full max-w-96 whitespace-pre-line md:text-right opacity-80 mt-1 md:mt-0 ${
-              education?.present && "text-orange-700/80"
+              education?.present && "text-lime-700/80"
             }`}
           >
             {education?.location}

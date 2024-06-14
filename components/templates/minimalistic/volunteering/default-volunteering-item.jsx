@@ -6,11 +6,7 @@ function MinimalisticVolunteeringItem({ volunteering }) {
     <div className="space-y-1">
       <div className="flex items-center justify-between w-full">
         <div className="flex items-center justify-between w-full">
-          <div
-            className={`minimalistic-template-item flex items-center ${
-              volunteering?.present && "text-green-600"
-            }`}
-          >
+          <div className={`minimalistic-template-item flex items-center`}>
             <p className="mr-1">
               {volunteering.year ? volunteering.year : volunteering.from}
             </p>
@@ -18,11 +14,7 @@ function MinimalisticVolunteeringItem({ volunteering }) {
               {volunteering?.present ? " – Present" : ` – ${volunteering?.to}`}
             </p>
           </div>
-          <div
-            className={`minimalistic-template-item-border ${
-              volunteering?.present && "border-green-600"
-            }`}
-          />
+          <div className={`minimalistic-template-item-border`} />
           <div className="flex items-center gap-1">
             {volunteering?.images && volunteering.images.length > 0 && (
               <>
@@ -39,9 +31,7 @@ function MinimalisticVolunteeringItem({ volunteering }) {
               </>
             )}
             <a
-              className={`minimalistic-template-item hover:underline ${
-                volunteering?.present && "text-green-600"
-              }`}
+              className={`minimalistic-template-item hover:underline}`}
               href={`${volunteering.url}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -52,26 +42,18 @@ function MinimalisticVolunteeringItem({ volunteering }) {
         </div>
       </div>
       <div className="flex flex-col md:flex-row md:items-start md:justify-between w-full">
-        <small
-          className={`minimalistic-template-item opacity-80 ${
-            volunteering?.present && "text-green-700/80"
-          }`}
-        >
+        <small className={`minimalistic-template-item opacity-80`}>
           {volunteering?.title}
         </small>
         {volunteering?.description ? (
           <small
-            className={`minimalistic-template-item w-full max-w-96 whitespace-pre-line md:text-right opacity-80 mt-1 md:mt-0 ${
-              volunteering?.present && "text-green-700/80"
-            }`}
+            className={`minimalistic-template-item w-full max-w-96 whitespace-pre-line md:text-right opacity-80 mt-1 md:mt-0`}
           >
             {volunteering?.description}
           </small>
         ) : (
           <small
-            className={`minimalistic-template-item w-full max-w-96 whitespace-pre-line md:text-right opacity-80 mt-1 md:mt-0 ${
-              volunteering?.present && "text-green-700/80"
-            }`}
+            className={`minimalistic-template-item w-full max-w-96 whitespace-pre-line md:text-right opacity-80 mt-1 md:mt-0`}
           >
             {volunteering?.location}
           </small>

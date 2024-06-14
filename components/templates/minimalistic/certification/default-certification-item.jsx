@@ -6,11 +6,7 @@ function MinimalisticCertificationItem({ certification }) {
     <div className="space-y-1">
       <div className="flex items-center justify-between w-full">
         <div className="flex items-center justify-between w-full">
-          <div
-            className={`minimalistic-template-item flex items-center ${
-              certification?.notExpire && "text-green-600"
-            }`}
-          >
+          <div className={`minimalistic-template-item flex items-center `}>
             <p className="mr-1">
               {certification.year ? certification.year : certification.issued}
             </p>
@@ -20,11 +16,7 @@ function MinimalisticCertificationItem({ certification }) {
                 : ` – ${certification?.expires}`}
             </p>
           </div>
-          <div
-            className={`minimalistic-template-item-border ${
-              certification?.notExpire && "border-green-600"
-            }`}
-          />
+          <div className={`minimalistic-template-item-border`} />
           <div className="flex items-center gap-1">
             {certification?.images && certification.images.length > 0 && (
               <>
@@ -41,9 +33,7 @@ function MinimalisticCertificationItem({ certification }) {
               </>
             )}
             <a
-              className={`minimalistic-template-item hover:underline ${
-                certification?.notExpire && "text-green-600"
-              }`}
+              className={`minimalistic-template-item hover:underline`}
               href={`${certification.url}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -54,26 +44,18 @@ function MinimalisticCertificationItem({ certification }) {
         </div>
       </div>
       <div className="flex flex-col md:flex-row md:items-start md:justify-between w-full">
-        <small
-          className={`minimalistic-template-item opacity-80 ${
-            certification?.notExpire && "text-green-700/80"
-          }`}
-        >
+        <small className={`minimalistic-template-item opacity-80`}>
           {certification?.name}
         </small>
         {certification?.description ? (
           <small
-            className={`minimalistic-template-item w-full max-w-96 whitespace-pre-line md:text-right opacity-80 mt-1 md:mt-0 ${
-              certification?.notExpire && "text-green-700/80"
-            }`}
+            className={`minimalistic-template-item w-full max-w-96 whitespace-pre-line md:text-right opacity-80 mt-1 md:mt-0`}
           >
             {certification?.description}
           </small>
         ) : (
           <small
-            className={`minimalistic-template-item w-full max-w-96 whitespace-pre-line md:text-right opacity-80 mt-1 md:mt-0 ${
-              certification?.notExpire && "text-green-700/80"
-            }`}
+            className={`minimalistic-template-item w-full max-w-96 whitespace-pre-line md:text-right opacity-80 mt-1 md:mt-0`}
           >
             {certification?.location}
           </small>
