@@ -90,7 +90,7 @@ const Templates = () => {
   };
 
   const minimalisticFullUrl =
-    "https://firebasestorage.googleapis.com/v0/b/showcaseai-75e82.appspot.com/o/templates%2Ffull.png?alt=media&token=98aade3b-04b3-4676-90ec-f0c414a3b2c7";
+    "https://firebasestorage.googleapis.com/v0/b/showcaseai-75e82.appspot.com/o/templates%2Ffull.png?alt=media&token=5c76da15-956d-436b-988d-b3dd74f158f7";
   const defaultFullUrl =
     "https://firebasestorage.googleapis.com/v0/b/showcaseai-75e82.appspot.com/o/templates%2Fdefault.png?alt=media&token=067a389c-b983-4644-b0ad-455be64821b1";
   const bentoGridFullUrl =
