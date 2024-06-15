@@ -92,7 +92,7 @@ function MinimalisticNavbar({ data, scrollToSection }) {
 
   const visibleNavData = minimalisticNavData.filter((item) => item.isCreated);
   return (
-    <nav className="fixed z-[60] bottom-5 md:bottom-10 left-1/2 -translate-x-1/2 py-1.5 pl-4 pr-2 border border-border bg-white rounded-full shadow-xl">
+    <nav className="fixed z-[60] bottom-5 md:bottom-10 left-1/2 -translate-x-1/2 py-1.5 pl-4 pr-2 border border-border bg-white rounded-full shadow-xl overflow-auto w-full md:w-fit">
       <ul className="relative flex items-center gap-2 md:gap-3">
         {visibleNavData.map((nav) => (
           <li

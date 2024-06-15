@@ -10,6 +10,7 @@ import MinimalisticCertification from "./certification/certification";
 import MinimalisticAwards from "./awards/awards";
 import MinimalisticContacts from "./contacts/contacts";
 import MinimalisticNavbar from "./navbar";
+import MinimalisticAbout from "./about";
 
 function MinimalisticHome({ data, admin }) {
   const {
@@ -22,6 +23,7 @@ function MinimalisticHome({ data, admin }) {
     experiences,
     volunteerings,
     certifications,
+    settings,
   } = data;
 
   const [activeSection, setActiveSection] = useState(null);
@@ -70,7 +72,13 @@ function MinimalisticHome({ data, admin }) {
       }`}
     >
       <div className="fixed max-w-2xl bottom-0 left-1/2 -translate-x-1/2 z-[60] w-full h-10 bg-gradient-to-t from-lime-100 via-lime-100/40 to-transparent blur-md rounded-full"></div>
-      <MinimalisticHeader userData={userData} admin={admin} />
+      <MinimalisticHeader
+        userData={userData}
+        admin={admin}
+        settings={settings}
+      />
+
+      {userData?.bio && <MinimalisticAbout userData={userData} />}
 
       <MinimalisticNavbar data={data} scrollToSection={scrollToSection} />
 

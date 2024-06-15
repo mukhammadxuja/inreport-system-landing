@@ -26,14 +26,14 @@ function BentoGridHome({ data }) {
   } = data;
 
   return (
-    <main className="px-4 md:px-0 max-w-7xl mx-auto my-5 w-full">
+    <main className="px-10 lg:px-0 max-w-[76.5rem] mx-auto my-5 w-full">
       <div className="flex flex-col lg:flex-row gap-4">
         <div className="space-y-4 w-full">
           <DefaultHeader userData={userData} />
+          <DefaultProjects projects={projects} section="Projects" />
 
           <DefaultAwards awards={awards} section="Awards" />
 
-          <DefaultProjects projects={projects} section="Projects" />
 
           <DefaultSideProjects
             sideProjects={sideProjects}

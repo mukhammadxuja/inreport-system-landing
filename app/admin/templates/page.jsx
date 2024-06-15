@@ -8,8 +8,15 @@ import { useMainContext } from "@/context/main-context";
 import { useSessionStorage } from "@/hooks/useSessionStorage";
 import Image from "next/image";
 
+import MinimalisticDesktop from "@/public/assets/templates/minimalistic/desktop.png";
+import DefaultDesktop from "@/public/assets/templates/default/desktop.png";
+import BentoDesktop from "@/public/assets/templates/bento/desktop.png";
+
+import { useApiContext } from "@/context/api-context";
+
 function TemplatesPage() {
   const { openSidebar } = useMainContext();
+  const { userData } = useApiContext();
   const [templates, setTemplates] = useState("all");
   const [selectedTemplate, setSelectedTemplate] = useState(1);
 
@@ -78,6 +85,17 @@ function TemplatesPage() {
     [templates, setItem]
   );
 
+  const openImageInNewTab = (imageUrl) => {
+    window.open(imageUrl, "_blank", "noopener,noreferrer");
+  };
+
+  const minimalisticFullUrl =
+    "https://firebasestorage.googleapis.com/v0/b/showcaseai-75e82.appspot.com/o/templates%2Ffull.png?alt=media&token=98aade3b-04b3-4676-90ec-f0c414a3b2c7";
+  const defaultFullUrl =
+    "https://firebasestorage.googleapis.com/v0/b/showcaseai-75e82.appspot.com/o/templates%2Fdefault.png?alt=media&token=067a389c-b983-4644-b0ad-455be64821b1";
+  const bentoGridFullUrl =
+    "https://firebasestorage.googleapis.com/v0/b/showcaseai-75e82.appspot.com/o/templates%2Fbento-full.png?alt=media&token=38ee9e7c-0b71-485f-8d25-dd41370b885b";
+
   return (
     <div className="p-4 min-h-screen">
       <Tabs
@@ -105,49 +123,46 @@ function TemplatesPage() {
           value="all"
         >
           <div
-            onClick={() => setSelectedTemplate(1)}
-            className={`relative rounded-2xl cursor-pointer shadow-md bg-accent duration-300 border-4 border-transparent w-full h-[27rem] p-2 group ${
-              selectedTemplate === 1 && "border-blue-500"
+            onClick={() => openImageInNewTab(defaultFullUrl)}
+            className={`rounded-lg border-2 border-border h-fit p-2 hover:border-indigo-300 cursor-zoom-in duration-300 ${
+              userData?.template === "Default"
+                ? "border-indigo-300"
+                : "border-border"
             }`}
           >
             <Image
-              width={300}
-              height={400}
-              className="w-full h-full object-cover"
-              src="/assets/templates/default.png"
+              className="w-full object-cover rounded-lg"
+              src={DefaultDesktop}
               alt="image"
             />
-            <h3 className="text-center text-muted-foreground mt-3">Default</h3>
           </div>
           <div
-            onClick={() => setSelectedTemplate(1)}
-            className={`relative rounded-2xl cursor-pointer shadow-md bg-accent duration-300 border-4 border-transparent w-full h-[27rem] p-2 group ${
-              selectedTemplate === 1 && "border-blue-500"
+            onClick={() => openImageInNewTab(bentoGridFullUrl)}
+            className={`rounded-lg border-2 border-border h-fit p-2 hover:border-indigo-300 cursor-zoom-in duration-300 ${
+              userData?.template === "BentoGrid"
+                ? "border-indigo-300"
+                : "border-border"
             }`}
           >
             <Image
-              width={300}
-              height={400}
-              className="w-full h-full object-cover"
-              src="/assets/templates/bento-grid.png"
+              className="w-full object-cover rounded-lg"
+              src={BentoDesktop}
               alt="image"
             />
-            <h3 className="text-center text-muted-foreground mt-3">Bento grid</h3>
           </div>
           <div
-            onClick={() => setSelectedTemplate(1)}
-            className={`relative rounded-2xl cursor-pointer shadow-md bg-accent duration-300 border-4 border-transparent w-full h-[27rem] p-2 group ${
-              selectedTemplate === 1 && "border-blue-500"
+            onClick={() => openImageInNewTab(minimalisticFullUrl)}
+            className={`rounded-lg border-2 border-border h-fit p-2 hover:border-indigo-300 cursor-zoom-in duration-300 ${
+              userData?.template === "Minimalistic"
+                ? "border-indigo-300"
+                : "border-border"
             }`}
           >
             <Image
-              width={300}
-              height={400}
-              className="w-full h-full object-cover"
-              src="/assets/templates/minimalistic.png"
+              className="w-full object-cover rounded-lg"
+              src={MinimalisticDesktop}
               alt="image"
             />
-            <h3 className="text-center text-muted-foreground mt-3">Minimalistic</h3>
           </div>
         </TabsContent>
       </Tabs>

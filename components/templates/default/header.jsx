@@ -101,7 +101,7 @@ function DefaultHeader({ userData, admin = false }) {
             </p>
           )}
           <div className="flex items-center gap-2 mt-1">
-            {!!userData?.profession && (
+            {userData?.profession ? (
               <Link
                 href={`${userData?.website}`}
                 target="_blank"
@@ -110,8 +110,8 @@ function DefaultHeader({ userData, admin = false }) {
               >
                 {removeSubstring(userData?.website, "https://")}
               </Link>
-            )}
-            {!!userData?.profession && (
+            ) : null}
+            {userData?.username === "anvarov" && (
               <span className="default-template-supporter">
                 <Heart className="w-3 h-3" />
                 supporter

@@ -11,13 +11,14 @@ import {
 } from "@/components/ui/popover";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { removeSubstring } from "@/lib/utils";
-import { BadgeCheck, Heart } from "lucide-react";
+import { BadgeCheck, Flag, Heart, Send } from "lucide-react";
 import { EllipsesIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import StatusDialog from "@/components/admin/dialogs/status";
 import { useState } from "react";
+import SendMessageDialog from "@/components/admin/dialogs/message";
 
-function MinimalisticHeader({ userData, admin = false }) {
+function MinimalisticHeader({ userData, admin = false, settings }) {
   const [selectedEmoji, setSelectedEmoji] = useState(null);
   const [openStatus, setOpenStatus] = useState(false);
 
@@ -58,9 +59,29 @@ function MinimalisticHeader({ userData, admin = false }) {
           <PopoverTrigger>
             <EllipsesIcon />
           </PopoverTrigger>
-          <PopoverContent align="end" className="w-fit p-0">
-            <Button variant="ghost" size="sm">
-              Report
+          <PopoverContent align="end" className="w-36 py-1 px-1 space-y-1">
+            {settings?.canMessage && (
+              <SendMessageDialog
+                userId={userData?.uid}
+                username={userData?.username}
+              >
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  className="flex items-center gap-2 w-full bg-blue-500 text-white hover:bg-blue-400 !py-2"
+                >
+                  <Send className="w-3 h-3" />
+                  <span className="hidden md:block text-sm">Message</span>
+                </Button>
+              </SendMessageDialog>
+            )}
+            <Button
+              variant="secondary"
+              size="sm"
+              className="flex items-center gap-2 w-full mr-auto !py-2"
+            >
+              <Flag className="w-3 h-3" />
+              <span className="hidden md:block text-sm">Report</span>
             </Button>
           </PopoverContent>
         </Popover>

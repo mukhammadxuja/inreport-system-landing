@@ -14,6 +14,7 @@ import Certifications from "@/components/admin/profile/certifications/certificat
 import Projects from "@/components/admin/profile/projects/projects";
 import Awards from "@/components/admin/profile/awards/awards";
 import Contacts from "@/components/admin/profile/contact/contacts";
+import Templates from "@/components/admin/profile/templates";
 
 function Profile() {
   const [profile, setProfile] = useState("general");
@@ -23,6 +24,11 @@ function Profile() {
       id: 0,
       title: "General",
       tag: "general",
+    },
+    {
+      id: 0,
+      title: "Templates",
+      tag: "templates",
     },
     {
       id: 0,
@@ -106,6 +112,9 @@ function Profile() {
         </div>
         <TabsContent value="general">
           <General />
+        </TabsContent>
+        <TabsContent value="templates">
+          <Templates />
         </TabsContent>
         <TabsContent value="projects">
           <Projects />

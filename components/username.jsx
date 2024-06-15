@@ -66,14 +66,14 @@ export default function UserProfileClient({ username }) {
     <div>
       <TemplateComponent data={data} text="It is working" />
 
-      {settings?.canMessage && (
+      {/* {settings?.canMessage && (
         <SendMessageDialog userId={userData?.uid} username={username}>
           <Button className="fixed bottom-4 left-4 flex items-center shadow-lg gap-2 py-2 px-3 rounded-full">
             <Send className="w-4 h-4" />
             <span className="hidden md:block text-sm mr-2">Message</span>
           </Button>
         </SendMessageDialog>
-      )}
+      )} */}
 
       {settings?.hideMark && (
         <Link

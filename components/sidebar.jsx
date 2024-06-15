@@ -62,12 +62,12 @@ function Sidebar() {
       title: "Dashboard",
       icon: LayoutDashboard,
     },
-    {
-      id: 1,
-      link: "/admin/templates",
-      title: "Templates",
-      icon: Gem,
-    },
+    // {
+    //   id: 1,
+    //   link: "/admin/templates",
+    //   title: "Templates",
+    //   icon: Gem,
+    // },
     {
       id: 2,
       link: "/admin/profile",
