@@ -48,6 +48,7 @@ import { getFirstNumberFromUserID } from "@/lib/utils";
 
 function Sidebar() {
   const { openSidebar, setOpenSidebar } = useMainContext();
+  const [openPhoneSidebar, setOpenPhoneSidebar] = useState(true);
   const [openMessages, setOpenMessages] = useState(false);
   const { userData, messages, unreadMessages } = useApiContext();
   const { logout } = useLogout();
@@ -98,15 +99,19 @@ function Sidebar() {
     <TooltipProvider>
       <aside
         className={classNames(
-          "fixed inset-y-0 left-0 z-50 my-4 mx-2 rounded-2xl duration-300 hidden bg-white flex-col shadow-xl sm:flex group",
+          "fixed inset-y-0 left-0 z-[100] my-4 mx-2 rounded-2xl duration-300 bg-white flex-col shadow-xl sm:flex group",
           {
             "w-[260px]": openSidebar,
             "w-14": !openSidebar,
+          },
+          {
+            "translate-x-0": openPhoneSidebar,
+            "-translate-x-[85%]": !openPhoneSidebar,
           }
         )}
       >
         <nav
-          className={classNames("flex flex-col flex-grow gap-1 py-4", {
+          className={classNames("flex flex-col flex-grow gap-1 py-4 h-full", {
             "items-start px-4": openSidebar,
             "items-center px-2": !openSidebar,
           })}
@@ -297,9 +302,10 @@ function Sidebar() {
             </DropdownMenu>
           </div>
         </nav>
+        {/* Large screen arrow */}
         <div
           onClick={() => setOpenSidebar((prev) => !prev)}
-          className={classNames("absolute m-5", {
+          className={classNames("absolute m-5 top-3 hidden md:block", {
             "-right-9": openSidebar,
             "-right-10": !openSidebar,
           })}
@@ -308,9 +314,31 @@ function Sidebar() {
             <TooltipTrigger asChild>
               <span className="hidden group-hover:flex h-9 w-9 items-center justify-center rounded-md bg-white shadow-md text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8 cursor-pointer">
                 <ChevronLeft
-                  className={classNames("h-5 w-5", {
+                  className={classNames("-4 h-4 lg:h-5 lg:w-5", {
                     "rotate-0": openSidebar,
                     "rotate-180": !openSidebar,
+                  })}
+                />
+              </span>
+            </TooltipTrigger>
+            <TooltipContent side="right">Collapse Sidebar</TooltipContent>
+          </Tooltip>
+        </div>
+        {/* Phone screen arrow */}
+        <div
+          onClick={() => setOpenPhoneSidebar((prev) => !prev)}
+          className={classNames("absolute m-5 top-3 block lg:hidden", {
+            "-right-9": openPhoneSidebar,
+            "-right-10": !openPhoneSidebar,
+          })}
+        >
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <span className="flex lg:hidden group-hover:flex h-9 w-9 items-center justify-center rounded-md bg-white shadow-md text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8 cursor-pointer">
+                <ChevronLeft
+                  className={classNames("-4 h-4 lg:h-5 lg:w-5", {
+                    "rotate-0": openPhoneSidebar,
+                    "rotate-180": !openPhoneSidebar,
                   })}
                 />
               </span>

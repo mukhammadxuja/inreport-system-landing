@@ -85,7 +85,7 @@ function EmailVerificationAlert() {
       ) : (
         <Alert
           variant="ready"
-          className="bg-indigo-100 justify-between my-4 flex"
+          className="bg-indigo-100 flex flex-col lg:flex-row lg:justify-between my-4"
         >
           <div className="flex items-start gap-3">
             <AlertCircle className="h-4 w-4" />
@@ -113,7 +113,7 @@ function EmailVerificationAlert() {
           <Button
             onClick={copyToClipboard}
             variant="ghost"
-            className="bg-white hover:bg-gray-50 hover:text-indigo-600/80 duration-300"
+            className="hidden lg:block w-fit bg-white hover:bg-gray-50 hover:text-indigo-600/80 duration-300"
           >
             {isEmailVerificationPending && (
               <Shell className="mr-2 h-4 w-4 animate-spin" />

@@ -22,10 +22,10 @@ function DefaultHeader({ userData, admin = false }) {
   const [openStatus, setOpenStatus] = useState(false);
 
   return (
-    <header className="mb-6 flex items-center justify-between">
-      <div className="flex items-center space-x-4">
-        <div className="relative inline-block">
-          <Avatar className="h-24 w-24 rounded-full">
+    <header className="mb-6 flex items-start justify-between">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-4">
+        <div className="relative inline-block w-fit">
+          <Avatar className="w-20 h-20 lg:h-24 lg:w-24 rounded-full">
             <AvatarImage
               className="object-cover"
               src={userData?.photoURL || `/assets/avatars/unknown.jpg`}
@@ -120,7 +120,7 @@ function DefaultHeader({ userData, admin = false }) {
           </div>
         </div>
       </div>
-      <Popover>
+      <Popover className="">
         <PopoverTrigger>
           <EllipsesIcon />
         </PopoverTrigger>

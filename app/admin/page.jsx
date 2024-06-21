@@ -53,12 +53,12 @@ function AdminPage() {
 
   return (
     <div>
-      <div className="max-w-3xl mx-auto min-h-screen">
+      <div className="container w-full max-w-3xl mx-auto min-h-screen">
         <EmailVerificationAlert />
         <DefaultHome data={data} admin={true} />
       </div>
 
-      <div className="fixed top-4 right-2 md:right-4 flex items-center gap-1 md:gap-2">
+      <div className="fixed top-4 z-[60] right-4 flex items-center gap-1 md:gap-2">
         <FeedbackDialog>
           <Button
             variant="secondary"
@@ -79,7 +79,7 @@ function AdminPage() {
         </AppsDialog>
       </div>
       <Link
-        className="fixed bottom-4 right-2 md:right-4 gap-1 md:gap-2"
+        className="fixed bottom-4 right-4 gap-1 md:gap-2"
         href="/admin/profile"
       >
         <Button
