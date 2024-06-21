@@ -20,12 +20,12 @@ function Header() {
       }
     );
   }, []);
-  
+
   return (
     <header className="container m-auto">
       <h1
         ref={textRef}
-        className="inline-block mb-14 md:mb-20 mt-20 md:mt-32 lg:mt-40 tracking-[1.12] leading-[-.005em] text-clamp font-bold"
+        className="inline-block mt-24 mb-10 md:mt-24 lg:mb-32 lg:mt-40 tracking-[1.12] leading-[-.005em] text-clamp font-bold"
       >
         <span style={{ display: "inline-block" }}>Showcase.</span>
         <span style={{ display: "inline-block" }}>Your.</span> <br />

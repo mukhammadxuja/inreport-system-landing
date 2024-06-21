@@ -2,7 +2,7 @@
 import Cards from "@/components/home/cards/cards";
 import HomeFooter from "@/components/home/footer";
 import Header from "@/components/home/header";
-import LastSection from "@/components/home/last";
+import Contact from "@/components/home/contact";
 import HomeNavbar from "@/components/home/navbar";
 import Templates from "@/components/home/templates/templates";
 import { useEffect, useRef } from "react";
@@ -96,7 +96,7 @@ export default function Home() {
         <Image
           width={200}
           height={200}
-          className="h-screen w-full rounded-lg"
+          className="h-[70vh] lg:h-screen w-full rounded-lg object-cover bg-left"
           src="/assets/showcase.webp"
           alt="Showcase ai"
         />
@@ -128,9 +128,9 @@ export default function Home() {
           );
         })}
       </section>
-      <Cards />
+      {/* <Cards /> */}
       <Templates />
-      <LastSection />
+      <Contact />
       <HomeFooter />
     </main>
   );

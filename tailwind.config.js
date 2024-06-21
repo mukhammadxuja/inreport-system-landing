@@ -20,7 +20,7 @@ module.exports = {
       },
       fontSize: {
         clamp: "clamp(2rem, 4.186vw + 1.151rem, 4rem)",
-        "clamp-title": "clamp(1.875rem,2.093vw + 1.326rem,3rem)",
+        "clamp-title": "clamp(1.875rem, 2.093vw + 1.326rem, 3rem)",
         "clamp-footer": "clamp(1.625rem,.465vw + 1.503rem,1.875rem)",
       },
       colors: {

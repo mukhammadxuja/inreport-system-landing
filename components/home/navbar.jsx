@@ -29,7 +29,7 @@ function HomeNavbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 px-4 py-4 bg-white bg-opacity-50 border-b-2 border-border backdrop-blur-sm z-50 transition-transform duration-500 ${
+      className={`fixed top-0 left-0 right-0 lg:px-4 py-4 bg-white bg-opacity-50 border-b-2 border-border backdrop-blur-sm z-50 transition-transform duration-500 ${
         showNavbar ? "translate-y-0" : "-translate-y-full"
       }`}
     >
@@ -48,7 +48,7 @@ function HomeNavbar() {
           <span className="text-primary text-base font-semibold">Showcase</span>
         </Link>
         <div className="flex items-center gap-6">
-          <ul className="flex items-center gap-4">
+          <ul className="hidden lg:flex items-center gap-4">
             <li className="nav-link">
               <a href="#templates">Templates</a>
             </li>

@@ -7,27 +7,31 @@ import { ArrowRight } from "lucide-react";
 
 const projects = [
   {
-    title: "Elsa Jonson",
+    title: "Default Template",
+    username: "Elsa Jonson",
     avatar: "./assets/avatars/3.png",
-    src: "./assets/avatars/3.png",
+    src: "./assets/templates/default/desktop.png",
     color: "#615EFC",
   },
   {
-    title: "Office Studio",
+    title: "Bento Grid Template",
+    username: "Office Studio",
     avatar: "./assets/avatars/2.png",
-    src: "./assets/avatars/3.png",
+    src: "./assets/templates/bento/desktop.png",
     color: "#8C8C8C",
   },
   {
-    title: "Locomotive",
+    title: "Minimalistic Template",
+    username: "Locomotive",
     avatar: "./assets/avatars/7.png",
-    src: "./assets/avatars/3.png",
+    src: "./assets/templates/minimalistic/desktop.png",
     color: "#EFE8D3",
   },
   {
     title: "Silencio",
+    username: "Silencio",
     avatar: "./assets/avatars/9.png",
-    src: "./assets/avatars/3.png",
+    src: "./assets/templates/default/desktop.png",
     color: "#706D63",
   },
 ];
@@ -38,15 +42,16 @@ function Templates() {
     <section id="templates">
       <div className="container mx-auto w-full mt-10 mb-5">
         <h2 className="text-clamp-title items-center">
-          <span className="text-muted-foreground">Blog.</span>
+          <span className="text-muted-foreground">Templates.</span>
           <br />
-          Our very own magazine.
+          Craft Your Vision.
         </h2>
       </div>
-      <div className="w-full flex flex-col items-center justify-center">
+      <div className="container mx-auto w-full flex flex-col items-center justify-center">
         {projects.map((project, index) => (
           <Template
             index={index}
+            username={project.username}
             title={project.title}
             avatar={project.avatar}
             setModal={setModal}

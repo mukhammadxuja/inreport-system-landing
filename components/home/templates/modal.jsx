@@ -3,6 +3,7 @@ import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import gsap from "gsap";
+import Link from "next/link";
 
 const scaleAnimation = {
   initial: { scale: 0, x: "-50%", y: "-50%" },
@@ -68,53 +69,55 @@ export default function TemplateModal({ modal, projects }) {
 
   return (
     <>
-      <motion.div
-        ref={modalContainer}
-        variants={scaleAnimation}
-        initial="initial"
-        animate={active ? "enter" : "closed"}
-        className="h-[400px] w-[300px] absolute bg-white overflow-hidden pointer-events-none flex items-center justify-center rounded-3xl"
-      >
-        <div
-          style={{ top: index * -100 + "%" }}
-          className="h-full w-full rounded-xl absolute transition-[top] duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]"
+      <Link href="/signup">
+        <motion.div
+          ref={modalContainer}
+          variants={scaleAnimation}
+          initial="initial"
+          animate={active ? "enter" : "closed"}
+          className="h-[300px] w-[240px] lg:h-[400px] lg:w-[300px] absolute bg-white overflow-hidden pointer-events-none flex items-center justify-center rounded-3xl"
         >
-          {projects.map((project, index) => {
-            const { src, color } = project;
-            return (
-              <div
-                className="h-full w-full flex items-center justify-center px-4"
-                style={{ backgroundColor: color }}
-                key={`modal_${index}`}
-              >
-                <Image
-                  src={`${src}`}
-                  width={300}
-                  height={0}
-                  alt="image"
-                  className="h-auto rounded-2xl"
-                />
-              </div>
-            );
-          })}
-        </div>
-      </motion.div>
-      <motion.div
-        ref={cursor}
-        className="w-[80px] h-[80px] rounded-full bg-black bg-opacity-60 backdrop-blur-sm text-white absolute z-2 flex items-center justify-center text-[14px] font-light pointer-events-none"
-        variants={scaleAnimation}
-        initial="initial"
-        animate={active ? "enter" : "closed"}
-      ></motion.div>
-      <motion.div
-        ref={cursorLabel}
-        className="w-[80px] h-[80px] rounded-full bg-transparent text-white absolute z-2 flex items-center justify-center text-[14px] font-light pointer-events-none"
-        variants={scaleAnimation}
-        initial="initial"
-        animate={active ? "enter" : "closed"}
-      >
-        View
-      </motion.div>
+          <div
+            style={{ top: index * -100 + "%" }}
+            className="h-full w-full rounded-xl absolute transition-[top] duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]"
+          >
+            {projects.map((project, index) => {
+              const { src, color } = project;
+              return (
+                <div
+                  className="h-full w-full flex items-center justify-center px-4"
+                  style={{ backgroundColor: color }}
+                  key={`modal_${index}`}
+                >
+                  <Image
+                    src={`${src}`}
+                    width={300}
+                    height={0}
+                    alt="image"
+                    className="h-auto rounded-2xl"
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </motion.div>
+        <motion.div
+          ref={cursor}
+          className="w-[80px] h-[80px] rounded-full bg-black bg-opacity-60 backdrop-blur-sm text-white absolute z-2 flex items-center justify-center text-[14px] font-light pointer-events-none"
+          variants={scaleAnimation}
+          initial="initial"
+          animate={active ? "enter" : "closed"}
+        ></motion.div>
+        <motion.div
+          ref={cursorLabel}
+          className="w-[80px] h-[80px] rounded-full bg-transparent text-white absolute z-2 flex items-center justify-center text-[14px] font-light pointer-events-none"
+          variants={scaleAnimation}
+          initial="initial"
+          animate={active ? "enter" : "closed"}
+        >
+          View
+        </motion.div>
+      </Link>
     </>
   );
 }

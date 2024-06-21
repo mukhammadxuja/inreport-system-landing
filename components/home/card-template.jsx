@@ -34,7 +34,7 @@ const CardTemplate = ({
           rotate: imageRotate,
           top: `calc(-5vh + ${i * 15}px)`,
         }}
-        className={`flex flex-col relative !bg-accent -top-[25%] w-[30rem] h-[35rem] p-4 border-2 border-border rounded-lg transform origin-top`}
+        className={`flex flex-col relative !bg-accent -top-[25%] w-[20rem] h-[25rem] lg:w-[30rem] lg:h-[35rem] p-4 border-2 border-border rounded-lg transform origin-top`}
       >
         <div className={`w-full relative overflow-hidden rounded-lg h-full`}>
           <motion.div

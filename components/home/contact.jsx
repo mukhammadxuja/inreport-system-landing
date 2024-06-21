@@ -8,7 +8,7 @@ import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 
-function LastSection() {
+function Contact() {
   const ref = useRef(null);
   const isInView = useInView(ref);
 
@@ -17,9 +17,9 @@ function LastSection() {
   }, [isInView]);
 
   return (
-    <div id="contact" className="relative h-[70vh]">
+    <div id="contact" className="relative h-[50vh] lg:h-[70vh]">
       <div className="absolute z-20 flex flex-col justify-center top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 space-y-2">
-        <h2 className="text-clamp-title text-center">
+        <h2 className="text-clamp-title text-center whitespace-nowrap">
           How can we
           <span className="text-muted-foreground"> help?</span>
         </h2>
@@ -200,4 +200,4 @@ function LastSection() {
   );
 }
 
-export default LastSection;
+export default Contact;
