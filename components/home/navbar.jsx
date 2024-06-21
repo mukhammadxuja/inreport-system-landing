@@ -43,9 +43,9 @@ function HomeNavbar() {
             height={40}
             src="/logo.svg"
             alt="Logo"
-            className="h-5 w-5 transition-all group-hover:scale-110 opacity-90"
+            className="w-7 h-7 lg:h-5 lg:w-5 transition-all group-hover:scale-110 opacity-90"
           />
-          <span className="text-primary text-base font-semibold">Showcase</span>
+          <span className="hidden lg:block text-primary text-base font-semibold">Showcase</span>
         </Link>
         <div className="flex items-center gap-6">
           <ul className="hidden lg:flex items-center gap-4">
