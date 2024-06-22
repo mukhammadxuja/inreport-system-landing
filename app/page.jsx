@@ -92,16 +92,6 @@ export default function Home() {
       <HomeNavbar />
       <Header />
 
-      <section id="about" className="container mx-auto">
-        <Image
-          width={200}
-          height={200}
-          className="h-[70vh] lg:h-screen w-full rounded-lg object-cover bg-left"
-          src="/assets/showcase.webp"
-          alt="Showcase ai"
-        />
-      </section>
-
       <section ref={container} className="py-16 md:py-20">
         <div className="w-full">
           <h2 className="text-clamp-title items-center text-center">
