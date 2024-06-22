@@ -71,10 +71,7 @@ function HomeNavbar() {
           ) : (
             <div className="flex items-center gap-2">
               <Link href="/signin">
-                <Button
-                  variant="secondary"
-                  className="bg-white hover:bg-gray-50"
-                >
+                <Button variant="secondary">
                   Sign in
                 </Button>
               </Link>

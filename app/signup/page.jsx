@@ -91,7 +91,7 @@ function Auth() {
   return (
     <>
       {loading && <Loading />}
-      <div className="w-full max-w-2xl mx-auto flex flex-col items-center justify-center h-screen">
+      <div className="container w-full max-w-2xl mx-auto flex flex-col items-center justify-center h-screen">
         <Form {...formEmailPassword}>
           <form className="w-full space-y-4">
             <FormField
