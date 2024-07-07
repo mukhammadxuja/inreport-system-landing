@@ -6,9 +6,9 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Showcase Your Talent, Achieve Greatness!",
+  title: "Sales automation software.",
   description:
-    "Showcase Your Talent, Achieve Greatness! - Unleash your potential, connect with like-minded individuals, and gain the recognition you deserve. Join our vibrant community today!",
+    "Inreport - software for automating sales agents, sales department, cash register and warehouses. Wherever you are, Inreport shows you how your business is doing in real time and how much you're selling or making money right now.",
 };
 
 export default function RootLayout({ children }) {

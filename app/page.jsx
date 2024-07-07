@@ -5,15 +5,22 @@ import Header from "@/components/home/header";
 import Contact from "@/components/home/contact";
 import HomeNavbar from "@/components/home/navbar";
 import Templates from "@/components/home/templates/templates";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import Lenis from "lenis";
 import { useScroll } from "framer-motion";
 import CardTemplate from "@/components/home/card-template";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 import Test from "@/components/home/test";
 import Image from "next/image";
+import Link from "next/link";
+import { EllipsesIcon } from "@/components/icons";
+import HomeServices from "@/components/home/services";
+import Shapes from "@/components/home/floating-shape/shapes";
+import MobileNav from "@/components/home/mobile-nav";
+import Plus from "@/components/home/floating-shape/plus";
+import Price from "@/components/home/prices";
 
 const projects = [
   {
@@ -64,6 +71,7 @@ const projects = [
 ];
 
 export default function Home() {
+  const [openMobileNav, setOpenMobileNav] = useState(false);
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
@@ -88,11 +96,24 @@ export default function Home() {
   const sortedYears = years.sort((a, b) => b - a);
 
   return (
-    <main className="relative">
-      <HomeNavbar />
-      <Header />
+    <main>
+      <HomeNavbar
+        openMobileNav={openMobileNav}
+        setOpenMobileNav={setOpenMobileNav}
+      />
+      <div
+        onClick={() => setOpenMobileNav(false)}
+        className={`${
+          openMobileNav ? "opacity-100 z-[100]" : "opacity-0 -z-10"
+        } h-screen w-full fixed top-0 left-0 bg-black bg-opacity-50 border-b-2 backdrop-blur-sm duration-200`}
+      />
+      <MobileNav
+        openMobileNav={openMobileNav}
+        setOpenMobileNav={setOpenMobileNav}
+      />
 
-      <section ref={container} className="py-16 md:py-20">
+      <Header />
+      <section ref={container} className="pt-10 md:pt-16">
         <div className="w-full">
           <h2 className="text-clamp-title items-center text-center">
             <span className="text-muted-foreground">Testimonials.</span>
@@ -118,6 +139,8 @@ export default function Home() {
           );
         })}
       </section>
+      <HomeServices />
+      <Price />
       {/* <Cards /> */}
       <Templates />
       <Contact />

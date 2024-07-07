@@ -4,28 +4,25 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { useApiContext } from "@/context/api-context";
+import { EllipsesIcon } from "../icons";
 
-function HomeNavbar() {
+function HomeNavbar({ openMobileNav, setOpenMobileNav }) {
   const { user } = useApiContext();
 
   const [showNavbar, setShowNavbar] = useState(true);
-  let lastScrollY = 0;
 
-  const handleScroll = () => {
-    if (window.scrollY === 0) {
-      setShowNavbar(true);
-    } else if (window.scrollY > lastScrollY) {
+  const controlNavbar = () => {
+    if (window.scrollY > 200) {
       setShowNavbar(false);
     } else {
       setShowNavbar(true);
     }
-    lastScrollY = window.scrollY;
   };
-
+  // scroll animation
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", controlNavbar);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", controlNavbar);
     };
   }, []);
 
@@ -47,14 +44,14 @@ function HomeNavbar() {
             alt="Logo"
             className="w-7 h-7 lg:h-5 lg:w-5 transition-all group-hover:scale-110 opacity-90"
           />
-          <span className="hidden lg:block text-primary text-base font-semibold">
-            Showcase
+          <span className="hidden lg:block text-primary text-base font-bold">
+            Inreport
           </span>
         </Link>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-3 md:gap-6">
           <ul className="hidden lg:flex items-center gap-4">
             <li className="nav-link">
-              <a href="#templates">Templates</a>
+              <a href="#templates">Prices</a>
             </li>
             <li className="nav-link">Services</li>
             <li className="nav-link">
@@ -64,22 +61,20 @@ function HomeNavbar() {
               <a href="#contact">Contact</a>
             </li>
           </ul>
-          {user ? (
-            <Link href="/admin">
-              <Button className="">Dashboard</Button>
-            </Link>
-          ) : (
-            <div className="flex items-center gap-2">
-              <Link href="/signin">
-                <Button variant="secondary">
-                  Sign in
-                </Button>
-              </Link>
-              <Link href="/signup">
-                <Button>Sign up</Button>
-              </Link>
-            </div>
-          )}
+          <Link
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://app.inreport.uz/"
+          >
+            <Button>Sign up</Button>
+          </Link>
+          <Button
+            onClick={() => setOpenMobileNav(true)}
+            className="block -ml-3"
+            variant="outline"
+          >
+            <EllipsesIcon />
+          </Button>
         </div>
       </div>
     </nav>

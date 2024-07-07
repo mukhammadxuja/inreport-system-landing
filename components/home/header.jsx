@@ -42,16 +42,21 @@ function Header() {
         ref={textRef}
         className="inline-block mt-24 mb-10 md:mt-24 lg:mb-32 lg:mt-40 tracking-[1.12] leading-[-.005em] text-clamp font-bold"
       >
-        <span style={{ display: "inline-block" }}>Showcase.</span>
-        <span style={{ display: "inline-block" }}>Your.</span> <br />
-        <span style={{ display: "inline-block" }}>Talent.</span>
-        <span style={{ display: "inline-block" }}>Achieve.</span>
+        <span style={{ display: "inline-block" }}>Streamline.</span>
+        <span className="ml-2" style={{ display: "inline-block" }}>
+          Boost.
+        </span>{" "}
+        <br />
+        <span style={{ display: "inline-block" }}>Automate.</span>
+        <span className="ml-2" style={{ display: "inline-block" }}>
+          Maximize.
+        </span>
         <br />
         <span
           style={{ display: "inline-block" }}
           className="text-muted-foreground"
         >
-          Greatness.
+          Effortless.
         </span>
       </h1>
 
@@ -61,7 +66,7 @@ function Header() {
           width={200}
           height={200}
           className="h-[70vh] lg:h-screen w-full rounded-lg object-cover bg-left"
-          src="/assets/showcase.webp"
+          src="/landing.webp"
           alt="Showcase ai"
         />
       </section>
