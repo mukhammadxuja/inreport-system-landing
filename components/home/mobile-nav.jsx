@@ -6,7 +6,7 @@ import Image from "next/image";
 const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
   return (
     <div
-      className={`fixed top-0 right-0 z-[1000] w-full max-w-96 bg-[#171717] shadow-md h-screen px-5 py-4 duration-500 ${
+      className={`fixed top-0 right-0 z-[1000] w-full md:w-96 bg-[#171717] shadow-md h-screen px-5 py-4 duration-500 ${
         openMobileNav ? "translate-x-0" : "translate-x-full"
       }`}
     >
@@ -25,7 +25,7 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
             href="https://app.inreport.uz/"
           >
             <Button className="bg-white hover:bg-gray-100 text-black hover:text-black">
-              Sign up
+              Bepul demo
             </Button>
           </Link>
           <Button
@@ -39,22 +39,22 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
       </div>
       <div className="space-y-3 py-10">
         <ul className="flex flex-col -space-y-2.5">
-          <li className="nav-link uppercase text-secondary opacity-75 text-xs">
+          <li className="mb-2 uppercase text-secondary opacity-75 text-xs font-semibold">
             <span>Inreport</span>
           </li>
           <li className="nav-link text-white">
-            <a href="#templates">Prices</a>
+            <a href="#templates">Narxlar</a>
           </li>
-          <li className="nav-link text-white">Services</li>
+          <li className="nav-link text-white">Xizmatlar</li>
           <li className="nav-link text-white">
-            <a href="#about">About</a>
+            <a href="#about">Kompaniya</a>
           </li>
           <li className="nav-link text-white">
-            <a href="#contact">Contact</a>
+            <a href="#contact">Aloqa</a>
           </li>
         </ul>
         <ul className="flex flex-col -space-y-2.5">
-          <li className="nav-link uppercase text-secondary opacity-75 text-xs">
+          <li className="mb-2 uppercase text-secondary opacity-75 text-xs font-semibold mt-2">
             <span>Follow Us</span>
           </li>
           <li className="nav-link text-white">

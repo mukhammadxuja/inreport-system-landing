@@ -24,48 +24,57 @@ import Price from "@/components/home/prices";
 
 const projects = [
   {
-    title: "Matthias Leidinger",
+    title: `Savdo bo'limi nazorati`,
     description:
-      "Originally hailing from Austria, Berlin-based photographer Matthias Leindinger is a young creative brimming with talent and ideas.",
-    src: "/assets/avatars/5.png",
+      "Real vaqt rejimida sotish, ombor balanslari va buyurtmalarni qayta ishlashni kuzatib borish.",
+    src: "/assets/control.jpg",
     link: "https://www.ignant.com/2023/03/25/ad2186-matthias-leidingers-photographic-exploration-of-awe-and-wonder/",
     rotate: [3, -2],
     color: "#BBACAF",
   },
   {
-    title: "Clément Chapillon",
+    title: "Tovarlar hisob kitobi",
     description:
-      "This is a story on the border between reality and imaginary, about the contradictory feelings that the insularity of a rocky, arid, and wild territory provokes”—so French photographer Clément Chapillon describes his latest highly captivating project Les rochers fauves (French for ‘The tawny rocks’).",
-    src: "/assets/avatars/6.png",
+      "Inreport tovarlarni hisobga olish uchun professional dastur bo'lib, unda barcha tovarlar harakati kaftingizdagidek ko'rinadi, shuningdek, firibgarlik bilan bog'liq og'rilik va yo'qotishlarni oldini oladi.",
+    src: "/assets/account.jpg",
     link: "https://www.ignant.com/2022/09/30/clement-chapillon-questions-geographical-and-mental-isolation-with-les-rochers-fauves/",
     rotate: [-4, 2],
     color: "#977F6D",
   },
   {
-    title: "Zissou",
+    title: "Mijozlarni boshqarish",
     description:
-      "Though he views photography as a medium for storytelling, Zissou’s images don’t insist on a narrative. Both crisp and ethereal, they’re encoded with an ambiguity—a certain tension—that lets the viewer find their own story within them.",
-    src: "/assets/avatars/7.png",
+      "Inreport tizimida mijozlarning barcha ma'luotlarini qayd etishingiz, ularning afzalliklarini kuzatishingiz, sodiqlik dasturini yaratishingiz va shaxsiy takliflarni ishga tushurishingiz mumkin.",
+    src: "/assets/customer.webp",
     link: "https://www.ignant.com/2023//28/capturing-balis-many-faces-zissou-documents-the-sacred-and-the-mundane-of-a-fragile-island/",
     rotate: [10, -2],
     color: "#C2491D",
   },
   {
-    title: "Mathias Svold and Ulrik Hasemann",
+    title: "Hisobotlar va tahlillar",
     description:
-      "The coastlines of Denmark are documented in tonal colors in a pensive new series by Danish photographers Ulrik Hasemann and Mathias Svold; an ongoing project investigating how humans interact with and disrupt the Danish coast.",
-    src: "/assets/avatars/8.png",
+      "Hisobotlarni har qanday qurulmada ko'rib chiqish mumkin. Tayyor hisobotlar tovarlarni sotib olish, sotuvchilarni rag'batlanirish, sotishni ko'paytirish, marketing faoliyatini boshlash va shu kabi qarorlarni qabul qilishni osonlashtiradi.",
+    src: "/assets/statistic.png",
     link: "https://www.ignant.com/2019/03/13/a-photographic-series-depicting-the-uncertain-future-of-denmarks-treasured-coastlines/",
     rotate: [-7, 3],
     color: "#B62429",
   },
   {
-    title: "Mark Rammers",
+    title: "Savdo bo'yicha hisobotlar",
     description:
-      "Dutch photographer Mark Rammers has shared with IGNANT the first chapter of his latest photographic project, ‘all over again’—captured while in residency at Hektor, an old farm in Los Valles, Lanzarote. Titled ‘Beginnings’, the mesmerizing collection of images is a visual and meditative journey into the origins of regrets and the uncertainty of stepping into new unknowns.",
-    src: "/assets/avatars/9.png",
+      "Savdo hisoboti sizga kunlar, oylar va soatlar kesimida aks ettirilgan sotuvlar dinamikasi, sof foyda, operatsiyalar, almashtirishlar, qaytarishlar soni va boshqa foydali ma'lumotlarni ko'rsatadi",
+    src: "/assets/sell.jpg",
     link: "https://www.ignant.com/2023/04/12/mark-rammers-all-over-again-is-a-study-of-regret-and-the-willingness-to-move-forward/",
     rotate: [6, -2],
+    color: "#88A28D",
+  },
+  {
+    title: "Moliyani boshqarish",
+    description:
+      "Moliya boshqaruvi sizga daromad va xarajatlarni kuzatishda sizga shaffoflikni taminlaydi. O'g'irliklar vs hodimlarning noto'g'ri harakatlarini kamaytirish, shuningdek, do'konadgi xarajatlarni optimmallashtirish imkonini beradi",
+    src: "/assets/control.webp",
+    link: "https://www.ignant.com/2023/04/12/mark-rammers-all-over-again-is-a-study-of-regret-and-the-willingness-to-move-forward/",
+    rotate: [10, 0],
     color: "#88A28D",
   },
 ];

@@ -60,7 +60,7 @@ function HomeFooter() {
                   Effortless.
                 </span>
               </h1>
-              <div className="hidden lg:flex -mt-10">
+              <div className="hidden -mt-10">
                 <ul className="flex flex-col -space-y-2.5 pr-20">
                   <li className="nav-link uppercase text-secondary opacity-75 text-xs">
                     <span>Inreport</span>

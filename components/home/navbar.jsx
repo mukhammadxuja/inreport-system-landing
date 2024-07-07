@@ -51,14 +51,14 @@ function HomeNavbar({ openMobileNav, setOpenMobileNav }) {
         <div className="flex items-center gap-3 md:gap-6">
           <ul className="hidden lg:flex items-center gap-4">
             <li className="nav-link">
-              <a href="#templates">Prices</a>
+              <a href="#templates">Narxlar</a>
             </li>
-            <li className="nav-link">Services</li>
+            <li className="nav-link">Xizmatlar</li>
             <li className="nav-link">
-              <a href="#about">About</a>
+              <a href="#about">Kompaniya</a>
             </li>
             <li className="nav-link">
-              <a href="#contact">Contact</a>
+              <Link href="/contact">Aloqa</Link>
             </li>
           </ul>
           <Link
@@ -66,11 +66,11 @@ function HomeNavbar({ openMobileNav, setOpenMobileNav }) {
             rel="noopener noreferrer"
             href="https://app.inreport.uz/"
           >
-            <Button>Sign up</Button>
+            <Button>Bepul demo</Button>
           </Link>
           <Button
             onClick={() => setOpenMobileNav(true)}
-            className="block -ml-3"
+            className="block md:-ml-3"
             variant="outline"
           >
             <EllipsesIcon />

@@ -2,11 +2,15 @@
 import Image from "next/image";
 import { useTransform, motion, useScroll } from "framer-motion";
 import { useRef } from "react";
+import { Button } from "../ui/button";
+import { ArrowRight } from "lucide-react";
 
 const CardTemplate = ({
   i,
   src,
   color,
+  title,
+  description,
   progress,
   rotate,
   range,
@@ -34,16 +38,29 @@ const CardTemplate = ({
           rotate: imageRotate,
           top: `calc(-5vh + ${i * 15}px)`,
         }}
-        className={`flex flex-col relative !bg-accent -top-[25%] w-[20rem] h-[25rem] lg:w-[30rem] lg:h-[35rem] p-4 border-2 border-border rounded-lg transform origin-top`}
+        className={`max-w-5xl mx-auto flex flex-col relative !bg-accent -top-[25%] h-[25rem] lg:h-[35rem] px-5 py-7 lg:p-5 border-2 border-border rounded-lg transform origin-top`}
       >
-        <div className={`w-full relative overflow-hidden rounded-lg h-full`}>
+        <div className={`w-full relative overflow-hidden h-full`}>
           <motion.div
-            className={`inner w-full h-full`}
-            style={{ scale: imageScale }}
+            className={`grid grid-cols-1 md:grid-cols-2 items-center`}
+            // style={{ scale: imageScale }}
           >
+            <div className="h-full md:pl-5 lg:pl-10 max-w-[90%] space-y-3 md:space-y-4">
+              <h3 className="text-4xl font-bold max-w-80 leading-[2rem]">
+                {title}
+              </h3>
+              <p className="text-lg font-medium leading-[1.5rem]">
+                {description}
+              </p>
+              <Button className="flex items-center gap-1.5">
+                <span>Bepul sinash</span>
+                <ArrowRight className="w-3 h-3" />
+              </Button>
+            </div>
             <Image
-              className="object-cover w-full h-full"
-              fill
+              width={300}
+              height={300}
+              className="hidden lg:block w-full h-[22rem] lg:h-[33rem] rounded-lg object-cover"
               src={`${src}`}
               alt="image"
             />

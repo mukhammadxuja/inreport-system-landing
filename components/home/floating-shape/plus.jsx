@@ -19,17 +19,17 @@ import {
 import { EffectComposer, N8AO } from "@react-three/postprocessing";
 import { easing } from "maath";
 
-const accents = ["#4060ff", "#20ffa0", "#ff4060", "#ffcc00"];
+const accents = ["#b45309", "#b45309", "#ff4060", "#ffcc00"];
 const shuffle = (accent = 0) => [
   { color: "#444", roughness: 0.1 },
-  { color: "#444", roughness: 0.75 },
+  { color: "#f97316", roughness: 0.75, accent: true },
   { color: "#444", roughness: 0.75 },
   { color: "white", roughness: 0.1 },
   { color: "white", roughness: 0.75 },
+  { color: "#ca8a04", roughness: 0.1, accent: true },
+  { color: "#444", roughness: 0.75 },
   { color: "white", roughness: 0.1 },
-  { color: accents[accent], roughness: 0.1, accent: true },
-  { color: accents[accent], roughness: 0.75, accent: true },
-  { color: accents[accent], roughness: 0.1, accent: true },
+  { color: "#d97706", roughness: 0.1, accent: true },
 ];
 
 export default function Plus(props) {
@@ -44,7 +44,7 @@ export default function Plus(props) {
       camera={{ position: [0, 0, 15], fov: 17.5, near: 1, far: 20 }}
       {...props}
     >
-      <color attach="background" args={["#171717"]} />
+      <color attach="background" args={["#fff"]} />
       <ambientLight intensity={0.4} />
       <spotLight
         position={[10, 10, 10]}
@@ -181,7 +181,7 @@ function Model({ children, color = "white", roughness = 0, ...props }) {
       ref={ref}
       castShadow
       receiveShadow
-      scale={8}
+      scale={6}
       geometry={nodes.connector.geometry}
     >
       <meshStandardMaterial

@@ -1,7 +1,7 @@
 "use client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "../ui/badge";
-import { Check } from "lucide-react";
+import { Check, Lock } from "lucide-react";
 import { Button } from "../ui/button";
 
 function Price() {
@@ -18,7 +18,8 @@ function Price() {
         <div className="flex justify-center w-full">
           <TabsList className="w-fit">
             <TabsTrigger value="yearly">
-              <span>Yearly</span> <Badge className="ml-2 text-xs bg-white text-black">-10%</Badge>
+              <span>Yearly</span>{" "}
+              <Badge className="ml-2 text-xs bg-primary">-10%</Badge>
             </TabsTrigger>
             <TabsTrigger value="monthly">Monthly</TabsTrigger>
           </TabsList>
@@ -153,7 +154,7 @@ function Price() {
                 individuals or small teams
               </p>
               <span className="text-black text-xs">
-                $ <b className="text-5xl font-bold">10</b> / 30 days
+                $ <b className="text-5xl font-bold">18</b> / 30 days
               </span>
               <div className="mt-5 py-5 border-t space-y-1">
                 <span className="flex items-center gap-1">
@@ -192,6 +193,13 @@ function Price() {
           </div>
         </TabsContent>
       </Tabs>
+
+      <div className="flex items-center justify-center gap-2 text-white w-full mx-auto mt-5">
+        <Lock className="w-4 h-4" />
+        <small>
+          Secure payment. Cancel anytime. 100% money back guarantee.
+        </small>
+      </div>
     </section>
   );
 }
