@@ -12,7 +12,7 @@ function HomeServices() {
   return (
     <section className="h-screen mt-10 md:mt-16 lg:border-y-2 border-border items-center">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 items-center h-full">
-        <div className="h-full">{/* <Plus /> */}</div>
+        <div className="h-full"><Plus /></div>
         <div className="lg:border-l-2 border-border p-4 md:p-12 lg:px-16 space-y-4 md:space-y-6">
           <h2 className="text-5xl items-center">
             <span className="text-muted-foreground">Our services.</span>
