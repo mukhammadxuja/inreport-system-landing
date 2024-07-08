@@ -38,13 +38,13 @@ const CardTemplate = ({
           rotate: imageRotate,
           top: `calc(-5vh + ${i * 15}px)`,
         }}
-        className={`max-w-5xl mx-auto flex flex-col relative !bg-accent -top-[25%] h-[25rem] lg:h-[35rem] px-5 py-7 lg:p-5 border-2 border-border rounded-lg transform origin-top`}
+        className={`w-full max-w-5xl mx-4 md:mx-auto flex flex-col relative !bg-accent -top-[25%] h-[25rem] lg:h-[35rem] px-5 py-7 lg:p-5 border-2 border-border rounded-lg transform origin-top`}
       >
         <div className={`w-full relative overflow-hidden h-full`}>
           <motion.div
             className={`grid grid-cols-1 md:grid-cols-2 items-center`}
           >
-            <div className="h-full md:pl-5 lg:pl-10 max-w-[90%] space-y-3 md:space-y-4">
+            <div className="md:pl-5 lg:pl-10 max-w-[90%] space-y-3 md:space-y-4">
               <h3 className="text-4xl font-bold max-w-80 leading-[2rem]">
                 {title}
               </h3>
@@ -57,7 +57,7 @@ const CardTemplate = ({
               </Button>
             </div>
             <Image
-              style={{ scale: imageScale }}
+              // style={{ scale: imageScale }}
               width={300}
               height={300}
               className="hidden lg:block w-full h-[22rem] lg:h-[33rem] rounded-lg object-cover"

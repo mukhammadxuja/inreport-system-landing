@@ -21,6 +21,7 @@ import Shapes from "@/components/home/floating-shape/shapes";
 import MobileNav from "@/components/home/mobile-nav";
 import Plus from "@/components/home/floating-shape/plus";
 import Price from "@/components/home/prices";
+import Comments from "@/components/home/comments";
 
 const projects = [
   {
@@ -149,6 +150,7 @@ export default function Home() {
         })}
       </section>
       <HomeServices />
+      <Comments />
       <Price />
       {/* <Cards /> */}
       <Templates />

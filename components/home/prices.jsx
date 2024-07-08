@@ -26,7 +26,7 @@ function Price() {
         </div>
         <TabsContent value="yearly" className="bg-transparent h-fit">
           <div className="flex flex-col md:flex-row gap-4 md:gap-8 mx-auto w-full justify-center">
-            <div className="border-2 border-border rounded-lg w-80 p-4 bg-white h-fit">
+            <div className="border-2 border-border rounded-lg w-full max-w-80 p-4 bg-white h-fit">
               <h4 className="text-lg font-bold">Free</h4>
               <p className="text-xs text-muted-foreground mb-3">
                 Starter plan to create your first screens and try everything
@@ -63,7 +63,7 @@ function Price() {
               </div>
               <Button className="w-full">Get started</Button>
             </div>
-            <div className="border-2 border-border rounded-lg w-80 p-4 bg-white h-fit">
+            <div className="border-2 border-border rounded-lg w-full max-w-80 p-4 bg-white h-fit">
               <h4 className="text-lg font-bold">Professional</h4>
               <p className="text-xs text-muted-foreground mb-3">
                 More power with unlimited library of templates and patterns for
@@ -110,7 +110,7 @@ function Price() {
         </TabsContent>
         <TabsContent value="monthly" className="bg-transparent h-fit">
           <div className="flex flex-col md:flex-row gap-4 md:gap-8 mx-auto w-full justify-center">
-            <div className="border-2 border-border rounded-lg w-80 p-4 bg-white h-fit">
+            <div className="border-2 border-border rounded-lg w-full max-w-80 p-4 bg-white h-fit">
               <h4 className="text-lg font-bold">Free</h4>
               <p className="text-xs text-muted-foreground mb-3">
                 Starter plan to create your first screens and try everything
@@ -147,7 +147,7 @@ function Price() {
               </div>
               <Button className="w-full">Get started</Button>
             </div>
-            <div className="border-2 border-border rounded-lg w-80 p-4 bg-white h-fit">
+            <div className="border-2 border-border rounded-lg w-full max-w-80 p-4 bg-white h-fit">
               <h4 className="text-lg font-bold">Professional</h4>
               <p className="text-xs text-muted-foreground mb-3">
                 More power with unlimited library of templates and patterns for
@@ -194,7 +194,7 @@ function Price() {
         </TabsContent>
       </Tabs>
 
-      <div className="flex items-center justify-center gap-2 text-white w-full mx-auto mt-5">
+      <div className="flex items-center justify-center px-4 gap-2 text-white w-full mx-auto mt-5">
         <Lock className="w-4 h-4" />
         <small>
           Secure payment. Cancel anytime. 100% money back guarantee.
