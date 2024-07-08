@@ -1,5 +1,4 @@
 "use client";
-import Cards from "@/components/home/cards/cards";
 import HomeFooter from "@/components/home/footer";
 import Header from "@/components/home/header";
 import Contact from "@/components/home/contact";
@@ -12,16 +11,10 @@ import { useScroll } from "framer-motion";
 import CardTemplate from "@/components/home/card-template";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowUpIcon, X } from "lucide-react";
-import Test from "@/components/home/test";
-import Image from "next/image";
-import Link from "next/link";
-import { EllipsesIcon } from "@/components/icons";
 import HomeServices from "@/components/home/services";
-import Shapes from "@/components/home/floating-shape/shapes";
 import MobileNav from "@/components/home/mobile-nav";
-import Plus from "@/components/home/floating-shape/plus";
-import Price from "@/components/home/prices";
 import Comments from "@/components/home/comments";
+import Price from "@/components/home/prices";
 
 const projects = [
   {
@@ -123,7 +116,7 @@ export default function Home() {
       />
 
       <Header />
-      
+
       <section ref={container} className="pt-10 md:pt-16">
         <div className="w-full">
           <h2 className="text-clamp-title items-center text-center">

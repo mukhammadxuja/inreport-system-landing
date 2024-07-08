@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
-import { useApiContext } from "@/context/api-context";
 import { EllipsesIcon } from "../icons";
 
 function HomeNavbar({ openMobileNav, setOpenMobileNav }) {

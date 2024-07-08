@@ -34,8 +34,6 @@ const CardTemplate = ({
       <motion.div
         style={{
           backgroundColor: color,
-          scale: scale,
-          rotate: imageRotate,
           top: `calc(-5vh + ${i * 15}px)`,
         }}
         className={`w-full max-w-5xl mx-4 md:mx-auto flex flex-col relative !bg-accent -top-[25%] h-[25rem] lg:h-[35rem] px-5 py-7 lg:p-5 border-2 border-border rounded-lg transform origin-top`}

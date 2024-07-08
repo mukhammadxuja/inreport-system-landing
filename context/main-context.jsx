@@ -1,13 +1,4 @@
 "use client";
-import { auth, db } from "@/firebase/config";
-import { onAuthStateChanged } from "firebase/auth";
-import {
-  collection,
-  getDoc,
-  getDocs,
-  onSnapshot,
-  query,
-} from "firebase/firestore";
 import { createContext, useContext, useEffect, useState } from "react";
 
 export const MainContext = createContext({});
@@ -17,8 +8,6 @@ export const useMainContext = () => {
 };
 
 export const MainContextProvider = ({ children }) => {
-  const [users, setUsers] = useState([]);
-
   const [projectsVisibility, setProjectsVisibility] = useState(true);
 
   // Open something
@@ -96,33 +85,9 @@ export const MainContextProvider = ({ children }) => {
     rose: "bg-rose-500 duration-300",
   };
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const usersCollection = collection(db, "users");
-        const usersSnapshot = await getDocs(usersCollection);
-
-        // Extract users data from snapshot
-        const usersData = usersSnapshot.docs.map((doc) => doc.data());
-        setUsers(usersData);
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      }
-    };
-
-    fetchUsers();
-  }, []);
-
-  const getUser = async (username) => {
-    const userData = await users.find((item) => item.username === username);
-
-    return userData;
-  };
-
   const contextValue = {
     openSidebar,
     setOpenSidebar,
-    getUser,
     colorVariants,
     textColorVariants,
     textHighlightVariants,
