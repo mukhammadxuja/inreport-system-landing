@@ -11,7 +11,7 @@ import Lenis from "lenis";
 import { useScroll } from "framer-motion";
 import CardTemplate from "@/components/home/card-template";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, X } from "lucide-react";
+import { ArrowRight, ArrowUpIcon, X } from "lucide-react";
 import Test from "@/components/home/test";
 import Image from "next/image";
 import Link from "next/link";
@@ -123,15 +123,16 @@ export default function Home() {
       />
 
       <Header />
+      
       <section ref={container} className="pt-10 md:pt-16">
         <div className="w-full">
           <h2 className="text-clamp-title items-center text-center">
-            <span className="text-muted-foreground">Testimonials.</span>
+            <span className="text-muted-foreground">Barcha vazifalar</span>
             <br />
-            Our wall of love.
+            uchun bitta yechim.
           </h2>
           <Button className="flex items-center gap-1.5 mx-auto mt-5">
-            <span>View templates</span>
+            <span>Ko&apos;proq ma&apos;lumot</span>
             <ArrowRight className="w-3 h-3" />
           </Button>
         </div>

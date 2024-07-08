@@ -3,30 +3,30 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "../ui/badge";
 import { Check, Lock } from "lucide-react";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 function Price() {
   return (
     <section id="price" className="py-10 md:py-16 bg-[#171717]">
       <div className="w-full">
         <h2 className="text-clamp-title items-center text-center text-white">
-          <span className="text-muted-foreground">Pricing.</span>
+          <span className="text-muted-foreground">Narxlar.</span>
           <br />
-          Our wall of love.
+          Mos tarifni tanlang.
         </h2>
       </div>
       <Tabs defaultValue="yearly" className="w-full mt-5">
         <div className="flex justify-center w-full">
           <TabsList className="w-fit">
             <TabsTrigger value="yearly">
-              <span>Yearly</span>{" "}
-              <Badge className="ml-2 text-xs bg-primary">-10%</Badge>
+              <span>Yillik</span> <Badge className="ml-2 text-xs">-10%</Badge>
             </TabsTrigger>
-            <TabsTrigger value="monthly">Monthly</TabsTrigger>
+            <TabsTrigger value="monthly">Oylik</TabsTrigger>
           </TabsList>
         </div>
         <TabsContent value="yearly" className="bg-transparent h-fit">
           <div className="flex flex-col md:flex-row gap-4 md:gap-8 mx-auto w-full justify-center">
-            <div className="border-2 border-border rounded-lg w-full max-w-80 p-4 bg-white h-fit">
+            <div className="border-2 border-border rounded-lg w-full md:w-80 p-4 bg-white h-fit">
               <h4 className="text-lg font-bold">Free</h4>
               <p className="text-xs text-muted-foreground mb-3">
                 Starter plan to create your first screens and try everything
@@ -61,9 +61,11 @@ function Price() {
                   <small className=""> Occasional in-app advertisements.</small>
                 </span>
               </div>
-              <Button className="w-full">Get started</Button>
+              <Link href="/contact">
+                <Button className="w-full">Tarifni tanlash</Button>
+              </Link>
             </div>
-            <div className="border-2 border-border rounded-lg w-full max-w-80 p-4 bg-white h-fit">
+            <div className="border-2 border-border rounded-lg w-full md:w-80 p-4 bg-white h-fit">
               <h4 className="text-lg font-bold">Professional</h4>
               <p className="text-xs text-muted-foreground mb-3">
                 More power with unlimited library of templates and patterns for
@@ -104,13 +106,15 @@ function Price() {
                   </small>
                 </span>
               </div>
-              <Button className="w-full">Get started</Button>
+              <Link href="/contact">
+                <Button className="w-full">Tarifni tanlash</Button>
+              </Link>
             </div>
           </div>
         </TabsContent>
         <TabsContent value="monthly" className="bg-transparent h-fit">
           <div className="flex flex-col md:flex-row gap-4 md:gap-8 mx-auto w-full justify-center">
-            <div className="border-2 border-border rounded-lg w-full max-w-80 p-4 bg-white h-fit">
+            <div className="border-2 border-border rounded-lg w-full md:w-80 p-4 bg-white h-fit">
               <h4 className="text-lg font-bold">Free</h4>
               <p className="text-xs text-muted-foreground mb-3">
                 Starter plan to create your first screens and try everything
@@ -145,9 +149,11 @@ function Price() {
                   <small className=""> Occasional in-app advertisements.</small>
                 </span>
               </div>
-              <Button className="w-full">Get started</Button>
+              <Link href="/contact">
+                <Button className="w-full">Tarifni tanlash</Button>
+              </Link>
             </div>
-            <div className="border-2 border-border rounded-lg w-full max-w-80 p-4 bg-white h-fit">
+            <div className="border-2 border-border rounded-lg w-full md:w-80 p-4 bg-white h-fit">
               <h4 className="text-lg font-bold">Professional</h4>
               <p className="text-xs text-muted-foreground mb-3">
                 More power with unlimited library of templates and patterns for
@@ -188,7 +194,9 @@ function Price() {
                   </small>
                 </span>
               </div>
-              <Button className="w-full">Get started</Button>
+              <Link href="/contact">
+                <Button className="w-full">Tarifni tanlash</Button>
+              </Link>
             </div>
           </div>
         </TabsContent>
@@ -196,9 +204,7 @@ function Price() {
 
       <div className="flex items-center justify-center px-4 gap-2 text-white w-full mx-auto mt-5">
         <Lock className="w-4 h-4" />
-        <small>
-          Secure payment. Cancel anytime. 100% money back guarantee.
-        </small>
+        <small>Xavfsiz to&apos;lov tizimi. Istalgan vaqtda bekor qiling.</small>
       </div>
     </section>
   );

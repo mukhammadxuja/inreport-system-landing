@@ -58,17 +58,57 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
             <span>Follow Us</span>
           </li>
           <li className="nav-link text-white">
-            <a href="#templates">Instagram</a>
-          </li>
-          <li className="nav-link text-white">LInkedin</li>
-          <li className="nav-link text-white">
-            <a href="#about">Telegram</a>
+            <a href="#templates">99 557-52-30</a>
           </li>
           <li className="nav-link text-white">
-            <a href="#contact">Twitter</a>
+            <a target="_blank" rel="noopener noreferrer" href="#templates">
+              91 944-94-91
+            </a>
           </li>
           <li className="nav-link text-white">
-            <a href="#contact">Github</a>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.instagram.com/dotsoftuz/"
+            >
+              Instagram
+            </a>
+          </li>
+          <li className="nav-link text-white">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.linkedin.com/in/dot-soft-330800254/"
+            >
+              LInkedin
+            </a>
+          </li>
+          <li className="nav-link text-white">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://t.me/ubehruz"
+            >
+              Telegram
+            </a>
+          </li>
+          <li className="nav-link text-white">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://twitter.com/DotSoftUz"
+            >
+              Twitter
+            </a>
+          </li>
+          <li className="nav-link text-white">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://github.com/dotsoftuz/"
+            >
+              Github
+            </a>
           </li>
         </ul>
       </div>

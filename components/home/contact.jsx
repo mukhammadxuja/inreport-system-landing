@@ -22,11 +22,11 @@ function Contact() {
       {/* <Shapes /> */}
       <div className="absolute z-20 flex flex-col justify-center top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 space-y-2">
         <h2 className="text-clamp-title text-center whitespace-nowrap">
-          How can we
-          <span className="text-muted-foreground"> help?</span>
+          Biz bilan
+          <span className="text-muted-foreground"> bog&apos;laning</span>
         </h2>
         <div className="flex items-center gap-2 mx-auto">
-          <Input className="w-full md:w-72" placeholder="Send something" />
+          <Input className="w-full md:w-72" placeholder="Ma&apos;lumotlaringizni yozing." />
           <Button>
             <ArrowRight className="w-4 h-4" />
           </Button>

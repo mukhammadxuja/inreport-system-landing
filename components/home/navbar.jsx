@@ -7,29 +7,30 @@ import { useApiContext } from "@/context/api-context";
 import { EllipsesIcon } from "../icons";
 
 function HomeNavbar({ openMobileNav, setOpenMobileNav }) {
-  const { user } = useApiContext();
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollTop, setLastScrollTop] = useState(0);
 
-  const [showNavbar, setShowNavbar] = useState(true);
-
-  const controlNavbar = () => {
-    if (window.scrollY > 200) {
-      setShowNavbar(false);
-    } else {
-      setShowNavbar(true);
-    }
-  };
-  // scroll animation
   useEffect(() => {
-    window.addEventListener("scroll", controlNavbar);
-    return () => {
-      window.removeEventListener("scroll", controlNavbar);
+    const handleScroll = () => {
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollTop > lastScrollTop && scrollTop > 100) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+      setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);
     };
-  }, []);
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollTop]);
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 lg:px-4 py-4 bg-white bg-opacity-50 border-b-2 border-border backdrop-blur-sm z-50 transition-transform duration-500 ${
-        showNavbar ? "translate-y-0" : "-translate-y-full"
+        isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between">

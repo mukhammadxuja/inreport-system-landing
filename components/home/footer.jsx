@@ -48,16 +48,16 @@ function HomeFooter() {
                 ref={textRef}
                 className="inline-block mb-14 md:mb-20 mt-20 md:mt-32 text-white lg:mt-40 tracking-[1.12] leading-[-.005em] text-clamp-footer font-bold"
               >
-                <span style={{ display: "inline-block" }}>Streamline.</span>
-                <span style={{ display: "inline-block" }}>Boost.</span> <br />
-                <span style={{ display: "inline-block" }}>Automate.</span>
-                <span style={{ display: "inline-block" }}>Maximize.</span>
+                <span style={{ display: "inline-block" }}>Tovarlar.</span>
+                <span style={{ display: "inline-block" }}>Kassa.</span> <br />
+                <span style={{ display: "inline-block" }}>Mijozlar.</span>
+                <span style={{ display: "inline-block" }}>Moliya.</span>
                 <br />
                 <span
                   style={{ display: "inline-block" }}
                   className="text-gray-400"
                 >
-                  Effortless.
+                  Boshqaruvi.
                 </span>
               </h1>
               <div className="hidden -mt-10">
@@ -99,9 +99,9 @@ function HomeFooter() {
           </div>
           <div className="container mx-auto pb-4 flex items-center justify-between text-white">
             <small className="!opacity-60 text-sm">
-              Inreport — Sales automation software.
+              Inreport — Sotuvni avtomatlashtiruvchi dastur.
             </small>
-            <small className="!opacity-60 text-sm">Legal</small>
+            <small className="!opacity-60 text-sm">2024</small>
           </div>
         </div>
       </div>

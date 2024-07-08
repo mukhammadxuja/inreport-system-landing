@@ -29,7 +29,7 @@ const CardTemplate = ({
   return (
     <div
       ref={container}
-      className={`h-screen flex flex-col items-center justify-center sticky top-10`}
+      className={`h-[70vh] lg:h-screen flex flex-col items-center justify-center sticky top-10`}
     >
       <motion.div
         style={{
@@ -45,7 +45,7 @@ const CardTemplate = ({
             className={`grid grid-cols-1 md:grid-cols-2 items-center`}
           >
             <div className="md:pl-5 lg:pl-10 max-w-[90%] space-y-3 md:space-y-4">
-              <h3 className="text-4xl font-bold max-w-80 leading-[2rem]">
+              <h3 className="text-3xl md:text-4xl font-bold max-w-80 leading-[2rem]">
                 {title}
               </h3>
               <p className="text-lg font-medium leading-[1.5rem]">
