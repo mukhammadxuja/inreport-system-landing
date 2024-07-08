@@ -13,7 +13,8 @@ function HomeServices() {
     <section className="h-full lg:h-screen mt-10 md:mt-16 items-center">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 items-center h-full">
         <div className="hidden lg:block h-full">
-          <Plus />
+          <h4>3D commented</h4>
+          {/* <Plus /> */}
         </div>
         <div className="p-4 md:p-12 lg:px-16 space-y-4 md:space-y-6">
           <h2 className="text-clamp-title md:!text-5xl items-center">

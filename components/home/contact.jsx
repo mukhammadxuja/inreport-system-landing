@@ -19,7 +19,7 @@ function Contact() {
 
   return (
     <div id="contact" className="relative h-[50vh] lg:h-screen">
-      <Shapes />
+      {/* <Shapes /> */}
       <div className="absolute z-20 flex flex-col justify-center top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 space-y-2">
         <h2 className="text-clamp-title text-center whitespace-nowrap">
           Biz bilan
