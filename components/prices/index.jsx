@@ -202,8 +202,6 @@ function Price() {
           </div>
         </TabsContent>
       </Tabs>
-
-      <Compare />
     </div>
   );
 }
