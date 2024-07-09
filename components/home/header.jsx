@@ -16,8 +16,8 @@ function Header() {
       {
         y: 0,
         opacity: 1,
-        stagger: 0.3,
-        duration: 0.5,
+        stagger: 0.2,
+        duration: 0.2,
         ease: "power3.out",
       }
     );
@@ -32,7 +32,7 @@ function Header() {
         duration: 0.5,
         ease: "power3.out",
       },
-      "<+=2.5"
+      "<+=1.8"
     );
   }, []);
 

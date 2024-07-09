@@ -29,7 +29,7 @@ const CardTemplate = ({
   return (
     <div
       ref={container}
-      className={`h-[70vh] lg:h-screen flex flex-col items-center justify-center sticky top-10`}
+      className={`h-[90vh] lg:h-screen flex flex-col items-center justify-center sticky top-10`}
     >
       <motion.div
         style={{

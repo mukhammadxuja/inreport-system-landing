@@ -4,10 +4,11 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { EllipsesIcon } from "../icons";
+import { useMainContext } from "@/context/main-context";
 
-function HomeNavbar({ openMobileNav, setOpenMobileNav }) {
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollTop, setLastScrollTop] = useState(0);
+function HomeNavbar({ setOpenMobileNav }) {
+  const { isVisible, setIsVisible, lastScrollTop, setLastScrollTop } =
+    useMainContext();
 
   useEffect(() => {
     const handleScroll = () => {

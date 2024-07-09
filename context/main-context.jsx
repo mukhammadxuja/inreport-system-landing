@@ -9,9 +9,12 @@ export const useMainContext = () => {
 
 export const MainContextProvider = ({ children }) => {
   const [projectsVisibility, setProjectsVisibility] = useState(true);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollTop, setLastScrollTop] = useState(0);
 
   // Open something
   const [openSidebar, setOpenSidebar] = useState(false);
+  const [openMobileNav, setOpenMobileNav] = useState(false);
 
   // Resume
   const [size, setSize] = useState("normal");
@@ -93,6 +96,12 @@ export const MainContextProvider = ({ children }) => {
     textHighlightVariants,
     projectsVisibility,
     setProjectsVisibility,
+    openMobileNav,
+    setOpenMobileNav,
+    isVisible,
+    setIsVisible,
+    lastScrollTop,
+    setLastScrollTop,
 
     // resume i think I do not need anymore
     size,

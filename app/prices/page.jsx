@@ -1,13 +1,13 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
-import ContactForm from "@/components/contact/form";
 import HomeFooter from "@/components/home/footer";
 import HomeNavbar from "@/components/home/navbar";
 
 import Lenis from "lenis";
 import { useMainContext } from "@/context/main-context";
 import MobileNav from "@/components/home/mobile-nav";
+import Price from "@/components/prices";
 
 function ContactPage() {
   const { openMobileNav, setOpenMobileNav } = useMainContext();
@@ -15,6 +15,7 @@ function ContactPage() {
   useEffect(() => {
     const lenis = new Lenis({
       lerp: 0.15,
+      // wheelMultiplier: 1,
     });
 
     function raf(time) {
@@ -38,7 +39,7 @@ function ContactPage() {
         openMobileNav={openMobileNav}
         setOpenMobileNav={setOpenMobileNav}
       />
-      <ContactForm />
+      <Price />
       <HomeFooter />
     </div>
   );

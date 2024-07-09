@@ -15,6 +15,8 @@ import HomeServices from "@/components/home/services";
 import MobileNav from "@/components/home/mobile-nav";
 import Comments from "@/components/home/comments";
 import Price from "@/components/home/prices";
+import { useMainContext } from "@/context/main-context";
+import Clients from "@/components/home/clients";
 
 const projects = [
   {
@@ -62,27 +64,31 @@ const projects = [
     rotate: [6, -2],
     color: "#88A28D",
   },
-  {
-    title: "Moliyani boshqarish",
-    description:
-      "Moliya boshqaruvi sizga daromad va xarajatlarni kuzatishda sizga shaffoflikni taminlaydi. O'g'irliklar vs hodimlarning noto'g'ri harakatlarini kamaytirish, shuningdek, do'konadgi xarajatlarni optimmallashtirish imkonini beradi",
-    src: "/assets/control.webp",
-    link: "https://www.ignant.com/2023/04/12/mark-rammers-all-over-again-is-a-study-of-regret-and-the-willingness-to-move-forward/",
-    rotate: [10, 0],
-    color: "#88A28D",
-  },
+  // {
+  //   title: "Moliyani boshqarish",
+  //   description:
+  //     "Moliya boshqaruvi sizga daromad va xarajatlarni kuzatishda sizga shaffoflikni taminlaydi. O'g'irliklar vs hodimlarning noto'g'ri harakatlarini kamaytirish, shuningdek, do'konadgi xarajatlarni optimmallashtirish imkonini beradi",
+  //   src: "/assets/control.webp",
+  //   link: "https://www.ignant.com/2023/04/12/mark-rammers-all-over-again-is-a-study-of-regret-and-the-willingness-to-move-forward/",
+  //   rotate: [10, 0],
+  //   color: "#88A28D",
+  // },
 ];
 
 export default function Home() {
-  const [openMobileNav, setOpenMobileNav] = useState(false);
+  const { openMobileNav, setOpenMobileNav } = useMainContext();
   const container = useRef(null);
+
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start start", "end end"],
   });
 
   useEffect(() => {
-    const lenis = new Lenis();
+    const lenis = new Lenis({
+      lerp: 0.15,
+      // wheelMultiplier: 1,
+    });
 
     function raf(time) {
       lenis.raf(time);
@@ -92,18 +98,9 @@ export default function Home() {
     requestAnimationFrame(raf);
   }, []);
 
-  // Step 1: Define your initial array
-  const years = [2022, 2018, 2024];
-
-  // Step 2: Sort the array in descending order
-  const sortedYears = years.sort((a, b) => b - a);
-
   return (
     <main>
-      <HomeNavbar
-        openMobileNav={openMobileNav}
-        setOpenMobileNav={setOpenMobileNav}
-      />
+      <HomeNavbar setOpenMobileNav={setOpenMobileNav} />
       <div
         onClick={() => setOpenMobileNav(false)}
         className={`${
@@ -145,6 +142,7 @@ export default function Home() {
       </section>
       <HomeServices />
       <Comments />
+      <Clients />
       <Price />
       {/* <Cards /> */}
       <Templates />
