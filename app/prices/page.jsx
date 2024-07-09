@@ -11,6 +11,7 @@ import Price from "@/components/prices";
 import FAQ from "@/components/home/faq";
 import Contact from "@/components/home/contact";
 import Compare from "@/components/prices/compare";
+import Clients from "@/components/home/clients";
 
 function ContactPage() {
   const { openMobileNav, setOpenMobileNav } = useMainContext();
@@ -43,7 +44,8 @@ function ContactPage() {
         setOpenMobileNav={setOpenMobileNav}
       />
       <Price />
-      {/* <Compare /> */}
+      <Clients />
+      <Compare />
       <FAQ />
       <Contact />
       <HomeFooter />

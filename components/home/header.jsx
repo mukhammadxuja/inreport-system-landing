@@ -60,7 +60,7 @@ function Header() {
           ref={image}
           width={200}
           height={200}
-          className="h-[40vh] md:h-[60vh] lg:h-screen w-full rounded-lg object-cover bg-left"
+          className="h-[60vh] lg:h-screen w-full rounded-lg object-cover bg-left"
           src="/landing.webp"
           alt="Showcase ai"
         />

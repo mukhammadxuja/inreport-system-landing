@@ -18,8 +18,13 @@ function Contact() {
   }, [isInView]);
 
   return (
-    <div id="contact" className="relative h-[50vh] lg:h-[70vh]">
+    <div id="contact" className="relative h-[50vh] lg:h-screen">
       {/* <Shapes /> */}
+      <img
+        className="w-full h-full absolute top-0 left-0 z-10"
+        src="https://flow-computing.com/uploads/images/transforms/_xlargeWebp/1868/flow-bubble.webp"
+        alt="Contact image"
+      />
       <div className="absolute z-20 flex flex-col justify-center top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 space-y-2">
         <h2 className="text-clamp-title text-center whitespace-nowrap">
           Biz bilan

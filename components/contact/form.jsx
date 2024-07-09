@@ -6,13 +6,8 @@ import { ArrowRight } from "lucide-react";
 
 function ContactForm() {
   return (
-    <div className="container mx-auto h-auto w-full max-w-xl mb-10">
-      <h1 className="text-center w-full inline-block mt-24 mb-10 md:mt-24 tracking-[1.12] leading-[-.005em] text-clamp font-bold">
-        <span className="text-muted-foreground">Contact us.</span>
-        <br />
-        Your two cents.
-      </h1>
-      <div className="flex flex-col gap-2 md:gap-4 mt-5 md:mt-10">
+    <div className="h-auto w-full mb-10">
+      <div className="flex flex-col gap-2 md:gap-4">
         <div className="flex gap-2 md:gap-4">
           <Input
             className="hover:ring-2 hover:ring-yellow-600 md:h-12 active:ring-yellow-700"
@@ -38,7 +33,9 @@ function ContactForm() {
       </p>
       <div className="flex flex-col md:flex-row md:items-center md:justify-between w-full py-4 md:py-6">
         <div>
-          <p className="text-xs text-muted-foreground -mb-1">Hate contact forms?</p>
+          <p className="text-xs text-muted-foreground -mb-1">
+            Hate contact forms?
+          </p>
           <small className="text-xs text-primary font-medium cursor-pointer hover:underline">
             dotsoftuz@gmail.com
           </small>
