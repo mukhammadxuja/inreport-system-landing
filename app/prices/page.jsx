@@ -8,6 +8,8 @@ import Lenis from "lenis";
 import { useMainContext } from "@/context/main-context";
 import MobileNav from "@/components/home/mobile-nav";
 import Price from "@/components/prices";
+import FAQ from "@/components/home/faq";
+import Contact from "@/components/home/contact";
 
 function ContactPage() {
   const { openMobileNav, setOpenMobileNav } = useMainContext();
@@ -40,6 +42,8 @@ function ContactPage() {
         setOpenMobileNav={setOpenMobileNav}
       />
       <Price />
+      <FAQ />
+      <Contact />
       <HomeFooter />
     </div>
   );

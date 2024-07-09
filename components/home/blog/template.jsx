@@ -4,7 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-export default function Template({ index, username, title, avatar, setModal }) {
+export default function Template({
+  index,
+  username,
+  title,
+  paragraph,
+  avatar,
+  setModal,
+}) {
   return (
     <div
       onMouseEnter={() => {
@@ -13,7 +20,7 @@ export default function Template({ index, username, title, avatar, setModal }) {
       onMouseLeave={() => {
         setModal({ active: false, index });
       }}
-      className="grid grid-cols-1 lg:grid-cols-3 w-full items-start py-5 lg:py-[50px] border-t border-gray-300 cursor-pointer transition-all duration-200 last:border-b last:border-gray-300 hover:opacity-50 group"
+      className="grid grid-cols-1 lg:grid-cols-3 w-full items-start py-5 lg:py-8 border-t border-gray-300 cursor-pointer transition-all duration-200 last:border-b last:border-gray-300 hover:opacity-50 group"
     >
       <div className="hidden lg:flex items-center gap-2">
         <Image width={60} height={60} src={avatar} alt="user avatar" />
@@ -33,32 +40,9 @@ export default function Template({ index, username, title, avatar, setModal }) {
         <h5 className="tracking-[1.12] leading-[-.005em] text-clamp-footer font-bold w-full">
           {title}
         </h5>
-        <div className="flex flex-wrap items-center gap-2">
-          <Button
-            size="sm"
-            className="flex items-center gap-1 text-xs"
-            variant="outline"
-          >
-            Developer
-            <ChevronRight className="w-4 h-4" />
-          </Button>
-          <Button
-            size="sm"
-            className="flex items-center gap-1 text-xs"
-            variant="outline"
-          >
-            Designer
-            <ChevronRight className="w-4 h-4" />
-          </Button>
-          <Button
-            size="sm"
-            className="flex items-center gap-1 text-xs"
-            variant="outline"
-          >
-            Editor
-            <ChevronRight className="w-4 h-4" />
-          </Button>
-        </div>
+        <p className="text-lg text-foreground-secondary">
+          {paragraph}
+        </p>
       </div>
       <div className="hidden lg:block">
         <Link href="/signup">

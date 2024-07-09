@@ -7,28 +7,36 @@ import { ArrowRight } from "lucide-react";
 
 const projects = [
   {
-    title: "Default Template",
+    title: "Assortimentni boshqarish",
+    paragraph:
+      "Mijozlarning ma’lumotlar bazasini yaratishning eng muhim 4 sababi",
     username: "Elsa Jonson",
     avatar: "./assets/avatars/3.png",
     src: "./assets/templates/default/desktop.png",
     color: "#615EFC",
   },
   {
-    title: "Bento Grid Template",
+    title: "Assortimentni boshqarish",
+    paragraph:
+      "Mijozlarning ma’lumotlar bazasini yaratishning eng muhim 4 sababi",
     username: "Office Studio",
     avatar: "./assets/avatars/2.png",
     src: "./assets/templates/bento/desktop.png",
     color: "#8C8C8C",
   },
   {
-    title: "Minimalistic Template",
+    title: "Assortimentni boshqarish",
+    paragraph:
+      "Mijozlarning ma’lumotlar bazasini yaratishning eng muhim 4 sababi",
     username: "Locomotive",
     avatar: "./assets/avatars/7.png",
     src: "./assets/templates/minimalistic/desktop.png",
     color: "#EFE8D3",
   },
   {
-    title: "Silencio",
+    title: "Assortimentni boshqarish",
+    paragraph:
+      "Mijozlarning ma’lumotlar bazasini yaratishning eng muhim 4 sababi",
     username: "Silencio",
     avatar: "./assets/avatars/9.png",
     src: "./assets/templates/default/desktop.png",
@@ -36,13 +44,13 @@ const projects = [
   },
 ];
 
-function Templates() {
+function Blog() {
   const [modal, setModal] = useState({ active: false, index: 0 });
   return (
-    <section id="templates">
+    <section id="blog">
       <div className="container mx-auto w-full mt-10 mb-5">
         <h2 className="text-clamp-title items-center">
-          <span className="text-muted-foreground">Templates.</span>
+          <span className="text-muted-foreground">Blog.</span>
           <br />
           Craft Your Vision.
         </h2>
@@ -53,6 +61,7 @@ function Templates() {
             index={index}
             username={project.username}
             title={project.title}
+            paragraph={project.paragraph}
             avatar={project.avatar}
             setModal={setModal}
             key={index}
@@ -64,4 +73,4 @@ function Templates() {
   );
 }
 
-export default Templates;
+export default Blog;

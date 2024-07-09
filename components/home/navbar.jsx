@@ -52,7 +52,7 @@ function HomeNavbar({ setOpenMobileNav }) {
         <div className="flex items-center gap-3 md:gap-6">
           <ul className="hidden lg:flex items-center gap-4">
             <li className="nav-link">
-              <a href="#templates">Narxlar</a>
+              <a href="/prices">Narxlar</a>
             </li>
             <li className="nav-link">Xizmatlar</li>
             <li className="nav-link">

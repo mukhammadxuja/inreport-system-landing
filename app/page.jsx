@@ -3,7 +3,7 @@ import HomeFooter from "@/components/home/footer";
 import Header from "@/components/home/header";
 import Contact from "@/components/home/contact";
 import HomeNavbar from "@/components/home/navbar";
-import Templates from "@/components/home/templates/templates";
+import Blog from "@/components/home/blog/blogs";
 import { useEffect, useRef, useState } from "react";
 
 import Lenis from "lenis";
@@ -17,6 +17,7 @@ import Comments from "@/components/home/comments";
 import Price from "@/components/home/prices";
 import { useMainContext } from "@/context/main-context";
 import Clients from "@/components/home/clients";
+import FAQ from "@/components/home/faq";
 
 const projects = [
   {
@@ -145,7 +146,8 @@ export default function Home() {
       <Clients />
       <Price />
       {/* <Cards /> */}
-      <Templates />
+      <Blog />
+
       <Contact />
       <HomeFooter />
     </main>
