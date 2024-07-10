@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
@@ -21,7 +22,7 @@ function Contact() {
     <div id="contact" className="relative h-[50vh] lg:h-screen">
       {/* <Shapes /> */}
       <img
-        className="w-full h-full absolute top-0 left-0 z-10"
+        className="w-full h-full absolute top-0 left-0 z-10 object-cover"
         src="https://flow-computing.com/uploads/images/transforms/_xlargeWebp/1868/flow-bubble.webp"
         alt="Contact image"
       />

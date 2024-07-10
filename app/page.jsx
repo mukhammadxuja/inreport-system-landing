@@ -10,14 +10,21 @@ import Lenis from "lenis";
 import { useScroll } from "framer-motion";
 import CardTemplate from "@/components/home/card-template";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowUpIcon, X } from "lucide-react";
+import { ArrowRight, ArrowUpIcon, Phone, Send, X } from "lucide-react";
 import HomeServices from "@/components/home/services";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
 import MobileNav from "@/components/home/mobile-nav";
 import Comments from "@/components/home/comments";
 import Price from "@/components/home/prices";
 import { useMainContext } from "@/context/main-context";
 import Clients from "@/components/home/clients";
 import FAQ from "@/components/home/faq";
+import { Input } from "@/components/ui/input";
 
 const projects = [
   {
@@ -78,6 +85,7 @@ const projects = [
 
 export default function Home() {
   const { openMobileNav, setOpenMobileNav } = useMainContext();
+  const [openPhone, setOpenPhone] = useState(false);
   const container = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -114,6 +122,39 @@ export default function Home() {
       />
 
       <Header />
+
+      <div className="fixed bottom-10 right-[3rem] container z-50 duration-500 w-fit">
+        <Popover className="">
+          <PopoverTrigger className="inline-block bg-gray-200 p-1 rounded-full cursor-pointer shadow-md">
+            {openPhone ? (
+              <X
+                onClick={() => setOpenPhone(false)}
+                className="p-3 w-12 h-12 bg-border rounded-full"
+              />
+            ) : (
+              <Phone
+                onClick={() => setOpenPhone(true)}
+                className="p-3 w-12 h-12 bg-border rounded-full"
+              />
+            )}
+          </PopoverTrigger>
+          <PopoverContent
+            className="bg-accent border-2 border-border"
+            align="end"
+          >
+            <h6>Telefon raqamingiz</h6>
+            <p className="text-muted-foreground text-xs">
+              Menejerlarimi siz bilan tez orada bo&apos;g&apos;lanishadi.
+            </p>
+            <div className="flex items-center gap-2 mt-2">
+              <Input type="number" className="text-lg placeholder:text-primary font-semibold text-primary" placeholder="+998" />
+              <Button>
+                <Send className="w-4 h-4" />
+              </Button>
+            </div>
+          </PopoverContent>
+        </Popover>
+      </div>
 
       <section ref={container} className="pt-10 md:pt-16">
         <div className="w-full">

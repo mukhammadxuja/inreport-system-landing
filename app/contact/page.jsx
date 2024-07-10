@@ -9,7 +9,7 @@ import Lenis from "lenis";
 import { useMainContext } from "@/context/main-context";
 import MobileNav from "@/components/home/mobile-nav";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Cards from "./cards";
+import Cards from "../../components/contact/cards";
 
 function ContactPage() {
   const { openMobileNav, setOpenMobileNav } = useMainContext();
@@ -43,7 +43,11 @@ function ContactPage() {
         Your two cents.
       </h1>
 
-      <Tabs defaultValue="email" className="w-full max-w-xl mx-auto">
+      <div className="w-full container md:max-w-xl mx-auto">
+        <ContactForm />
+      </div>
+
+      {/* <Tabs defaultValue="email" className="w-full max-w-xl mx-auto">
         <div className="flex justify-center w-full">
           <TabsList className="w-fit">
             <TabsTrigger value="email">Email orqali</TabsTrigger>
@@ -56,7 +60,8 @@ function ContactPage() {
         <TabsContent value="call" className="bg-transparent h-fit">
           <Cards />
         </TabsContent>
-      </Tabs>
+      </Tabs> */}
+
       <MobileNav
         openMobileNav={openMobileNav}
         setOpenMobileNav={setOpenMobileNav}

@@ -44,7 +44,9 @@ function ContactPage() {
         setOpenMobileNav={setOpenMobileNav}
       />
       <Price />
-      <Clients />
+      <div className="my-10">
+        <Clients />
+      </div>
       <Compare />
       <FAQ />
       <Contact />

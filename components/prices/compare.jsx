@@ -23,7 +23,7 @@ function Compare() {
       </div>
 
       <div>
-        <div className="p-2 md:p-3 bg-border rounded-lg w-full">
+        <div className="p-2 md:p-3 bg-accent border-2 border-border rounded-lg w-full">
           <h4 className="text-xs md:text-base">
             Ask and get answers from your saved content
           </h4>
@@ -103,7 +103,7 @@ function Compare() {
       </div>
 
       <div>
-        <div className="p-2 md:p-3 bg-border rounded-lg w-full">
+        <div className="p-2 md:p-3 bg-accent border-2 border-border rounded-lg w-full">
           <h4 className="text-xs md:text-base">
             Ask and get answers from your saved content
           </h4>

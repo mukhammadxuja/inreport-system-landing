@@ -23,7 +23,7 @@ function Comments() {
         <div className="w-full mt-4 md:mt-0">
           <div className="py-2 md:py-4 lg:py-10 not-rich-text max-w-lg">
             <p className="py-4 text-xl md:text-2xl/7 font-semibold md:py-0">
-              <span className="bg-border">
+              <span className="bg-accent">
                 “Inreport bilan mijozlarimiz soni 20% ga oshdi. Ombor
                 logistikasi va mahsulotlarni import qilishga sarflanayotgan vaqt
                 sezilarli darajada qisqardi. Ushbu omillarning har biri tovar
@@ -178,7 +178,7 @@ function Comments() {
             </svg>
             <div>
               <p className="py-4 text-xl md:text-2xl/7 font-semibold md:py-0">
-                <span className="bg-border">
+                <span className="bg-accent">
                   “Mijozlarni boshqarishning ilg&apos;or funksionalligi,
                   hisob-kitoblarning aniqligi va ma&apos;lumotlar auditini
                   Inreport dasturining afzalliklari qatoriga kiritishimiz
@@ -198,7 +198,7 @@ function Comments() {
         <div className="w-full mt-4 md:mt-0">
           <div className="py-2 md:py-4 lg:py-10 not-rich-text max-w-lg">
             <p className="py-4 text-xl md:text-2xl/7 font-semibold md:py-0">
-              <span className="bg-border">
+              <span className="bg-accent">
                 Inreport yordamida tovarlar va mijozlar bilan ishlashni
                 to&apos;liq avtomatlashtirishga muvaffaq bo&apos;ldik, natijada
                 do&apos;konlarimiz soni uchtagacha ko&apos;paydi, savdo hajmi
@@ -303,7 +303,7 @@ function Comments() {
             </svg>
             <div className="">
               <p className="py-4 text-xl md:text-2xl/7 font-semibold md:py-0">
-                <span className="bg-border">
+                <span className="bg-accent">
                   Inreport&apos;ning qo&apos;llab-quvvatlash xizmatini juda ham
                   qadrlayman. Inreport bilan hamkorlikni boshlaganimizdan
                   so&apos;ng ish jarayonimiz osonlashdi.

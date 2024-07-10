@@ -10,7 +10,7 @@ import Compare from "./compare";
 
 function Price() {
   return (
-    <div className="h-auto w-full mb-10">
+    <div className="h-auto w-full pb-10 bg-accent">
       <h1 className="text-center w-full inline-block mt-24 mb-10 md:mt-24 tracking-[1.12] leading-[-.005em] text-clamp font-bold">
         <span className="text-muted-foreground">Narxlar.</span>
         <br />
