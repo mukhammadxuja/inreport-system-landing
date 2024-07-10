@@ -12,14 +12,14 @@ function HomeServices() {
   return (
     <section className="py-10 md:py-16 border-y-2 border-border mt-10 md:mt-16 items-center">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 items-center h-full">
-        <div className="hidden lg:block h-full">
-          <h2 className="text-clamp-title md:!text-5xl items-center">
+        <div className="mb-4 md:mb-0 h-full">
+          <h2 className="text-clamp-title md:!text-5xl">
             <span className="text-muted-foreground">Bepul.</span>
             <br />
             o&apos;rnatib beramiz. <br /> Sozlaymiz. O&apos;rgatamiz.
           </h2>
         </div>
-        <div className="px-4 md:px-12 lg:px-16 space-y-4">
+        <div className="md:px-12 lg:px-16 space-y-4">
           <p class="mb-8 text-xl md:text-2xl text-foreground-secondary">
             Bizning menejerlarimiz sizga tovarlarni kiritish, uskunalarni ulash,
             xodimlarni o&apos;rgatishda yordam beradi, shuningdek, 7 kunlik

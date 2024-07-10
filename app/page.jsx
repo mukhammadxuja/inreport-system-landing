@@ -139,7 +139,7 @@ export default function Home() {
             )}
           </PopoverTrigger>
           <PopoverContent
-            className="bg-accent border-2 border-border"
+            className="w-80 bg-accent border-2 border-border"
             align="end"
           >
             <h6>Telefon raqamingiz</h6>
@@ -147,7 +147,15 @@ export default function Home() {
               Menejerlarimi siz bilan tez orada bo&apos;g&apos;lanishadi.
             </p>
             <div className="flex items-center gap-2 mt-2">
-              <Input type="number" className="text-lg placeholder:text-primary font-semibold text-primary" placeholder="+998" />
+              <div className="relative">
+                <b className="absolute left-2.5 top-1/2 -translate-y-1/2 text-lg font-semibold text-primary">
+                  +998
+                </b>
+                <Input
+                  type="number"
+                  className="pl-16 text-lg placeholder:text-primary font-semibold text-primary"
+                />
+              </div>
               <Button>
                 <Send className="w-4 h-4" />
               </Button>
@@ -156,7 +164,7 @@ export default function Home() {
         </Popover>
       </div>
 
-      <section ref={container} className="pt-10 md:pt-16">
+      <section ref={container} className="container mx-auto pt-10 md:pt-16">
         <div className="w-full">
           <h2 className="text-clamp-title items-center text-center">
             <span className="text-muted-foreground">Barcha vazifalar</span>

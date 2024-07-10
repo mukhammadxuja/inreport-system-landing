@@ -30,7 +30,7 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
           </Link>
           <Button
             onClick={() => setOpenMobileNav(false)}
-            className="bg-transparent text-white"
+            className="bg-transparent text-white px-4"
             variant="outline"
           >
             <X className="w-4 h-4" />
@@ -43,14 +43,14 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
             <span>Inreport</span>
           </li>
           <li className="nav-link text-white">
-            <a href="#templates">Narxlar</a>
+            <a href="/prices">Narxlar</a>
           </li>
           <li className="nav-link text-white">Xizmatlar</li>
           <li className="nav-link text-white">
             <a href="#about">Kompaniya</a>
           </li>
           <li className="nav-link text-white">
-            <a href="#contact">Aloqa</a>
+            <a href="/contact">Aloqa</a>
           </li>
         </ul>
         <ul className="flex flex-col -space-y-2.5">

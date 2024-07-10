@@ -32,10 +32,15 @@ function Contact() {
           <span className="text-muted-foreground"> bog&apos;laning</span>
         </h2>
         <div className="flex items-center gap-2 mx-auto">
-          <Input
-            className="w-full md:w-72"
-            placeholder="Ma'lumotlaringizni yozing."
-          />
+          <div className="relative">
+            <b className="absolute left-2.5 top-1/2 -translate-y-1/2 text-lg font-semibold text-primary">
+              +998
+            </b>
+            <Input
+              type="number"
+              className="pl-16 h-11 md:w-72 text-lg placeholder:text-primary font-semibold text-primary"
+            />
+          </div>
           <Button>
             <ArrowRight className="w-4 h-4" />
           </Button>

@@ -3,8 +3,8 @@ import React from "react";
 
 function Clients() {
   return (
-    <div className="relative container x-auto overflow-hidden rounded-lg my-10">
-      <div class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
+    <div className="relative md:container mx-auto overflow-hidden rounded-lg my-10">
+      <div class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_50px,_black_calc(100%-100px),transparent_100%)] md:[mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
         <ul
           class="flex items-center justify-center md:justify-start [&_li]:mx-6 [&_img]:max-w-none animate-infinite-scroll"
           aria-hidden="true"

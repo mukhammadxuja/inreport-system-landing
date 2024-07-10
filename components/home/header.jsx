@@ -29,7 +29,7 @@ function Header() {
         y: 0,
         opacity: 1,
         stagger: 0.3,
-        duration: 0.5,
+        duration: 0.3,
         ease: "power3.out",
       },
       "<+=1.8"

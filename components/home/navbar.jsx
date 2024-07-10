@@ -49,7 +49,7 @@ function HomeNavbar({ setOpenMobileNav }) {
             Inreport
           </span>
         </Link>
-        <div className="flex items-center gap-3 md:gap-6">
+        <div className="flex items-center gap-2 md:gap-6">
           <ul className="hidden lg:flex items-center gap-4">
             <li className="nav-link">
               <a href="/prices">Narxlar</a>
@@ -71,7 +71,7 @@ function HomeNavbar({ setOpenMobileNav }) {
           </Link>
           <Button
             onClick={() => setOpenMobileNav(true)}
-            className="block md:-ml-3"
+            className="block md:-ml-3 px-4"
             variant="outline"
           >
             <EllipsesIcon />
