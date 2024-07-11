@@ -12,11 +12,6 @@ import CardTemplate from "@/components/home/card-template";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowUpIcon, Phone, Send, X } from "lucide-react";
 import HomeServices from "@/components/home/services";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 
 import MobileNav from "@/components/home/mobile-nav";
 import Comments from "@/components/home/comments";
@@ -25,6 +20,8 @@ import { useMainContext } from "@/context/main-context";
 import Clients from "@/components/home/clients";
 import FAQ from "@/components/home/faq";
 import { Input } from "@/components/ui/input";
+import About from "@/components/home/about";
+import Call from "@/components/home/call";
 
 const projects = [
   {
@@ -72,15 +69,15 @@ const projects = [
     rotate: [6, -2],
     color: "#88A28D",
   },
-  // {
-  //   title: "Moliyani boshqarish",
-  //   description:
-  //     "Moliya boshqaruvi sizga daromad va xarajatlarni kuzatishda sizga shaffoflikni taminlaydi. O'g'irliklar vs hodimlarning noto'g'ri harakatlarini kamaytirish, shuningdek, do'konadgi xarajatlarni optimmallashtirish imkonini beradi",
-  //   src: "/assets/control.webp",
-  //   link: "https://www.ignant.com/2023/04/12/mark-rammers-all-over-again-is-a-study-of-regret-and-the-willingness-to-move-forward/",
-  //   rotate: [10, 0],
-  //   color: "#88A28D",
-  // },
+  {
+    title: "Moliyani boshqarish",
+    description:
+      "Moliya boshqaruvi sizga daromad va xarajatlarni kuzatishda sizga shaffoflikni taminlaydi. O'g'irliklar vs hodimlarning noto'g'ri harakatlarini kamaytirish, shuningdek, do'konadgi xarajatlarni optimmallashtirish imkonini beradi",
+    src: "/assets/control.webp",
+    link: "https://www.ignant.com/2023/04/12/mark-rammers-all-over-again-is-a-study-of-regret-and-the-willingness-to-move-forward/",
+    rotate: [10, 0],
+    color: "#88A28D",
+  },
 ];
 
 export default function Home() {
@@ -122,49 +119,10 @@ export default function Home() {
       />
 
       <Header />
+      <Call />
+      <About data={projects} />
 
-      <div className="fixed bottom-10 right-[3rem] container z-50 duration-500 w-fit">
-        <Popover className="">
-          <PopoverTrigger className="inline-block bg-gray-200 p-1 rounded-full cursor-pointer shadow-md">
-            {openPhone ? (
-              <X
-                onClick={() => setOpenPhone(false)}
-                className="p-3 w-12 h-12 bg-border rounded-full"
-              />
-            ) : (
-              <Phone
-                onClick={() => setOpenPhone(true)}
-                className="p-3 w-12 h-12 bg-border rounded-full"
-              />
-            )}
-          </PopoverTrigger>
-          <PopoverContent
-            className="w-80 bg-accent border-2 border-border"
-            align="end"
-          >
-            <h6>Telefon raqamingiz</h6>
-            <p className="text-muted-foreground text-xs">
-              Menejerlarimi siz bilan tez orada bo&apos;g&apos;lanishadi.
-            </p>
-            <div className="flex items-center gap-2 mt-2">
-              <div className="relative">
-                <b className="absolute left-2.5 top-1/2 -translate-y-1/2 text-lg font-semibold text-primary">
-                  +998
-                </b>
-                <Input
-                  type="number"
-                  className="pl-16 text-lg placeholder:text-primary font-semibold text-primary"
-                />
-              </div>
-              <Button>
-                <Send className="w-4 h-4" />
-              </Button>
-            </div>
-          </PopoverContent>
-        </Popover>
-      </div>
-
-      <section ref={container} className="container mx-auto pt-10 md:pt-16">
+      {/* <section ref={container} className="container mx-auto pt-10 md:pt-16">
         <div className="w-full">
           <h2 className="text-clamp-title items-center text-center">
             <span className="text-muted-foreground">Barcha vazifalar</span>
@@ -189,7 +147,8 @@ export default function Home() {
             />
           );
         })}
-      </section>
+      </section> */}
+
       <HomeServices />
       <Comments />
       <Clients />

@@ -7,7 +7,7 @@ import { useEffect } from "react";
 
 function Comments() {
   return (
-    <section className="my-10 md:my-16">
+    <section>
       <div className="w-full mt-4 md:mt-0">
         <h2 className="text-clamp-title items-center text-center">
           <span className="text-muted-foreground">Sharhlar.</span>

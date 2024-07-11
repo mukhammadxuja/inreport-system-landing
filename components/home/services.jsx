@@ -10,7 +10,7 @@ import Plus from "./floating-shape/plus";
 
 function HomeServices() {
   return (
-    <section className="py-10 md:py-16 border-y-2 border-border mt-10 md:mt-16 items-center">
+    <section className="py-10 md:py-16 my-10 md:my-16 items-center bg-primary text-white">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 items-center h-full">
         <div className="mb-4 md:mb-0 h-full">
           <h2 className="text-clamp-title md:!text-5xl">
@@ -25,7 +25,7 @@ function HomeServices() {
             xodimlarni o&apos;rgatishda yordam beradi, shuningdek, 7 kunlik
             bepul foydalanish muddatini taqdim etadi!
           </p>
-          <Button variant="outline" className="flex items-center gap-1.5">
+          <Button variant="outline" className="flex items-center gap-1.5 text-primary">
             <span>Xizmatlarga o&apos;tish</span>
             <ArrowRight className="w-3 h-3" />
           </Button>

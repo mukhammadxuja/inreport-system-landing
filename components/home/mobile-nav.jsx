@@ -6,7 +6,7 @@ import Image from "next/image";
 const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
   return (
     <div
-      className={`fixed top-0 right-0 z-[1000] w-full md:w-96 bg-[#171717] shadow-md h-screen px-5 py-4 duration-300 ${
+      className={`fixed top-0 right-0 z-[1000] w-full md:w-96 bg-primary shadow-md h-screen px-5 py-4 duration-300 ${
         openMobileNav ? "translate-x-0" : "translate-x-full"
       }`}
     >

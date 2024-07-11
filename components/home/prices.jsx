@@ -7,7 +7,7 @@ import Link from "next/link";
 
 function Price() {
   return (
-    <section id="price" className="py-10 md:py-16 bg-[#171717]">
+    <section id="price" className="py-10 md:py-16 bg-primary">
       <div className="w-full">
         <h2 className="text-clamp-title items-center text-center text-white">
           <span className="text-muted-foreground">Narxlar.</span>
@@ -25,7 +25,7 @@ function Price() {
           </TabsList>
         </div>
         <TabsContent value="yearly" className="bg-transparent h-fit">
-          <div className="flex flex-col md:flex-row gap-4 md:gap-8 mx-auto w-full justify-center">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-6 mx-auto w-full justify-center">
             <div className="border-2 border-border rounded-lg w-full md:w-80 p-4 bg-white h-fit">
               <h4 className="text-lg font-bold">Free</h4>
               <p className="text-xs text-muted-foreground mb-3">
@@ -113,7 +113,7 @@ function Price() {
           </div>
         </TabsContent>
         <TabsContent value="monthly" className="bg-transparent h-fit">
-          <div className="flex flex-col md:flex-row gap-4 md:gap-8 mx-auto w-full justify-center">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-6 mx-auto w-full justify-center">
             <div className="border-2 border-border rounded-lg w-full md:w-80 p-4 bg-white h-fit">
               <h4 className="text-lg font-bold">Free</h4>
               <p className="text-xs text-muted-foreground mb-3">

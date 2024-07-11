@@ -30,7 +30,7 @@ function HomeFooter() {
   return (
     <footer
       ref={ref}
-      className="relative h-[50vh] md:h-[60vh] lg:h-[65vh] bg-[#171717] -mt-2"
+      className="relative h-[50vh] md:h-[60vh] lg:h-[65vh] bg-primary -mt-2"
       style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
     >
       <div>
