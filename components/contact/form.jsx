@@ -10,17 +10,17 @@ function ContactForm() {
       <div className="flex flex-col gap-2 md:gap-4">
         <div className="flex gap-2 md:gap-4">
           <Input
-            className="hover:ring-2 hover:ring-yellow-600 md:h-12 active:ring-yellow-700"
+            className="hover:ring-2 hover:ring-transparent md:h-12 active:ring-primary"
             placeholder="Name"
           />
           <Input
-            className="hover:ring-2 hover:ring-yellow-600 md:h-12 active:ring-yellow-700"
+            className="hover:ring-2 hover:ring-transparent md:h-12 active:ring-primary"
             placeholder="Email address"
           />
         </div>
         <Textarea
           rows={10}
-          className="hover:ring-2 hover:ring-yellow-600 md:h-12 active:ring-yellow-700"
+          className="hover:ring-2 hover:ring-transparent md:h-12 active:ring-primary"
           placeholder="Messages"
         />
       </div>
