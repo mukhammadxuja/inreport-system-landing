@@ -52,6 +52,8 @@ function Types() {
       "https://billz.io/_next/image?url=https%3A%2F%2Fbillzwp.billz.work%2Fwp-content%2Fuploads%2F2022%2F06%2F10.webp&w=1920&q=75",
     konselareya:
       "https://billz.io/_next/image?url=https%3A%2F%2Fbillzwp.billz.work%2Fwp-content%2Fuploads%2F2022%2F06%2F12.webp&w=1920&q=75",
+    shoes:
+      "https://billz.io/_next/image?url=https%3A%2F%2Fbillzwp.billz.work%2Fwp-content%2Fuploads%2F2022%2F06%2F12.webp&w=1920&q=75",
   };
 
   return (
