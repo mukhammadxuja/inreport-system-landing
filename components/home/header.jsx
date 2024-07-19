@@ -59,7 +59,7 @@ function Header() {
       <section ref={image} id="about">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4 pb-[48px]">
           <a
-            href="/projects/mishmash"
+            href="#"
             className="flex gap-4 rounded-xl p-2 hover:bg-accent"
           >
             <img
@@ -80,7 +80,7 @@ function Header() {
             </div>
           </a>
           <a
-            href="/projects/mishmash"
+            href="#"
             className="flex gap-4 rounded-xl p-2 hover:bg-accent"
           >
             <img
@@ -101,7 +101,7 @@ function Header() {
             </div>
           </a>
           <a
-            href="/projects/mishmash"
+            href="#"
             className="flex gap-4 rounded-xl p-2 hover:bg-accent"
           >
             <img
@@ -122,7 +122,7 @@ function Header() {
             </div>
           </a>
           <a
-            href="/projects/mishmash"
+            href="#"
             className="flex gap-4 rounded-xl p-2 hover:bg-accent"
           >
             <img

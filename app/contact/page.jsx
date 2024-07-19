@@ -10,6 +10,8 @@ import { useMainContext } from "@/context/main-context";
 import MobileNav from "@/components/home/mobile-nav";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Cards from "../../components/contact/cards";
+import { Button } from "@/components/ui/button";
+import { Send } from "lucide-react";
 
 function ContactPage() {
   const { openMobileNav, setOpenMobileNav } = useMainContext();
@@ -47,20 +49,24 @@ function ContactPage() {
         <ContactForm />
       </div>
 
-      {/* <Tabs defaultValue="email" className="w-full max-w-xl mx-auto">
-        <div className="flex justify-center w-full">
-          <TabsList className="w-fit">
-            <TabsTrigger value="email">Email orqali</TabsTrigger>
-            <TabsTrigger value="call">Qo&apos;ng&apos;iroq qilish</TabsTrigger>
-          </TabsList>
+      <div className="w-full container md:max-w-xl mx-auto">
+        <div className="flex items-center space-x-2 my-5">
+          <div className="w-full h-[2px] bg-border" />
+          <small>OR</small>
+          <div className="w-full h-[2px] bg-border" />
         </div>
-        <TabsContent value="email" className="bg-transparent h-fit">
-          <ContactForm />
-        </TabsContent>
-        <TabsContent value="call" className="bg-transparent h-fit">
-          <Cards />
-        </TabsContent>
-      </Tabs> */}
+
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://t.me/ubehruz"
+        >
+          <Button className="flex items-center gap-2 w-full bg-blue-50 hover:bg-blue-500 text-blue-500 hover:text-white mb-10">
+            <Send className="w-4 h-4" />
+            <span>Send via Telegram</span>
+          </Button>
+        </a>
+      </div>
 
       <MobileNav
         openMobileNav={openMobileNav}

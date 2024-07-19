@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 
 function ContactForm() {
   return (
-    <div className="h-auto w-full mb-10">
+    <div className="h-auto w-full">
       <div className="flex flex-col gap-2 md:gap-4">
         <div className="flex gap-2 md:gap-4">
           <Input

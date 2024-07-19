@@ -22,6 +22,7 @@ import FAQ from "@/components/home/faq";
 import { Input } from "@/components/ui/input";
 import About from "@/components/home/about";
 import Call from "@/components/home/call";
+import Types from "@/components/home/types";
 
 const projects = [
   {
@@ -153,6 +154,7 @@ export default function Home() {
       <Comments />
       <Clients />
       <Price />
+      <Types />
       {/* <Cards /> */}
       <Blog />
 
