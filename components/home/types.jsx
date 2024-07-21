@@ -2,7 +2,7 @@
 "use client";
 import React, { useState } from "react";
 import { Button } from "../ui/button";
-import { Send, Shirt, Store } from "lucide-react";
+import { ArrowRight, Send, Shirt, Store } from "lucide-react";
 
 const projects = [
   {
