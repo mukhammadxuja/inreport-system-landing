@@ -22,7 +22,7 @@ function HomeServices() {
         <div className="md:px-12 lg:px-16 space-y-4">
           <p class="mb-8 text-xl md:text-2xl text-foreground-secondary">
             Bizning menejerlarimiz sizga tovarlarni kiritish, uskunalarni ulash,
-            xodimlarni o&apos;rgatishda yordam beradi, shuningdek, 7 kunlik
+            xodimlarni o&apos;rgatishda yordam beradi, shuningdek, 10 kunlik
             bepul foydalanish muddatini taqdim etadi!
           </p>
           <Button variant="outline" className="flex items-center gap-1.5 text-primary">

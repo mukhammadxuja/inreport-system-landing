@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
+import { Button } from "../ui/button";
 
 function Header() {
   const textRef = useRef(null);
@@ -17,8 +18,8 @@ function Header() {
       {
         y: 0,
         opacity: 1,
-        stagger: 0.2,
-        duration: 0.2,
+        stagger: 0.05,
+        duration: 0.5,
         ease: "power3.out",
       }
     );
@@ -29,11 +30,11 @@ function Header() {
       {
         y: 0,
         opacity: 1,
-        stagger: 0.3,
-        duration: 0.3,
+        stagger: 0.1,
+        duration: 0.5,
         ease: "power3.out",
       },
-      "<+=1.8"
+      "<+=0.5"
     );
   }, []);
 
@@ -41,27 +42,40 @@ function Header() {
     <header className="container m-auto">
       <h1
         ref={textRef}
-        className="inline-block mt-24 mb-10 md:mt-24 lg:mb-24 lg:mt-36 tracking-[1.12] leading-[-.005em] text-clamp font-bold"
+        className="mt-24 mb-10 md:mt-24 lg:mb-24 lg:mt-36 tracking-[1.12] leading-[-.005em] text-clamp font-bold "
       >
-        <span style={{ display: "inline-block" }}>Tovarlar.</span>
-        <span style={{ display: "inline-block" }}>Kassa.</span> <br />
-        <span style={{ display: "inline-block" }}>Mijozlar.</span>
-        <span style={{ display: "inline-block" }}>Moliya.</span>
+        <span style={{ display: "inline-block" }} className="text-6xl">
+          Sotuvlaringizni&nbsp;
+        </span>
         <br />
         <span
           style={{ display: "inline-block" }}
-          className="text-muted-foreground"
+          className="text-6xl text-sky-500"
         >
-          Boshqaruvi.
+          INREPORT&nbsp;
+        </span>
+        <span style={{ display: "inline-block" }} className="text-6xl">
+          bilan&nbsp;
+        </span>
+        <span style={{ display: "inline-block" }} className="text-6xl">
+          boshqaring
+        </span>
+        <br />
+        <span
+          style={{ display: "inline-block" }}
+          className="text-muted-foreground text-4xl font-normal"
+        >
+          Savdo jarayonlaringizni soddalashtiring va daromadingizni oshiring
+        </span>
+        <span className="flex gap-2 mt-7">
+          <Button>Bepul boshlang</Button>
+          <Button variant="outline">Demoni ko'rish</Button>
         </span>
       </h1>
 
       <section ref={image} id="about">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4 pb-[48px]">
-          <a
-            href="#"
-            className="flex gap-4 rounded-xl p-2 hover:bg-accent"
-          >
+          <a href="#" className="flex gap-4 rounded-xl p-2 hover:bg-accent">
             <img
               className="h-18 w-24 flex-shrink-0 rounded-md bg-foreground-tertiary/10 object-cover object-center"
               src="https://a.storyblok.com/f/198185/1600x1200/d6164a5867/mishmash3.jpg/m/200x160/"
@@ -71,18 +85,14 @@ function Header() {
             />
             <div className="flex flex-col flex-1 space-y-1">
               <p className="line-clamp-2 max-w-sm text-lg/tight font-medium">
-                mishmash. Unique e-commerce design for the ultimate product
-                experience.
+                Sotuvlar Hisobotlari
               </p>
               <p className="text-sm text-foreground-secondary">
-                From our projects
+                Sotuvlaringizni real vaqt tahlillari bilan kuzating.
               </p>
             </div>
           </a>
-          <a
-            href="#"
-            className="flex gap-4 rounded-xl p-2 hover:bg-accent"
-          >
+          <a href="#" className="flex gap-4 rounded-xl p-2 hover:bg-accent">
             <img
               className="h-18 w-24 flex-shrink-0 rounded-md bg-foreground-tertiary/10 object-cover object-center"
               src="https://a.storyblok.com/f/198185/1600x1200/d6164a5867/mishmash3.jpg/m/200x160/"
@@ -92,18 +102,14 @@ function Header() {
             />
             <div className="flex flex-col flex-1 space-y-1">
               <p className="line-clamp-2 max-w-sm text-lg/tight font-medium">
-                mishmash. Unique e-commerce design for the ultimate product
-                experience.
+                Xodimlar Boshqaruvi
               </p>
               <p className="text-sm text-foreground-secondary">
-                From our projects
+                Jamoangizning ish faoliyatini samarali boshqaring.
               </p>
             </div>
           </a>
-          <a
-            href="#"
-            className="flex gap-4 rounded-xl p-2 hover:bg-accent"
-          >
+          <a href="#" className="flex gap-4 rounded-xl p-2 hover:bg-accent">
             <img
               className="h-18 w-24 flex-shrink-0 rounded-md bg-foreground-tertiary/10 object-cover object-center"
               src="https://a.storyblok.com/f/198185/1600x1200/d6164a5867/mishmash3.jpg/m/200x160/"
@@ -113,18 +119,14 @@ function Header() {
             />
             <div className="flex flex-col flex-1 space-y-1">
               <p className="line-clamp-2 max-w-sm text-lg/tight font-medium">
-                mishmash. Unique e-commerce design for the ultimate product
-                experience.
+                Avtomatlashtirish
               </p>
               <p className="text-sm text-foreground-secondary">
-                From our projects
+                Savdo jarayonlarini avtomatlashtiring va vaqtni tejang.
               </p>
             </div>
           </a>
-          <a
-            href="#"
-            className="flex gap-4 rounded-xl p-2 hover:bg-accent"
-          >
+          <a href="#" className="flex gap-4 rounded-xl p-2 hover:bg-accent">
             <img
               className="h-18 w-24 flex-shrink-0 rounded-md bg-foreground-tertiary/10 object-cover object-center"
               src="https://a.storyblok.com/f/198185/1600x1200/d6164a5867/mishmash3.jpg/m/200x160/"
@@ -134,11 +136,10 @@ function Header() {
             />
             <div className="flex flex-col flex-1 space-y-1">
               <p className="line-clamp-2 max-w-sm text-lg/tight font-medium">
-                mishmash. Unique e-commerce design for the ultimate product
-                experience.
+                Qo'llab-Quvvatlash
               </p>
               <p className="text-sm text-foreground-secondary">
-                From our projects
+                Doimiy yordam va qo'llab-quvvatlash xizmatlaridan foydalaning.
               </p>
             </div>
           </a>
