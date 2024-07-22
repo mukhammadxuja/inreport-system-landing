@@ -50,7 +50,7 @@ function Header() {
         <br />
         <span
           style={{ display: "inline-block" }}
-          className="text-6xl text-sky-500"
+          className="text-6xl text-[#4D97E2]"
         >
           INREPORT&nbsp;
         </span>
@@ -69,7 +69,7 @@ function Header() {
         </span>
         <span className="flex gap-2 mt-7">
           <Button>Bepul boshlang</Button>
-          <Button variant="outline">Demoni ko'rish</Button>
+          <Button variant="outline">Demoni ko&apos;lrish</Button>
         </span>
       </h1>
 
@@ -136,10 +136,11 @@ function Header() {
             />
             <div className="flex flex-col flex-1 space-y-1">
               <p className="line-clamp-2 max-w-sm text-lg/tight font-medium">
-                Qo'llab-Quvvatlash
+                Qo&apos;lllab-Quvvatlash
               </p>
               <p className="text-sm text-foreground-secondary">
-                Doimiy yordam va qo'llab-quvvatlash xizmatlaridan foydalaning.
+                Doimiy yordam va qo&apos;lllab-quvvatlash xizmatlaridan
+                foydalaning.
               </p>
             </div>
           </a>

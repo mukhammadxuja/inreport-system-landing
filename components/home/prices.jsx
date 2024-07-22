@@ -29,37 +29,37 @@ function Price() {
             <div className="border-2 border-border rounded-lg w-full md:w-80 p-4 bg-white h-fit">
               <h4 className="text-lg font-bold">Bepul (10 kun)</h4>
               <p className="text-xs text-muted-foreground mb-3">
-                INREPORT platformasini sinab ko'rish uchun 10 kunlik bepul reja.
-                Bu reja asosiy xususiyatlarni o'z ichiga oladi va
+                INREPORT platformasini sinab ko&apos;rish uchun 10 kunlik bepul
+                reja. Bu reja asosiy xususiyatlarni o&apos;z ichiga oladi va
                 foydalanuvchilarga dastur bilan tanishish imkoniyatini beradi.
               </p>
               <span className="text-black text-xs">
-                <b className="text-5xl font-bold">0</b> so'm / 10 kun
+                <b className="text-5xl font-bold">0</b> so&apos;m / 10 kun
               </span>
               <div className="mt-5 py-5 border-t space-y-1">
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
-                  <small className="">Sotuvlar bo'yicha hisobotlar</small>
+                  <small className="">Sotuvlar bo&apos;yicha hisobotlar</small>
                 </span>
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
                   <small className="">
-                  Mijozlar bilan aloqa boshqaruvi (CRM)
+                    Mijozlar bilan aloqa boshqaruvi (CRM)
                   </small>
-                </span>
-                <span className="flex items-center gap-1">
-                  <Check className="w-3 h-3" />
-                  <small className="">Savdo jarayonlarini avtomatlashtirish</small>
                 </span>
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
                   <small className="">
-                  Real vaqt tahlillari
+                    Savdo jarayonlarini avtomatlashtirish
                   </small>
                 </span>
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
-                  <small className="">Ma'lumotlar xavfsizligi</small>
+                  <small className="">Real vaqt tahlillari</small>
+                </span>
+                <span className="flex items-center gap-1">
+                  <Check className="w-3 h-3" />
+                  <small className="">Ma&apos;lumotlar xavfsizligi</small>
                 </span>
               </div>
               <Link href="/contact">
@@ -69,23 +69,22 @@ function Price() {
             <div className="border-2 border-border rounded-lg w-full md:w-80 p-4 bg-white h-fit">
               <h4 className="text-lg font-bold">Standart</h4>
               <p className="text-xs text-muted-foreground mb-3">
-              Ushbu reja kichik va o'rta bizneslar uchun mos bo'lib, barcha asosiy xususiyatlarni o'z ichiga oladi.
+                Ushbu reja kichik va o&apos;rta bizneslar uchun mos bo&apos;lib,
+                barcha asosiy xususiyatlarni o&apos;z ichiga oladi.
               </p>
               <span className="text-black text-xs">
-                <b className="text-3xl font-bold">2 500 000</b> so'm / 365 kun
+                <b className="text-3xl font-bold">2 500 000</b> so&apos;m / 365
+                kun
               </span>
               <div className="mt-5 py-5 border-t space-y-1">
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
-                  <small className="">
-                    {" "}
-                    Sotuvlar bo'yicha hisobotlar
-                  </small>
+                  <small className=""> Sotuvlar bo&apos;yicha hisobotlar</small>
                 </span>
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
                   <small className="">
-                  Mijozlar bilan aloqa boshqaruvi (CRM)
+                    Mijozlar bilan aloqa boshqaruvi (CRM)
                   </small>
                 </span>
                 <span className="flex items-center gap-1">
@@ -101,15 +100,11 @@ function Price() {
                 </span>
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
-                  <small className="">
-                  Ma'lumotlar xavfsizligi
-                  </small>
+                  <small className="">Ma&apos;lumotlar xavfsizligi</small>
                 </span>
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
-                  <small className="">
-                  Qo'llab-quvvatlash
-                  </small>
+                  <small className="">Qo&apos;llab-quvvatlash</small>
                 </span>
               </div>
               <Link href="/contact">
@@ -119,23 +114,23 @@ function Price() {
             <div className="border-2 border-border rounded-lg w-full md:w-80 p-4 bg-white h-fit">
               <h4 className="text-lg font-bold">Business</h4>
               <p className="text-xs text-muted-foreground mb-3">
-              Katta bizneslar uchun mo'ljallangan reja. Standart rejadagi barcha xususiyatlardan tashqari, qo'shimcha agent dasturidan foydalanish imkoniyatini beradi.
+                Katta bizneslar uchun mo&apos;ljallangan reja. Standart rejadagi
+                barcha xususiyatlardan tashqari, qo&apos;shimcha agent
+                dasturidan foydalanish imkoniyatini beradi.
               </p>
               <span className="text-black text-xs">
-              <b className="text-3xl font-bold">3 500 000</b> so'm / 365 kun
+                <b className="text-3xl font-bold">3 500 000</b> so&apos;m / 365
+                kun
               </span>
               <div className="mt-5 py-5 border-t space-y-1">
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
-                  <small className="">
-                    {" "}
-                    Sotuvlar bo'yicha hisobotlar
-                  </small>
+                  <small className=""> Sotuvlar bo&apos;yicha hisobotlar</small>
                 </span>
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
                   <small className="">
-                  Mijozlar bilan aloqa boshqaruvi (CRM)
+                    Mijozlar bilan aloqa boshqaruvi (CRM)
                   </small>
                 </span>
                 <span className="flex items-center gap-1">
@@ -151,21 +146,15 @@ function Price() {
                 </span>
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
-                  <small className="">
-                  Ma'lumotlar xavfsizligi
-                  </small>
+                  <small className="">Ma&apos;lumotlar xavfsizligi</small>
                 </span>
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
-                  <small className="">
-                  Qo'llab-quvvatlash
-                  </small>
+                  <small className="">Qo&apos;llab-quvvatlash</small>
                 </span>
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
-                  <small className="">
-                  Qo'shimcha agent dasturi
-                  </small>
+                  <small className="">Qo&apos;shimcha agent dasturi</small>
                 </span>
               </div>
               <Link href="/contact">
@@ -175,41 +164,41 @@ function Price() {
           </div>
         </TabsContent>
         <TabsContent value="monthly" className="bg-transparent h-fit">
-        <div className="flex flex-col md:flex-row gap-4 md:gap-6 mx-auto w-full justify-center">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-6 mx-auto w-full justify-center">
             <div className="border-2 border-border rounded-lg w-full md:w-80 p-4 bg-white h-fit">
               <h4 className="text-lg font-bold">Bepul (10 kun)</h4>
               <p className="text-xs text-muted-foreground mb-3">
-                INREPORT platformasini sinab ko'rish uchun 10 kunlik bepul reja.
-                Bu reja asosiy xususiyatlarni o'z ichiga oladi va
+                INREPORT platformasini sinab ko&apos;rish uchun 10 kunlik bepul
+                reja. Bu reja asosiy xususiyatlarni o&apos;z ichiga oladi va
                 foydalanuvchilarga dastur bilan tanishish imkoniyatini beradi.
               </p>
               <span className="text-black text-xs">
-                <b className="text-5xl font-bold">0</b> so'm / 10 kun
+                <b className="text-5xl font-bold">0</b> so&apos;m / 10 kun
               </span>
               <div className="mt-5 py-5 border-t space-y-1">
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
-                  <small className="">Sotuvlar bo'yicha hisobotlar</small>
+                  <small className="">Sotuvlar bo&apos;yicha hisobotlar</small>
                 </span>
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
                   <small className="">
-                  Mijozlar bilan aloqa boshqaruvi (CRM)
+                    Mijozlar bilan aloqa boshqaruvi (CRM)
                   </small>
-                </span>
-                <span className="flex items-center gap-1">
-                  <Check className="w-3 h-3" />
-                  <small className="">Savdo jarayonlarini avtomatlashtirish</small>
                 </span>
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
                   <small className="">
-                  Real vaqt tahlillari
+                    Savdo jarayonlarini avtomatlashtirish
                   </small>
                 </span>
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
-                  <small className="">Ma'lumotlar xavfsizligi</small>
+                  <small className="">Real vaqt tahlillari</small>
+                </span>
+                <span className="flex items-center gap-1">
+                  <Check className="w-3 h-3" />
+                  <small className="">Ma&apos;lumotlar xavfsizligi</small>
                 </span>
               </div>
               <Link href="/contact">
@@ -219,23 +208,21 @@ function Price() {
             <div className="border-2 border-border rounded-lg w-full md:w-80 p-4 bg-white h-fit">
               <h4 className="text-lg font-bold">Standart</h4>
               <p className="text-xs text-muted-foreground mb-3">
-              Ushbu reja kichik va o'rta bizneslar uchun mos bo'lib, barcha asosiy xususiyatlarni o'z ichiga oladi.
+                Ushbu reja kichik va o&apos;rta bizneslar uchun mos bo&apos;lib,
+                barcha asosiy xususiyatlarni o&apos;z ichiga oladi.
               </p>
               <span className="text-black text-xs">
-                <b className="text-3xl font-bold">300 000</b> so'm / 30 kun
+                <b className="text-3xl font-bold">300 000</b> so&apos;m / 30 kun
               </span>
               <div className="mt-5 py-5 border-t space-y-1">
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
-                  <small className="">
-                    {" "}
-                    Sotuvlar bo'yicha hisobotlar
-                  </small>
+                  <small className=""> Sotuvlar bo&apos;yicha hisobotlar</small>
                 </span>
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
                   <small className="">
-                  Mijozlar bilan aloqa boshqaruvi (CRM)
+                    Mijozlar bilan aloqa boshqaruvi (CRM)
                   </small>
                 </span>
                 <span className="flex items-center gap-1">
@@ -251,15 +238,11 @@ function Price() {
                 </span>
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
-                  <small className="">
-                  Ma'lumotlar xavfsizligi
-                  </small>
+                  <small className="">Ma&apos;lumotlar xavfsizligi</small>
                 </span>
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
-                  <small className="">
-                  Qo'llab-quvvatlash
-                  </small>
+                  <small className="">Qo&apos;llab-quvvatlash</small>
                 </span>
               </div>
               <Link href="/contact">
@@ -269,23 +252,22 @@ function Price() {
             <div className="border-2 border-border rounded-lg w-full md:w-80 p-4 bg-white h-fit">
               <h4 className="text-lg font-bold">Business</h4>
               <p className="text-xs text-muted-foreground mb-3">
-              Katta bizneslar uchun mo'ljallangan reja. Standart rejadagi barcha xususiyatlardan tashqari, qo'shimcha agent dasturidan foydalanish imkoniyatini beradi.
+                Katta bizneslar uchun mo&apos;ljallangan reja. Standart rejadagi
+                barcha xususiyatlardan tashqari, qo&apos;shimcha agent
+                dasturidan foydalanish imkoniyatini beradi.
               </p>
               <span className="text-black text-xs">
-              <b className="text-3xl font-bold">400 000</b> so'm / 30 kun
+                <b className="text-3xl font-bold">400 000</b> so&apos;m / 30 kun
               </span>
               <div className="mt-5 py-5 border-t space-y-1">
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
-                  <small className="">
-                    {" "}
-                    Sotuvlar bo'yicha hisobotlar
-                  </small>
+                  <small className=""> Sotuvlar bo&apos;yicha hisobotlar</small>
                 </span>
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
                   <small className="">
-                  Mijozlar bilan aloqa boshqaruvi (CRM)
+                    Mijozlar bilan aloqa boshqaruvi (CRM)
                   </small>
                 </span>
                 <span className="flex items-center gap-1">
@@ -301,21 +283,15 @@ function Price() {
                 </span>
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
-                  <small className="">
-                  Ma'lumotlar xavfsizligi
-                  </small>
+                  <small className="">Ma&apos;lumotlar xavfsizligi</small>
                 </span>
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
-                  <small className="">
-                  Qo'llab-quvvatlash
-                  </small>
+                  <small className="">Qo&apos;llab-quvvatlash</small>
                 </span>
                 <span className="flex items-center gap-1">
                   <Check className="w-3 h-3" />
-                  <small className="">
-                  Qo'shimcha agent dasturi
-                  </small>
+                  <small className="">Qo&apos;shimcha agent dasturi</small>
                 </span>
               </div>
               <Link href="/contact">
