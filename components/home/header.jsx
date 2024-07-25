@@ -44,32 +44,32 @@ function Header() {
         ref={textRef}
         className="mt-24 mb-10 md:mt-24 lg:mb-24 lg:mt-36 tracking-[1.12] leading-[-.005em] text-clamp font-bold "
       >
-        <span style={{ display: "inline-block" }} className="text-6xl">
+        <span style={{ display: "inline-block" }} className="text-4xl md:text-5xl lg:text-6xl">
           Sotuvlaringizni&nbsp;
         </span>
         <br />
         <span
           style={{ display: "inline-block" }}
-          className="text-6xl text-[#4D97E2]"
+          className="text-4xl md:text-5xl lg:text-6xl text-[#4D97E2]"
         >
           INREPORT&nbsp;
         </span>
-        <span style={{ display: "inline-block" }} className="text-6xl">
+        <span style={{ display: "inline-block" }} className="text-4xl md:text-5xl lg:text-6xl">
           bilan&nbsp;
         </span>
-        <span style={{ display: "inline-block" }} className="text-6xl">
+        <span style={{ display: "inline-block" }} className="text-4xl md:text-5xl lg:text-6xl">
           boshqaring
         </span>
         <br />
         <span
           style={{ display: "inline-block" }}
-          className="text-muted-foreground text-4xl font-normal"
+          className="text-muted-foreground text-xl md:text-2xl lg:text-4xl font-normal"
         >
           Savdo jarayonlaringizni soddalashtiring va daromadingizni oshiring
         </span>
         <span className="flex gap-2 mt-7">
           <Button>Bepul boshlang</Button>
-          <Button variant="outline">Demoni ko&apos;lrish</Button>
+          <Button variant="outline">Demoni ko&apos;rish</Button>
         </span>
       </h1>
 
