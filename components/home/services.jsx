@@ -7,10 +7,11 @@ import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
 import Shapes from "./floating-shape/shapes";
 import Plus from "./floating-shape/plus";
+import Link from "next/link";
 
 function HomeServices() {
   return (
-    <section className="mb-10 md:mb-16">
+    <section id="services" className="mb-10 md:mb-16">
       <section className="py-10 md:py-16 my-10 md:mt-16 md:mb-10 items-center bg-primary text-white">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 items-center h-full">
           <div className="mb-4 md:mb-0 h-full">
@@ -96,36 +97,36 @@ function HomeServices() {
               </span>
             </h5>
             <p className="text-base text-secondary-foreground">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Voluptatem, aut! Doloribus eligendi, a quas sunt praesentium
-              necessitatibus tempore eos quaerat, libero quibusdam accusantium
-              numquam illum cum at pariatur repellat error.
+              Tovarlaringizni hisoblash, ularni tizimga kiritish,
+              do&apos;koningizdagi jarayonlarni avtomatlashtirish va
+              xodimlaringizni o&apos;rgatishda yordam beramiz.
             </p>
           </div>
-          <Button className="flex items-center gap-2.5 w-full">
-            <span>Ko&apos;proq ma&apos;lumot olish</span>
-            <ArrowRight className="w-4 h-4" />
-          </Button>
+          <Link href="/contact">
+            <Button className="flex items-center gap-2.5 w-full">
+              <span>Ko&apos;proq ma&apos;lumot olish</span>
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+          </Link>
         </div>
         <div className="bg-accent shadow-sm p-6 rounded-lg h-[27rem] flex flex-col justify-between">
           <div className="space-y-2 md:space-y-5">
             <h5 className="tracking-[1.12] leading-[-.005em] text-clamp-footer font-bold w-full">
-              Hisob-kitoblaringizni{" "}
-              <span className="text-muted-foreground">
-                qog`ozda yuritasizmi?
-              </span>
+              Boshqa dasturdan <br />
+              <span className="text-muted-foreground">foydalanasizmi?</span>
             </h5>
             <p className="text-base text-secondary-foreground">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Voluptatem, aut! Doloribus eligendi, a quas sunt praesentium
-              necessitatibus tempore eos quaerat, libero quibusdam accusantium
-              numquam illum cum at pariatur repellat error.
+              Xizmatimizga ortiqcha yo&apos;qotishlarsiz ulanishda yordam
+              beramiz. Menejerlarimiz ma&apos;lumotlarni ko&apos;chirishda
+              yordam beradi va hisob-kitobni tartibga soladi.
             </p>
           </div>
-          <Button className="flex items-center gap-2.5 w-full">
-            <span>Ko&apos;proq ma&apos;lumot olish</span>
-            <ArrowRight className="w-4 h-4" />
-          </Button>
+          <Link href="/contact">
+            <Button className="flex items-center gap-2.5 w-full">
+              <span>Ko&apos;proq ma&apos;lumot olish</span>
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

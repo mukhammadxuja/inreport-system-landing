@@ -39,11 +39,11 @@ function ContactPage() {
         } h-screen w-full fixed top-0 left-0 bg-black bg-opacity-50 border-b-2 backdrop-blur-sm duration-200`}
       />
 
-      <h1 className="text-center w-full inline-block mt-24 mb-5 md:mt-24 tracking-[1.12] leading-[-.005em] text-clamp font-bold">
-        <span className="text-muted-foreground">Contact us.</span>
+      <h2 className="text-clamp-title items-center text-center text-primary pt-24 pb-10 md:pt-24 lg:pt-36">
+        <span className="text-muted-foreground">Aloqa.</span>
         <br />
-        Your two cents.
-      </h1>
+        Biz bilan bog&apos;laning.
+      </h2>
 
       <div className="w-full container md:max-w-xl mx-auto">
         <ContactForm />
@@ -63,7 +63,7 @@ function ContactPage() {
         >
           <Button className="flex items-center gap-2 w-full bg-blue-50 hover:bg-blue-500 text-blue-500 hover:text-white mb-10">
             <Send className="w-4 h-4" />
-            <span>Send via Telegram</span>
+            <span>Telegram orqali bog&apos;lanish</span>
           </Button>
         </a>
       </div>

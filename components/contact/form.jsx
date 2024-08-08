@@ -11,37 +11,34 @@ function ContactForm() {
         <div className="flex gap-2 md:gap-4">
           <Input
             className="hover:ring-2 hover:ring-transparent md:h-12 active:ring-primary"
-            placeholder="Name"
+            placeholder="Ismingiz"
           />
           <Input
             className="hover:ring-2 hover:ring-transparent md:h-12 active:ring-primary"
-            placeholder="Email address"
+            placeholder="Email manzil"
           />
         </div>
         <Textarea
           rows={10}
           className="hover:ring-2 hover:ring-transparent md:h-12 active:ring-primary"
-          placeholder="Messages"
+          placeholder="Bu yerga xabaringizni yozing."
         />
       </div>
       <p className="py-4 md:py-6 text-sm text-muted-foreground border-b-2 border-border">
-        We are a creativity hatchery, so go ahead and lay us a message with your
-        quirky idea or suggestion. We promise we won&apos;t judge for any typos
-        or auto-correct fails. Please note that we have specific forms for
-        project proposals and job applications, so refer to those if that&apos;s
-        your case.
+        Xabaringizni tez orada ko&apos;rib chiqib siz bilan bog&apos;lanishga
+        harakat qilamiz.
       </p>
       <div className="flex flex-col md:flex-row md:items-center md:justify-between w-full py-4 md:py-6">
         <div>
           <p className="text-xs text-muted-foreground -mb-1">
-            Hate contact forms?
+            Email manzilimiz.
           </p>
           <small className="text-xs text-primary font-medium cursor-pointer hover:underline">
             dotsoftuz@gmail.com
           </small>
         </div>
         <Button className="flex items-center gap-1.5 mt-3 md:mt-0">
-          <span>Send message</span>
+          <span>Yuborish</span>
           <ArrowRight className="w-3 h-3" />
         </Button>
       </div>

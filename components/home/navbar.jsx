@@ -54,9 +54,8 @@ function HomeNavbar({ setOpenMobileNav }) {
             <li className="nav-link">
               <a href="/prices">Narxlar</a>
             </li>
-            <li className="nav-link">Xizmatlar</li>
             <li className="nav-link">
-              <a href="#about">Kompaniya</a>
+              <a href="#services">Xizmatlar</a>
             </li>
             <li className="nav-link">
               <Link href="/contact">Aloqa</Link>

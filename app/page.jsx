@@ -106,7 +106,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main>
+    <main className="scroll-smooth">
       <HomeNavbar setOpenMobileNav={setOpenMobileNav} />
       <div
         onClick={() => setOpenMobileNav(false)}

@@ -45,10 +45,10 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
           <li className="nav-link text-white">
             <a href="/prices">Narxlar</a>
           </li>
-          <li className="nav-link text-white">Xizmatlar</li>
           <li className="nav-link text-white">
-            <a href="#about">Kompaniya</a>
+            <a href="#services">Xizmatlar</a>
           </li>
+          <li className="nav-link text-white"></li>
           <li className="nav-link text-white">
             <a href="/contact">Aloqa</a>
           </li>
