@@ -56,7 +56,7 @@ function Header() {
           style={{ display: "inline-block" }}
           className="text-4xl md:text-5xl lg:text-6xl"
         >
-          bilan&nbsp; boshqaring
+          bilan boshqaring
         </span>
         <br />
         <span
