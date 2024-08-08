@@ -7,11 +7,12 @@ import HomeNavbar from "@/components/home/navbar";
 import Lenis from "lenis";
 import { useMainContext } from "@/context/main-context";
 import MobileNav from "@/components/home/mobile-nav";
-import Price from "@/components/prices";
+import PriceSection from "@/components/prices";
 import FAQ from "@/components/home/faq";
 import Contact from "@/components/home/contact";
 import Compare from "@/components/prices/compare";
 import Clients from "@/components/home/clients";
+import Price from "@/components/home/prices";
 
 function ContactPage() {
   const { openMobileNav, setOpenMobileNav } = useMainContext();
@@ -43,7 +44,7 @@ function ContactPage() {
         openMobileNav={openMobileNav}
         setOpenMobileNav={setOpenMobileNav}
       />
-      <Price />
+      <Price pricePage={true} />
       <div className="my-10">
         <Clients />
       </div>

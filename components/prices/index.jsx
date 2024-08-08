@@ -3,207 +3,297 @@ import Link from "next/link";
 import { Check } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Badge } from "@/components/ui/badge";
-import Compare from "./compare";
 
-function Price() {
+function PriceSection() {
   return (
-    <div className="h-auto w-full pb-10 bg-accent">
-      <h1 className="text-center w-full inline-block mt-24 mb-10 md:mt-24 tracking-[1.12] leading-[-.005em] text-clamp font-bold">
-        <span className="text-muted-foreground">Narxlar.</span>
-        <br />
-        tarifni tanlang
-      </h1>
-      <Tabs defaultValue="yearly" className="w-full">
-        <div className="flex justify-center w-full">
-          <TabsList className="w-fit">
-            <TabsTrigger value="yearly">
-              <span>Yillik</span> <Badge className="ml-2 text-xs">-10%</Badge>
-            </TabsTrigger>
-            <TabsTrigger value="monthly">Oylik</TabsTrigger>
-          </TabsList>
+    <Tabs defaultValue="yearly" className="w-full mt-5">
+      <div className="flex justify-center w-full">
+        <TabsList className="w-fit">
+          <TabsTrigger value="yearly">
+            <span>Yillik</span>
+          </TabsTrigger>
+          <TabsTrigger value="monthly">Oylik</TabsTrigger>
+        </TabsList>
+      </div>
+      <TabsContent value="yearly" className="w-fit bg-transparent h-fit">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mx-auto w-full justify-center">
+          <div className="border-2 border-border rounded-lg w-full lg:w-80 p-4 bg-white h-fit">
+            <h4 className="text-lg font-bold">Bepul (10 kun)</h4>
+            <p className="text-xs text-muted-foreground mb-3">
+              INREPORT platformasini sinab ko&apos;rish uchun 10 kunlik bepul
+              reja. Bu reja asosiy xususiyatlarni o&apos;z ichiga oladi va
+              foydalanuvchilarga dastur bilan tanishish imkoniyatini beradi.
+            </p>
+            <span className="text-black text-xs">
+              <b className="text-3xl font-bold">0</b> so&apos;m / 10 kun
+            </span>
+            <div className="mt-5 py-5 border-t space-y-1">
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">Sotuvlar bo&apos;yicha hisobotlar</small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">
+                  Mijozlar bilan aloqa boshqaruvi (CRM)
+                </small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">
+                  Savdo jarayonlarini avtomatlashtirish
+                </small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">Real vaqt tahlillari</small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">Ma&apos;lumotlar xavfsizligi</small>
+              </span>
+            </div>
+            <Link href="/contact">
+              <Button className="w-full">Tarifni tanlash</Button>
+            </Link>
+          </div>
+          <div className="border-2 border-border rounded-lg w-full lg:w-80 p-4 bg-white h-fit">
+            <h4 className="text-lg font-bold">Standart</h4>
+            <p className="text-xs text-muted-foreground mb-3">
+              Ushbu reja kichik va o&apos;rta bizneslar uchun mos bo&apos;lib,
+              barcha asosiy xususiyatlarni o&apos;z ichiga oladi.
+            </p>
+            <span className="text-black text-xs">
+              <b className="text-3xl font-bold">2 500 000</b> so&apos;m / 365
+              kun
+            </span>
+            <div className="mt-5 py-5 border-t space-y-1">
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className=""> Sotuvlar bo&apos;yicha hisobotlar</small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">
+                  Mijozlar bilan aloqa boshqaruvi (CRM)
+                </small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">
+                  {" "}
+                  Savdo jarayonlarini avtomatlashtirish
+                </small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className=""> Real vaqt tahlillari</small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">Ma&apos;lumotlar xavfsizligi</small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">Qo&apos;llab-quvvatlash</small>
+              </span>
+            </div>
+            <Link href="/contact">
+              <Button className="w-full">Tarifni tanlash</Button>
+            </Link>
+          </div>
+          <div className="border-2 border-border rounded-lg w-full lg:w-80 p-4 bg-white h-fit">
+            <h4 className="text-lg font-bold">Business</h4>
+            <p className="text-xs text-muted-foreground mb-3">
+              Katta bizneslar uchun mo&apos;ljallangan reja. Standart rejadagi
+              barcha xususiyatlardan tashqari, qo&apos;shimcha agent dasturidan
+              foydalanish imkoniyatini beradi.
+            </p>
+            <span className="text-black text-xs">
+              <b className="text-3xl font-bold">3 500 000</b> so&apos;m / 365
+              kun
+            </span>
+            <div className="mt-5 py-5 border-t space-y-1">
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className=""> Sotuvlar bo&apos;yicha hisobotlar</small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">
+                  Mijozlar bilan aloqa boshqaruvi (CRM)
+                </small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">
+                  {" "}
+                  Savdo jarayonlarini avtomatlashtirish
+                </small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className=""> Real vaqt tahlillari</small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">Ma&apos;lumotlar xavfsizligi</small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">Qo&apos;llab-quvvatlash</small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">Qo&apos;shimcha agent dasturi</small>
+              </span>
+            </div>
+            <Link href="/contact">
+              <Button className="w-full">Tarifni tanlash</Button>
+            </Link>
+          </div>
         </div>
-        <TabsContent value="yearly" className="bg-transparent h-fit">
-          <div className="flex flex-col md:flex-row gap-4 md:gap-8 mx-auto w-full justify-center">
-            <div className="border-2 border-border rounded-lg w-full md:w-80 p-4 bg-white h-fit">
-              <h4 className="text-lg font-bold">Free</h4>
-              <p className="text-xs text-muted-foreground mb-3">
-                Starter plan to create your first screens and try everything
-                Stage has to offer
-              </p>
-              <span className="text-black text-xs">
-                $ <b className="text-5xl font-bold">0</b> / 7 days
+      </TabsContent>
+      <TabsContent value="monthly" className="w-fit bg-transparent h-fit">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mx-auto w-full justify-center">
+          <div className="border-2 border-border rounded-lg w-full lg:w-80 p-4 bg-white h-fit">
+            <h4 className="text-lg font-bold">Bepul (10 kun)</h4>
+            <p className="text-xs text-muted-foreground mb-3">
+              INREPORT platformasini sinab ko&apos;rish uchun 10 kunlik bepul
+              reja. Bu reja asosiy xususiyatlarni o&apos;z ichiga oladi va
+              foydalanuvchilarga dastur bilan tanishish imkoniyatini beradi.
+            </p>
+            <span className="text-black text-xs">
+              <b className="text-3xl font-bold">0</b> so&apos;m / 10 kun
+            </span>
+            <div className="mt-5 py-5 border-t space-y-1">
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">Sotuvlar bo&apos;yicha hisobotlar</small>
               </span>
-              <div className="mt-5 py-5 border-t space-y-1">
-                <span className="flex items-center gap-1">
-                  <Check className="w-3 h-3" />
-                  <small className="">Create with rich text formatting.</small>
-                </span>
-                <span className="flex items-center gap-1">
-                  <Check className="w-3 h-3" />
-                  <small className="">
-                    Use tags to organize and find notes easily.
-                  </small>
-                </span>
-                <span className="flex items-center gap-1">
-                  <Check className="w-3 h-3" />
-                  <small className="">Sync notes across up to 2 devices</small>
-                </span>
-                <span className="flex items-center gap-1">
-                  <Check className="w-3 h-3" />
-                  <small className="">
-                    500MB of cloud storage for all your notes.
-                  </small>
-                </span>
-                <span className="flex items-center gap-1">
-                  <Check className="w-3 h-3" />
-                  <small className=""> Occasional in-app advertisements.</small>
-                </span>
-              </div>
-              <Link href="/contact">
-                <Button className="w-full">Tarifni tanlash</Button>
-              </Link>
-            </div>
-            <div className="border-2 border-border rounded-lg w-full md:w-80 p-4 bg-white h-fit">
-              <h4 className="text-lg font-bold">Professional</h4>
-              <p className="text-xs text-muted-foreground mb-3">
-                More power with unlimited library of templates and patterns for
-                individuals or small teams
-              </p>
-              <span className="text-black text-xs">
-                $ <b className="text-5xl font-bold">199</b> / 365 days
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">
+                  Mijozlar bilan aloqa boshqaruvi (CRM)
+                </small>
               </span>
-              <div className="mt-5 py-5 border-t space-y-1">
-                <span className="flex items-center gap-1">
-                  <Check className="w-3 h-3" />
-                  <small className="">
-                    {" "}
-                    Sync notes across unlimited devices.
-                  </small>
-                </span>
-                <span className="flex items-center gap-1">
-                  <Check className="w-3 h-3" />
-                  <small className="">
-                    Access and edit your notes offline.
-                  </small>
-                </span>
-                <span className="flex items-center gap-1">
-                  <Check className="w-3 h-3" />
-                  <small className="">
-                    {" "}
-                    Access to 24/7 priority customer support.
-                  </small>
-                </span>
-                <span className="flex items-center gap-1">
-                  <Check className="w-3 h-3" />
-                  <small className=""> Enjoy an ad-free experience.</small>
-                </span>
-                <span className="flex items-center gap-1">
-                  <Check className="w-3 h-3" />
-                  <small className="">
-                    Personalize your interface with custom themes.
-                  </small>
-                </span>
-              </div>
-              <Link href="/contact">
-                <Button className="w-full">Tarifni tanlash</Button>
-              </Link>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">
+                  Savdo jarayonlarini avtomatlashtirish
+                </small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">Real vaqt tahlillari</small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">Ma&apos;lumotlar xavfsizligi</small>
+              </span>
             </div>
+            <Link href="/contact">
+              <Button className="w-full">Tarifni tanlash</Button>
+            </Link>
           </div>
-        </TabsContent>
-        <TabsContent value="monthly" className="bg-transparent h-fit">
-          <div className="flex flex-col md:flex-row gap-4 md:gap-8 mx-auto w-full justify-center">
-            <div className="border-2 border-border rounded-lg w-full md:w-80 p-4 bg-white h-fit">
-              <h4 className="text-lg font-bold">Free</h4>
-              <p className="text-xs text-muted-foreground mb-3">
-                Starter plan to create your first screens and try everything
-                Stage has to offer
-              </p>
-              <span className="text-black text-xs">
-                $ <b className="text-5xl font-bold">0</b> / 7 days
+          <div className="border-2 border-border rounded-lg w-full lg:w-80 p-4 bg-white h-fit">
+            <h4 className="text-lg font-bold">Standart</h4>
+            <p className="text-xs text-muted-foreground mb-3">
+              Ushbu reja kichik va o&apos;rta bizneslar uchun mos bo&apos;lib,
+              barcha asosiy xususiyatlarni o&apos;z ichiga oladi.
+            </p>
+            <span className="text-black text-xs">
+              <b className="text-3xl font-bold">300 000</b> so&apos;m / 30 kun
+            </span>
+            <div className="mt-5 py-5 border-t space-y-1">
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className=""> Sotuvlar bo&apos;yicha hisobotlar</small>
               </span>
-              <div className="mt-5 py-5 border-t space-y-1">
-                <span className="flex items-center gap-1">
-                  <Check className="w-3 h-3" />
-                  <small className="">Create with rich text formatting.</small>
-                </span>
-                <span className="flex items-center gap-1">
-                  <Check className="w-3 h-3" />
-                  <small className="">
-                    Use tags to organize and find notes easily.
-                  </small>
-                </span>
-                <span className="flex items-center gap-1">
-                  <Check className="w-3 h-3" />
-                  <small className="">Sync notes across up to 2 devices</small>
-                </span>
-                <span className="flex items-center gap-1">
-                  <Check className="w-3 h-3" />
-                  <small className="">
-                    500MB of cloud storage for all your notes.
-                  </small>
-                </span>
-                <span className="flex items-center gap-1">
-                  <Check className="w-3 h-3" />
-                  <small className=""> Occasional in-app advertisements.</small>
-                </span>
-              </div>
-              <Link href="/contact">
-                <Button className="w-full">Tarifni tanlash</Button>
-              </Link>
-            </div>
-            <div className="border-2 border-border rounded-lg w-full md:w-80 p-4 bg-white h-fit">
-              <h4 className="text-lg font-bold">Professional</h4>
-              <p className="text-xs text-muted-foreground mb-3">
-                More power with unlimited library of templates and patterns for
-                individuals or small teams
-              </p>
-              <span className="text-black text-xs">
-                $ <b className="text-5xl font-bold">18</b> / 30 days
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">
+                  Mijozlar bilan aloqa boshqaruvi (CRM)
+                </small>
               </span>
-              <div className="mt-5 py-5 border-t space-y-1">
-                <span className="flex items-center gap-1">
-                  <Check className="w-3 h-3" />
-                  <small className="">
-                    {" "}
-                    Sync notes across unlimited devices.
-                  </small>
-                </span>
-                <span className="flex items-center gap-1">
-                  <Check className="w-3 h-3" />
-                  <small className="">
-                    Access and edit your notes offline.
-                  </small>
-                </span>
-                <span className="flex items-center gap-1">
-                  <Check className="w-3 h-3" />
-                  <small className="">
-                    {" "}
-                    Access to 24/7 priority customer support.
-                  </small>
-                </span>
-                <span className="flex items-center gap-1">
-                  <Check className="w-3 h-3" />
-                  <small className=""> Enjoy an ad-free experience.</small>
-                </span>
-                <span className="flex items-center gap-1">
-                  <Check className="w-3 h-3" />
-                  <small className="">
-                    Personalize your interface with custom themes.
-                  </small>
-                </span>
-              </div>
-              <Link href="/contact">
-                <Button className="w-full">Tarifni tanlash</Button>
-              </Link>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">
+                  {" "}
+                  Savdo jarayonlarini avtomatlashtirish
+                </small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className=""> Real vaqt tahlillari</small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">Ma&apos;lumotlar xavfsizligi</small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">Qo&apos;llab-quvvatlash</small>
+              </span>
             </div>
+            <Link href="/contact">
+              <Button className="w-full">Tarifni tanlash</Button>
+            </Link>
           </div>
-        </TabsContent>
-      </Tabs>
-    </div>
+          <div className="border-2 border-border rounded-lg w-full lg:w-80 p-4 bg-white h-fit">
+            <h4 className="text-lg font-bold">Business</h4>
+            <p className="text-xs text-muted-foreground mb-3">
+              Katta bizneslar uchun mo&apos;ljallangan reja. Standart rejadagi
+              barcha xususiyatlardan tashqari, qo&apos;shimcha agent dasturidan
+              foydalanish imkoniyatini beradi.
+            </p>
+            <span className="text-black text-xs">
+              <b className="text-3xl font-bold">400 000</b> so&apos;m / 30 kun
+            </span>
+            <div className="mt-5 py-5 border-t space-y-1">
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className=""> Sotuvlar bo&apos;yicha hisobotlar</small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">
+                  Mijozlar bilan aloqa boshqaruvi (CRM)
+                </small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">
+                  {" "}
+                  Savdo jarayonlarini avtomatlashtirish
+                </small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className=""> Real vaqt tahlillari</small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">Ma&apos;lumotlar xavfsizligi</small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">Qo&apos;llab-quvvatlash</small>
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="w-3 h-3" />
+                <small className="">Qo&apos;shimcha agent dasturi</small>
+              </span>
+            </div>
+            <Link href="/contact">
+              <Button className="w-full">Tarifni tanlash</Button>
+            </Link>
+          </div>
+        </div>
+      </TabsContent>
+    </Tabs>
   );
 }
 
-export default Price;
+export default PriceSection;

@@ -156,7 +156,7 @@ export default function Home() {
       <Price />
       <Types />
       {/* <Cards /> */}
-      <Blog />
+      {/* <Blog /> */}
 
       <Contact />
       <HomeFooter />

@@ -42,7 +42,7 @@ function Header() {
     <header className="container m-auto">
       <h1
         ref={textRef}
-        className="mt-24 mb-10 md:mt-24 lg:mb-24 lg:mt-36 tracking-[1.12] leading-[-.005em] text-clamp font-bold "
+        className="mt-24 mb-10 md:mt-24 lg:mb-24 lg:mt-36 tracking-[1.12] leading-[-.005em] text-clamp font-bold"
       >
         <span style={{ display: "inline-block" }} className="text-6xl">
           Sotuvlaringizni&nbsp;
