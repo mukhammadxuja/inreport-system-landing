@@ -56,20 +56,15 @@ function Header() {
           style={{ display: "inline-block" }}
           className="text-4xl md:text-5xl lg:text-6xl"
         >
-          bilan&nbsp;
-        </span>
-        <span
-          style={{ display: "inline-block" }}
-          className="text-4xl md:text-5xl lg:text-6xl"
-        >
-          boshqaring
+          bilan&nbsp; boshqaring
         </span>
         <br />
         <span
           style={{ display: "inline-block" }}
           className="text-muted-foreground text-xl md:text-2xl lg:text-2xl font-normal"
         >
-          Savdo jarayonlaringizni soddalashtiring va <br /> daromadingizni oshiring
+          Savdo jarayonlaringizni soddalashtiring va <br /> daromadingizni
+          oshiring
         </span>
         <span className="flex gap-2 mt-7">
           <Button>Bepul boshlang</Button>
