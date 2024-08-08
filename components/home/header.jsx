@@ -44,28 +44,32 @@ function Header() {
         ref={textRef}
         className="mt-24 mb-10 md:mt-24 lg:mb-24 lg:mt-36 tracking-[1.12] leading-[-.005em] text-clamp font-bold"
       >
-        <span style={{ display: "inline-block" }} className="text-4xl md:text-5xl lg:text-6xl">
-          Sotuvlaringizni&nbsp;
+        <span
+          style={{ display: "inline-block" }}
+          className="text-4xl md:text-5xl lg:text-6xl"
+        >
+          Sotuvlaringizni&nbsp;{" "}
+          <span className="text-muted-foreground">Inreport</span>
         </span>
         <br />
         <span
           style={{ display: "inline-block" }}
-          className="text-4xl md:text-5xl lg:text-6xl text-[#4D97E2]"
+          className="text-4xl md:text-5xl lg:text-6xl"
         >
-          INREPORT&nbsp;
-        </span>
-        <span style={{ display: "inline-block" }} className="text-4xl md:text-5xl lg:text-6xl">
           bilan&nbsp;
         </span>
-        <span style={{ display: "inline-block" }} className="text-4xl md:text-5xl lg:text-6xl">
+        <span
+          style={{ display: "inline-block" }}
+          className="text-4xl md:text-5xl lg:text-6xl"
+        >
           boshqaring
         </span>
         <br />
         <span
           style={{ display: "inline-block" }}
-          className="text-muted-foreground text-xl md:text-2xl lg:text-4xl font-normal"
+          className="text-muted-foreground text-xl md:text-2xl lg:text-2xl font-normal"
         >
-          Savdo jarayonlaringizni soddalashtiring va daromadingizni oshiring
+          Savdo jarayonlaringizni soddalashtiring va <br /> daromadingizni oshiring
         </span>
         <span className="flex gap-2 mt-7">
           <Button>Bepul boshlang</Button>
