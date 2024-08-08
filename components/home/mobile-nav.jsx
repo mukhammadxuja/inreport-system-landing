@@ -48,7 +48,6 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
           <li className="nav-link text-white">
             <a href="#services">Xizmatlar</a>
           </li>
-          <li className="nav-link text-white"></li>
           <li className="nav-link text-white">
             <a href="/contact">Aloqa</a>
           </li>
