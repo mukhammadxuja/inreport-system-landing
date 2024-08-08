@@ -68,13 +68,12 @@ function HomeNavbar({ setOpenMobileNav }) {
           >
             <Button>Bepul demo</Button>
           </Link>
-          <Button
+          <div
             onClick={() => setOpenMobileNav(true)}
-            className="block md:-ml-3 px-4"
-            variant="outline"
+            className="block md:-ml-5 px-4"
           >
             <EllipsesIcon />
-          </Button>
+          </div>
         </div>
       </div>
     </nav>
