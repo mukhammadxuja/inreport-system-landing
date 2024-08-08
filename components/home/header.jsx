@@ -63,7 +63,7 @@ function Header() {
           style={{ display: "inline-block" }}
           className="text-muted-foreground text-xl md:text-2xl lg:text-2xl font-normal"
         >
-          Savdo jarayonlaringizni soddalashtiring va <br /> daromadingizni
+          Savdo jarayonlaringizni soddalashtiring va <br className="hidden md:block" /> daromadingizni
           oshiring
         </span>
         <span className="flex gap-2 mt-7">
@@ -148,7 +148,7 @@ function Header() {
         <Image
           width={200}
           height={200}
-          className="h-[60vh] lg:h-screen w-full rounded-lg object-cover bg-left"
+          className="h-fit lg:h-screen w-full rounded-lg object-cover bg-left"
           src="/landing.webp"
           alt="Showcase ai"
         />

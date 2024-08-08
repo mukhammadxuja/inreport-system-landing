@@ -70,7 +70,7 @@ function HomeNavbar({ setOpenMobileNav }) {
           </Link>
           <div
             onClick={() => setOpenMobileNav(true)}
-            className="block md:-ml-5 px-4"
+            className="block md:-ml-5 pl-4 md:px-4"
           >
             <EllipsesIcon />
           </div>
