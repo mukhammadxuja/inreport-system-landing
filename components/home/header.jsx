@@ -48,7 +48,7 @@ function Header() {
           style={{ display: "inline-block" }}
           className="text-4xl md:text-5xl lg:text-6xl"
         >
-          Sotuvlaringizni&nbsp;{" "}
+          Sotuvlaringizni&nbsp;
           <span className="text-muted-foreground">Inreport</span>
         </span>
         <br />
