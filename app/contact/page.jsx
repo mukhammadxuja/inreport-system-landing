@@ -18,7 +18,8 @@ function ContactPage() {
 
   useEffect(() => {
     const lenis = new Lenis({
-      lerp: 0.15,
+      // lerp: 0.15,
+      wheelMultiplier: 0,
     });
 
     function raf(time) {
@@ -61,7 +62,7 @@ function ContactPage() {
           rel="noopener noreferrer"
           href="https://t.me/ubehruz"
         >
-          <Button className="flex items-center gap-2 w-full bg-blue-50 hover:bg-blue-500 text-blue-500 hover:text-white mb-10">
+          <Button variant="secondary" className="flex items-center gap-2 w-full mb-10">
             <Send className="w-4 h-4" />
             <span>Telegram orqali bog&apos;lanish</span>
           </Button>

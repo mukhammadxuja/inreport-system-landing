@@ -19,8 +19,8 @@ function ContactPage() {
 
   useEffect(() => {
     const lenis = new Lenis({
-      lerp: 0.15,
-      // wheelMultiplier: 1,
+      // lerp: 0.15,
+      wheelMultiplier: 0,
     });
 
     function raf(time) {
