@@ -93,7 +93,7 @@ export default function Home() {
 
   useEffect(() => {
     const lenis = new Lenis({
-      lerp: 0.15,
+      lerp: 1,
       // wheelMultiplier: 1,
     });
 

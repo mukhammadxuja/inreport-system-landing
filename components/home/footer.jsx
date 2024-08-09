@@ -3,76 +3,66 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
 import { useInView } from "framer-motion";
-import { Mail, Phone } from "lucide-react";
 
 function HomeFooter() {
   const textRef = useRef(null);
   const ref = useRef(null);
   const isInView = useInView(ref);
 
-  // useEffect(() => {
-  //   if (isInView) {
-  //     const words = textRef.current.children;
+  useEffect(() => {
+    if (isInView) {
+      const words = textRef.current.children;
 
-  //     gsap.fromTo(
-  //       words,
-  //       { y: 50, opacity: 0 },
-  //       {
-  //         y: 0,
-  //         opacity: 1,
-  //         stagger: 0.3,
-  //         duration: 1,
-  //         ease: "power3.out",
-  //       }
-  //     );
-  //   }
-  // }, [isInView]);
+      gsap.fromTo(
+        words,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.3,
+          duration: 1,
+          ease: "power3.out",
+        }
+      );
+    }
+  }, [isInView]);
 
   return (
     <footer
       ref={ref}
-      className="relative h-[70vh] md:h-[60vh] lg:h-[65vh] bg-primary -mt-2"
+      className="relative h-[50vh] md:h-[60vh] lg:h-[65vh] bg-primary -mt-2"
       style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
     >
-      <div className="h-full">
+      <div>
         <div className="w-full fixed bottom-0 left-0">
           <div className="container mx-auto flex flex-col">
-            <div className="flex flex-col md:flex-row py-10">
-              <div className="space-y-2.5 mb-10 md:mb-0">
-                {/* <Image
-                  width={20}
-                  height={20}
-                  className="w-10"
-                  src="/white-logo.svg"
-                  alt="Footer logo"
-                /> */}
-                <div className="flex gap-3">
-                  <Mail className="w-10 text-white" />
-                  <a href="mailto:" className="text-lg font-bold text-white">
-                    dotsoftuz@gmail.com
-                  </a>
-                </div>
-                <div className="flex gap-3">
-                  <Phone className="w-10 text-white" />
-                  <span className="flex flex-col">
-                    <a
-                      href="tel:+998995575230"
-                      className="text-lg font-bold text-white"
-                    >
-                      99 557-52-30
-                    </a>
-                    <a
-                      href="tel:+998919449491"
-                      className="text-lg font-bold text-white"
-                    >
-                      91 944-94-91
-                    </a>
-                  </span>
-                </div>
-              </div>
-              <div className="flex flex-row">
-                <ul className="flex flex-col -space-y-2.5 pr-20 md:pl-20">
-                  <li className="nav-link uppercase text-secondary opacity-75 text-xs -mt-2.5 cursor-text">
+            <Image
+              width={20}
+              height={20}
+              className="w-10 mt-10"
+              src="/white-logo.svg"
+              alt="Footer logo"
+            />
+            <div className="flex justify-between">
+              <h1
+                ref={textRef}
+                className="inline-block mb-14 md:mb-20 mt-20 md:mt-32 text-white lg:mt-40 tracking-[1.12] leading-[-.005em] text-clamp-footer font-bold"
+              >
+                <span style={{ display: "inline-block" }}>Tovarlar.</span>
+                <span style={{ display: "inline-block" }}>Kassa.</span> <br />
+                <span style={{ display: "inline-block" }}>Mijozlar.</span>
+                <span style={{ display: "inline-block" }}>Moliya.</span>
+                <br />
+                <span
+                  style={{ display: "inline-block" }}
+                  className="text-gray-400"
+                >
+                  Boshqaruvi.
+                </span>
+              </h1>
+              <div className="hidden -mt-10">
+                <ul className="flex flex-col -space-y-2.5 pr-20">
+                  <li className="nav-link uppercase text-secondary opacity-75 text-xs">
                     <span>Inreport</span>
                   </li>
                   <li className="nav-link text-white">
@@ -87,7 +77,7 @@ function HomeFooter() {
                   </li>
                 </ul>
                 <ul className="flex flex-col -space-y-2.5">
-                  <li className="nav-link uppercase text-secondary opacity-75 text-xs -mt-2.5 cursor-text">
+                  <li className="nav-link uppercase text-secondary opacity-75 text-xs">
                     <span>Follow Us</span>
                   </li>
                   <li className="nav-link text-white">
