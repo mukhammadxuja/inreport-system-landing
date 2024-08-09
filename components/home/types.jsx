@@ -134,7 +134,7 @@ function Types() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 items-center gap-3 md:gap-8 lg:gap-12">
         <div className="lg:col-span-2 py-5 space-y-4">
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col md:flex-row items-center gap-3">
             <Button
               variant="secondary"
               onMouseEnter={() => setHoveredButton("shirt")}
@@ -154,7 +154,7 @@ function Types() {
               <span>Kanselyariya do&apos;koni</span>
             </Button>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col md:flex-row items-center gap-3">
             <Button
               variant="secondary"
               onMouseEnter={() => setHoveredButton("shoes")}
@@ -192,7 +192,7 @@ function Types() {
               <span>Qurilish mollari do&apos;koni</span>
             </Button>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col md:flex-row items-center gap-3">
             <Button
               variant="secondary"
               onMouseEnter={() => setHoveredButton("perfume")}
@@ -246,7 +246,7 @@ function Types() {
               <span>Aksesuar do&apos;koni</span>
             </Button>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col md:flex-row items-center gap-3">
             <Button
               variant="secondary"
               onMouseEnter={() => setHoveredButton("electronic")}
