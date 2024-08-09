@@ -40,37 +40,34 @@ function Header() {
 
   return (
     <header className="container m-auto">
-      <h1
-        ref={textRef}
-        className="mt-24 mb-10 md:mt-24 lg:mb-24 lg:mt-36 tracking-[1.12] leading-[-.005em] text-clamp font-bold"
-      >
-        <span
+      <div ref={textRef} className="mt-24 mb-10 md:mt-24 lg:mb-24 lg:mt-36">
+        <h1
           style={{ display: "inline-block" }}
-          className="text-4xl md:text-5xl lg:text-6xl"
+          className="text-4xl md:text-5xl lg:text-6xl tracking-[1.12] leading-[-.005em] text-clamp font-bold"
         >
           Sotuvlaringizni&nbsp;
           <span className="text-muted-foreground">Inreport</span>
-        </span>
+        </h1>
         <br />
-        <span
+        <h1
           style={{ display: "inline-block" }}
-          className="text-4xl md:text-5xl lg:text-6xl"
+          className="text-4xl md:text-5xl lg:text-6xl tracking-[1.12] leading-[-.005em] text-clamp font-bold"
         >
           bilan boshqaring
-        </span>
+        </h1>
         <br />
-        <span
+        <p
           style={{ display: "inline-block" }}
-          className="text-muted-foreground text-xl md:text-2xl lg:text-2xl font-normal"
+          className="text-muted-foreground text-xl lg:text-2xl font-normal mt-3 md:mt-5"
         >
-          Savdo jarayonlaringizni soddalashtiring va <br className="hidden md:block" /> daromadingizni
-          oshiring
-        </span>
+          Savdo jarayonlaringizni soddalashtiring va{" "}
+          <br className="hidden md:block" /> daromadingizni oshiring
+        </p>
         <span className="flex gap-2 mt-7">
           <Button>Bepul boshlang</Button>
           <Button variant="outline">Demoni ko&apos;rish</Button>
         </span>
-      </h1>
+      </div>
 
       <section ref={image} id="about">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4 pb-[48px]">

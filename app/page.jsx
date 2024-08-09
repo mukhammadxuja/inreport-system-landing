@@ -93,8 +93,8 @@ export default function Home() {
 
   useEffect(() => {
     const lenis = new Lenis({
-      lerp: 1,
-      // wheelMultiplier: 1,
+      // lerp: 1,
+      wheelMultiplier: 0,
     });
 
     function raf(time) {

@@ -101,7 +101,14 @@ function HomeFooter() {
             <small className="!opacity-60 text-sm">
               Inreport — Sotuvni avtomatlashtiruvchi dastur.
             </small>
-            <small className="!opacity-60 text-sm">2024</small>
+            <a
+              href="https://dotsoft.uz/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="!opacity-60 text-sm"
+            >
+              By Dotsoft Group
+            </a>
           </div>
         </div>
       </div>
