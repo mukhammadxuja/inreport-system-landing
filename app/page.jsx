@@ -26,54 +26,54 @@ import Types from "@/components/home/types";
 
 const projects = [
   {
-    title: `Savdo bo'limi nazorati`,
+    title: `Savdo jarayonlarini avtomatlashtirish`,
     description:
-      "Real vaqt rejimida sotish, ombor balanslari va buyurtmalarni qayta ishlashni kuzatib borish.",
+      "Savdolarni qo'lda boshqarishdan qutulib, savdo jarayonlarini avtomatlashtiring va xatoliklarni kamaytiring.",
     src: "/assets/control.jpg",
     link: "https://www.ignant.com/2023/03/25/ad2186-matthias-leidingers-photographic-exploration-of-awe-and-wonder/",
     rotate: [3, -2],
     color: "#BBACAF",
   },
   {
-    title: "Tovarlar hisob kitobi",
+    title: "Mijozlar bazasini boshqarish",
     description:
-      "Inreport tovarlarni hisobga olish uchun professional dastur bo'lib, unda barcha tovarlar harakati kaftingizdagidek ko'rinadi, shuningdek, firibgarlik bilan bog'liq og'rilik va yo'qotishlarni oldini oladi.",
+      "Mijozlar haqida to'liq ma'lumotga ega bo'lib, ularning talablarini yaxshiroq tushuning va xizmat sifatini oshiring.",
     src: "/assets/account.jpg",
     link: "https://www.ignant.com/2022/09/30/clement-chapillon-questions-geographical-and-mental-isolation-with-les-rochers-fauves/",
     rotate: [-4, 2],
     color: "#977F6D",
   },
   {
-    title: "Mijozlarni boshqarish",
+    title: "Inventarizatsiyani kuzatib boring",
     description:
-      "Inreport tizimida mijozlarning barcha ma'luotlarini qayd etishingiz, ularning afzalliklarini kuzatishingiz, sodiqlik dasturini yaratishingiz va shaxsiy takliflarni ishga tushurishingiz mumkin.",
+      "Mahsulotlar zaxirasini real vaqtda kuzatish va yangilash imkoniyati bilan tovarlar harakatini nazorat qiling.",
     src: "/assets/customer.webp",
     link: "https://www.ignant.com/2023//28/capturing-balis-many-faces-zissou-documents-the-sacred-and-the-mundane-of-a-fragile-island/",
     rotate: [10, -2],
     color: "#C2491D",
   },
   {
-    title: "Hisobotlar va tahlillar",
+    title: "Moliyaviy hisobotlarni tahlil qilish",
     description:
-      "Hisobotlarni har qanday qurulmada ko'rib chiqish mumkin. Tayyor hisobotlar tovarlarni sotib olish, sotuvchilarni rag'batlanirish, sotishni ko'paytirish, marketing faoliyatini boshlash va shu kabi qarorlarni qabul qilishni osonlashtiradi.",
+      "Moliyaviy holatni aniq tahlil qilish orqali qaror qabul qilishda yordam beruvchi hisobotlarni yarating.",
     src: "/assets/statistic.png",
     link: "https://www.ignant.com/2019/03/13/a-photographic-series-depicting-the-uncertain-future-of-denmarks-treasured-coastlines/",
     rotate: [-7, 3],
     color: "#B62429",
   },
   {
-    title: "Savdo bo'yicha hisobotlar",
+    title: "Jamoani boshqarish va o'zaro hamkorlik",
     description:
-      "Savdo hisoboti sizga kunlar, oylar va soatlar kesimida aks ettirilgan sotuvlar dinamikasi, sof foyda, operatsiyalar, almashtirishlar, qaytarishlar soni va boshqa foydali ma'lumotlarni ko'rsatadi",
+      "Jamoa a'zolari bilan samarali hamkorlik qilish va vazifalarni taqsimlash imkoniyati bilan ish samaradorligini oshiring.",
     src: "/assets/sell.jpg",
     link: "https://www.ignant.com/2023/04/12/mark-rammers-all-over-again-is-a-study-of-regret-and-the-willingness-to-move-forward/",
     rotate: [6, -2],
     color: "#88A28D",
   },
   {
-    title: "Moliyani boshqarish",
+    title: "Mobil ilovalar orqali ishlash",
     description:
-      "Moliya boshqaruvi sizga daromad va xarajatlarni kuzatishda sizga shaffoflikni taminlaydi. O'g'irliklar vs hodimlarning noto'g'ri harakatlarini kamaytirish, shuningdek, do'konadgi xarajatlarni optimmallashtirish imkonini beradi",
+      "Har joyda va har qanday qurilmadan kirish imkoniyati bilan biznesingizni boshqarishda moslashuvchanlikka ega bo'ling.",
     src: "/assets/control.webp",
     link: "https://www.ignant.com/2023/04/12/mark-rammers-all-over-again-is-a-study-of-regret-and-the-willingness-to-move-forward/",
     rotate: [10, 0],
@@ -151,10 +151,10 @@ export default function Home() {
       </section> */}
 
       <HomeServices />
+      {/* <Types /> */}
       <Comments />
       <Clients />
       <Price />
-      <Types />
       {/* <Cards /> */}
       {/* <Blog /> */}
 

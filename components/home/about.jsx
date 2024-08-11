@@ -9,9 +9,9 @@ function About({ data }) {
     <section className="container mx-auto pt-10 md:pt-16 mt-10">
       <div className="w-full">
         <h2 className="text-clamp-title items-center text-center">
-          <span className="text-muted-foreground">Barcha vazifalar</span>
+          <span className="text-muted-foreground">Barcha vazifalar uchun</span>
           <br />
-          uchun bitta yechim.
+           Bitta yechim.
         </h2>
         <Button className="flex items-center gap-1.5 mx-auto mt-5">
           <span>Ko&apos;proq ma&apos;lumot</span>
@@ -22,7 +22,7 @@ function About({ data }) {
         {data.map((item) => (
           <div
             key={item.title}
-            className="bg-white shadow-sm border-2 border-border rounded-lg h-full flex flex-col justify-between"
+            className="bg-white border rounded-3xl h-full flex flex-col justify-between"
           >
             <div className="space-y-2 p-6">
               <h5 className="tracking-[1.12] leading-[-.005em] text-clamp-footer font-bold w-full">
@@ -43,7 +43,7 @@ function About({ data }) {
               <Image
                 width={200}
                 height={100}
-                className="w-full h-56 rounded-lg object-cover"
+                className="w-full h-56 rounded-3xl object-cover"
                 src={item.src}
                 alt="statistic image"
               />

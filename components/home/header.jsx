@@ -38,39 +38,51 @@ function Header() {
     );
   }, []);
 
+  // const mainBannerEnter = "/inreport banner 1.jpg"
+
   return (
     <header className="container m-auto">
-      <div ref={textRef} className="mt-24 mb-10 md:mt-24 lg:mb-24 lg:mt-36">
-        <h1
-          style={{ display: "inline-block" }}
-          className="text-4xl md:text-5xl lg:text-6xl tracking-[1.12] leading-[-.005em] text-clamp font-bold"
-        >
-          Sotuvlaringizni&nbsp;
-          <span className="text-muted-foreground">Inreport</span>
-        </h1>
-        <br />
-        <h1
-          style={{ display: "inline-block" }}
-          className="text-4xl md:text-5xl lg:text-6xl tracking-[1.12] leading-[-.005em] text-clamp font-bold"
-        >
-          bilan boshqaring
-        </h1>
-        <br />
-        <p
-          style={{ display: "inline-block" }}
-          className="text-muted-foreground text-xl lg:text-2xl font-normal mt-3 md:mt-5"
-        >
-          Savdo jarayonlaringizni soddalashtiring va{" "}
-          <br className="hidden md:block" /> daromadingizni oshiring
-        </p>
-        <span className="flex gap-2 mt-7">
-          <Button>Bepul boshlang</Button>
-          <Button variant="outline">Demoni ko&apos;rish</Button>
-        </span>
+      <div className="flex items-center justify-between">
+        <div ref={textRef} className="mt-24 mb-10 md:mt-24 lg:mb-24 lg:mt-36">
+          <h1
+            style={{ display: "inline-block" }}
+            className="text-6xl md:text-8xl lg:text-8xl tracking-[1.12] leading-[-.005em] font-bold"
+          >
+            INREPORT
+          </h1>
+          <br />
+          <p
+            style={{ display: "inline-block" }}
+            className="text-gray-600 md:text-2xl lg:text-3xl font-normal mt-3 md:mt-5"
+          >
+            Savdo jarayonlarini soddalashtiring va <br /> biznesingizni yangi
+            bosqichga olib chiqing!
+          </p>
+          <div className="flex gap-2 mt-7">
+            <Button>Bepul boshlang</Button>
+            <Button variant="outline">Demoni ko&apos;rish</Button>
+          </div>
+        </div>
+        <div>
+          <Image
+            width={500}
+            height={500}
+            className="object-cover"
+            src="/reverseLogo.svg"
+            alt="Showcase ai"
+          />
+        </div>
       </div>
-
       <section ref={image} id="about">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4 pb-[48px]">
+        <Image
+          width={200}
+          height={200}
+          className="w-full rounded-lg object-cover bg-left mainBanner"
+          src="/inreport banner 2.jpg"
+          alt="Showcase ai"
+        />
+
+        {/* <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4 pt-[48px]">
           <a href="#" className="flex gap-4 rounded-xl p-2 hover:bg-accent">
             <img
               className="h-18 w-24 flex-shrink-0 rounded-md bg-foreground-tertiary/10 object-cover object-center"
@@ -140,15 +152,7 @@ function Header() {
               </p>
             </div>
           </a>
-        </div>
-
-        <Image
-          width={200}
-          height={200}
-          className="h-fit lg:h-screen w-full rounded-lg object-cover bg-left"
-          src="/landing.webp"
-          alt="Showcase ai"
-        />
+        </div> */}
       </section>
     </header>
   );

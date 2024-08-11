@@ -12,7 +12,7 @@ function Call() {
   return (
     <div className="fixed bottom-10 right-[1rem] md:right-[3rem] container z-50 duration-500 w-fit">
       <Popover>
-        <PopoverTrigger className="inline-block bg-gray-200 p-1 rounded-full cursor-pointer shadow-md">
+        <PopoverTrigger className="inline-block bg-gray-200 p-1 rounded-full cursor-pointer ">
           <Phone className="p-3 w-12 h-12 bg-border rounded-full" />
         </PopoverTrigger>
         <PopoverContent

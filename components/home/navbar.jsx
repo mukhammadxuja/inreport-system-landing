@@ -29,7 +29,7 @@ function HomeNavbar({ setOpenMobileNav }) {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 lg:px-4 py-4 bg-white bg-opacity-50 border-b-2 border-border backdrop-blur-sm z-50 transition-transform duration-500 ${
+      className={`fixed top-0 left-0 right-0 lg:px-4 py-4 bg-white bg-opacity-50 border-b border-border backdrop-blur-sm z-50 transition-transform duration-500 ${
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
@@ -39,15 +39,13 @@ function HomeNavbar({ setOpenMobileNav }) {
           className="flex items-center gap-2 duration-300 hover:opacity-70"
         >
           <Image
-            width={40}
-            height={40}
-            src="/logo.svg"
+            width={140}
+            height={140}
+            src="/inreport logo dark.svg"
             alt="Logo"
-            className="w-7 h-7 lg:h-5 lg:w-5 transition-all group-hover:scale-110 opacity-90"
+            // className="w-7 h-7 lg:h-5 lg:w-5 transition-all group-hover:scale-110 opacity-90"
           />
-          <span className="hidden lg:block text-primary text-base font-bold">
-            Inreport
-          </span>
+          
         </Link>
         <div className="flex items-center gap-2 md:gap-6">
           <ul className="hidden lg:flex items-center gap-4">
