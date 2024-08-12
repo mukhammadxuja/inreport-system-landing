@@ -11,7 +11,7 @@ function About({ data }) {
         <h2 className="text-clamp-title items-center text-center">
           <span className="text-muted-foreground">Barcha vazifalar uchun</span>
           <br />
-           Bitta yechim.
+           Bir yechim.
         </h2>
         <Button className="flex items-center gap-1.5 mx-auto mt-5">
           <span>Ko&apos;proq ma&apos;lumot</span>

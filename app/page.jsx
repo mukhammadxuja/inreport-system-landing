@@ -29,8 +29,7 @@ const projects = [
     title: `Savdo jarayonlarini avtomatlashtirish`,
     description:
       "Savdolarni qo'lda boshqarishdan qutulib, savdo jarayonlarini avtomatlashtiring va xatoliklarni kamaytiring.",
-    src: "/assets/control.jpg",
-    link: "https://www.ignant.com/2023/03/25/ad2186-matthias-leidingers-photographic-exploration-of-awe-and-wonder/",
+    src: "/assets/sell.jpg",
     rotate: [3, -2],
     color: "#BBACAF",
   },
@@ -38,8 +37,7 @@ const projects = [
     title: "Mijozlar bazasini boshqarish",
     description:
       "Mijozlar haqida to'liq ma'lumotga ega bo'lib, ularning talablarini yaxshiroq tushuning va xizmat sifatini oshiring.",
-    src: "/assets/account.jpg",
-    link: "https://www.ignant.com/2022/09/30/clement-chapillon-questions-geographical-and-mental-isolation-with-les-rochers-fauves/",
+    src: "/assets/customer.webp",
     rotate: [-4, 2],
     color: "#977F6D",
   },
@@ -47,8 +45,7 @@ const projects = [
     title: "Inventarizatsiyani kuzatib boring",
     description:
       "Mahsulotlar zaxirasini real vaqtda kuzatish va yangilash imkoniyati bilan tovarlar harakatini nazorat qiling.",
-    src: "/assets/customer.webp",
-    link: "https://www.ignant.com/2023//28/capturing-balis-many-faces-zissou-documents-the-sacred-and-the-mundane-of-a-fragile-island/",
+    src: "/assets/control.jpg",
     rotate: [10, -2],
     color: "#C2491D",
   },
@@ -56,8 +53,7 @@ const projects = [
     title: "Moliyaviy hisobotlarni tahlil qilish",
     description:
       "Moliyaviy holatni aniq tahlil qilish orqali qaror qabul qilishda yordam beruvchi hisobotlarni yarating.",
-    src: "/assets/statistic.png",
-    link: "https://www.ignant.com/2019/03/13/a-photographic-series-depicting-the-uncertain-future-of-denmarks-treasured-coastlines/",
+    src: "/assets/sales auto.jpg",
     rotate: [-7, 3],
     color: "#B62429",
   },
@@ -65,8 +61,7 @@ const projects = [
     title: "Jamoani boshqarish va o'zaro hamkorlik",
     description:
       "Jamoa a'zolari bilan samarali hamkorlik qilish va vazifalarni taqsimlash imkoniyati bilan ish samaradorligini oshiring.",
-    src: "/assets/sell.jpg",
-    link: "https://www.ignant.com/2023/04/12/mark-rammers-all-over-again-is-a-study-of-regret-and-the-willingness-to-move-forward/",
+    src: "/assets/control.webp",
     rotate: [6, -2],
     color: "#88A28D",
   },
@@ -74,8 +69,7 @@ const projects = [
     title: "Mobil ilovalar orqali ishlash",
     description:
       "Har joyda va har qanday qurilmadan kirish imkoniyati bilan biznesingizni boshqarishda moslashuvchanlikka ega bo'ling.",
-    src: "/assets/control.webp",
-    link: "https://www.ignant.com/2023/04/12/mark-rammers-all-over-again-is-a-study-of-regret-and-the-willingness-to-move-forward/",
+    src: "/assets/statistic.png",
     rotate: [10, 0],
     color: "#88A28D",
   },

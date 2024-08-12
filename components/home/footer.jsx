@@ -30,23 +30,23 @@ function HomeFooter() {
   return (
     <footer
       ref={ref}
-      className="relative h-[50vh] md:h-[60vh] lg:h-[65vh] bg-primary -mt-2"
+      className="relative h-[70vh] sm:h-[50vh] bg-primary -mt-2"
       style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
     >
       <div>
         <div className="w-full fixed bottom-0 left-0">
-          <div className="container mx-auto flex flex-col">
-            <Image
-              width={20}
-              height={20}
-              className="w-10 mt-10"
-              src="/white-logo.svg"
-              alt="Footer logo"
-            />
-            <div className="flex justify-between">
+          <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center mb-10">
+            <div>
+              <Image
+                width={140}
+                height={140}
+                src="/inreport logo light.svg"
+                alt="Logo"
+                // className="w-7 h-7 lg:h-5 lg:w-5 transition-all group-hover:scale-110 opacity-90"
+              />
               <h1
                 ref={textRef}
-                className="inline-block mb-14 md:mb-20 mt-20 md:mt-32 text-white lg:mt-40 tracking-[1.12] leading-[-.005em] text-clamp-footer font-bold"
+                className="inline-block mb-14 md:mb-20 mt-5 text-white tracking-[1.12] leading-[-.005em] text-clamp-footer font-bold"
               >
                 <span style={{ display: "inline-block" }}>Tovarlar.</span>
                 <span style={{ display: "inline-block" }}>Kassa.</span> <br />
@@ -60,46 +60,46 @@ function HomeFooter() {
                   Boshqaruvi.
                 </span>
               </h1>
-              <div className="hidden -mt-10">
-                <ul className="flex flex-col -space-y-2.5 pr-20">
-                  <li className="nav-link uppercase text-secondary opacity-75 text-xs">
-                    <span>Inreport</span>
-                  </li>
-                  <li className="nav-link text-white">
-                    <a href="#templates">Prices</a>
-                  </li>
-                  <li className="nav-link text-white">Services</li>
-                  <li className="nav-link text-white">
-                    <a href="#about">About</a>
-                  </li>
-                  <li className="nav-link text-white">
-                    <a href="#contact">Contact</a>
-                  </li>
-                </ul>
-                <ul className="flex flex-col -space-y-2.5">
-                  <li className="nav-link uppercase text-secondary opacity-75 text-xs">
-                    <span>Follow Us</span>
-                  </li>
-                  <li className="nav-link text-white">
-                    <a href="#templates">Instagram</a>
-                  </li>
-                  <li className="nav-link text-white">LInkedin</li>
-                  <li className="nav-link text-white">
-                    <a href="#about">Telegram</a>
-                  </li>
-                  <li className="nav-link text-white">
-                    <a href="#contact">Twitter</a>
-                  </li>
-                  <li className="nav-link text-white">
-                    <a href="#contact">Github</a>
-                  </li>
-                </ul>
-              </div>
+            </div>
+            <div className="flex">
+              <ul className="flex flex-col -space-y-2.5 pr-20">
+                <li className="nav-link uppercase text-secondary opacity-75 text-xs">
+                  <span>Inreport</span>
+                </li>
+                <li className="nav-link text-white">
+                  <a href="#templates">Prices</a>
+                </li>
+                <li className="nav-link text-white">Services</li>
+                <li className="nav-link text-white">
+                  <a href="#about">About</a>
+                </li>
+                <li className="nav-link text-white">
+                  <a href="#contact">Contact</a>
+                </li>
+              </ul>
+              <ul className="flex flex-col -space-y-2.5">
+                <li className="nav-link uppercase text-secondary opacity-75 text-xs">
+                  <span>Follow Us</span>
+                </li>
+                <li className="nav-link text-white">
+                  <a href="#templates">Instagram</a>
+                </li>
+                <li className="nav-link text-white">LInkedin</li>
+                <li className="nav-link text-white">
+                  <a href="#about">Telegram</a>
+                </li>
+                <li className="nav-link text-white">
+                  <a href="#contact">Twitter</a>
+                </li>
+                <li className="nav-link text-white">
+                  <a href="#contact">Github</a>
+                </li>
+              </ul>
             </div>
           </div>
           <div className="container mx-auto pb-4 flex items-center justify-between text-white">
             <small className="!opacity-60 text-sm">
-              Inreport — Sotuvni avtomatlashtiruvchi dastur.
+              INREPORT — Savdoni boshqaruvi
             </small>
             <a
               href="https://dotsoft.uz/"

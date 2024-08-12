@@ -67,7 +67,7 @@ function Header() {
           <Image
             width={500}
             height={500}
-            className="object-cover"
+            className="object-cover hidden sm:block"
             src="/reverseLogo.svg"
             alt="Showcase ai"
           />
@@ -77,8 +77,15 @@ function Header() {
         <Image
           width={200}
           height={200}
-          className="w-full rounded-lg object-cover bg-left mainBanner"
+          className="w-full rounded-lg object-cover bg-left hidden sm:block"
           src="/inreport banner 2.jpg"
+          alt="Showcase ai"
+        />
+        <Image
+          width={200}
+          height={200}
+          className="w-full rounded-lg object-cover bg-left block sm:hidden"
+          src="/inreport banner mobile.jpg"
           alt="Showcase ai"
         />
 
