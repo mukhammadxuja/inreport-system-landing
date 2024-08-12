@@ -99,7 +99,7 @@ function HomeFooter() {
           </div>
           <div className="container mx-auto pb-4 flex items-center justify-between text-white">
             <small className="!opacity-60 text-sm">
-              INREPORT — Savdoni boshqaruvi
+              INREPORT — Savdo boshqaruvi
             </small>
             <a
               href="https://dotsoft.uz/"
@@ -107,7 +107,7 @@ function HomeFooter() {
               rel="noopener noreferrer"
               className="!opacity-60 text-sm"
             >
-              By Dotsoft Group
+              by Dotsoft Company
             </a>
           </div>
         </div>
