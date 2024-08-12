@@ -64,7 +64,7 @@ function HomeNavbar({ setOpenMobileNav }) {
             rel="noopener noreferrer"
             href="https://app.inreport.uz/"
           >
-            <Button>Bepul demo</Button>
+            <Button>Hisobga kirish</Button>
           </Link>
           <div
             onClick={() => setOpenMobileNav(true)}

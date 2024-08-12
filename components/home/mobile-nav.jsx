@@ -25,7 +25,7 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
             href="https://app.inreport.uz/"
           >
             <Button className="bg-white hover:bg-gray-100 text-black hover:text-black">
-              Bepul demo
+              Hisobga kirish
             </Button>
           </Link>
           <Button
