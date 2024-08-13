@@ -107,7 +107,7 @@ function HomeFooter() {
               rel="noopener noreferrer"
               className="!opacity-60 text-sm"
             >
-              by Dotsoft Company
+              by Dotsoft LLC
             </a>
           </div>
         </div>

@@ -8,6 +8,7 @@ import { Button } from "../ui/button";
 function Header() {
   const textRef = useRef(null);
   const image = useRef(null);
+  const logo = useRef(null);
 
   useEffect(() => {
     const words = textRef.current.children;
@@ -18,10 +19,24 @@ function Header() {
       {
         y: 0,
         opacity: 1,
-        stagger: 0.05,
-        duration: 0.5,
+        stagger: 0.09,
+        duration: 1,
         ease: "power3.out",
       }
+    );
+    
+    gsap.fromTo(
+      logo.current,
+      { y: -100, x: 100, opacity: 0 },
+      {
+        y: 0,
+        x: 0,
+        opacity: 1,
+        stagger: 0.1,
+        duration: 1,
+        ease: "power3.out",
+      },
+      "<+=0.5"
     );
 
     gsap.fromTo(
@@ -31,7 +46,7 @@ function Header() {
         y: 0,
         opacity: 1,
         stagger: 0.1,
-        duration: 0.5,
+        duration: 1,
         ease: "power3.out",
       },
       "<+=0.5"
@@ -46,7 +61,7 @@ function Header() {
         <div ref={textRef} className="mt-24 mb-10 md:mt-24 lg:mb-24 lg:mt-36">
           <h1
             style={{ display: "inline-block" }}
-            className="text-6xl md:text-8xl lg:text-8xl tracking-[1.12] leading-[-.005em] font-bold"
+            className="text-6xl md:text-8xl lg:text-8xl tracking-tight leading-[-.005em] font-bold"
           >
             INREPORT
           </h1>
@@ -63,7 +78,7 @@ function Header() {
             <Button variant="outline">Demoni ko&apos;rish</Button>
           </div>
         </div>
-        <div>
+        <div ref={logo}>
           <Image
             width={500}
             height={500}
