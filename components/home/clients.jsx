@@ -47,22 +47,36 @@ function Clients() {
           <li>
             <img
               className="h-8 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
-              src="/assets/brand/brand2.webp"
-              alt="Samsung"
-            />
-          </li>
-          <li>
-            <img
-              className="h-8 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
               src="/assets/brand/brand1.webp"
-              alt="Quora"
+              alt="Facebook"
+            />
+          </li>
+          <li>
+            <img
+              className="h-10 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
+              src="/assets/brand/brand2.webp"
+              alt="Disney"
             />
           </li>
           <li>
             <img
               className="h-8 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
-              src="/assets/brand/brand2.webp"
-              alt="Sass"
+              src="/assets/brand/brand3.webp"
+              alt="Airbnb"
+            />
+          </li>
+          <li>
+            <img
+              className="h-8 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
+              src="/assets/brand/brand4.webp"
+              alt="Apple"
+            />
+          </li>
+          <li>
+            <img
+              className="h-8 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
+              src="/assets/brand/brand5.webp"
+              alt="Spark"
             />
           </li>
           <li>
@@ -74,7 +88,7 @@ function Clients() {
           </li>
           <li>
             <img
-              className="h-8 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
+              className="h-10 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
               src="/assets/brand/brand2.webp"
               alt="Disney"
             />
@@ -82,43 +96,22 @@ function Clients() {
           <li>
             <img
               className="h-8 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
-              src="/assets/brand/brand1.webp"
+              src="/assets/brand/brand3.webp"
               alt="Airbnb"
             />
           </li>
           <li>
             <img
               className="h-8 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
-              src="/assets/brand/brand2.webp"
+              src="/assets/brand/brand4.webp"
               alt="Apple"
             />
           </li>
           <li>
             <img
               className="h-8 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
-              src="/assets/brand/brand1.webp"
+              src="/assets/brand/brand5.webp"
               alt="Spark"
-            />
-          </li>
-          <li>
-            <img
-              className="h-8 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
-              src="/assets/brand/brand2.webp"
-              alt="Samsung"
-            />
-          </li>
-          <li>
-            <img
-              className="h-8 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
-              src="/assets/brand/brand1.webp"
-              alt="Quora"
-            />
-          </li>
-          <li>
-            <img
-              className="h-8 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
-              src="/assets/brand/brand2.webp"
-              alt="Sass"
             />
           </li>
           <li>
@@ -130,7 +123,7 @@ function Clients() {
           </li>
           <li>
             <img
-              className="h-8 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
+              className="h-10 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
               src="/assets/brand/brand2.webp"
               alt="Disney"
             />
@@ -138,43 +131,57 @@ function Clients() {
           <li>
             <img
               className="h-8 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
-              src="/assets/brand/brand1.webp"
+              src="/assets/brand/brand3.webp"
               alt="Airbnb"
             />
           </li>
           <li>
             <img
               className="h-8 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
-              src="/assets/brand/brand2.webp"
+              src="/assets/brand/brand4.webp"
               alt="Apple"
             />
           </li>
           <li>
             <img
               className="h-8 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
-              src="/assets/brand/brand1.webp"
+              src="/assets/brand/brand5.webp"
               alt="Spark"
             />
           </li>
           <li>
             <img
               className="h-8 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
-              src="/assets/brand/brand2.webp"
-              alt="Samsung"
-            />
-          </li>
-          <li>
-            <img
-              className="h-8 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
               src="/assets/brand/brand1.webp"
-              alt="Quora"
+              alt="Facebook"
+            />
+          </li>
+          <li>
+            <img
+              className="h-10 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
+              src="/assets/brand/brand2.webp"
+              alt="Disney"
             />
           </li>
           <li>
             <img
               className="h-8 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
-              src="/assets/brand/brand2.webp"
-              alt="Sass"
+              src="/assets/brand/brand3.webp"
+              alt="Airbnb"
+            />
+          </li>
+          <li>
+            <img
+              className="h-8 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
+              src="/assets/brand/brand4.webp"
+              alt="Apple"
+            />
+          </li>
+          <li>
+            <img
+              className="h-8 w-28 md:w-36 object-contain grayscale hover:grayscale-0 duration-300"
+              src="/assets/brand/brand5.webp"
+              alt="Spark"
             />
           </li>
         </ul>

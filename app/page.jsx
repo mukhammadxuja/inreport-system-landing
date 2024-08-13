@@ -114,7 +114,7 @@ export default function Home() {
       />
 
       <Header />
-      <Call />
+      {/* <Call /> */}
       <About data={projects} />
 
       {/* <section ref={container} className="container mx-auto pt-10 md:pt-16">
