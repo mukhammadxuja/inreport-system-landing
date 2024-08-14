@@ -24,7 +24,7 @@ function HomeServices() {
           <div className="md:px-12 lg:px-16 space-y-4">
             <p class="mb-8 text-xl md:text-2xl text-foreground-secondary">
               Bizning menejerlarimiz sizga tovarlarni kiritish, uskunalarni
-              ulash, xodimlarni o&apos;rgatishda yordam beradi, shuningdek, 7
+              ulash, xodimlarni o&apos;rgatishda yordam beradi, shuningdek, 10
               kunlik bepul foydalanish muddatini taqdim etadi!
             </p>
             <Button
@@ -97,12 +97,13 @@ function HomeServices() {
               </span>
             </h5>
             <p className="text-base text-secondary-foreground">
-              Tovarlaringizni hisoblash, ularni tizimga kiritish,
-              do&apos;koningizdagi jarayonlarni avtomatlashtirish va
-              xodimlaringizni o&apos;rgatishda yordam beramiz.
+              Qog'ozda hisob-kitob yuritishdan charchadingizmi? INREPORT sizga
+              barcha moliyaviy ma'lumotlaringizni raqamli formatda qulay
+              boshqarishga yordam beradi. Xatoliklarni kamaytiring, vaqtingizni
+              tejang va biznesingizni tezroq rivojlantiring!
             </p>
           </div>
-          <Link href="/contact">
+          <Link href="/ledger">
             <Button className="flex items-center gap-2.5 w-full">
               <span>Ko&apos;proq ma&apos;lumot olish</span>
               <ArrowRight className="w-4 h-4" />
@@ -116,9 +117,9 @@ function HomeServices() {
               <span className="text-muted-foreground">foydalanasizmi?</span>
             </h5>
             <p className="text-base text-secondary-foreground">
-              Xizmatimizga ortiqcha yo&apos;qotishlarsiz ulanishda yordam
-              beramiz. Menejerlarimiz ma&apos;lumotlarni ko&apos;chirishda
-              yordam beradi va hisob-kitobni tartibga soladi.
+              Boshqa dasturlar qoniqish bermayaptimi? INREPORT bilan barcha
+              vazifalaringizni bitta platformada boshqaring. Qulay interfeys va
+              keng imkoniyatlar bilan ish jarayonlaringizni soddalashtiring!
             </p>
           </div>
           <Link href="/contact">

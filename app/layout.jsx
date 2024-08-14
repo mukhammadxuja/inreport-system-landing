@@ -6,7 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Sales automation software.",
+  title: "INREPORT - Sales automation software.",
   description:
     "Inreport - software for automating sales agents, sales department, cash register and warehouses. Wherever you are, Inreport shows you how your business is doing in real time and how much you're selling or making money right now.",
 };
