@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 function Header() {
   const textRef = useRef(null);
@@ -24,7 +25,7 @@ function Header() {
         ease: "power3.out",
       }
     );
-    
+
     gsap.fromTo(
       logo.current,
       { y: -100, x: 100, opacity: 0 },
@@ -74,8 +75,12 @@ function Header() {
             bosqichga olib chiqing!
           </p>
           <div className="flex gap-2 mt-7">
-            <Button>Bepul boshlang</Button>
-            <Button variant="outline">Demoni ko&apos;rish</Button>
+            <Link href="https://app.inreport.uz">
+              <Button>Bepul boshlang</Button>
+            </Link>
+            <Link href="https://app.inreport.uz">
+              <Button variant="outline">Demoni ko&apos;rish</Button>
+            </Link>
           </div>
         </div>
         <div ref={logo}>
