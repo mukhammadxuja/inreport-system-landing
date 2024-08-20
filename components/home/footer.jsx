@@ -77,12 +77,15 @@ function HomeFooter() {
                   <Link href="/aboutus">Haqimizda</Link>
                 </li>
                 <li className="nav-link text-white">
-                  <Link href="/contact">Aloqa</Link>
+                  <Link href="/privacy">Maxfiylik siyosati</Link>
+                </li>
+                <li className="nav-link text-white">
+                  <Link href="/agreement">Foydalanish shartlari</Link>
                 </li>
               </ul>
               <ul className="flex flex-col -space-y-2.5">
                 <li className="nav-link uppercase text-secondary opacity-75 text-xs">
-                  <span>Follow Us</span>
+                  <span>Ijtimoy tarmoqlarda</span>
                 </li>
                 <li className="nav-link text-white">
                   <a href="https://www.instagram.com/inreport.uz/" target="_blank">Instagram</a>
@@ -97,6 +100,8 @@ function HomeFooter() {
                 <li className="nav-link text-white">
                   <a href="https://github.com/dotsoftuz" target="_blank">Github</a>
                 </li>
+
+               
               </ul>
             </div>
           </div>
