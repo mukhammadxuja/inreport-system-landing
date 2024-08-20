@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
 import { useInView } from "framer-motion";
+import Link from "next/link";
 
 function HomeFooter() {
   const textRef = useRef(null);
@@ -67,14 +68,16 @@ function HomeFooter() {
                   <span>Inreport</span>
                 </li>
                 <li className="nav-link text-white">
-                  <a href="#templates">Prices</a>
-                </li>
-                <li className="nav-link text-white">Services</li>
-                <li className="nav-link text-white">
-                  <a href="#about">About</a>
+                  <Link href="/prices">Narxlar</Link>
                 </li>
                 <li className="nav-link text-white">
-                  <a href="#contact">Contact</a>
+                  <Link href="/#services">Xizmatlar</Link>
+                </li>
+                <li className="nav-link text-white">
+                  <Link href="/aboutus">Haqimizda</Link>
+                </li>
+                <li className="nav-link text-white">
+                  <Link href="/contact">Aloqa</Link>
                 </li>
               </ul>
               <ul className="flex flex-col -space-y-2.5">
@@ -82,17 +85,17 @@ function HomeFooter() {
                   <span>Follow Us</span>
                 </li>
                 <li className="nav-link text-white">
-                  <a href="#templates">Instagram</a>
+                  <a href="https://www.instagram.com/inreport.uz/" target="_blank">Instagram</a>
                 </li>
-                <li className="nav-link text-white">LInkedin</li>
+                {/* <li className="nav-link text-white">LInkedin</li> */}
                 <li className="nav-link text-white">
-                  <a href="#about">Telegram</a>
+                  <a href="https://t.me/inreport" target="_blank">Telegram</a>
                 </li>
-                <li className="nav-link text-white">
+                {/* <li className="nav-link text-white">
                   <a href="#contact">Twitter</a>
-                </li>
+                </li> */}
                 <li className="nav-link text-white">
-                  <a href="#contact">Github</a>
+                  <a href="https://github.com/dotsoftuz" target="_blank">Github</a>
                 </li>
               </ul>
             </div>
@@ -107,7 +110,7 @@ function HomeFooter() {
               rel="noopener noreferrer"
               className="!opacity-60 text-sm"
             >
-              by Dotsoft LLC
+              Dotsoft MCHJ
             </a>
           </div>
         </div>

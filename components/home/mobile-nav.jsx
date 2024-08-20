@@ -43,13 +43,16 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
             <span>Inreport</span>
           </li>
           <li className="nav-link text-white">
-            <a href="/prices">Narxlar</a>
+            <Link href="/prices" onClick={() => setOpenMobileNav(false)}>Narxlar</Link>
           </li>
           <li className="nav-link text-white">
-            <a href="#services">Xizmatlar</a>
+            <Link href="/#services" onClick={() => setOpenMobileNav(false)}>Xizmatlar</Link>
           </li>
           <li className="nav-link text-white">
-            <a href="/contact">Aloqa</a>
+            <Link href="/aboutus" onClick={() => setOpenMobileNav(false)}>Haqimizda</Link>
+          </li>
+          <li className="nav-link text-white">
+            <Link href="/contact" onClick={() => setOpenMobileNav(false)}>Aloqa</Link>
           </li>
         </ul>
         <ul className="flex flex-col -space-y-2.5">
@@ -57,10 +60,10 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
             <span>Follow Us</span>
           </li>
           <li className="nav-link text-white">
-            <a href="#templates">99 557-52-30</a>
+            <a href="tel:+998995575230">99 557-52-30</a>
           </li>
           <li className="nav-link text-white">
-            <a target="_blank" rel="noopener noreferrer" href="#templates">
+            <a target="_blank" rel="noopener noreferrer" href="tel:+998919449491">
               91 944-94-91
             </a>
           </li>
@@ -68,12 +71,12 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
             <a
               target="_blank"
               rel="noopener noreferrer"
-              href="https://www.instagram.com/dotsoftuz/"
+              href="https://www.instagram.com/inreport.uz/"
             >
               Instagram
             </a>
           </li>
-          <li className="nav-link text-white">
+          {/* <li className="nav-link text-white">
             <a
               target="_blank"
               rel="noopener noreferrer"
@@ -81,17 +84,17 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
             >
               LInkedin
             </a>
-          </li>
+          </li> */}
           <li className="nav-link text-white">
             <a
               target="_blank"
               rel="noopener noreferrer"
-              href="https://t.me/ubehruz"
+              href="https://t.me/inreport"
             >
               Telegram
             </a>
           </li>
-          <li className="nav-link text-white">
+          {/* <li className="nav-link text-white">
             <a
               target="_blank"
               rel="noopener noreferrer"
@@ -99,7 +102,7 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
             >
               Twitter
             </a>
-          </li>
+          </li> */}
           <li className="nav-link text-white">
             <a
               target="_blank"
