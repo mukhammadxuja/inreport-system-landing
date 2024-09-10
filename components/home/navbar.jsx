@@ -5,6 +5,13 @@ import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { EllipsesIcon } from "../icons";
 import { useMainContext } from "@/context/main-context";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 function HomeNavbar({ setOpenMobileNav }) {
   const { isVisible, setIsVisible, lastScrollTop, setLastScrollTop } =
@@ -45,7 +52,6 @@ function HomeNavbar({ setOpenMobileNav }) {
             alt="Logo"
             // className="w-7 h-7 lg:h-5 lg:w-5 transition-all group-hover:scale-110 opacity-90"
           />
-          
         </Link>
         <div className="flex items-center gap-2 md:gap-6">
           <ul className="hidden lg:flex items-center gap-4">
@@ -62,13 +68,26 @@ function HomeNavbar({ setOpenMobileNav }) {
               <Link href="/contact">Aloqa</Link>
             </li>
           </ul>
-          <Link
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://app.inreport.uz/"
-          >
-            <Button>Hisobga kirish</Button>
-          </Link>
+          <div className="flex gap-2 items-center">
+            <Select defaultValue="uz">
+              <SelectTrigger className="w-[70px]">
+                <SelectValue placeholder="Lang" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="uz">UZ</SelectItem>
+                <SelectItem value="ru">RU</SelectItem>
+                <SelectItem value="en">EN</SelectItem>
+              </SelectContent>
+            </Select>
+            <Link
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://app.inreport.uz/"
+            >
+              <Button>Hisobga kirish</Button>
+            </Link>
+          </div>
+
           <div
             onClick={() => setOpenMobileNav(true)}
             className="block md:-ml-5 pl-4 md:px-4"
