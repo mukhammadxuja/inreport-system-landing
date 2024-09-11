@@ -13,9 +13,24 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+import { useLocale } from "next-intl";
+import { useRouter } from "next/navigation";
+import { ChangeEvent, useTransition } from "react";
+
 function HomeNavbar({ setOpenMobileNav }) {
   const { isVisible, setIsVisible, lastScrollTop, setLastScrollTop } =
     useMainContext();
+
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+  const localActive = useLocale();
+
+  const onSelectChange = (value) => {
+    const nextLocale = value;
+    startTransition(() => {
+      router.replace(`/${nextLocale}`);
+    });
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,7 +84,11 @@ function HomeNavbar({ setOpenMobileNav }) {
             </li>
           </ul>
           <div className="flex gap-2 items-center">
-            <Select defaultValue="uz">
+            <Select
+              defaultValue={localActive}
+              onValueChange={onSelectChange}
+              disabled={isPending}
+            >
               <SelectTrigger className="w-[70px]">
                 <SelectValue placeholder="Lang" />
               </SelectTrigger>
