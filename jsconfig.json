@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["*"],
+      "@/components/*": ["components/*"],
+      "@services/*": ["services/*"],
+      "@/context/*": ["context/*"],
+      "@/firebase": ["firebase/"],
+      "@/public": ["public/"],
+      "@utils/*": ["utils/*"],
+      "@hooks/*": ["hooks/*"],
+      "@/lib/*": ["lib/*"],
+    },
+  },
+}

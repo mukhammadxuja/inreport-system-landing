@@ -1,0 +1,337 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url(../../styles/home.css);
+
+@import url(../../styles/templates/default.css);
+@import url(../../styles/templates/bento-grid.css);
+@import url(../../styles/templates/minimalistic.css);
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent !important;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+
+    --radius: 0.9rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
+}
+
+body {
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  .unblur {
+    animation: unblur 1s linear;
+  }
+
+  @keyframes unblur {
+    from {
+      filter: blur(20px);
+    }
+    to {
+      filter: blur(0);
+    }
+  }
+}
+
+.loading-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@layer components {
+  .card {
+    @apply w-full shadow-lg rounded-lg mt-4 bg-white pl-2 pr-5 py-4;
+  }
+
+  .setting-title {
+    @apply text-base text-primary font-medium leading-none tracking-tight;
+  }
+
+  .setting-p {
+    @apply text-sm text-muted-foreground;
+  }
+
+  /* Admin */
+  .tabs-content {
+    @apply !mt-6 md:!mt-10 w-full max-w-7xl mx-auto p-5 md:px-8 md:py-6 rounded-lg bg-white;
+  }
+
+  .tab-title {
+    @apply font-semibold leading-none tracking-tight text-lg md:text-xl xl:text-2xl;
+  }
+
+  .tiptap {
+    @apply relative border bg-white w-[1240px] h-[1754px] py-10 px-20 rounded-sm mx-auto my-10;
+  }
+
+  .vadym_link {
+    @apply cursor-pointer text-[#909090] text-sm md:text-[16px] font-normal hover:text-black/80 duration-200;
+  }
+
+  .vadym_link.active {
+    @apply text-black;
+  }
+
+  .vadym_heading {
+    @apply text-black text-[28px] md:text-[40px] tracking-[0px] md:tracking-[-0.5px] leading-[32px] md:leading-none font-semibold;
+  }
+
+  .vadym_link {
+    @apply text-[#909090] text-sm md:text-[16px] font-normal hover:text-black/80 duration-200;
+  }
+
+  .vadym_link.active {
+    @apply text-black;
+  }
+
+  .vadym_title {
+    @apply text-black text-[18px] tracking-[0px] leading-[1.3em] font-semibold;
+  }
+
+  .vadym_paragraph {
+    @apply text-[#a6a6a6] text-sm md:text-[18px] tracking-[0px] leading-[1.2em] font-normal;
+  }
+
+  .vadym_collaborator_title {
+    @apply text-black md:text-[22px] tracking-[-0.25px] md:leading-[1.4em] font-bold;
+  }
+
+  /* Buttons */
+
+  .vadym_btn {
+    @apply w-full md:w-fit rounded-[8px] px-[16px] py-[7px] text-center text-[16px] tracking-[-0.1px] leading-[1.3em] font-semibold duration-200;
+  }
+
+  .vadym_btn_primary {
+    @apply vadym_btn bg-black hover:opacity-70 text-white;
+  }
+
+  .vadym_btn_ghost {
+    @apply vadym_btn bg-gray-200/80 hover:bg-gray-100 text-black;
+  }
+
+  .vadym_btn_link {
+    @apply vadym_btn bg-transparent text-black underline hover:no-underline;
+  }
+
+  .vadym_btn_transparent {
+    @apply vadym_btn bg-transparent text-black font-semibold;
+  }
+
+  /* badge */
+  .vadym_badge {
+    @apply w-fit rounded-[8px] px-[16px] py-[7px] text-center text-[16px] tracking-[-0.1px] leading-[1.3em] font-normal bg-gradient-to-r from-gray-100 to-slate-100 text-gray-500 cursor-text;
+  }
+}
+
+.grid::before {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(to right, #80808012 1px, transparent 1px),
+    linear-gradient(to bottom, #80808012 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.dot {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.dot-mask {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+  background-size: 16px 16px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 50% 50% at 50% 50%,
+    #000 60%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 50% 50% at 50% 50%,
+    #000 60%,
+    transparent 100%
+  );
+}
+
+.tiptap {
+  min-height: calc(100vh - 2rem);
+}
+.tiptap:focus-visible {
+  outline: none;
+}
+.tiptap > * + * {
+  margin-top: 0.75em;
+}
+.tiptap ul,
+.tiptap ol {
+  padding: 0 1rem;
+}
+/* For h1 */
+h1 {
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  font-weight: 600; /* Adjust as needed */
+}
+
+/* For h2 */
+h2 {
+  font-size: 28px;
+  line-height: 1.3;
+  letter-spacing: 0.4px;
+  font-weight: 600; /* Adjust as needed */
+}
+
+/* For h3 */
+h3 {
+  font-size: 24px;
+  line-height: 1.4;
+  letter-spacing: 0.3px;
+  font-weight: 600; /* Adjust as needed */
+}
+
+/* For h4 */
+h4 {
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: 0.2px;
+  font-weight: 600; /* Adjust as needed */
+}
+
+/* For h5 */
+h5 {
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.1px;
+  font-weight: 600; /* Adjust as needed */
+}
+
+/* For h6 */
+h6 {
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  font-weight: 600; /* Adjust as needed */
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.1px;
+}
+
+.tiptap code {
+  background: rgba(43, 42, 42, 0.1);
+  color: rgba(18, 18, 18, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  padding: 0.2rem;
+}
+.tiptap pre {
+  background: rgba(255, 255, 255, 0.1);
+  font-family: "JetBrainsMono", monospace;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+}
+.tiptap pre code {
+  color: inherit;
+  padding: 0;
+  background: none;
+  font-size: 0.8rem;
+  border: none;
+}
+.tiptap img {
+  max-width: 100%;
+  height: auto;
+}
+.tiptap blockquote {
+  margin-left: 0;
+  padding-left: 1rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.4);
+}
