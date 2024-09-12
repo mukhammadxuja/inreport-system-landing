@@ -4,11 +4,14 @@ import { gsap } from "gsap";
 import Image from "next/image";
 import { useInView } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 function HomeFooter() {
   const textRef = useRef(null);
   const ref = useRef(null);
   const isInView = useInView(ref);
+
+  const pathname = usePathname();
 
   useEffect(() => {
     if (isInView) {
@@ -68,19 +71,19 @@ function HomeFooter() {
                   <span>Inreport</span>
                 </li>
                 <li className="nav-link text-white">
-                  <Link href="/prices">Narxlar</Link>
+                  <Link href={`${pathname}/prices`}>Narxlar</Link>
                 </li>
                 <li className="nav-link text-white">
                   <Link href="/#services">Xizmatlar</Link>
                 </li>
                 <li className="nav-link text-white">
-                  <Link href="/aboutus">Haqimizda</Link>
+                  <Link href={`${pathname}/aboutus`}>Haqimizda</Link>
                 </li>
                 <li className="nav-link text-white">
-                  <Link href="/privacy">Maxfiylik siyosati</Link>
+                  <Link href={`${pathname}/privacy`}>Maxfiylik siyosati</Link>
                 </li>
                 <li className="nav-link text-white">
-                  <Link href="/agreement">Foydalanish shartlari</Link>
+                  <Link href={`${pathname}/agreement`}>Foydalanish shartlari</Link>
                 </li>
               </ul>
               <ul className="flex flex-col -space-y-2.5">
@@ -88,20 +91,27 @@ function HomeFooter() {
                   <span>Ijtimoy tarmoqlarda</span>
                 </li>
                 <li className="nav-link text-white">
-                  <a href="https://www.instagram.com/inreport.uz/" target="_blank">Instagram</a>
+                  <a
+                    href="https://www.instagram.com/inreport.uz/"
+                    target="_blank"
+                  >
+                    Instagram
+                  </a>
                 </li>
                 {/* <li className="nav-link text-white">LInkedin</li> */}
                 <li className="nav-link text-white">
-                  <a href="https://t.me/inreport" target="_blank">Telegram</a>
+                  <a href="https://t.me/inreport" target="_blank">
+                    Telegram
+                  </a>
                 </li>
                 {/* <li className="nav-link text-white">
                   <a href="#contact">Twitter</a>
                 </li> */}
                 <li className="nav-link text-white">
-                  <a href="https://github.com/dotsoftuz" target="_blank">Github</a>
+                  <a href="https://github.com/dotsoftuz" target="_blank">
+                    Github
+                  </a>
                 </li>
-
-               
               </ul>
             </div>
           </div>

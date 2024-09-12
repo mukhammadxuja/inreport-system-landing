@@ -2,8 +2,10 @@ import { X } from "lucide-react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
+  const pathname = usePathname();
   return (
     <div
       className={`fixed top-0 right-0 z-[1000] w-full md:w-96 bg-primary shadow-md h-screen px-5 py-4 duration-300 ${
@@ -43,16 +45,47 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
             <span>Inreport</span>
           </li>
           <li className="nav-link text-white">
-            <Link href="/prices" onClick={() => setOpenMobileNav(false)}>Narxlar</Link>
+            <Link
+              href={`${pathname}/prices`}
+              onClick={() => setOpenMobileNav(false)}
+            >
+              Narxlar
+            </Link>
           </li>
           <li className="nav-link text-white">
-            <Link href="/#services" onClick={() => setOpenMobileNav(false)}>Xizmatlar</Link>
+            <Link href="/#services">Xizmatlar</Link>
           </li>
           <li className="nav-link text-white">
-            <Link href="/aboutus" onClick={() => setOpenMobileNav(false)}>Haqimizda</Link>
+            <Link
+              href={`${pathname}/aboutus`}
+              onClick={() => setOpenMobileNav(false)}
+            >
+              Haqimizda
+            </Link>
           </li>
           <li className="nav-link text-white">
-            <Link href="/contact" onClick={() => setOpenMobileNav(false)}>Aloqa</Link>
+            <Link
+              href={`${pathname}/contact`}
+              onClick={() => setOpenMobileNav(false)}
+            >
+              Aloqa
+            </Link>
+          </li>
+          <li className="nav-link text-white">
+            <Link
+              href={`${pathname}/privacy`}
+              onClick={() => setOpenMobileNav(false)}
+            >
+              Maxfiylik siyosati
+            </Link>
+          </li>
+          <li className="nav-link text-white">
+            <Link
+              href={`${pathname}/agreement`}
+              onClick={() => setOpenMobileNav(false)}
+            >
+              Foydalanish shartlari
+            </Link>
           </li>
         </ul>
         <ul className="flex flex-col -space-y-2.5">
@@ -63,7 +96,11 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
             <a href="tel:+998995575230">99 557-52-30</a>
           </li>
           <li className="nav-link text-white">
-            <a target="_blank" rel="noopener noreferrer" href="tel:+998919449491">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="tel:+998919449491"
+            >
               91 944-94-91
             </a>
           </li>

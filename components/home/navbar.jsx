@@ -14,12 +14,14 @@ import {
 } from "@/components/ui/select";
 
 import { useLocale } from "next-intl";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ChangeEvent, useTransition } from "react";
 
 function HomeNavbar({ setOpenMobileNav }) {
   const { isVisible, setIsVisible, lastScrollTop, setLastScrollTop } =
     useMainContext();
+
+  const pathname = usePathname();
 
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
@@ -58,29 +60,41 @@ function HomeNavbar({ setOpenMobileNav }) {
       <div className="container mx-auto flex items-center justify-between">
         <Link
           href="/"
-          className="flex items-center gap-2 duration-300 hover:opacity-70"
+          className="hidden lg:block items-center gap-2 duration-300 hover:opacity-70"
         >
           <Image
             width={140}
             height={140}
             src="/inreport logo dark.svg"
             alt="Logo"
-            // className="w-7 h-7 lg:h-5 lg:w-5 transition-all group-hover:scale-110 opacity-90"
+            className="transition-all group-hover:scale-110 opacity-90"
           />
         </Link>
-        <div className="flex items-center gap-2 md:gap-6">
+        <Link
+          href="/"
+          className="flex lg:hidden items-center gap-2 duration-300 hover:opacity-70"
+        >
+          <Image
+            width={140}
+            height={140}
+            src="/logo.svg"
+            alt="Logo"
+            className="w-7 h-7 lg:h-5 lg:w-5 transition-all group-hover:scale-110 opacity-90"
+          />
+        </Link>
+        <div className="flex items-center sm:gap-2 md:gap-6">
           <ul className="hidden lg:flex items-center gap-4">
             <li className="nav-link">
-              <Link href="/prices">Narxlar</Link>
+              <Link href={`${pathname}/prices`}>Narxlar</Link>
             </li>
             <li className="nav-link">
               <Link href="/#services">Xizmatlar</Link>
             </li>
             <li className="nav-link">
-              <Link href="/aboutus">Haqimizda</Link>
+              <Link href={`${pathname}/aboutus`}>Haqimizda</Link>
             </li>
             <li className="nav-link">
-              <Link href="/contact">Aloqa</Link>
+              <Link href={`${pathname}/contact`}>Aloqa</Link>
             </li>
           </ul>
           <div className="flex gap-2 items-center">
@@ -89,10 +103,10 @@ function HomeNavbar({ setOpenMobileNav }) {
               onValueChange={onSelectChange}
               disabled={isPending}
             >
-              <SelectTrigger className="w-[70px]">
+              <SelectTrigger className="w-[70px] ring-transparent">
                 <SelectValue placeholder="Lang" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="w-[70px]">
                 <SelectItem value="uz">UZ</SelectItem>
                 <SelectItem value="ru">RU</SelectItem>
                 <SelectItem value="en">EN</SelectItem>
@@ -103,7 +117,7 @@ function HomeNavbar({ setOpenMobileNav }) {
               rel="noopener noreferrer"
               href="https://app.inreport.uz/"
             >
-              <Button>Hisobga kirish</Button>
+              <Button className="whitespace-nowrap">Hisobga kirish</Button>
             </Link>
           </div>
 
