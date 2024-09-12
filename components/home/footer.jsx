@@ -12,6 +12,11 @@ function HomeFooter() {
   const isInView = useInView(ref);
 
   const pathname = usePathname();
+  const pathSegments = pathname.split("/").filter(Boolean);
+
+  // Get the first segment or the only one if there's just one
+  const firstPathSegment =
+    pathSegments.length > 0 ? `/${pathSegments[0]}` : "/";
 
   useEffect(() => {
     if (isInView) {
@@ -71,19 +76,23 @@ function HomeFooter() {
                   <span>Inreport</span>
                 </li>
                 <li className="nav-link text-white">
-                  <Link href={`${pathname}/prices`}>Narxlar</Link>
+                  <Link href={`${firstPathSegment}/prices`}>Narxlar</Link>
                 </li>
                 <li className="nav-link text-white">
                   <Link href="/#services">Xizmatlar</Link>
                 </li>
                 <li className="nav-link text-white">
-                  <Link href={`${pathname}/aboutus`}>Haqimizda</Link>
+                  <Link href={`${firstPathSegment}/aboutus`}>Haqimizda</Link>
                 </li>
                 <li className="nav-link text-white">
-                  <Link href={`${pathname}/privacy`}>Maxfiylik siyosati</Link>
+                  <Link href={`${firstPathSegment}/privacy`}>
+                    Maxfiylik siyosati
+                  </Link>
                 </li>
                 <li className="nav-link text-white">
-                  <Link href={`${pathname}/agreement`}>Foydalanish shartlari</Link>
+                  <Link href={`${firstPathSegment}/agreement`}>
+                    Foydalanish shartlari
+                  </Link>
                 </li>
               </ul>
               <ul className="flex flex-col -space-y-2.5">

@@ -6,6 +6,11 @@ import { usePathname } from "next/navigation";
 
 const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
   const pathname = usePathname();
+  const pathSegments = pathname.split("/").filter(Boolean);
+
+  // Get the first segment or the only one if there's just one
+  const firstPathSegment =
+    pathSegments.length > 0 ? `/${pathSegments[0]}` : "/";
   return (
     <div
       className={`fixed top-0 right-0 z-[1000] w-full md:w-96 bg-primary shadow-md h-screen px-5 py-4 duration-300 ${
@@ -14,11 +19,19 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
     >
       <div className="flex items-center justify-between">
         <Image
-          width={40}
-          height={40}
+          width={120}
+          height={120}
+          src="/inreport logo light.svg"
+          alt="Logo"
+          className="hidden lg:block transition-all group-hover:scale-110 opacity-90"
+        />
+
+        <Image
+          width={140}
+          height={140}
           src="/logo-white.svg"
           alt="Logo"
-          className="w-7 h-7 lg:h-5 lg:w-5 transition-all group-hover:scale-110 opacity-90"
+          className="block lg:hidden w-7 h-7 lg:h-5 lg:w-5 transition-all group-hover:scale-110 opacity-90"
         />
         <div className="flex items-center gap-2">
           <Link
@@ -46,7 +59,7 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
           </li>
           <li className="nav-link text-white">
             <Link
-              href={`${pathname}/prices`}
+              href={`${firstPathSegment}/prices`}
               onClick={() => setOpenMobileNav(false)}
             >
               Narxlar
@@ -57,7 +70,7 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
           </li>
           <li className="nav-link text-white">
             <Link
-              href={`${pathname}/aboutus`}
+              href={`${firstPathSegment}/aboutus`}
               onClick={() => setOpenMobileNav(false)}
             >
               Haqimizda
@@ -65,7 +78,7 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
           </li>
           <li className="nav-link text-white">
             <Link
-              href={`${pathname}/contact`}
+              href={`${firstPathSegment}/contact`}
               onClick={() => setOpenMobileNav(false)}
             >
               Aloqa
@@ -73,7 +86,7 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
           </li>
           <li className="nav-link text-white">
             <Link
-              href={`${pathname}/privacy`}
+              href={`${firstPathSegment}/privacy`}
               onClick={() => setOpenMobileNav(false)}
             >
               Maxfiylik siyosati
@@ -81,7 +94,7 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
           </li>
           <li className="nav-link text-white">
             <Link
-              href={`${pathname}/agreement`}
+              href={`${firstPathSegment}/agreement`}
               onClick={() => setOpenMobileNav(false)}
             >
               Foydalanish shartlari

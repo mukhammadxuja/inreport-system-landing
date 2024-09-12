@@ -22,9 +22,15 @@ function HomeNavbar({ setOpenMobileNav }) {
     useMainContext();
 
   const pathname = usePathname();
+  const pathSegments = pathname.split("/").filter(Boolean);
+
+  // Get the first segment or the only one if there's just one
+  const firstPathSegment =
+    pathSegments.length > 0 ? `/${pathSegments[0]}` : "/";
 
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
+
   const localActive = useLocale();
 
   const onSelectChange = (value) => {
@@ -85,16 +91,16 @@ function HomeNavbar({ setOpenMobileNav }) {
         <div className="flex items-center sm:gap-2 md:gap-6">
           <ul className="hidden lg:flex items-center gap-4">
             <li className="nav-link">
-              <Link href={`${pathname}/prices`}>Narxlar</Link>
+              <Link href={`${firstPathSegment}/prices`}>Narxlar</Link>
             </li>
             <li className="nav-link">
               <Link href="/#services">Xizmatlar</Link>
             </li>
             <li className="nav-link">
-              <Link href={`${pathname}/aboutus`}>Haqimizda</Link>
+              <Link href={`${firstPathSegment}/aboutus`}>Haqimizda</Link>
             </li>
             <li className="nav-link">
-              <Link href={`${pathname}/contact`}>Aloqa</Link>
+              <Link href={`${firstPathSegment}/contact`}>Aloqa</Link>
             </li>
           </ul>
           <div className="flex gap-2 items-center">
