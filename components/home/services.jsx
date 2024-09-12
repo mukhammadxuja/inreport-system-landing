@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
 import { useInView } from "framer-motion";
@@ -9,29 +9,38 @@ import Shapes from "./floating-shape/shapes";
 import Plus from "./floating-shape/plus";
 import Link from "next/link";
 
-function HomeServices() {
+function HomeServices({ t }) {
+  const freeSupportText = (
+    <>
+      <li className="text-4xl font-bold whitespace-nowrap">
+        <span className="text-muted-foreground">{t("Bepul")}</span>{" "}
+        {t("yordam va qo'llab-quvvatlash")}
+      </li>
+      <li className="text-4xl font-bold whitespace-nowrap">•</li>
+    </>
+  );
+
   return (
     <section id="services" className="mb-10 md:mb-16">
       <section className="py-10 md:py-16 my-10 md:mt-16 md:mb-10 items-center bg-primary text-white">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 items-center h-full">
           <div className="mb-4 md:mb-0 h-full">
             <h2 className="text-clamp-title md:!text-5xl">
-              <span className="text-muted-foreground">Bepul.</span>
+              <span className="text-muted-foreground">{t("Bepul")}.</span>
               <br />
-              o&apos;rnatib beramiz. <br /> Sozlaymiz. O&apos;rgatamiz.
+              {t("O'rnatib beramiz")}. <br /> {t("Sozlaymiz")}.{" "}
+              {t("O'rgatamiz")}.
             </h2>
           </div>
           <div className="md:px-12 lg:px-16 space-y-4">
             <p class="mb-8 text-xl md:text-2xl text-foreground-secondary">
-              Bizning menejerlarimiz sizga tovarlarni kiritish, uskunalarni
-              ulash, xodimlarni o&apos;rgatishda yordam beradi, shuningdek, 10
-              kunlik bepul foydalanish muddatini taqdim etadi!
+              {t("Our managers will teach")}
             </p>
             <Button
               variant="outline"
               className="flex items-center gap-1.5 text-primary"
             >
-              <span>Xizmatlarga o&apos;tish</span>
+              <span>{t("Xizmatlarga o'tish")}</span>
               <ArrowRight className="w-3 h-3" />
             </Button>
           </div>
@@ -44,45 +53,9 @@ function HomeServices() {
             class="flex items-center justify-center md:justify-start [&_li]:mx-2 [&_img]:max-w-none animate-infinite-scroll"
             aria-hidden="true"
           >
-            <li className="text-4xl font-bold whitespace-nowrap">
-              <span className="text-muted-foreground">Bepul</span> yordam va
-              qo&apos;llab-quvvatlash
-            </li>
-            <li className="text-4xl font-bold whitespace-nowrap">•</li>
-            <li className="text-4xl font-bold whitespace-nowrap">
-              <span className="text-muted-foreground">Bepul</span> yordam va
-              qo&apos;llab-quvvatlash
-            </li>
-            <li className="text-4xl font-bold whitespace-nowrap">•</li>
-            <li className="text-4xl font-bold whitespace-nowrap">
-              <span className="text-muted-foreground">Bepul</span> yordam va
-              qo&apos;llab-quvvatlash
-            </li>
-            <li className="text-4xl font-bold whitespace-nowrap">•</li>
-            <li className="text-4xl font-bold whitespace-nowrap">
-              <span className="text-muted-foreground">Bepul</span> yordam va
-              qo&apos;llab-quvvatlash
-            </li>
-            <li className="text-4xl font-bold whitespace-nowrap">•</li>
-            <li className="text-4xl font-bold whitespace-nowrap">
-              <span className="text-muted-foreground">Bepul</span> yordam va
-              qo&apos;llab-quvvatlash
-            </li>
-            <li className="text-4xl font-bold whitespace-nowrap">•</li>
-            <li className="text-4xl font-bold whitespace-nowrap">
-              <span className="text-muted-foreground">Bepul</span> yordam va
-              qo&apos;llab-quvvatlash
-            </li>
-            <li className="text-4xl font-bold whitespace-nowrap">•</li>
-            <li className="text-4xl font-bold whitespace-nowrap">
-              <span className="text-muted-foreground">Bepul</span> yordam va
-              qo&apos;llab-quvvatlash
-            </li>
-            <li className="text-4xl font-bold whitespace-nowrap">•</li>
-            <li className="text-4xl font-bold whitespace-nowrap">
-              <span className="text-muted-foreground">Bepul</span> yordam va
-              qo&apos;llab-quvvatlash
-            </li>
+            {Array.from({ length: 8 }).map((_, index) => (
+              <React.Fragment key={index}>{freeSupportText}</React.Fragment>
+            ))}
           </ul>
         </div>
       </div>

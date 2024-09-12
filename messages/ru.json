@@ -1,5 +1,30 @@
 {
-  "Homepage": {
-    "heading": "Inreport (ru)"
-  }
+  
+    "heading": "Inreport",
+    "slogan": "Упростите процесс продаж и выведите ваш бизнес на новый уровень!",
+    "Bepul boshlang": "Начните бесплатно",
+    "Demoni ko'rish": "Посмотреть демо",
+    "Barcha vazifalar uchun" : "Для всех задач",
+    "Bir yechim": "Одно решение",
+    "Ko'proq ma'lumot" : "Подробнее",
+    "Ko'proq ma'lumot olish" : "Узнать больше",
+    "Savdo jarayonlarini avtomatlashtirish" : "Автоматизация процесса продаж",
+    "Savdo jarayonlarini avtomatlashtirish more" : "Откажитесь от ручного управления продажами, автоматизируйте процессы продаж и уменьшите количество ошибок.",
+    "Mijozlar bazasini boshqarish" : "Управление клиентской базой",
+    "Mijozlar bazasini boshqarish more" : "Получите полную информацию о клиентах, лучше поймите их требования и улучшите качество обслуживания.",
+    "Inventarizatsiyani kuzatib boring" : "Следите за инвентарем",
+    "Inventarizatsiyani kuzatib boring more" : "Контролируйте движение товаров с возможностью отслеживать и обновлять товарный запас в режиме реального времени.",
+    "Moliyaviy hisobotlarni tahlil qilish" : "Анализ финансовой отчетности",
+    "Moliyaviy hisobotlarni tahlil qilish more" : "Создавайте отчеты, помогающие принимать решения, с помощью точного финансового анализа.",
+    "Jamoani boshqarish va o'zaro hamkorlik" : "Управление командой и сотрудничество",
+    "Jamoani boshqarish va o'zaro hamkorlik more" : "Повышайте эффективность работы благодаря возможности эффективно сотрудничать с членами команды и распределять задачи.",
+    "Mobil ilovalar orqali ishlash" : "Работайте через мобильные приложения.",
+    "Mobil ilovalar orqali ishlash more" : "Получите гибкость управления своим бизнесом с доступом из любого места и с любого устройства.",
+    "Bepul" : "Бесплатно",
+    "O'rnatib beramiz" : "Установим",
+    "Sozlaymiz" : "Настроим",
+    "O'rgatamiz" : "Научим",
+    "Our managers will teach" : "Наши менеджеры помогут вам ввести товары, подключить оборудование, обучить сотрудников, а также предоставят 10-дневный бесплатный период использования!",
+    "Xizmatlarga o'tish" : "Перейти к услугам",
+    "yordam va qo'llab-quvvatlash" : "поддержка и помощь"
 }

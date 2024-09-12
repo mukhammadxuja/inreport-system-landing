@@ -25,56 +25,7 @@ import Call from "@/components/home/call";
 import Types from "@/components/home/types";
 import { useTranslations } from "next-intl";
 
-const projects = [
-  {
-    title: `Savdo jarayonlarini avtomatlashtirish`,
-    description:
-      "Savdolarni qo'lda boshqarishdan qutulib, savdo jarayonlarini avtomatlashtiring va xatoliklarni kamaytiring.",
-    src: "/assets/sell.jpg",
-    rotate: [3, -2],
-    color: "#BBACAF",
-  },
-  {
-    title: "Mijozlar bazasini boshqarish",
-    description:
-      "Mijozlar haqida to'liq ma'lumotga ega bo'lib, ularning talablarini yaxshiroq tushuning va xizmat sifatini oshiring.",
-    src: "/assets/customer.webp",
-    rotate: [-4, 2],
-    color: "#977F6D",
-  },
-  {
-    title: "Inventarizatsiyani kuzatib boring",
-    description:
-      "Mahsulotlar zaxirasini real vaqtda kuzatish va yangilash imkoniyati bilan tovarlar harakatini nazorat qiling.",
-    src: "/assets/control.jpg",
-    rotate: [10, -2],
-    color: "#C2491D",
-  },
-  {
-    title: "Moliyaviy hisobotlarni tahlil qilish",
-    description:
-      "Moliyaviy holatni aniq tahlil qilish orqali qaror qabul qilishda yordam beruvchi hisobotlarni yarating.",
-    src: "/assets/sales auto.jpg",
-    rotate: [-7, 3],
-    color: "#B62429",
-  },
-  {
-    title: "Jamoani boshqarish va o'zaro hamkorlik",
-    description:
-      "Jamoa a'zolari bilan samarali hamkorlik qilish va vazifalarni taqsimlash imkoniyati bilan ish samaradorligini oshiring.",
-    src: "/assets/control.webp",
-    rotate: [6, -2],
-    color: "#88A28D",
-  },
-  {
-    title: "Mobil ilovalar orqali ishlash",
-    description:
-      "Har joyda va har qanday qurilmadan kirish imkoniyati bilan biznesingizni boshqarishda moslashuvchanlikka ega bo'ling.",
-    src: "/assets/statistic.png",
-    rotate: [10, 0],
-    color: "#88A28D",
-  },
-];
+
 
 export default function Home() {
   const { openMobileNav, setOpenMobileNav } = useMainContext();
@@ -82,7 +33,7 @@ export default function Home() {
   const container = useRef(null);
 
   // About pageda useTranslations("AboutPage") qilib ishlatasiz
-  const t = useTranslations("Homepage");
+  const t = useTranslations();
 
   const { scrollYProgress } = useScroll({
     target: container,
@@ -103,6 +54,58 @@ export default function Home() {
     requestAnimationFrame(raf);
   }, []);
 
+
+  const projects = [
+    {
+      title: t("Savdo jarayonlarini avtomatlashtirish"),
+      description:
+        t("Savdo jarayonlarini avtomatlashtirish more"),
+      src: "/assets/sell.jpg",
+      rotate: [3, -2],
+      color: "#BBACAF",
+    },
+    {
+      title: t("Mijozlar bazasini boshqarish"),
+      description:
+        t("Mijozlar bazasini boshqarish more"),
+      src: "/assets/customer.webp",
+      rotate: [-4, 2],
+      color: "#977F6D",
+    },
+    {
+      title: t("Inventarizatsiyani kuzatib boring"),
+      description:
+        t("Inventarizatsiyani kuzatib boring more"),
+      src: "/assets/control.jpg",
+      rotate: [10, -2],
+      color: "#C2491D",
+    },
+    {
+      title: t("Moliyaviy hisobotlarni tahlil qilish"),
+      description:
+        t("Moliyaviy hisobotlarni tahlil qilish more"),
+      src: "/assets/sales auto.jpg",
+      rotate: [-7, 3],
+      color: "#B62429",
+    },
+    {
+      title: t("Jamoani boshqarish va o'zaro hamkorlik"),
+      description:
+        t("Jamoani boshqarish va o'zaro hamkorlik more"),
+      src: "/assets/control.webp",
+      rotate: [6, -2],
+      color: "#88A28D",
+    },
+    {
+      title: t("Mobil ilovalar orqali ishlash"),
+      description:
+        t("Mobil ilovalar orqali ishlash more"),
+      src: "/assets/statistic.png",
+      rotate: [10, 0],
+      color: "#88A28D",
+    },
+  ];
+
   return (
     <main className="scroll-smooth">
       <HomeNavbar setOpenMobileNav={setOpenMobileNav} />
@@ -117,9 +120,9 @@ export default function Home() {
         setOpenMobileNav={setOpenMobileNav}
       />
       <Header t={t} />
-      <About data={projects} />
+      <About data={projects} t={t} />
 
-      <HomeServices />
+      <HomeServices t={t} />
       {/* <Types /> */}
       <Comments />
       <Clients />

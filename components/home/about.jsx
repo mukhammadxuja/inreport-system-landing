@@ -4,17 +4,18 @@ import { ArrowRight } from "lucide-react";
 import { Badge } from "../ui/badge";
 import Image from "next/image";
 
-function About({ data }) {
+function About({ data, t }) {
+  // Ulandim
   return (
     <section className="container mx-auto pt-10 md:pt-16 mt-10">
       <div className="w-full">
         <h2 className="text-clamp-title items-center text-center">
-          <span className="text-muted-foreground">Barcha vazifalar uchun</span>
+          <span className="text-muted-foreground">{t("Barcha vazifalar uchun")}</span>
           <br />
-           Bir yechim.
+           {t("Bir yechim")}
         </h2>
         <Button className="flex items-center gap-1.5 mx-auto mt-5">
-          <span>Ko&apos;proq ma&apos;lumot</span>
+          <span>{(t("Ko'proq ma'lumot"))}</span>
           <ArrowRight className="w-3 h-3" />
         </Button>
       </div>
@@ -35,7 +36,7 @@ function About({ data }) {
                 variant="linkHover2"
                 className="px-0 flex items-center gap-2.5"
               >
-                <span>Ko&apos;proq ma&apos;lumot olish</span>
+                <span>{t("Ko'proq ma'lumot olish")}</span>
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </div>

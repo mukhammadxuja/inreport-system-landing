@@ -1,8 +1,25 @@
 {
-  "Homepage": {
-    "heading": "Inreport (en)"
-  },
-  "Footer": {
-    "link": "test"
-  }
+  
+    "heading": "Inreport",
+    "slogan": "Simplify the sales process and take your business to the next level!",
+    "Bepul boshlang": "Start for free",
+    "Demoni ko'rish": "View demo",
+    "Barcha vazifalar uchun" : "For all tasks",
+    "Bir yechim.": "One solution.",
+    "Ko'proq ma'lumot" : "More Information",
+    "Ko'proq ma'lumot olish" : "Learn more",
+    "Savdo jarayonlarini avtomatlashtirish" : "Automation of sales processes",
+    "Savdo jarayonlarini avtomatlashtirish more" : "Eliminate manual sales management, automate sales processes and reduce errors",
+    "Mijozlar bazasini boshqarish" : "Customer base management",
+    "Mijozlar bazasini boshqarish more" : "Get complete information about customers, better understand their requirements and improve the quality of service.",
+    "Inventarizatsiyani kuzatib boring" : "Keep track of inventory",
+    "Inventarizatsiyani kuzatib boring more" : "Control the movement of goods with the ability to track and update product inventory in real time.",
+    "Moliyaviy hisobotlarni tahlil qilish" : "Analysis of financial statements",
+    "Moliyaviy hisobotlarni tahlil qilish more" : "Create reports that support decision-making with accurate financial analysis.",
+    "Jamoani boshqarish va o'zaro hamkorlik" : "Team management and collaboration",
+    "Jamoani boshqarish va o'zaro hamkorlik more" : "Improve work efficiency with the ability to effectively collaborate with team members and distribute tasks.",
+    "Mobil ilovalar orqali ishlash" : "Work through mobile applications",
+    "Mobil ilovalar orqali ishlash more" : "Gain the flexibility to manage your business with access from anywhere and from any device."
+    
+  
 }

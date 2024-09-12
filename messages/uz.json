@@ -1,5 +1,26 @@
 {
-  "Homepage": {
-    "heading": "Inreport (uz)"
+  
+    "heading": "Inreport",
+    "slogan": "Savdo jarayonlarini soddalashtiring va biznesingizni yangi bosqichga olib chiqing!",
+    "Bepul boshlang": "Bepul boshlang",
+    "Demoni ko'rish": "Demoni ko'rish",
+    "Barcha vazifalar uchun" : "Barcha vazifalar uchun",
+    "Bir yechim.": "Bir yechim.",
+    "Ko'proq ma'lumot" : "Ko'proq ma'lumot",
+    "Ko'proq ma'lumot olish" : "Ko'proq ma'lumot olish",
+    "Savdo jarayonlarini avtomatlashtirish" : "Savdo jarayonlarini avtomatlashtirish",
+    "Savdo jarayonlarini avtomatlashtirish more" : "Savdolarni qo'lda boshqarishdan qutulib, savdo jarayonlarini avtomatlashtiring va xatoliklarni kamaytiring",
+    "Mijozlar bazasini boshqarish" : "Mijozlar bazasini boshqarish",
+    "Mijozlar bazasini boshqarish more" : "Mijozlar haqida to'liq ma'lumotga ega bo'lib, ularning talablarini yaxshiroq tushuning va xizmat sifatini oshiring.",
+    "Inventarizatsiyani kuzatib boring" : "Inventarizatsiyani kuzatib boring",
+    "Inventarizatsiyani kuzatib boring more" : "Mahsulotlar zaxirasini real vaqtda kuzatish va yangilash imkoniyati bilan tovarlar harakatini nazorat qiling.",
+    "Moliyaviy hisobotlarni tahlil qilish" : "Moliyaviy hisobotlarni tahlil qilish",
+    "Moliyaviy hisobotlarni tahlil qilish more" : "Moliyaviy holatni aniq tahlil qilish orqali qaror qabul qilishda yordam beruvchi hisobotlarni yarating.",
+    "Jamoani boshqarish va o'zaro hamkorlik" : "Jamoani boshqarish va o'zaro hamkorlik",
+    "Jamoani boshqarish va o'zaro hamkorlik more" : "Jamoa a'zolari bilan samarali hamkorlik qilish va vazifalarni taqsimlash imkoniyati bilan ish samaradorligini oshiring.",
+    "Mobil ilovalar orqali ishlash" : "Mobil ilovalar orqali ishlash",
+    "Mobil ilovalar orqali ishlash more" : "Har joyda va har qanday qurilmadan kirish imkoniyati bilan biznesingizni boshqarishda moslashuvchanlikka ega bo'ling.",
+    "Bepul" : "Bepul",
+    "O'rnatib beramiz" : "o'rnatib beramiz",
+    "Our managers will teach" : "Bizning menejerlarimiz sizga tovarlarni kiritish, uskunalarni ulash, xodimlarni o'rgatishda yordam beradi, shuningdek, 10 kunlik bepul foydalanish muddatini taqdim etadi!"
   }
-}

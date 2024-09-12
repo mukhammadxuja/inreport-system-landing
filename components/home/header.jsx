@@ -69,17 +69,16 @@ function Header({ t }) {
           <br />
           <p
             style={{ display: "inline-block" }}
-            className="text-gray-600 md:text-2xl lg:text-3xl font-normal mt-3 md:mt-5"
+            className="text-gray-600 md:text-2xl lg:text-3xl font-normal mt-3 md:mt-5 w-[700px]"
           >
-            Savdo jarayonlarini soddalashtiring va <br /> biznesingizni yangi
-            bosqichga olib chiqing!
+            {t("slogan")}
           </p>
           <div className="flex gap-2 mt-7">
             <Link href="https://app.inreport.uz">
-              <Button>Bepul boshlang</Button>
+              <Button>{t("Bepul boshlang")}</Button>
             </Link>
             <Link href="https://app.inreport.uz">
-              <Button variant="outline">Demoni ko&apos;rish</Button>
+              <Button variant="outline">{t("Demoni ko'rish")}</Button>
             </Link>
           </div>
         </div>
