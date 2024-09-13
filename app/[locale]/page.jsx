@@ -124,7 +124,7 @@ export default function Home() {
 
       <HomeServices t={t} />
       {/* <Types /> */}
-      <Comments />
+      <Comments t={t} />
       <Clients />
       <Price />
       {/* <Cards /> */}

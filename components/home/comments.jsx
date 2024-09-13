@@ -5,17 +5,17 @@ import { Button } from "../ui/button";
 import Lenis from "lenis";
 import { useEffect } from "react";
 
-function Comments() {
+function Comments({t}) {
   return (
     <section>
       <div className="w-full mt-4 md:mt-0">
         <h2 className="text-clamp-title items-center text-center">
-          <span className="text-muted-foreground">Sharhlar.</span>
+          <span className="text-muted-foreground">{t("Sharhlar")}.</span>
           <br />
-        Mijozlarimiz fikri.
+        {t("Mijozlarimiz fikri")}.
         </h2>
         <Button className="flex items-center gap-1.5 mx-auto mt-2 md:mt-5">
-          <span>Barcha sharxlar</span>
+          <span>{t("Barcha sharhlar")}</span>
           <ArrowRight className="w-3 h-3" />
         </Button>
       </div>
@@ -24,10 +24,7 @@ function Comments() {
           <div className="py-2 md:py-4 lg:py-10 not-rich-text max-w-lg">
             <p className="py-4 text-xl md:text-2xl/7 font-semibold md:py-0">
               <span className="bg-accent">
-                “Inreport bilan mijozlarimiz soni 20% ga oshdi. Ombor
-                logistikasi va mahsulotlarni import qilishga sarflanayotgan vaqt
-                sezilarli darajada qisqardi. Ushbu omillarning har biri tovar
-                aylanmasining 15% ga oshishiga ta&apos;sir ko&apos;rsatdi.”
+                “{t("comment1")}”
               </span>
             </p>
             <div className="overflow-hidden mt-2 md:mt-6">
@@ -179,12 +176,7 @@ function Comments() {
             <div>
               <p className="py-4 text-xl md:text-2xl/7 font-semibold md:py-0">
                 <span className="bg-accent">
-                  “Mijozlarni boshqarishning ilg&apos;or funksionalligi,
-                  hisob-kitoblarning aniqligi va ma&apos;lumotlar auditini
-                  Inreport dasturining afzalliklari qatoriga kiritishimiz
-                  mumkin. Inreport bizga o&apos;z vaqtida qaror qabul qilish va
-                  do&apos;kon uchun sarflanayotgan vaqtni tejashga yordam
-                  beradi”
+                  “{t("comment2")}”
                 </span>
               </p>
               <div className="overflow-hidden mt-2 md:mt-6">
@@ -199,10 +191,7 @@ function Comments() {
           <div className="py-2 md:py-4 lg:py-10 not-rich-text max-w-lg">
             <p className="py-4 text-xl md:text-2xl/7 font-semibold md:py-0">
               <span className="bg-accent">
-                Inreport yordamida tovarlar va mijozlar bilan ishlashni
-                to&apos;liq avtomatlashtirishga muvaffaq bo&apos;ldik, natijada
-                do&apos;konlarimiz soni uchtagacha ko&apos;paydi, savdo hajmi
-                esa 40% ga oshdi.”
+              “{t("comment3")}”
               </span>
             </p>
             <div className="overflow-hidden mt-2 md:mt-6">
@@ -304,12 +293,7 @@ function Comments() {
             <div className="">
               <p className="py-4 text-xl md:text-2xl/7 font-semibold md:py-0">
                 <span className="bg-accent">
-                  Inreport&apos;ning qo&apos;llab-quvvatlash xizmatini juda ham
-                  qadrlayman. Inreport bilan hamkorlikni boshlaganimizdan
-                  so&apos;ng ish jarayonimiz osonlashdi.
-                  Telegram-bot&apos;imizni ishga tushirdik, u onlayn savdoni
-                  yo&apos;lga qo&apos;yishga va brend taniqliligini oshirishga
-                  yordam bermoqda.”
+                “{t("comment4")}”
                 </span>
               </p>
               <div className="overflow-hidden mt-2 md:mt-6">

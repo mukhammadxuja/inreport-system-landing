@@ -64,21 +64,16 @@ function HomeServices({ t }) {
         <div className="bg-accent shadow-sm p-6 rounded-lg h-[27rem] flex flex-col justify-between">
           <div className="space-y-2 md:space-y-5">
             <h5 className="tracking-[1.12] leading-[-.005em] text-clamp-footer font-bold w-full">
-              Hisob-kitoblaringizni{" "}
-              <span className="text-muted-foreground">
-                qog`ozda yuritasizmi?
-              </span>
+              {t("Hisob-kitoblaringizni qo'lda yuritasizmi?")}
+              <span className="text-muted-foreground"></span>
             </h5>
             <p className="text-base text-secondary-foreground">
-              Qog'ozda hisob-kitob yuritishdan charchadingizmi? INREPORT sizga
-              barcha moliyaviy ma'lumotlaringizni raqamli formatda qulay
-              boshqarishga yordam beradi. Xatoliklarni kamaytiring, vaqtingizni
-              tejang va biznesingizni tezroq rivojlantiring!
+              {t("Hisob-kitoblaringizni qo'lda yuritasizmi more")}
             </p>
           </div>
           <Link href="/ledger">
             <Button className="flex items-center gap-2.5 w-full">
-              <span>Ko&apos;proq ma&apos;lumot olish</span>
+              <span>{t("Ko'proq ma'lumot olish")}</span>
               <ArrowRight className="w-4 h-4" />
             </Button>
           </Link>
@@ -86,18 +81,16 @@ function HomeServices({ t }) {
         <div className="bg-accent shadow-sm p-6 rounded-lg h-[27rem] flex flex-col justify-between">
           <div className="space-y-2 md:space-y-5">
             <h5 className="tracking-[1.12] leading-[-.005em] text-clamp-footer font-bold w-full">
-              Boshqa dasturdan <br />
-              <span className="text-muted-foreground">foydalanasizmi?</span>
+              {t("Boshqa dasturdan foydalanasizmi?")}
+              <span className="text-muted-foreground"></span>
             </h5>
             <p className="text-base text-secondary-foreground">
-              Boshqa dasturlar qoniqish bermayaptimi? INREPORT bilan barcha
-              vazifalaringizni bitta platformada boshqaring. Qulay interfeys va
-              keng imkoniyatlar bilan ish jarayonlaringizni soddalashtiring!
+              {t("Boshqa dasturdan foydalanasizmi more")}
             </p>
           </div>
           <Link href="/contact">
             <Button className="flex items-center gap-2.5 w-full">
-              <span>Ko&apos;proq ma&apos;lumot olish</span>
+            <span>{t("Ko'proq ma'lumot olish")}</span>
               <ArrowRight className="w-4 h-4" />
             </Button>
           </Link>
