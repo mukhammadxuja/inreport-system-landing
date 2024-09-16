@@ -14,9 +14,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Cards from "../../../components/contact/cards";
 import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 function ContactPage() {
   const { openMobileNav, setOpenMobileNav } = useMainContext();
+  const t = useTranslations();
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -44,39 +46,39 @@ function ContactPage() {
 
       <div className="mt-20 mb-10">
       <Head>
-        <title>Biz haqimizda | INREPORT</title>
+        <title>{t("Biz haqimizda")} | INREPORT</title>
         <meta name="description" content="INREPORT haqida ma'lumot. Bizning jamoamiz, maqsadlarimiz va xizmatlarimiz haqida batafsil ma'lumot oling." />
       </Head>
       <div className="container mx-auto p-6">
-        <h1 className="text-4xl font-bold text-gray-900 mb-6">Biz haqimizda</h1>
+        <h1 className="text-4xl font-bold text-gray-900 mb-6">{t("Biz haqimizda")}</h1>
         <p className="mb-6 text-lg text-gray-700">
-        DOTSOFT MCHJ — O'zbekistonning Jizzax shahrida joylashgan va 2021-yildan beri IT bozorida faoliyat yurituvchi innovatsion kompaniya. Biz mijozlarimizga veb-saytlar, veb-ilovalar, mobil ilovalar va brending xizmatlarini taqdim etamiz. Maqsadimiz jahon IT bozorida yetakchi bo'lish va xalqaro talablar darajasida xizmat ko'rsatadigan dasturchilar jamoasini shakllantirishdir.
-        <br /><br />  DOTSOFT MCHJ sifatida biz INREPORT platformasini yaratishda o'z oldimizga savdo jarayonlarini avtomatlashtirish va mijozlarimizga yuqori sifatli xizmat ko'rsatishni maqsad qilganmiz. Bizning jamoamiz innovatsion yechimlar orqali biznesingizni yangi bosqichga olib chiqishga tayyor.
+        {t("abt-us-text-1")}
+        <br /><br />  {t("abt-us-text-2")}
         </p>
 
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Bizning Maqsadimiz</h2>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">{t("Bizning Maqsadimiz")}</h2>
         <p className="mb-6 text-lg text-gray-700">
-          Biznes boshqaruvini soddalashtirish, savdo jarayonlarini tezlashtirish va xatoliklarni kamaytirish uchun INREPORT platformasini yaratdik. Ushbu platforma biznesingiz uchun barcha vazifalarni hal qilishda ishonchli yordamchi bo'lib xizmat qiladi.
+          {t("abt-us-text-3")}
         </p>
 
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Biz bilan bog'laning</h2>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">{t("Biz bilan bog'laning")}</h2>
         <p className="mb-4 text-lg text-gray-700">
-          Agar sizda savollar yoki qo'shimcha ma'lumotga ehtiyoj bo'lsa, biz bilan bog'laning:
+          {t("contact-us-text-more")}
         </p>
         <ul className="list-none mb-6">
-          <li><strong>Manzil:</strong> Jizzax shahar, O'zbekiston</li>
-          <li><strong>Telefon:</strong> <a href="tel:+998919449491" className="text-gray-900 hover:underline">+998 91 944 94 91</a></li>
+          <li><strong>{t("Manzil")}:</strong> Jizzax shahar, O'zbekiston</li>
+          <li><strong>{t("Telefon")}:</strong> <a href="tel:+998919449491" className="text-gray-900 hover:underline">+998 91 944 94 91</a></li>
           <li><strong>Email:</strong> <a href="mailto:dotsoftuz@gmail.com" className="text-gray-900 hover:underline">dotsoftuz@gmail.com</a></li>
         </ul>
 
         <p className="text-lg text-gray-700">
-          Sizning biznesingizni rivojlantirish yo'lida hamkorlik qilishdan mamnunmiz!
+          {t("happy-to-cooperate")}
         </p>
       </div>
 
         <h2 className="text-clamp-title items-center text-center text-primary pb-10 border-t pt-10 ">
           <br />
-          Biz bilan bog&apos;laning.
+          {t("Biz bilan bog'laning")}.
         </h2>
 
         <div className="w-full container md:max-w-xl mx-auto">
@@ -100,7 +102,7 @@ function ContactPage() {
               className="flex items-center gap-2 w-full mb-10"
             >
               <Send className="w-4 h-4" />
-              <span>Telegram orqali bog&apos;lanish</span>
+              <span>{t("Telegram orqali bog'lanish")}</span>
             </Button>
           </a>
         </div>

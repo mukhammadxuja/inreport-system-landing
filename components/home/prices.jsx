@@ -20,7 +20,7 @@ function Price({ pricePage = false, t }) {
         >
           <span className="text-muted-foreground ">{t("Narxlar")}.</span>
           <br />
-          {t("price_page_example")}.
+          {t("Mos tarifni tanlang")}.
         </h2>
       </div>
 

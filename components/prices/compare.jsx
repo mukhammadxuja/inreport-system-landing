@@ -1,13 +1,14 @@
 import { useMainContext } from "@/context/main-context";
 import React from "react";
+import { useTranslations } from "next-intl";
 
 function Compare() {
+  const t = useTranslations();
   const { isVisible } = useMainContext();
   return (
     <div className="w-full container md:max-w-4xl mx-auto my-10 md:my-16">
       <h2 className="text-clamp-title items-center text-center mt-10 mb-5">
-        <span className="text-muted-foreground">Rejalarni </span>
-        solishtiring
+        {t("Rejalarni solishtiring")}
       </h2>
 
       <div
@@ -17,7 +18,7 @@ function Compare() {
       >
         <div />
         <div className="grid grid-cols-3">
-          <h4 className="text-center text-xs md:text-base">Bepul</h4>
+          <h4 className="text-center text-xs md:text-base">Free trial</h4>
           <h4 className="text-center text-xs md:text-base">Standart</h4>
           <h4 className="text-center text-xs md:text-base">Business</h4>
         </div>
@@ -25,11 +26,11 @@ function Compare() {
 
       <div>
         <div className="p-2 md:p-3 bg-accent border-2 border-border rounded-lg w-full">
-          <h4 className="text-xs md:text-base">Umumiy xususiyatlar</h4>
+          <h4 className="text-xs md:text-base">{t("Umumiy xususiyatlar")}</h4>
         </div>
         <div className="grid grid-cols-2 items-center px-4 py-2 lg:p-4">
           <p className="text-sm lg:text-lg font-medium">
-            Sotuvlar bo&apos;yicha hisobotlar
+            {t("Sotuvlar bo'yicha hisobotlar")}
           </p>
           <div className="grid grid-cols-3">
             <Check />
@@ -39,7 +40,7 @@ function Compare() {
         </div>
         <div className="grid grid-cols-2 items-center px-4 py-3 lg:p-4">
           <p className="text-sm lg:text-lg font-medium">
-            Mijozlar bilan aloqa boshqaruvi (CRM)
+            {t("Mijozlar bilan aloqa boshqaruvi")} (CRM)
           </p>
           <div className="grid grid-cols-3">
             <Check />
@@ -49,7 +50,7 @@ function Compare() {
         </div>
         <div className="grid grid-cols-2 items-center px-4 py-3 lg:p-4">
           <p className="text-sm lg:text-lg font-medium">
-            Savdo jarayonlarini avtomatlashtirish
+            {t("Savdo jarayonlarini avtomatlashtirish")}
           </p>
           <div className="grid grid-cols-3">
             <Check />
@@ -58,7 +59,7 @@ function Compare() {
           </div>
         </div>
         <div className="grid grid-cols-2 items-center px-4 py-3 lg:p-4">
-          <p className="text-sm lg:text-lg font-medium">Real vaqt tahlillari</p>
+          <p className="text-sm lg:text-lg font-medium">{t("Real vaqt tahlillari")}</p>
           <div className="grid grid-cols-3">
             <Check />
             <Check />
@@ -69,12 +70,12 @@ function Compare() {
 
       <div>
         <div className="p-2 md:p-3 bg-accent border-2 border-border rounded-lg w-full">
-          <h4 className="text-xs md:text-base">Qo&apos;shimcha xususiyatlar</h4>
+          <h4 className="text-xs md:text-base">{t("Qo'shimcha xususiyatlar")}</h4>
         </div>
 
         <div className="grid grid-cols-2 items-center px-4 py-3 lg:p-4">
           <p className="text-sm lg:text-lg font-medium">
-            Ma&apos;lumotlar xavfsizligi
+            {t("Ma'lumotlar xavfsizligi")}
           </p>
           <div className="grid grid-cols-3">
             <Check />
@@ -84,7 +85,7 @@ function Compare() {
         </div>
         <div className="grid grid-cols-2 items-center px-4 py-3 lg:p-4">
           <p className="text-sm lg:text-lg font-medium">
-            Qo&apos;llab-quvvatlash
+            {t("Qo'llab-quvvatlash")}
           </p>
           <div className="grid grid-cols-3">
             <Close />
@@ -94,7 +95,7 @@ function Compare() {
         </div>
         <div className="grid grid-cols-2 items-center px-4 py-3 lg:p-4">
           <p className="text-sm lg:text-lg font-medium">
-            Qo&apos;shimcha agent dasturi
+            {t("Qo'shimcha agent dasturi")}
           </p>
           <div className="grid grid-cols-3">
             <Close />

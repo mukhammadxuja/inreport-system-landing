@@ -7,8 +7,10 @@ import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 function ContactForm() {
+  const t = useTranslations();
   const form = useRef();
   const { toast } = useToast();
 
@@ -51,14 +53,14 @@ function ContactForm() {
             type="text"
             name="user_name"
             className="hover:ring-2 hover:ring-transparent md:h-12 active:ring-primary"
-            placeholder="Ismingiz"
+            placeholder={t("Ismingiz")}
             required
           />
           <Input
             type="email"
             name="user_email"
             className="hover:ring-2 hover:ring-transparent md:h-12 active:ring-primary"
-            placeholder="Email manzil"
+            placeholder={t("Email manzil")}
             required
           />
         </div>
@@ -66,17 +68,16 @@ function ContactForm() {
           name="message"
           rows={10}
           className="hover:ring-2 hover:ring-transparent md:h-12 active:ring-primary"
-          placeholder="Bu yerga xabaringizni yozing."
+          placeholder={t("Bu yerga xabaringizni yozing")}
           required
         />
         <p className="py-4 md:py-6 text-sm text-muted-foreground border-b-2 border-border">
-          Xabaringizni tez orada ko&apos;rib chiqib siz bilan bog&apos;lanishga
-          harakat qilamiz.
+          {t("contact-with-client")}
         </p>
         <div className="flex flex-col md:flex-row md:items-center md:justify-between w-full py-4 md:py-6">
           <div>
             <p className="text-xs text-muted-foreground -mb-1">
-              Email manzilimiz.
+              {t("Email manzilimiz")}:
             </p>
             <small className="text-xs text-primary font-medium cursor-pointer hover:underline">
               dotsoftuz@gmail.com
@@ -86,7 +87,7 @@ function ContactForm() {
             type="submit"
             className="flex items-center gap-1.5 mt-3 md:mt-0"
           >
-            <span>Yuborish</span>
+            <span>{t("Yuborish")}</span>
             <ArrowRight className="w-3 h-3" />
           </Button>
         </div>
