@@ -2,7 +2,7 @@
 import { Lock } from "lucide-react";
 import PriceSection from "../prices";
 
-function Price({ pricePage = false }) {
+function Price({ pricePage = false, t }) {
   return (
     <section
       id="price"
@@ -18,19 +18,19 @@ function Price({ pricePage = false }) {
             pricePage ? "text-primary" : "text-white"
           } text-clamp-title items-center text-center`}
         >
-          <span className="text-muted-foreground ">Narxlar.</span>
+          <span className="text-muted-foreground ">{t("Narxlar")}.</span>
           <br />
-          Mos tarifni tanlang.
+          {t("Mos tarifni tanlang")}.
         </h2>
       </div>
 
-      <PriceSection />
+      <PriceSection t={t}/>
 
       {!pricePage && (
         <div className="flex items-center justify-center px-4 gap-2 text-white w-full mx-auto mt-5">
           <Lock className="w-4 h-4" />
           <small>
-            Xavfsiz to&apos;lov tizimi. Istalgan vaqtda bekor qiling.
+            {t("Xavfsiz to'lov tizimi")}.
           </small>
         </div>
       )}

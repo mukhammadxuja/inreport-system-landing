@@ -17,7 +17,7 @@ import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import { ChangeEvent, useTransition } from "react";
 
-function HomeNavbar({ setOpenMobileNav }) {
+function HomeNavbar({ setOpenMobileNav, t }) {
   const { isVisible, setIsVisible, lastScrollTop, setLastScrollTop } =
     useMainContext();
 
@@ -91,16 +91,16 @@ function HomeNavbar({ setOpenMobileNav }) {
         <div className="flex items-center sm:gap-2 md:gap-6">
           <ul className="hidden lg:flex items-center gap-4">
             <li className="nav-link">
-              <Link href={`${firstPathSegment}/prices`}>Narxlar</Link>
+              <Link href="/#services">{t("Xizmatlar")}</Link>
             </li>
             <li className="nav-link">
-              <Link href="/#services">Xizmatlar</Link>
+              <Link href={`${firstPathSegment}/prices`}>{t("Narxlar")}</Link>
             </li>
             <li className="nav-link">
-              <Link href={`${firstPathSegment}/aboutus`}>Haqimizda</Link>
+              <Link href={`${firstPathSegment}/aboutus`}>{t("Haqimizda")}</Link>
             </li>
             <li className="nav-link">
-              <Link href={`${firstPathSegment}/contact`}>Aloqa</Link>
+              <Link href={`${firstPathSegment}/contact`}>{t("Aloqa")}</Link>
             </li>
           </ul>
           <div className="flex gap-2 items-center">
@@ -123,7 +123,9 @@ function HomeNavbar({ setOpenMobileNav }) {
               rel="noopener noreferrer"
               href="https://app.inreport.uz/"
             >
-              <Button className="whitespace-nowrap">Hisobga kirish</Button>
+              <Button className="whitespace-nowrap">
+                {t("Hisobga kirish")}
+              </Button>
             </Link>
           </div>
 

@@ -36,5 +36,27 @@
     "comment1" : "Inreport bilan mijozlarimiz soni 20% ga oshdi. Ombor logistikasi va mahsulotlarni import qilishga sarflanayotgan vaqt sezilarli darajada qisqardi. Ushbu omillarning har biri tovar aylanmasining 15% ga oshishiga ta'sir ko'rsatdi",
     "comment2" : "Mijozlarni boshqarishning ilg'or funksionalligi, hisob-kitoblarning aniqligi va ma'lumotlar auditini Inreport dasturining afzalliklari qatoriga kiritishimiz mumkin. Inreport bizga o'z vaqtida qaror qabul qilish va do'kon uchun sarflanayotgan vaqtni tejashga yordam beradi",
     "comment3" : "Inreport yordamida tovarlar va mijozlar bilan ishlashni to'liq avtomatlashtirishga muvaffaq bo'ldik, natijada do'konlarimiz soni uchtagacha ko'paydi, savdo hajmi esa 40% ga oshdi.",
-    "comment4" : "Inreport ning qo'llab-quvvatlash xizmatini juda ham qadrlayman. Inreport bilan hamkorlikni boshlaganimizdan so'ng ish jarayonimiz osonlashdi. Telegram-bot'imizni ishga tushirdik, u onlayn savdoni yo'lga qo'yishga va brend taniqliligini oshirishga yordam bermoqda."
+    "comment4" : "Inreport ning qo'llab-quvvatlash xizmatini juda ham qadrlayman. Inreport bilan hamkorlikni boshlaganimizdan so'ng ish jarayonimiz osonlashdi. Telegram-bot'imizni ishga tushirdik, u onlayn savdoni yo'lga qo'yishga va brend taniqliligini oshirishga yordam bermoqda.",
+    "Narxlar" : "Narxlar",
+    "Xizmatlar" : "Xizmatlar",
+    "Haqimizda" : "Haqimizda",
+    "Aloqa" : "Aloqa",
+    "Hisobga kirish" : "Hisobga kirish",
+    "Maxfiylik siyosati" : "Maxfiylik siyosati",
+    "Foydalanish shartlari" : "Foydalanish shartlari",
+    "Bizni kuzatib boring" : "Bizni kuzatib boring",
+    "Mos tarifni tanlang" : "Mos tarifni tanlang",
+    "Xavfsiz to'lov tizimi" : "Xavfsiz to'lov tizimi. Istalgan vaqtda bekor qiling",
+    "Yillik" : "Yillik",
+    "Oylik" : "Oylik",
+    "free plan text" : "INREPORT platformasini sinab ko'rish uchun 10 kunlik bepul reja. Bu reja asosiy xususiyatlarni o'z ichiga oladi va foydalanuvchilarga dastur bilan tanishish imkoniyatini beradi.",
+    "Sotuvlar bo'yicha hisobotlar" : "Sotuvlar bo'yicha hisobotlar",
+    "Mijozlar bilan aloqa boshqaruvi" : "Mijozlar bilan aloqa boshqaruvi",
+    "Real vaqt tahlillari" : "Real vaqt tahlillari",
+    "Ma'lumotlar xavfsizligi" : "Ma'lumotlar xavfsizligi",
+    "Tarifni tanlash" : "Tarifni tanlash",
+    "standart plan text" : "Ushbu reja kichik va o'rta bizneslar uchun mos bo'lib, archa asosiy xususiyatlarni o'z ichiga oladi.",
+    "business plan text" : "Katta bizneslar uchun mo'ljallangan reja. Standart rejadagi barcha xususiyatlardan tashqari, qo'shimcha agent dasturidan foydalanish imkoniyatini beradi.",
+    "kun" : "kun"
+
   }

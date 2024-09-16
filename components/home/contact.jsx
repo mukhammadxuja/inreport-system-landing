@@ -9,7 +9,7 @@ import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
 import { useToast } from "../ui/use-toast";
 
-function Contact() {
+function Contact({t}) {
   const ref = useRef(null);
   const { toast } = useToast();
   const isInView = useInView(ref);
@@ -61,8 +61,8 @@ function Contact() {
         className="absolute z-20 flex flex-col justify-center top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 space-y-2"
       >
         <h2 className="text-clamp-title text-center whitespace-nowrap">
-          Biz bilan
-          <span className="text-muted-foreground"> bog&apos;laning</span>
+          {t("Biz bilan bog'laning")}
+          
         </h2>
         <div className="flex items-center gap-2 mx-auto">
           <div className="relative">

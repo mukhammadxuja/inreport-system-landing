@@ -6,7 +6,7 @@ import { useInView } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-function HomeFooter() {
+function HomeFooter({t}) {
   const textRef = useRef(null);
   const ref = useRef(null);
   const isInView = useInView(ref);
@@ -57,16 +57,16 @@ function HomeFooter() {
                 ref={textRef}
                 className="inline-block mb-14 md:mb-20 mt-5 text-white tracking-[1.12] leading-[-.005em] text-clamp-footer font-bold"
               >
-                <span style={{ display: "inline-block" }}>Tovarlar.</span>
-                <span style={{ display: "inline-block" }}>Kassa.</span> <br />
-                <span style={{ display: "inline-block" }}>Mijozlar.</span>
-                <span style={{ display: "inline-block" }}>Moliya.</span>
+                <span style={{ display: "inline-block" }}>{t("Tovarlar")}.</span>
+                <span style={{ display: "inline-block" }}>{t("Kassa")}.</span> <br />
+                <span style={{ display: "inline-block" }}>{t("Mijozlar")}.</span>
+                <span style={{ display: "inline-block" }}>{t("Moliya")}.</span>
                 <br />
                 <span
                   style={{ display: "inline-block" }}
                   className="text-gray-400"
                 >
-                  Boshqaruvi.
+                  {t("Boshqaruvi")}.
                 </span>
               </h1>
             </div>
@@ -76,28 +76,28 @@ function HomeFooter() {
                   <span>Inreport</span>
                 </li>
                 <li className="nav-link text-white">
-                  <Link href={`${firstPathSegment}/prices`}>Narxlar</Link>
+                  <Link href={`${firstPathSegment}/prices`}>{t("Narxlar")}</Link>
                 </li>
                 <li className="nav-link text-white">
-                  <Link href="/#services">Xizmatlar</Link>
+                  <Link href="/#services">{t("Xizmatlar")}</Link>
                 </li>
                 <li className="nav-link text-white">
-                  <Link href={`${firstPathSegment}/aboutus`}>Haqimizda</Link>
+                  <Link href={`${firstPathSegment}/aboutus`}>{t("Haqimizda")}</Link>
                 </li>
                 <li className="nav-link text-white">
                   <Link href={`${firstPathSegment}/privacy`}>
-                    Maxfiylik siyosati
+                    {t("Maxfiylik siyosati")}
                   </Link>
                 </li>
                 <li className="nav-link text-white">
                   <Link href={`${firstPathSegment}/agreement`}>
-                    Foydalanish shartlari
+                    {t("Foydalanish shartlari")}
                   </Link>
                 </li>
               </ul>
               <ul className="flex flex-col -space-y-2.5">
                 <li className="nav-link uppercase text-secondary opacity-75 text-xs">
-                  <span>Ijtimoy tarmoqlarda</span>
+                  <span>{t("Ijtimoy tarmoqlarda")}</span>
                 </li>
                 <li className="nav-link text-white">
                   <a
@@ -126,7 +126,7 @@ function HomeFooter() {
           </div>
           <div className="container mx-auto pb-4 flex items-center justify-between text-white">
             <small className="!opacity-60 text-sm">
-              INREPORT — Savdo boshqaruvi
+              INREPORT — {t("Savdo boshqaruvi")}
             </small>
             <a
               href="https://dotsoft.uz/"

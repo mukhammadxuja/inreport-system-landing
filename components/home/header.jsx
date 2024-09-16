@@ -69,7 +69,7 @@ function Header({ t }) {
           <br />
           <p
             style={{ display: "inline-block" }}
-            className="text-gray-600 md:text-2xl lg:text-3xl font-normal mt-3 md:mt-5 w-[700px]"
+            className="text-gray-600 md:text-2xl lg:text-3xl font-normal mt-3 md:mt-5 max-w-[700px]"
           >
             {t("slogan")}
           </p>

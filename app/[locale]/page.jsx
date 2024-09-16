@@ -108,7 +108,7 @@ export default function Home() {
 
   return (
     <main className="scroll-smooth">
-      <HomeNavbar setOpenMobileNav={setOpenMobileNav} />
+      <HomeNavbar setOpenMobileNav={setOpenMobileNav} t={t} />
       <div
         onClick={() => setOpenMobileNav(false)}
         className={`${
@@ -118,6 +118,7 @@ export default function Home() {
       <MobileNav
         openMobileNav={openMobileNav}
         setOpenMobileNav={setOpenMobileNav}
+        t={t}
       />
       <Header t={t} />
       <About data={projects} t={t} />
@@ -126,11 +127,11 @@ export default function Home() {
       {/* <Types /> */}
       <Comments t={t} />
       <Clients />
-      <Price />
+      <Price t={t} />
       {/* <Cards /> */}
       {/* <Blog /> */}
-      <Contact />
-      <HomeFooter />
+      <Contact t={t} />
+      <HomeFooter t={t} />
     </main>
   );
 }

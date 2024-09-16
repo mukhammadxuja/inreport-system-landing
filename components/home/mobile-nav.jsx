@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
+const MobileNav = ({ openMobileNav, setOpenMobileNav, t }) => {
   const pathname = usePathname();
   const pathSegments = pathname.split("/").filter(Boolean);
 
@@ -40,7 +40,7 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
             href="https://app.inreport.uz/"
           >
             <Button className="bg-white hover:bg-gray-100 text-black hover:text-black">
-              Hisobga kirish
+              {t("Hisobga kirish")}
             </Button>
           </Link>
           <Button
@@ -55,14 +55,14 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
       <div className="space-y-3 py-10">
         <ul className="flex flex-col -space-y-2.5">
           <li className="mb-2 uppercase text-secondary opacity-75 text-xs font-semibold">
-            <span>Inreport</span>
+            <span>INREPORT</span>
           </li>
           <li className="nav-link text-white">
             <Link
               href={`${firstPathSegment}/prices`}
               onClick={() => setOpenMobileNav(false)}
             >
-              Narxlar
+              {t("Narxlar")}
             </Link>
           </li>
           <li className="nav-link text-white">
@@ -73,7 +73,7 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
               href={`${firstPathSegment}/aboutus`}
               onClick={() => setOpenMobileNav(false)}
             >
-              Haqimizda
+              {t("Haqimizda")}
             </Link>
           </li>
           <li className="nav-link text-white">
@@ -81,7 +81,7 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
               href={`${firstPathSegment}/contact`}
               onClick={() => setOpenMobileNav(false)}
             >
-              Aloqa
+              {t("Aloqa")}
             </Link>
           </li>
           <li className="nav-link text-white">
@@ -89,7 +89,7 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
               href={`${firstPathSegment}/privacy`}
               onClick={() => setOpenMobileNav(false)}
             >
-              Maxfiylik siyosati
+              {t("Maxfiylik siyosati")}
             </Link>
           </li>
           <li className="nav-link text-white">
@@ -97,16 +97,13 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
               href={`${firstPathSegment}/agreement`}
               onClick={() => setOpenMobileNav(false)}
             >
-              Foydalanish shartlari
+              {t("Foydalanish shartlari")}
             </Link>
           </li>
         </ul>
         <ul className="flex flex-col -space-y-2.5">
           <li className="mb-2 uppercase text-secondary opacity-75 text-xs font-semibold mt-2">
-            <span>Follow Us</span>
-          </li>
-          <li className="nav-link text-white">
-            <a href="tel:+998995575230">99 557-52-30</a>
+            <span>{t("Bizni kuzatib boring")}</span>
           </li>
           <li className="nav-link text-white">
             <a
@@ -117,6 +114,10 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
               91 944-94-91
             </a>
           </li>
+          <li className="nav-link text-white">
+            <a href="tel:+998995575230">99 557-52-30</a>
+          </li>
+
           <li className="nav-link text-white">
             <a
               target="_blank"

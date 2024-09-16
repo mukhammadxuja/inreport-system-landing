@@ -16,7 +16,6 @@ import Price from "@/components/home/prices";
 
 function ContactPage() {
   const { openMobileNav, setOpenMobileNav } = useMainContext();
-
   useEffect(() => {
     const lenis = new Lenis({
       // lerp: 0.15,
