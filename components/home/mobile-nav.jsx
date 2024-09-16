@@ -3,8 +3,11 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
-const MobileNav = ({ openMobileNav, setOpenMobileNav, t }) => {
+const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
+  const t = useTranslations();
+
   const pathname = usePathname();
   const pathSegments = pathname.split("/").filter(Boolean);
 

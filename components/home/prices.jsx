@@ -20,18 +20,16 @@ function Price({ pricePage = false, t }) {
         >
           <span className="text-muted-foreground ">{t("Narxlar")}.</span>
           <br />
-          {t("Mos tarifni tanlang")}.
+          {t("price_page_example")}.
         </h2>
       </div>
 
-      <PriceSection t={t}/>
+      <PriceSection t={t} />
 
       {!pricePage && (
         <div className="flex items-center justify-center px-4 gap-2 text-white w-full mx-auto mt-5">
           <Lock className="w-4 h-4" />
-          <small>
-            {t("Xavfsiz to'lov tizimi")}.
-          </small>
+          <small>{t("Xavfsiz to'lov tizimi")}.</small>
         </div>
       )}
     </section>

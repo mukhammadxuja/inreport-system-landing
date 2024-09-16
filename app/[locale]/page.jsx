@@ -25,8 +25,6 @@ import Call from "@/components/home/call";
 import Types from "@/components/home/types";
 import { useTranslations } from "next-intl";
 
-
-
 export default function Home() {
   const { openMobileNav, setOpenMobileNav } = useMainContext();
   const [openPhone, setOpenPhone] = useState(false);
@@ -54,52 +52,45 @@ export default function Home() {
     requestAnimationFrame(raf);
   }, []);
 
-
   const projects = [
     {
       title: t("Savdo jarayonlarini avtomatlashtirish"),
-      description:
-        t("Savdo jarayonlarini avtomatlashtirish more"),
+      description: t("Savdo jarayonlarini avtomatlashtirish more"),
       src: "/assets/sell.jpg",
       rotate: [3, -2],
       color: "#BBACAF",
     },
     {
       title: t("Mijozlar bazasini boshqarish"),
-      description:
-        t("Mijozlar bazasini boshqarish more"),
+      description: t("Mijozlar bazasini boshqarish more"),
       src: "/assets/customer.webp",
       rotate: [-4, 2],
       color: "#977F6D",
     },
     {
       title: t("Inventarizatsiyani kuzatib boring"),
-      description:
-        t("Inventarizatsiyani kuzatib boring more"),
+      description: t("Inventarizatsiyani kuzatib boring more"),
       src: "/assets/control.jpg",
       rotate: [10, -2],
       color: "#C2491D",
     },
     {
       title: t("Moliyaviy hisobotlarni tahlil qilish"),
-      description:
-        t("Moliyaviy hisobotlarni tahlil qilish more"),
+      description: t("Moliyaviy hisobotlarni tahlil qilish more"),
       src: "/assets/sales auto.jpg",
       rotate: [-7, 3],
       color: "#B62429",
     },
     {
       title: t("Jamoani boshqarish va o'zaro hamkorlik"),
-      description:
-        t("Jamoani boshqarish va o'zaro hamkorlik more"),
+      description: t("Jamoani boshqarish va o'zaro hamkorlik more"),
       src: "/assets/control.webp",
       rotate: [6, -2],
       color: "#88A28D",
     },
     {
       title: t("Mobil ilovalar orqali ishlash"),
-      description:
-        t("Mobil ilovalar orqali ishlash more"),
+      description: t("Mobil ilovalar orqali ishlash more"),
       src: "/assets/statistic.png",
       rotate: [10, 0],
       color: "#88A28D",
@@ -130,8 +121,8 @@ export default function Home() {
       <Price t={t} />
       {/* <Cards /> */}
       {/* <Blog /> */}
-      <Contact t={t} />
-      <HomeFooter t={t} />
+      <Contact />
+      <HomeFooter />
     </main>
   );
 }

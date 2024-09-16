@@ -8,9 +8,11 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
 import { useToast } from "../ui/use-toast";
+import { useTranslations } from "next-intl";
 
-function Contact({t}) {
+function Contact() {
   const ref = useRef(null);
+  const t = useTranslations();
   const { toast } = useToast();
   const isInView = useInView(ref);
 
@@ -62,7 +64,6 @@ function Contact({t}) {
       >
         <h2 className="text-clamp-title text-center whitespace-nowrap">
           {t("Biz bilan bog'laning")}
-          
         </h2>
         <div className="flex items-center gap-2 mx-auto">
           <div className="relative">

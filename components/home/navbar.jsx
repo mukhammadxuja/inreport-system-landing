@@ -13,13 +13,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import { ChangeEvent, useTransition } from "react";
 
-function HomeNavbar({ setOpenMobileNav, t }) {
+function HomeNavbar({ setOpenMobileNav }) {
   const { isVisible, setIsVisible, lastScrollTop, setLastScrollTop } =
     useMainContext();
+
+  const t = useTranslations();
 
   const pathname = usePathname();
   const pathSegments = pathname.split("/").filter(Boolean);

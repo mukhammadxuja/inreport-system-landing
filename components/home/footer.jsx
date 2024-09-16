@@ -5,9 +5,11 @@ import Image from "next/image";
 import { useInView } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
-function HomeFooter({t}) {
+function HomeFooter() {
   const textRef = useRef(null);
+  const t = useTranslations();
   const ref = useRef(null);
   const isInView = useInView(ref);
 
@@ -57,9 +59,14 @@ function HomeFooter({t}) {
                 ref={textRef}
                 className="inline-block mb-14 md:mb-20 mt-5 text-white tracking-[1.12] leading-[-.005em] text-clamp-footer font-bold"
               >
-                <span style={{ display: "inline-block" }}>{t("Tovarlar")}.</span>
-                <span style={{ display: "inline-block" }}>{t("Kassa")}.</span> <br />
-                <span style={{ display: "inline-block" }}>{t("Mijozlar")}.</span>
+                <span style={{ display: "inline-block" }}>
+                  {t("Tovarlar")}.
+                </span>
+                <span style={{ display: "inline-block" }}>{t("Kassa")}.</span>{" "}
+                <br />
+                <span style={{ display: "inline-block" }}>
+                  {t("Mijozlar")}.
+                </span>
                 <span style={{ display: "inline-block" }}>{t("Moliya")}.</span>
                 <br />
                 <span
@@ -76,13 +83,17 @@ function HomeFooter({t}) {
                   <span>Inreport</span>
                 </li>
                 <li className="nav-link text-white">
-                  <Link href={`${firstPathSegment}/prices`}>{t("Narxlar")}</Link>
+                  <Link href={`${firstPathSegment}/prices`}>
+                    {t("Narxlar")}
+                  </Link>
                 </li>
                 <li className="nav-link text-white">
                   <Link href="/#services">{t("Xizmatlar")}</Link>
                 </li>
                 <li className="nav-link text-white">
-                  <Link href={`${firstPathSegment}/aboutus`}>{t("Haqimizda")}</Link>
+                  <Link href={`${firstPathSegment}/aboutus`}>
+                    {t("Haqimizda")}
+                  </Link>
                 </li>
                 <li className="nav-link text-white">
                   <Link href={`${firstPathSegment}/privacy`}>
