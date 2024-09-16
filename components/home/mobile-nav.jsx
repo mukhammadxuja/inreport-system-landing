@@ -69,7 +69,7 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
             </Link>
           </li>
           <li className="nav-link text-white">
-            <Link href="/#services">Xizmatlar</Link>
+            <Link href="/#services">{t("Xizmatlar")}</Link>
           </li>
           <li className="nav-link text-white">
             <Link
