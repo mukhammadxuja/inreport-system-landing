@@ -14,9 +14,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Cards from "../../../components/contact/cards";
 import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 function ContactPage() {
   const { openMobileNav, setOpenMobileNav } = useMainContext();
+  const t = useTranslations();
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -43,9 +45,9 @@ function ContactPage() {
       />
 
       <h2 className="text-clamp-title items-center text-center text-primary pt-24 pb-10 md:pt-24 lg:pt-36">
-        <span className="text-muted-foreground">Aloqa.</span>
+        <span className="text-muted-foreground">{t("Aloqa")}.</span>
         <br />
-        Biz bilan bog&apos;laning.
+        {t("Biz bilan bog'laning")}.
       </h2>
 
       <div className="w-full container md:max-w-xl mx-auto">
@@ -66,7 +68,7 @@ function ContactPage() {
         >
           <Button variant="secondary" className="flex items-center gap-2 w-full mb-10">
             <Send className="w-4 h-4" />
-            <span>Telegram orqali bog&apos;lanish</span>
+            <span>{t("Telegram orqali bog'lanish")}</span>
           </Button>
         </a>
       </div>

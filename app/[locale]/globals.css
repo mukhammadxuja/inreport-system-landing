@@ -80,7 +80,9 @@ canvas {
     --ring: 240 4.9% 83.9%;
   }
 }
-
+*{
+  scroll-behavior: smooth;
+}
 body {
   scroll-behavior: smooth;
 }

@@ -17,7 +17,7 @@ export default async function RootLayout({ children }) {
   const messages = await getMessages();
   return (
     <NextIntlClientProvider messages={messages}>
-      <html lang="en">
+      <html lang="uz">
         <head>
           <link
             rel="icon"

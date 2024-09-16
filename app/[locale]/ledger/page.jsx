@@ -6,7 +6,6 @@ import Head from "next/head";
 import ContactForm from "@/components/contact/form";
 import HomeFooter from "@/components/home/footer";
 import HomeNavbar from "@/components/home/navbar";
-
 import Lenis from "lenis";
 import { useMainContext } from "@/context/main-context";
 import MobileNav from "@/components/home/mobile-nav";
@@ -14,9 +13,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Cards from "../../../components/contact/cards";
 import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
+import { useTranslations } from "next-intl";
 
-function ContactPage() {
+function Ledger() {
   const { openMobileNav, setOpenMobileNav } = useMainContext();
+  const t = useTranslations();
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -185,4 +186,7 @@ function ContactPage() {
   );
 }
 
-export default ContactPage;
+export default Ledger;
+
+
+

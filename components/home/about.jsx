@@ -7,7 +7,7 @@ import Image from "next/image";
 function About({ data, t }) {
   // Ulandim
   return (
-    <section className="container mx-auto pt-10 md:pt-16 mt-10">
+    <section id="services" className="container mx-auto pt-10 md:pt-16 mt-10">
       <div className="w-full">
         <h2 className="text-clamp-title items-center text-center">
           <span className="text-muted-foreground">{t("Barcha vazifalar uchun")}</span>

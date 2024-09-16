@@ -145,7 +145,7 @@ function HomeFooter() {
               rel="noopener noreferrer"
               className="!opacity-60 text-sm"
             >
-              Dotsoft MCHJ
+              Dotsoft {t("MCHJ")}
             </a>
           </div>
         </div>

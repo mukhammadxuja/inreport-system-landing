@@ -8,6 +8,7 @@ import { ArrowRight } from "lucide-react";
 import Shapes from "./floating-shape/shapes";
 import Plus from "./floating-shape/plus";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 function HomeServices({ t }) {
   const freeSupportText = (
@@ -19,9 +20,15 @@ function HomeServices({ t }) {
       <li className="text-4xl font-bold whitespace-nowrap">•</li>
     </>
   );
+  const pathname = usePathname();
+  const pathSegments = pathname.split("/").filter(Boolean);
+
+  // Get the first segment or the only one if there's just one
+  const firstPathSegment =
+    pathSegments.length > 0 ? `/${pathSegments[0]}` : "/";
 
   return (
-    <section id="services" className="mb-10 md:mb-16">
+    <section className="mb-10 md:mb-16">
       <section className="py-10 md:py-16 my-10 md:mt-16 md:mb-10 items-center bg-primary text-white">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 items-center h-full">
           <div className="mb-4 md:mb-0 h-full">
@@ -71,7 +78,7 @@ function HomeServices({ t }) {
               {t("Hisob-kitoblaringizni qo'lda yuritasizmi more")}
             </p>
           </div>
-          <Link href="/ledger">
+          <Link href={`${firstPathSegment}/ledger`}>
             <Button className="flex items-center gap-2.5 w-full">
               <span>{t("Ko'proq ma'lumot olish")}</span>
               <ArrowRight className="w-4 h-4" />
@@ -88,7 +95,7 @@ function HomeServices({ t }) {
               {t("Boshqa dasturdan foydalanasizmi more")}
             </p>
           </div>
-          <Link href="/contact">
+          <Link href={`${firstPathSegment}/contact`}>
             <Button className="flex items-center gap-2.5 w-full">
             <span>{t("Ko'proq ma'lumot olish")}</span>
               <ArrowRight className="w-4 h-4" />

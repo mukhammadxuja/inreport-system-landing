@@ -14,9 +14,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Cards from "../../../components/contact/cards";
 import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
+import { useTranslations } from "next-intl";
 
-function ContactPage() {
+function Agreement() {
   const { openMobileNav, setOpenMobileNav } = useMainContext();
+  const t = useTranslations();
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -44,41 +46,39 @@ function ContactPage() {
 
       <div className="mt-20 mb-10">
       <div className="container mx-auto p-6">
-        <h1 className="text-4xl font-bold text-gray-900 mb-6">Foydalanish Shartlari</h1>
+        <h1 className="text-4xl font-bold text-gray-900 mb-6">{t("Foydalanish Shartlari")}</h1>
         
         <p className="mb-6 text-lg text-gray-700">
-        INREPORT xizmatidan foydalanish orqali siz ushbu shartlarga rozilik bildirasiz. Iltimos, quyidagi shartlarni diqqat bilan o'qing.
+        {t("term-1")}
         </p>
 
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Xizmatlardan Foydalanish</h2>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">{t("Xizmatlardan Foydalanish")}</h2>
         <p className="mb-6 text-lg text-gray-700">
-        INREPORT platformasi faqat qonuniy maqsadlarda foydalaniladi. Platformadan foydalanish davomida, siz hech qanday noqonuniy yoki zararli harakatlar qilmasligingiz kerak.
+        {t("term-2")}
         </p>
-      
-      
 
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Intellektual Mulk</h2>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">{t("Intellektual Mulk")}</h2>
         <p className="mb-6 text-lg text-gray-700">
-        Platformadagi barcha kontent, jumladan, logotiplar, matnlar, grafikalar, bizning mulkimizdir va qonun bilan himoyalangan. Ushbu kontentlardan ruxsatsiz foydalanish taqiqlanadi.
+        {t("term-3")}
         </p>
 
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Mas’uliyatni Cheklash</h2>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">{t("Masuliyatni Cheklash")}</h2>
         <p className="mb-6 text-lg text-gray-700">
-        Biz platformaning uzluksiz ishlashi uchun barcha zarur choralarni ko'ramiz, ammo texnik muammolar, uzilishlar yoki yo'qotishlar uchun mas'uliyatni o'z zimmamizga olmaymiz.
+        {t("term-4")}
         </p>
 
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">O'zgartirishlar</h2>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">{t("O'zgartirishlar")}</h2>
         <p className="mb-6 text-lg text-gray-700">
-        Biz ushbu shartlarni istalgan vaqtda yangilash huquqiga egamiz. Yangilangan shartlar ushbu sahifada e'lon qilingan vaqtdan boshlab kuchga kiradi.
+        {t("term-5")}
         </p>
 
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Biz bilan bog'laning</h2>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">{t("Biz bilan bog'laning")}</h2>
         <p className="mb-4 text-lg text-gray-700">
-        Agar sizda savollar bo'lsa, biz bilan bog'laning:
+        {t("contact-us-text-more")}:
         </p>
         <ul className="list-none mb-6">
-          <li><strong>Manzil:</strong> Jizzax shahar, O'zbekiston</li>
-          <li><strong>Telefon:</strong> <a href="tel:+998919449491" className="text-gray-900 hover:underline">+998 91 944 94 91</a></li>
+          <li><strong>{t("Manzil")}:</strong> Jizzax shahar, O'zbekiston</li>
+          <li><strong>{t("Telefon")}:</strong> <a href="tel:+998919449491" className="text-gray-900 hover:underline">+998 91 944 94 91</a></li>
           <li><strong>Email:</strong> <a href="mailto:dotsoftuz@gmail.com" className="text-gray-900 hover:underline">dotsoftuz@gmail.com</a></li>
         </ul>
       </div>
@@ -93,4 +93,4 @@ function ContactPage() {
   );
 }
 
-export default ContactPage;
+export default Agreement;

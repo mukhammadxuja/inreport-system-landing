@@ -46,8 +46,8 @@ function FAQ() {
   return (
     <section className="container mx-auto my-10 md:my-16 max-w-4xl">
       <h2 className="text-clamp-title items-center text-center mt-10 mb-5">
-        Ko&apos;p beriladigan
-        <span className="text-muted-foreground"> savollar</span>
+        {t("Ko'p beriladigan")}
+        <span className="text-muted-foreground"> {t("savollar")}</span>
       </h2>
       <Accordion className="mt-10 space-y-2" type="single" collapsible>
         {faqData.map((faq) => (
