@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { usePathname } from "next/navigation";
 
-function PriceSection({t}) {
+function PriceSection({ t }) {
   const pathname = usePathname();
   const pathSegments = pathname.split("/").filter(Boolean);
 
@@ -20,7 +20,9 @@ function PriceSection({t}) {
           <TabsTrigger value="monthly">{t("Oylik")}</TabsTrigger>
           <TabsTrigger value="yearly">
             <span>{t("Yillik")}</span>
-            <span className="bg-blue-400 rounded-lg text-black py-1 px-2 ml-2 text-xs">+{t("Chegirma")}</span>
+            <span className="bg-blue-400 rounded-lg text-black py-1 px-2 ml-2 text-xs">
+              20% {t("Chegirma")}
+            </span>
           </TabsTrigger>
         </TabsList>
       </div>
@@ -202,8 +204,12 @@ function PriceSection({t}) {
               {t("standart plan text")}
             </p>
             <span className="text-black text-xs">
-              <b className="text-3xl font-bold">2 500 000</b> UZS / 365 {t("kun")}
-              
+              <div>
+                <b className="text-3xl font-bold">240 000</b> UZS / 30 {t("kun")}
+              </div>
+              <div className="text-gray-600">
+                <b className="font-bold text-sm">2 880 000</b> UZS / 365 {t("kun")}
+              </div>
             </span>
             <div className="mt-5 py-5 border-t space-y-1">
               <span className="flex items-center gap-1">
@@ -245,10 +251,14 @@ function PriceSection({t}) {
             <p className="text-xs text-muted-foreground mb-3">
               {t("business plan text")}
             </p>
-            <span className="text-black text-xs">
-              <b className="text-3xl font-bold">3 500 000</b> UZS / 365
-              kun
-            </span>
+            <div className="text-black text-xs">
+              <div>
+                <b className="text-3xl font-bold">320 000</b> UZS / 30 {t("kun")}
+              </div>
+              <div className="text-gray-600">
+                <b className="font-bold text-sm">3 840 000</b> UZS / 365 {t("kun")}
+              </div>
+            </div>
             <div className="mt-5 py-5 border-t space-y-1">
               <span className="flex items-center gap-1">
                 <Check className="w-3 h-3" />
@@ -290,7 +300,6 @@ function PriceSection({t}) {
           </div>
         </div>
       </TabsContent>
-      
     </Tabs>
   );
 }
