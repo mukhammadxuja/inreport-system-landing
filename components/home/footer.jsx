@@ -82,11 +82,11 @@ function HomeFooter() {
                 <li className="nav-link uppercase text-secondary opacity-75 text-xs">
                   <span>Inreport</span>
                 </li>
-                <li className="nav-link text-white">
+                {/* <li className="nav-link text-white">
                   <Link href={`${firstPathSegment}/prices`}>
                     {t("Narxlar")}
                   </Link>
-                </li>
+                </li> */}
                 <li className="nav-link text-white">
                   <Link href="/#services">{t("Xizmatlar")}</Link>
                 </li>

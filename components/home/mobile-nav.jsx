@@ -60,14 +60,14 @@ const MobileNav = ({ openMobileNav, setOpenMobileNav }) => {
           <li className="mb-2 uppercase text-secondary opacity-75 text-xs font-semibold">
             <span>INREPORT</span>
           </li>
-          <li className="nav-link text-white">
+          {/* <li className="nav-link text-white">
             <Link
               href={`${firstPathSegment}/prices`}
               onClick={() => setOpenMobileNav(false)}
             >
               {t("Narxlar")}
             </Link>
-          </li>
+          </li> */}
           <li className="nav-link text-white">
             <Link href="/#services">{t("Xizmatlar")}</Link>
           </li>

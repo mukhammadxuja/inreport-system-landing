@@ -95,9 +95,9 @@ function HomeNavbar({ setOpenMobileNav }) {
             <li className="nav-link">
               <Link href="/#services">{t("Xizmatlar")}</Link>
             </li>
-            <li className="nav-link">
+            {/* <li className="nav-link">
               <Link href={`${firstPathSegment}/prices`}>{t("Narxlar")}</Link>
-            </li>
+            </li> */}
             <li className="nav-link">
               <Link href={`${firstPathSegment}/aboutus`}>{t("Haqimizda")}</Link>
             </li>
