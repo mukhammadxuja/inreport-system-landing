@@ -205,10 +205,10 @@ function PriceSection({ t }) {
             </p>
             <span className="text-black text-xs">
               <div>
-                <b className="text-3xl font-bold">240 000</b> UZS / 30 {t("kun")}
+                <b className="text-3xl font-bold">250 000</b> UZS / 30 {t("kun")}
               </div>
               <div className="text-gray-600">
-                <b className="font-bold text-sm">2 880 000</b> UZS / 365 {t("kun")}
+                <b className="font-bold text-sm">3 000 000</b> UZS / 365 {t("kun")}
               </div>
             </span>
             <div className="mt-5 py-5 border-t space-y-1">
@@ -253,10 +253,10 @@ function PriceSection({ t }) {
             </p>
             <div className="text-black text-xs">
               <div>
-                <b className="text-3xl font-bold">320 000</b> UZS / 30 {t("kun")}
+                <b className="text-3xl font-bold">333 333</b> UZS / 30 {t("kun")}
               </div>
               <div className="text-gray-600">
-                <b className="font-bold text-sm">3 840 000</b> UZS / 365 {t("kun")}
+                <b className="font-bold text-sm">4 000 000</b> UZS / 365 {t("kun")}
               </div>
             </div>
             <div className="mt-5 py-5 border-t space-y-1">
